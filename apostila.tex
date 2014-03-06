@@ -1,9 +1,11 @@
-\documentclass[a4paper,11pt]{book}
+\documentclass[a4paper]{book}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{lmodern}
+%\usepackage{lmodern}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{thmtools}
 \usepackage[portuguese]{babel}
 
 %% dedication environment
@@ -22,6 +24,15 @@
    \clearpage
 }
 
+\declaretheorem[name=Defini\c{c}\~ao,style=definition,qed=$\blacksquare$]{Definition}
+\declaretheorem[name=Exemplo,style=definition,qed=$\blacksquare$]{Example}
+\newtheorem{Lemma}{Lema}
+\newtheorem{Theorem}{Teorema}
+\newtheorem{Corollary}{Corol\'ario}
+\theoremstyle{definition}
+%\newtheorem{Definition}{Defini\c{c}\~ao}
+%\newtheorem{Example}{Exemplo}
+
 %% quote environment
 
 \makeatletter
@@ -37,7 +48,7 @@
 % Book's title and subtitle
 \title{\Huge \textbf{Matem\'atica Discreta para Computa\c{c}\~ao}}
 % Author
-\author{\textsc{prof. Rodrigo Geraldo Ribeiro}}
+\author{\textsc{Prof. Rodrigo Geraldo Ribeiro}}
 
 
 \begin{document}

@@ -6,7 +6,6 @@ pdf:
 
 clean:
 	rm *.toc
-	rm *.lof
 	rm *.pdf
 	rm *.log
 	rm *~

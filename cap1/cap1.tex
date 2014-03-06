@@ -31,13 +31,82 @@ citaremos aqui apenas alguns exemplos:
 Al\'em das \'areas citadas anteriormente, a l\'ogica \'e fundamental no estudo e no projeto de linguagens de programa\c{c}\~ao
 e da teoria de computabilidade.
 
-Neste cap\'itulo, discutiremos as dificuldades presentes na utiliza\c{c}\~ao do Portugu\^es
+Neste cap\'itulo, discutiremos as dificuldades presentes na utiliza\c{c}\~ao do Portugu\^es para expressar racioc\'inio 
+l\'ogico e como contorn\'a-las utilizando l\'ogica formal. Existem diversos tipos de l\'ogicas formais, cada uma com 
+uma aplica\c{c}\~ao espec\'ifica. Inicialmente consideraremos uma l\'ogica bem simples chamada de l\'ogica proposicional.
+Primeiramente, iremos analisar a sintaxe da linguagem da l\'ogica proposicional e depois consideraremos tr\^es sistemas 
+matem\'aticos para racioc\'inio sobre f\'ormulas da l\'ogica proposicional: tabelas verdade, dedu\c{c}\~ao natural e \'algebra 
+Booleana.
 
-In this chapter, we discuss the difficulties with informal logical reasoning in
-English, and we show how to avoid those difficulties with formal logic. There
-are several different kinds of formal logic, and for now we will consider just the
-simplest one, called propositional logic. After looking at the language of propo-
-sitional logic, we will consider in detail three completely different mathematical
-systems for reasoning formally about propositions: truth tables, natural deduc-
-tion, and Boolean algebra.
+\emph{Tabelas verdade} definem o significado dos conectivos l\'ogicos e como eles podem ser utilizados para calcular os 
+valores de express\~oes e provar que duas proposi\c{c}\~oes s\~ao logicamente equivalentes. Como tabelas verdade
+expressam diretamente o siginificado de prpoposi\c{c}\~oes, dizemos que essas s\~ao uma abordagem baseada em sem\^antica para l\'ogica.]
+Tabelas verdade s\~ao de simples entendimento, por\'em n\~ao possuem s\~ao \'uteis na solu\c{c}\~ao de problemas reais devido ao seu tamanho.
 
+\emph{Dedu\c{c}\~ao Natural} \'e uma formaliza\c{c}\~ao de princ\'ipios b\'asicos de racioc\'inio l\'ogico utilizado no cotidiano.
+A dedu\c{c}\~ao natural prov\^e um conjunto de regras de infer\^encia que especificam exatamente quais fatos podem ser deduzidos
+a partir de um conjunto de fatos dados. Em dedu\c{c}\~ao natural n\~ao h\'a a no\c{c}\~ao de `valor l\'ogico` de proposi\c{c}\~oes;
+j\'a que tudo no sistema est\'a encapsulado em suas regras de infer\^encia. Conforme veremos posteriormente, essas regras s\~ao baseadas
+na estrutura das proposi\c{c}\~oes envolvidas, a dedu\c{c}\~ao natural \'e uma abordagem puramente sint\'atica para a l\'ogica. Diversas
+t\'ecnicas utilizadas em pesquisas na \'areas de linguagens de programa\c{c}\~ao s\~ao baseadas em sistemas l\'ogicos que s\~ao de alguma
+maneira relacionados \`a dedu\c{c}\~ao natural.
+
+\emph{\'Algebra Booleana} \'e uma abordagem para formaliza\c{c}\~ao da l\'ogica baseada em um conjunto de equa\c{c}\~oes --- as leis
+da \'algebra Booleana --- para especificar que certas proposi\c{c}\~oes s\~ao iguais a outras. A \'algebra Booleana \'e uma abordagem
+axiom\'atica, similar a \'algebra elementar e geometria, pois prov\^e um conjunto de leis para manipular proposi\c{c}\~oes. T\'ecnicas
+alg\'ebricas para a l\'ogica s\~ao fundamentais para o projeto de circuitos digitais.
+
+\section{Introdu\c{c}\~ao \`a L\'ogica Formal}
+
+A l\'ogica formal foi inicialmente concebida na gr\'ecia antiga onde fil\'osofos desejavam ser capazes de analisar argumentos 
+em linguagem natural. Os gregos eram fascinados pela id\'eia de que alguns argumentos eram sempre verdadeiros e outros sempre
+falsos. Por\'em, eles rapidamente perceberam que o racioc\'inio l\'ogico \'e dif\'icil de ser analisado usando linguagens naturais
+como o Grego (ou o Portugu\^es!). Isso se deve principalmente devido \`as \emph{ambiguidades} inerentes \`as linguagens naturais.
+Uma das maneiras de se evitar essas dificuldades \'e o uso de vari\'aveis que denominaremos \emph{vari\'aveis proposicionais}. 
+
+Suponha que um conhecido lhe diga `O dia est\'a ensolarado e estou feliz`. Aparentemente essa frase possui interpreta\c{c}\~ao
+\'obvia, mas ao observ\'a-la com cuidado percebe-se que o significado dessa n\~ao \'e t\~ao evidente. Talvez essa pessoa goste
+de dias ensolarados e fica contente quando esse fato ocorre. Note que existe uma conex\~ao entre as duas partes da senten\c{c}a,
+dessa forma, a palavra `e` presente na frase `O dia est\'a ensolarado e estou feliz` significa `e, portanto`. Por\'em, essa an\'alise
+depende de nossa experi\^encia em relacionar o clima com a felicidade das pessoas. Considere agora o seguinte exemplo: 
+`Gatos s\~ao peludos e elefantes pesados`. Essa senten\c{c}a possui a mesma estrutura do exemplo anterior, mas ningu\'em ir\'a tentar
+relacionar o peso de elefantes com a quantidade de pelos de gatos. Neste caso, a palavra `e` significa `e, tamb\'em`. Pode-se perceber que a
+palavra `e` possui diversos significados sutis, e escolhemos o significado apropriado usando nosso conhecimento do mundo \`a nossa volta.
+Perceba que as duas simples frases de exemplo consideradas ilustram as dificuldades de interpreta\c{c}\~ao que podem surgir ao se utilizar
+uma linguagem natural. As dificuldades em se dar um significado preciso a frases em linguagem natural n\~ao se restringem a somente como 
+intepretar a palavra `e`. O estudo preciso da sem\^antica de senten\c{c}as expressas em linguagem natural \'e objeto de estudo da lingu\'istica
+e da filosofia.
+
+Ao inv\'es de tentarmos o imposs\'ivel --- expressar, de maneira precisa,  racioc\'inio l\'ogico em linguagem natural  --- n\'os iremos separar
+a estrutura l\'ogica de um argumento de todas as conota\c{c}\~oes da l\'ingua portuguesa. Faremos isso utilizando \textbf{proposi\c{c}\~oes}, que
+s\~ao definidas a seguir.
+
+\begin{Definition}[Proposi\c{c}\~ao]
+  Definimos por proposi\c{c}\~ao qualquer senten\c{c}a pass\'ivel de possuir um dos valores l\'ogicos: verdadeiro ou falso.
+\end{Definition}
+
+Sempre que poss\'ivel, ap\'os uma defini\c{c}\~ao, apresentaremos alguns exemplos para ilustr\'a-la.
+
+\begin{Example}
+  Quais das seguintes senten\c{c}as podem ser consideradas proposi\c{c}\~oes?
+  \begin{enumerate}
+    \item Hoje \'e segunda-feira.
+    \item $10 < 7$
+    \item $x + 1 = 3$
+    \item Como est\'a voc\^e?
+    \item Ela \'e muito talentosa
+    \item Existe vida em outros planetas.
+  \end{enumerate}
+  Neste exemplo, temos que a senten\c{c}a $1$ \'e uma proposi\c{c}\~ao, pois o dia de hoje pode ser ou n\~ao segunda-feira tornando essa frase
+  verdadeira ou falsa. A senten\c{c}a $2$ \'e uma proposi\c{c}\~ao, pois temos que $10$ n\~ao \'e menor do que $7$. Logo, o valor l\'ogico dessa
+  senten\c{c}a \'e igual a falso. A senten\c{c}a $3$ n\~ao \'e uma proposi\c{c}\~ao pois seu valor l\'ogico depende do valor atribu\'ido a 
+  vari\'avel $x$. Se $x = 2$, temos que a senten\c{c}a $3$ \'e verdadeira. A mesma senten\c{c}a $3$ \'e falsa para qualquer outro valor de $x$. 
+  Logo, como n\~ao \'e poss\'ivel determinar de maneira \'unica o valor l\'ogico da senten\c{c}a $3$, essa n\~ao \'e considerada uma 
+  proposi\c{c}\~ao. 
+  A senten\c{c}a $4$ n\~ao \'e uma proposi\c{c}\~ao pois n\~ao \'e poss\'ivel atribuir um valor verdadeiro ou falso para uma pergunta.
+  A senten\c{c}a $5$ n\~ao \'e uma proposi\c{c}\~ao pois ``ela'' n\~ao est\'a especificada. Portanto, o fato de ``ela'' ser talentosa ou n\~ao
+  depende de quem \'e ``ela''. Logo, essa senten\c{c}a n\~ao \'e uma proposi\c{c}\~ao.
+  A senten\c{c}a $6$ \'e uma proposi\c{c}\~ao pois o fato de existir vida em outros planetas pode ser verdadeiro ou falso.
+\end{Example}
+
+Visando eliminar detalhes desnecess\'arios representaremos proposi\c{c}\~oes
