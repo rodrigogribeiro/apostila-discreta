@@ -8,4 +8,5 @@ clean:
 	rm *.toc
 	rm *.pdf
 	rm *.log
+	rm *.aux
 	rm *~
