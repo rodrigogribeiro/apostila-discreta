@@ -1,313 +1,234 @@
-\chapter{L\'ogica Proposicional}
+\chapter{Conceitos Preliminares}
 
-\section{Motiva\c{c}\~ao}
+O objetivo deste cap\'itulo \'e apresentar alguns conceitos que ser\~ao utilizados durante o todo texto. Primeiramente,
+apresentaremos os conceitos de sintaxe e sem\^antica que s\~ao fundamentais na Ci\^encia da Computa\c{c}\~ao. Logo ap\'os,
+apresentamos uma breve introdu\c{c}\~ao ao assistente de provas Coq, que ser\'a utilizado durante esta apostila como uma
+forma de colocar a teoria em um contexto pr\'atico usando uma ferramenta computacional.
 
-A l\'ogica prov\^e um ferramental para o racioc\'inio sobre matem\'atica, algoritmos
-e circuitos digitais. A aplicabilidade da l\'ogica permeia diversas \'areas da computa\c{c}\~ao,
-citaremos aqui apenas alguns exemplos:
+\section{Linguagens Formais}
 
+Matematicamente, uma linguagem formal \'e um conjunto (finito ou infinito) de termos estruturados. Esses
+termos s\~ao de tamanho finito e s\~ao definidos sobre um conjunto finito de s\'imbolos denominado \textit{alfabeto}.
+A defini\c{c}\~ao de uma linguagem formal apenas descreve a estrutura de seus elementos. Por\'em, somente a especifica\c{c}\~ao
+da sintaxe de uma linguagem n\~ao \'e de grande utilidade se estes n\~ao possu\'irem sem\^antica, isto \'e, uma maneira de
+interpretar estes elementos de maneira a lhes atribuir um significado. Na se\c{c}\~ao \ref{cap1:syn}, nosso objetivo ser\'a apresentar
+algumas defini\c{c}\~oes de sintaxe de linguagens simples e, posteriormente na se\c{c}\~ao \ref{cap1:sem} ser\'a apresentado como
+atribuir significado aos elementos destas linguagens.
+
+\subsection{Sintaxe}\label{cap1:syn}
+
+Linguagens finitas podem (em princ\'ipio) ser especificadas pela enumera\c{c}\~ao de termos da linguagem; j\'a, linguagens
+infinitas s\~ao usualmente descritas por um conjunto finito de regras para construir o conjunto de termos inclu\'idos nesta linguagem.
+O estudo de linguagens formais possui uma extensiva literatura e \'e o objeto de estudo da disciplina Fundamentos Te\'oricos da Computa\c{c}\~ao.
+Neste cap\'itulo, iremos apenas apresentar alguns exemplos que visam ilustrar como definir conjuntos em termos de um conjunto de regras.
+
+\begin{Definition}[Sintaxe do Conjunto de Booleanos]
+  O conjunto de valores Booleanos (l\'ogicos), $\mathcal{B}$, \'e um conjunto finito, que pode ser definido pelas seguintes regras:
+  \[
+      \begin{array}{lcl}
+        T & \in & \mathcal{B}\\
+        F & \in & \mathcal{B}
+      \end{array}
+  \]
+\end{Definition}
+
+Em conjunto, essas regras podem ser interpretadas como ``o conjunto de valores booleanos, $\mathcal{B}$, \'e formado apenas pelos valores 
+$T$ e $F$''.
+O conjunto de valores Booleanos \'e um conjunto finito e sua defini\c{c}\~ao utilizando regras \'e imediata. A pr\'oxima defini\c{c}\~ao,
+apresenta a sintaxe de termos equivalentes ao conjunto dos n\'umeros naturais.
+
+\begin{Definition}[Sintaxe do Conjunto de N\'umeros Naturais]
+O conjunto de termos equivalentes aos n\'umeros naturais, $\mathcal{N}$, \'e um conjunto infinito que pode ser definido pelas seguintes regras:
+\[
+   \begin{array}{l}
+     zero \in \mathcal{N}\\
+     \text{se }n \in \mathcal{N} \text{ ent\~ao }suc\,n\in\mathcal{N}
+   \end{array}
+\]
+\end{Definition}
+
+As regras anteriores podem ser entendidas como:
 \begin{itemize}
-  \item \textbf{Engenharia de Software}: considera-se uma boa pr\'atica especificar um sistema antes 
-        de iniciar a sua codifica\c{c}\~ao. Uma das v\'arias t\'ecnicas de especifica\c{c}\~ao de 
-        software \'e o uso de l\'ogica.
-  \item \textbf{Aplica\c{c}\~oes de Miss\~ao Cr\'itica}: dizemos que uma determinada aplica\c{c}\~ao 
-        \'e de miss\~ao cr\'itica se essa est\'a relacionada a algum risco (de vida, elevados preju\'izos financeiros, etc.).
-        Em tais aplica\c{c}\~oes, a utiliza\c{c}\~ao de testes para garantir o funcionamento adequado 
-        n\~ao \'e suficiente. O que espera-se \'e uma prova de corretude do programa em quest\~ao, isso \'e uma
-        demonstra\c{c}\~ao de que o programa comporta-se de acordo com sua especifica\c{c}\~ao em todas as
-        situa\c{c}\~oes poss\'iveis. A l\'ogica \'e a fundamenta\c{c}\~ao matem\'atica de demonstra\c{c}\~oes de
-        corre\c{c}\~ao de programas.
-   \item \textbf{Recupera\c{c}\~ao de informa\c{c}\~ao}: em m\'aquinas de busca para Web, utiliza-se l\'ogica para
-         especificar como propriedades que classificam uma determinada p\'agina como relevante ou n\~ao com base
-         em seu conte\'udo.
-   \item \textbf{Circuitos Digitais e Arquitetura de Computadores:} l\'ogica \'e a linguagem utilizada para descrever
-         sinais produzidos e recebidos como entrada por componentes eletr\^onicos. Um problema comum no projeto de
-         circuitos eletr\^onicos \'e determinar uma vers\~ao equivalente, por\'em mais eficiente, de um circuito l\'ogico.
-         T\'ecnicas para solu\c{c}\~ao desse problema s\~ao baseadas em algoritmos eficientes para o processamento de
-         f\'ormulas da l\'ogica.
-   \item \textbf{Bancos de dados}: um recurso fundamental de qualquer sistema gerenciador de bancos de dados \'e uma linguagem
-         simples e expressiva para recuperar informa\c{c}\~oes nele armazenadas. A utiliza\c{c}\~ao de recursos baseados em 
-         l\'ogica \'e a chave para a expressividade de linguagens para consultas a bancos de dados.       
+  \item O termo $zero$ pertence ao conjunto $\mathcal{N}$;
+  \item Se $n$ \'e um termo pertencente ao conjunto $\mathcal{N}$, temos que o termo $suc\,n$ tamb\'em pertence a $\mathcal{N}$.
 \end{itemize}
+Desta forma, o conjunto de termos $\mathcal{N}$ \'e $\mathcal{N}=\{zero,\,suc\,zero,\,suc\,(suc\,zero)\,...\}$. A equival\^encia entre o 
+conjunto $\mathcal{N}$ e o conjunto de n\'umeros naturais, $\mathbb{N} = \{0,1,2,...\}$, ser\'a apresentada na se\c{c}\~ao \ref{cap1:sem}.
+Antes de iniciarmos a discuss\~ao sobre como atribuir sem\^antica a termos de uma linguagem, iremos apresentar mais dois exemplos de 
+defini\c{c}\~oes de sintaxe.
 
-Al\'em das \'areas citadas anteriormente, a l\'ogica \'e fundamental no estudo e no projeto de linguagens de programa\c{c}\~ao
-e da teoria de computabilidade.
+\begin{Definition}[Sintaxe do Conjuntos de Listas]
+  O conjunto de listas de elementos de um conjunto $\mathcal{T}$, $\textit{List }\mathcal{T}$, \'e definido pelas seguintes regras:
+  \[
+  \begin{array}{l}
+    [\,] \in \textit{List }\mathcal{T}\\
+    \text{se }t \in \mathcal{T} \text{ e } ts \in \textit{List }\mathcal{T}\text{ ent\~ao } t :: ts \in \textit{List }\mathcal{T}.
+  \end{array}
+  \]
+\end{Definition}
+Listas s\~ao definidas de maneira independente do conjunto de elementos que formam essas listas, isto \'e, a defini\c{c}\~ao de listas
+\'e polim\'orfica em rela\c{c}\~ao ao conjunto de seus elementos.
+Por exemplo, o conjunto de listas sobre 
+o conjunto de valores Booleanos \'e $\textit{List }\mathcal{B}=\{[\,],\,F :: [\,],\,T :: [\,],\, F :: (T :: [\,]),\, ...\}$.
 
-Neste cap\'itulo, discutiremos as dificuldades presentes na utiliza\c{c}\~ao do Portugu\^es para expressar racioc\'inio 
-l\'ogico e como contorn\'a-las utilizando l\'ogica formal. Existem diversos tipos de l\'ogicas formais, cada uma com 
-uma aplica\c{c}\~ao espec\'ifica. Inicialmente consideraremos uma l\'ogica bem simples chamada de l\'ogica proposicional.
-Primeiramente, iremos analisar a sintaxe da linguagem da l\'ogica proposicional e depois consideraremos tr\^es sistemas 
-matem\'aticos para racioc\'inio sobre f\'ormulas da l\'ogica proposicional: tabelas verdade, dedu\c{c}\~ao natural e \'algebra 
-Booleana.
+\begin{Definition}[Sintaxe do Conjunto de Express\~oes Aritm\'eticas]\label{def:arithexp}
+  O conjunto de termos equivalentes a express\~oes aritm\'eticas, $\mathcal{E}$, \'e definido pelas seguintes regras:
+  \[
+  \begin{array}{l}
+    \text{se }n\in\mathcal{N}\text{, ent\~ao } \textit{const }n\in\mathcal{E}\\
+    \text{se }e_1 \in \mathcal{E} \text{ e } e_2 \in \mathcal{E}\text{ ent\~ao }\textit{plus }e_1\,e_2\in\mathcal{E}\\
+    \text{se }e_1 \in \mathcal{E} \text{ e } e_2 \in \mathcal{E}\text{ ent\~ao }\textit{times }e_1\,e_2\in\mathcal{E}
+  \end{array}
+  \]
+\end{Definition}
+Nas defini\c{c}\~oes anteriores apresentamos a estrutura sint\'atica de quatro conjuntos de termos e, informalmente, explicitamos a equival\^encia
+destes com outros conjuntos j\'a conhecidos. A pr\'oxima se\c{c}\~ao descrever\'a como atribuir significado a essas defini\c{c}\~oes sint\'aticas.
 
-\emph{Tabelas verdade} definem o significado dos conectivos l\'ogicos e como eles podem ser utilizados para calcular os 
-valores de express\~oes e provar que duas proposi\c{c}\~oes s\~ao logicamente equivalentes. Como tabelas verdade
-expressam diretamente o siginificado de prpoposi\c{c}\~oes, dizemos que essas s\~ao uma abordagem baseada em sem\^antica para l\'ogica.
-Tabelas verdade s\~ao de simples entendimento, por\'em n\~ao possuem s\~ao \'uteis na solu\c{c}\~ao de problemas reais devido ao seu tamanho.
+\subsection{Sem\^antica}\label{cap1:sem}
 
-\emph{Dedu\c{c}\~ao Natural} \'e uma formaliza\c{c}\~ao de princ\'ipios b\'asicos de racioc\'inio l\'ogico utilizado no cotidiano.
-A dedu\c{c}\~ao natural prov\^e um conjunto de regras de infer\^encia que especificam exatamente quais fatos podem ser deduzidos
-a partir de um conjunto de fatos dados. Em dedu\c{c}\~ao natural n\~ao h\'a a no\c{c}\~ao de `valor l\'ogico` de proposi\c{c}\~oes;
-j\'a que tudo no sistema est\'a encapsulado em suas regras de infer\^encia. Conforme veremos posteriormente, essas regras s\~ao baseadas
-na estrutura das proposi\c{c}\~oes envolvidas, a dedu\c{c}\~ao natural \'e uma abordagem puramente sint\'atica para a l\'ogica. Diversas
-t\'ecnicas utilizadas em pesquisas na \'areas de linguagens de programa\c{c}\~ao s\~ao baseadas em sistemas l\'ogicos que s\~ao de alguma
-maneira relacionados \`a dedu\c{c}\~ao natural.
+Defini\c{c}\~oes sem\^anticas associam significado a sintaxe. Formalmente, a sem\^antica de uma linguagem \'e descrita como
+uma fun\c{c}\~ao que associa termos da linguagem em quest\~ao a elementos de um conjunto cujo significado \'e definido
+matematicamente, como por exemplo, o conjunto dos n\'umeros naturais, $\mathbb{N}$. Idealmente, a sem\^antica de uma linguagem formal
+\'e definida em termos de sua estrutura sint\'atica.
 
-\emph{\'Algebra Booleana} \'e uma abordagem para formaliza\c{c}\~ao da l\'ogica baseada em um conjunto de equa\c{c}\~oes --- as leis
-da \'algebra Booleana --- para especificar que certas proposi\c{c}\~oes s\~ao iguais a outras. A \'algebra Booleana \'e uma abordagem
-axiom\'atica, similar a \'algebra elementar e geometria, pois prov\^e um conjunto de leis para manipular proposi\c{c}\~oes. T\'ecnicas
-alg\'ebricas para a l\'ogica s\~ao fundamentais para o projeto de circuitos digitais.
+Antes de apresentarmos uma fun\c{c}\~ao sem\^antica, elementos de uma linguagem s\~ao apenas uma sequ\^encia estruturada de s\'imbolos
+sem significado. Como qualquer fun\c{c}\~ao, defini\c{c}\~oes sem\^anticas devem ser especificadas em termos de seu dom\'inio e 
+contra-dom\'inio\footnote{Neste ponto, assumimos que os conceitos de dom\'inio e contra-dom\'inio de fun\c{c}\~oes \'e familiar ao leitor.
+Estes conceitos ser\~ao apresentados formalmente no cap\'itulo \ref{}}. As pr\'oximas defini\c{c}\~oes ilustram poss\'iveis fun\c{c}\~oes 
+sem\^anticas para as linguagens descritas na se\c{c}\~ao \ref{cap1:syn}.
 
-\section{Introdu\c{c}\~ao \`a L\'ogica Formal}\label{cap1:sec1}
+\begin{Definition}[Sem\^antica do Conjunto de Booleanos]
+Uma poss\'ivel sem\^antica de termos do conjunto $\mathcal{B}$ \'e dada pela seguinte fun\c{c}\~ao:
+\[
+\begin{array}{lcl}
+\llbracket T \rrbracket & = & 1\\
+\llbracket F \rrbracket & = & 0\\
+\end{array}
+\]
+Note que o dom\'inio desta fun\c{c}\~ao \'e $\mathcal{B}$ e o contra-dom\'inio o conjunto $\{0,1\}$.
+\end{Definition}
+Evidentemente, a fun\c{c}\~ao anterior n\~ao \'e a \'unica poss\'ivel maneira de interpretarmos termos de $\mathcal{B}$.
+Outra poss\'ivel defini\c{c}\~ao seria:
+\[
+\begin{array}{lcl}
+\llbracket T \rrbracket & = & \{k\in\mathbb{N}\,|\,k\neq 0\}\\
+\llbracket F \rrbracket & = & \{0\}\\
+\end{array}
+\]
+Em que o termo $T$ \'e associado com o conjunto de todos os n\'umeros naturais diferentes de $0$ e $F$ com o conjunto contendo 
+o n\'umero $0$. A fun\c{c}\~ao anterior atribui a sem\^antica para Booleanos similar \`a utilizada pelas linguagens de programa\c{c}\~ao
+C/C++, em que o valor verdadeiro \'e associado a qualquer inteiro n\~ao zero e falso a zero.
 
-A l\'ogica formal foi inicialmente concebida na gr\'ecia antiga onde fil\'osofos desejavam ser capazes de analisar argumentos 
-em linguagem natural. Os gregos eram fascinados pela id\'eia de que alguns argumentos eram sempre verdadeiros e outros sempre
-falsos. Por\'em, eles rapidamente perceberam que o racioc\'inio l\'ogico \'e dif\'icil de ser analisado usando linguagens naturais
-como o Grego (ou o Portugu\^es!). Isso se deve principalmente devido \`as \emph{ambiguidades} inerentes \`as linguagens naturais.
-Uma das maneiras de se evitar essas dificuldades \'e o uso de vari\'aveis que denominaremos \emph{vari\'aveis proposicionais}. 
+A fun\c{c}\~ao sem\^antica para n\'umeros naturais \'e mostrada na defini\c{c}\~ao seguinte.
 
-Suponha que um conhecido lhe diga `O dia est\'a ensolarado e estou feliz`. Aparentemente essa frase possui interpreta\c{c}\~ao
-\'obvia, mas ao observ\'a-la com cuidado percebe-se que o significado dessa n\~ao \'e t\~ao evidente. Talvez essa pessoa goste
-de dias ensolarados e fica contente quando esse fato ocorre. Note que existe uma conex\~ao entre as duas partes da senten\c{c}a,
-dessa forma, a palavra `e` presente na frase `O dia est\'a ensolarado e estou feliz` significa `e, portanto`. Por\'em, essa an\'alise
-depende de nossa experi\^encia em relacionar o clima com a felicidade das pessoas. Considere agora o seguinte exemplo: 
-`Gatos s\~ao peludos e elefantes pesados`. Essa senten\c{c}a possui a mesma estrutura do exemplo anterior, mas ningu\'em ir\'a tentar
-relacionar o peso de elefantes com a quantidade de pelos de gatos. Neste caso, a palavra `e` significa `e, tamb\'em`. Pode-se perceber que a
-palavra `e` possui diversos significados sutis, e escolhemos o significado apropriado usando nosso conhecimento do mundo \`a nossa volta.
-Perceba que as duas simples frases de exemplo consideradas ilustram as dificuldades de interpreta\c{c}\~ao que podem surgir ao se utilizar
-uma linguagem natural. As dificuldades em se dar um significado preciso a frases em linguagem natural n\~ao se restringem a somente como 
-intepretar a palavra `e`. O estudo preciso da sem\^antica de senten\c{c}as expressas em linguagem natural \'e objeto de estudo da lingu\'istica
-e da filosofia.
-
-Ao inv\'es de tentarmos o imposs\'ivel --- expressar, de maneira precisa,  racioc\'inio l\'ogico em linguagem natural  --- n\'os iremos separar
-a estrutura l\'ogica de um argumento de todas as conota\c{c}\~oes da l\'ingua portuguesa. Faremos isso utilizando \textbf{proposi\c{c}\~oes}, que
-s\~ao definidas a seguir.
-
-\begin{Definition}[Proposi\c{c}\~ao]
-  Definimos por proposi\c{c}\~ao qualquer senten\c{c}a pass\'ivel de possuir um dos valores l\'ogicos: verdadeiro ou falso.
+\begin{Definition}[Sem\^antica do Conjunto de N\'umeros Naturais]
+De maneira simplista, uma forma de atribuir significado aos elementos de $\mathcal{N}$ \'e associar o valor $0$ ao termo $zero\in\mathcal{N}$
+e o valor $k\in\mathbb{N}$ ao termo contendo $k$ ocorr\^encias da constante $suc$. Isto pode ser definido recursivamente da seguinte maneira:
+\[
+\begin{array}{lcl}
+\llbracket zero \rrbracket & = & 0\\
+\llbracket suc\,\,n\rrbracket & = & \llbracket n \rrbracket + 1, \text{ para }n\in\mathcal{N}
+\end{array}
+\]
 \end{Definition}
 
-Sempre que poss\'ivel, ap\'os uma defini\c{c}\~ao, apresentaremos alguns exemplos para ilustr\'a-la.
+A defini\c{c}\~ao anterior \'e um exemplo de uma fun\c{c}\~ao recursiva sobre a
+estrutura da sintaxe. Como a sintaxe do conjunto $\mathcal{N}$ \'e definida recursivamente, a
+fun\c{c}\~ao que lhe atribui significado \'e tamb\'em recursiva. Esperamos que o leitor deste texto
+seja familiar com o conceito de recurs\~ao.
 
-\begin{Example}
-  Quais das seguintes senten\c{c}as podem ser consideradas proposi\c{c}\~oes?
-  \begin{enumerate}
-    \item Hoje \'e segunda-feira.
-    \item $10 < 7$
-    \item $x + 1 = 3$
-    \item Como est\'a voc\^e?
-    \item Ela \'e muito talentosa
-    \item Existe vida em outros planetas.
-  \end{enumerate}
-  Neste exemplo, temos que a senten\c{c}a $1$ \'e uma proposi\c{c}\~ao, pois o dia de hoje pode ser ou n\~ao segunda-feira tornando essa frase
-  verdadeira ou falsa. A senten\c{c}a $2$ \'e uma proposi\c{c}\~ao, pois temos que $10$ n\~ao \'e menor do que $7$. Logo, o valor l\'ogico dessa
-  senten\c{c}a \'e igual a falso. A senten\c{c}a $3$ n\~ao \'e uma proposi\c{c}\~ao pois seu valor l\'ogico depende do valor atribu\'ido a 
-  vari\'avel $x$. Se $x = 2$, temos que a senten\c{c}a $3$ \'e verdadeira. A mesma senten\c{c}a $3$ \'e falsa para qualquer outro valor de $x$. 
-  Logo, como n\~ao \'e poss\'ivel determinar de maneira \'unica o valor l\'ogico da senten\c{c}a $3$, essa n\~ao \'e considerada uma 
-  proposi\c{c}\~ao. 
-  A senten\c{c}a $4$ n\~ao \'e uma proposi\c{c}\~ao pois n\~ao \'e poss\'ivel atribuir um valor verdadeiro ou falso para uma pergunta.
-  A senten\c{c}a $5$ n\~ao \'e uma proposi\c{c}\~ao pois ``ela'' n\~ao est\'a especificada. Portanto, o fato de ``ela'' ser talentosa ou n\~ao
-  depende de quem \'e ``ela''. Logo, essa senten\c{c}a n\~ao \'e uma proposi\c{c}\~ao.
-  A senten\c{c}a $6$ \'e uma proposi\c{c}\~ao pois o fato de existir vida em outros planetas pode ser verdadeiro ou falso.
-\end{Example}
+Para garantir que defini\c{c}\~oes recursivas sejam consideradas fun\c{c}\~oes, estas devem obedecer dois crit\'erios:
+totalidade e termina\c{c}\~ao. A totalidade especifica que a fun\c{c}\~ao deve associar todo elemento de seu dom\'inio
+a um elemento no contradom\'inio. Uma maneira de se garantir a totalidade \'e especificar uma equa\c{c}\~ao para cada uma
+das regras de forma\c{c}\~ao da sintaxe. Na defini\c{c}\~ao anterior, temos que a fun\c{c}\~ao que atribui sem\^antica a
+elementos do conjunto $\mathcal{N}$ \'e total, pois esta \'e definida para todas as regras de forma\c{c}\~ao da sintaxe de 
+$\mathcal{N}$. A termina\c{c}\~ao pode ser garantida permitindo que chamadas recursivas sejam feitas apenas a sub-termos.
+A fun\c{c}\~ao sem\^antica de $\mathcal{N}$ possui a propriedade de termina\c{c}\~ao, pois, a cada chamada recursiva, o 
+n\'umero de ocorr\^encias da constante $suc$ \'e decrescido de $1$. Como todo termo de $\mathcal{N}$ \'e finito, temos que
+isso \'e suficiente para garantir a termina\c{c}\~ao desta defini\c{c}\~ao recursiva.
 
-No conceito de proposi\c{c}\~ao est\~ao impl\'icitas duas propriedades fundamentais da l\'ogica cl\'assica:
-\begin{itemize}
-  \item O princ\'ipio da n\~ao contradi\c{c}\~ao: Nenhuma proposi\c{c}\~ao \'e verdadeira ou falsa simultaneamente.
-  \item O princ\'ipio do terceiro exclu\'ido: Toda proposi\c{c}\~ao \'e verdadeira ou falsa.
-\end{itemize}
+Para listas e express\~oes aritm\'eticas n\~ao estamos interessados em interpret\'a-las como algum objeto matem\'atico conhecido
+e sim em definir fun\c{c}\~oes sobre elementos destes conjuntos. Como tanto listas quanto express\~oes s\~ao definidos recursivamente,
+fun\c{c}\~oes sobre estes elementos tamb\'em ser\~ao definidas por recurs\~ao sobre a sua estrutura. Apresentaremos, como exemplo, 
+defini\c{c}\~oes de duas fun\c{c}\~oes sobre listas: uma para calcular o n\'umero de elementos da lista e outra para concatenar duas listas.
 
-Por\'em n\~ao \'e dif\'icil perceber que existem proposi\c{c}\~oes que s\~ao compostas por outras proposi\c{c}\~oes menores. Considere a
-seguinte frase: `Gatos s\~ao peludos e elefantes pesados`. Esta \'e formada por duas proposi\c{c}\~oes distintas, a saber: 1) Gatos s\~ao peludos; 
-2) Elefantes s\~ao pesados. Deste exemplo podemos perceber que \'e poss\'ivel combinar proposi\c{c}\~oes menores para formar outras. Desta maneira,
-podemos classificar proposi\c{c}\~oes como sendo simples ou compostas que ser\~ao definidas a seguir.
-
-\begin{Definition}[Proposi\c{c}\~ao simples e composta]
-   Dizemos que uma proposi\c{c}\~ao \'e simples se essa n\~ao puder ser decomposta em proposi\c{c}\~oes menores e composta caso
-   essa possa ser divida em uma ou mais proposi\c{c}\~oes. 
-\end{Definition}
-\begin{Example}
-  Classifique as seguintes proposi\c{c}\~oes como simples ou compostas. Caso a proposi\c{c}\~ao em quest\~ao seja composta, identifique
-  as proposi\c{c}\~oes simples que a comp\~oe.
-  \begin{enumerate}
-    \item Di\'ogenes trabalha como carteiro.
-    \item Jo\~aozinho n\~ao conta mentiras.
-    \item O bandido \'e franc\^es.
-    \item Se Cl\'eber ganhar elei\c{c}\~ao, ent\~ao os impostos ser\~ao reduzidos.
-    \item O processador \'e r\'apido mas a impressora \'e lenta.
-    \item Se Jo\~ao correr vai ficar cansado.
-  \end{enumerate}
-  A primeira proposi\c{c}\~ao \'e simples, pois n\~ao pode ser dividida em proposi\c{c}\~oes menores. Isto \'e, n\~ao poss\'ivel decompor a frase
-  em ``peda\c{c}os'' de maneira que estes possam ter valores l\'ogicos verdadeiro ou falso. A proposi\c{c}\~ao 2) \'e composta, pois possui como
-  compontente a proposi\c{c}\~ao `Jo\~aozinho conta mentiras`. A proposi\c{c}\~ao 3) \'e simples. A proposi\c{c}\~ao 4) \'e composta e esta \'e 
-  formada pelas seguintes proposi\c{c}\~oes simples: `Cl\'eber ganhou a elei\c{c}\~ao` e `Os impostos ser\~ao reduzidos`. A proposi\c{c}\~ao 5)
-  tamb\'em \'e composta e \'e formada pelas proposi\c{c}\~oes: `O processador \'e r\'apido` e `A impressora \'e lenta`. Finalmente, a 
-  proposi\c{c}\~ao 6) \'e tamb\'em composta e formada por `Jo\~ao corre` e `Jo\~ao fica cansado`.
-\end{Example}
-
-Proposi\c{c}\~oes compostas combinam proposi\c{c}\~oes simples utilizando conectivos que a partir do valor l\'ogico das proposi\c{c}\~oes simples
-permitem obter o valor da proposi\c{c}\~ao composta em quest\~ao. Existem um n\'umero infinito de conectivos l\'ogicos poss\'iveis. Iremos nos
-ater aos usualmente utilizados na matem\'atica. Estes s\~ao definidos a seguir.
-
-\begin{Definition}[Conectivos]
-  Os cinco principais conectivos da l\'ogica cl\'assica expressam as seguintes no\c{c}\~oes descritas informalmente abaixo:
-  \begin{itemize}
-    \item \textit{Nega\c{c}\~ao}: A proposi\c{c}\~ao afirma que certa proposi\c{c}\~ao n\~ao \'e verdadeira, ou seja, \'e falsa 
-          (de acordo com o princ\'ipio do terceiro exclu\'ido). Exemplo: \textit{O c\'eu n\~ao est\'a nublado hoje} diz que a
-          proposi\c{c}\~ao \textit{O c\'eu est\'a nublado hoje} \'e falsa.
-    \item \textit{Conjun\c{c}\~ao}: Afirma que a proposi\c{c}\~ao em quest\~ao s\'o \'e verdadeira quando as duas proposi\c{c}\~oes que
-          que a comp\~oe s\~ao tamb\'em verdadeiras. Exemplo: \textit{O dia est\'a lindo, embora nublado} diz que \textit{o dia est\'a lindo}
-          e \textit{nublado}.
-    \item \textit{Disjun\c{c}\~ao}: Afirma que pelo menos uma dentre duas proposi\c{c}\~oes \'e verdadeira. Exemplo: \textit{Diocreciano estuda
-          muito ou \'e inteligente} diz que \textit{Diocreciano estudo muito} ou \textit{Diocreciano \'e inteligente} ou 
-          \textit{Diocreciano estudo muito e \'e inteligente}. 
-    \item \textit{Condicional}: Afirma que caso uma certa proposi\c{c}\~ao seja verdadeira, uma outra tamb\'em o \'e, ou seja, n\~ao \'e o caso
-          que a primeira possa ser verdadeira e a outra falsa. Exemplo: \textit{Se hoje chover, n\~ao irei \`a pra\c{c}a} diz que se a 
-          proposi\c{c}\~ao \textit{hoje ir\'a chover} for verdadeira ent\~ao a proposi\c{c}\~ao \textit{n\~ao irei a pra\c{c}a} tamb\'em ser\'a
-          verdadeira.
-     \item \textit{Bicondicional}: Afirma que uma proposi\c{c}\~ao \'e verdadeira exatamente nos casos que uma outra tamb\'em o \'e.
-           Exemplo: \textit{o n\'umero \'e par se e somente se seu quadrado tamb\'em \'e par} diz que as proposi\c{c}\~oes
-           \textit{o n\'umero \'e par} e \textit{o quadrado do n\'umero \'e par} s\~ao ambas verdadeiras ou ambas falsas.
-  \end{itemize}
+\begin{Definition}[Calculando o n\'umero de elementos de uma lista]
+Considere a seguinte fun\c{c}\~ao, $length$, que a partir de uma lista de elementos produz como resultado um valor $n\in\mathbb{N}$ que
+corresponde ao n\'umero de elementos da lista. Temos que a fun\c{c}\~ao $length$ possuir\'a como dom\'inio o conjunto $\textit{List }\mathcal{T}$
+e como contra-dom\'inio o conjunto $\mathbb{N}$.
+\[
+\begin{array}{lclr}
+  length\,\,[\,] & = & 0 & (1)\\
+  length\,\,t :: ts & = & 1 + length\,\, ts & (2)
+\end{array}
+\]
+A defini\c{c}\~ao de $length$ constitui uma fun\c{c}\~ao pois: 1) $length$ \'e total, pois \'e definida para cada uma das regras que formam
+a sintaxe de listas e; 3) termina sempre, pois, a cada passo da execu\c{c}\~ao da fun\c{c}\~ao $length$ o primeiro elemento da lista \'e
+``descartado'' na chamada recursiva.
 \end{Definition}
 
-Algumas palavras da l\'ingua portuguesa s\~ao frequentemente utilizadas em proposi\c{c}\~oes para denotar conectivos. A tabela \ref{table:1}
-apresenta algumas destas palavras e quais conectivos estas representam. Nesta tabela utilizamos as vari\'aveis A e B para denotar proposi\c{c}\~oes
-quaisquer.
-
-\begin{table}
-  \begin{tabular}{|c|l|}
-    \hline
-    \textbf{Conectivo L\'ogico}  & \textbf{Express\~ao em Portugu\^es} \\ \hline
-     Conjun\c{c}\~ao             & A e B; A mas B; A tamb\'em B ; A al\'em disso B\\ \hline
-     Disjun\c{c}\~ao             & A ou B\\ \hline
-    \multirow{7}{*}{Condicional} 
-    & Se A, ent\~ao B \\ 
-    & A implica B     \\ 
-    & A logo, B \\ 
-    & A s\'o se B \\
-    & A somente se B\\
-    & B segue de A \\
-    & A \'e uma condi\c{c}\~ao suficiente para B\\
-    & basta A para B \\
-    & B \'e uma condi\c{c}\~ao necess\'aria para A \\ \hline
-    \multirow{2}{*}{Bicondicional} 
-    & A se e somente se B \\
-    & A \'e condi\c{c}\~ao necess\'aria e suficiente para B \\ \hline
-    \multirow{3}{*}{Nega\c{c}\~ao}
-    & n\~ao A \\
-    & \'E falso que A\\
-    & N\~ao \'e verdade que A \\ \hline
-  \end{tabular}
-  \centering
-  \caption{Relacionando palavras do portugu\^es com conectivos l\'ogicos}
-  \label{table:1}
-\end{table}
-
 \begin{Example}
-  Quais s\~ao os conectivos presentes nas seguintes proposi\c{c}\~oes compostas?
-    \begin{enumerate}
-    \item Jo\~aozinho n\~ao conta mentiras.
-    \item Se Cl\'eber ganhar elei\c{c}\~ao, ent\~ao os impostos ser\~ao reduzidos.
-    \item O processador \'e r\'apido mas a impressora \'e lenta.
-    \item Amanh\~a irei \`a pra\c{c}a ou ao supermercado.
-    \item Pagarei todas minhas d\'ividas se e somente se meu sal\'ario sair.
-  \end{enumerate}
-  Neste exemplo, temos que o conectivo presente na proposi\c{c}\~ao 1) \'e a nega\c{c}\~ao e a proposi\c{c}\~ao 2 \'e formada por um condicional.
-  A proposi\c{c}\~ao 3) \'e formada pelo conectivo de conjun\c{c}\~ao. Por sua vez, a proposi\c{c}\~ao 4) \'e formada pelo conectivo 
-  de disjun\c{c}\~ao e a proposi\c{c}\~ao 5 pelo bicondicional.
+Visando exemplificar a defini\c{c}\~ao anterior, considere a tarefa de calcular o n\'umero de elementos da seguinte lista de valores
+booleanos: $T :: (F :: (T :: [\,]))$. A execu\c{c}\~ao de $length\,\,T :: (F :: (T :: [\,]))$ \'e apresentada abaixo:
+\[
+\begin{array}{lcl}
+length\,\,T :: (F :: (T :: [\,])) & = & \\
+1 + length\,\,(F :: (T :: [\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
+1 + (1 + length\,\,(T :: [\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
+1 + (1 + (1 + length\,\,[\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
+1 + (1 + (1 + 0))  & = & \{\text{pela equa\c{c}\~ao }(1)\}\\
+3                  &   & 
+\end{array}
+\]
 \end{Example}
 
-Apesar da tabela \ref{table:1} ser um guia \'util na identifica\c{c}\~ao de conectivos, certamente ela n\~ao \'e exaustiva. Al\'em disso,
-diversas seten\c{c}as da l\'ingua portuguesa n\~ao podem ser representadas utilizando apenas esses tipos de composi\c{c}\~ao. Usualmente
-elementos que n\~ao possuem uma correspond\^encia direta com a l\'ogica proposicional podem ser ``despresados'' durante a modelagem em
-quest\~ao. Outro ponto referente a modelagem utilizando l\'ogica proposicional \'e que o conceito de proposi\c{c}\~ao simples e composta
-\'e relativo ao problema a ser representado. Por exemplo, considere a seguinte proposi\c{c}\~ao: \textit{5 n\~ao \'e um n\'umero par}. Esta
-proposi\c{c}\~ao pode ser considerada composta --- formada pela nega\c{c}\~ao de \textit{5 \'e um n\'umero par} --- ou considerada uma 
-proposi\c{c}\~ao simples, indivis\'ivel. A tarefa de determinar a ``granularidade'' do que deve ser considerado como proposi\c{c}\~ao
-simples varia de problema para problema. Visando tornar esse tipo de conceito uniforme, nesta apostila adotaremos como conven\c{c}\~ao que
-uma proposi\c{c}\~ao simples \'e uma proposi\c{c}\~ao que n\~ao pode ser dividida em proposi\c{c}\~oes menores. Desta maneira, a proposi\c{c}\~ao
-\textit{5 n\~ao \'e um n\'umero par} ser\'a considerada uma proposi\c{c}\~ao composta.
+Note que a execu\c{c}\~ao simplesmente reescreve a express\~ao de acordo com as equa\c{c}\~oes que definem a fun\c{c}\~ao $length$, ou seja, por
+exemplo, o resultado de executar $length\,\,T :: [\,]$  \'e $1 + length [\,]$, de acordo com a equa\c{c}\~ao $(2)$ de $length$.
 
-\subsection{Exerc\'icios}\label{cap1:ex1}
+A opera\c{c}\~ao de concatenar duas listas consiste em formar uma nova lista que consiste da segunda justaposta ao final da primeira. Por exemplo,
+o resultado de concatenar a lista $T :: F :: [\,]$ com a lista $F :: F :: [\,]$ \'e a lista $T :: F :: F :: F :: [\,]$.
 
-\begin{enumerate}
-  \item Para cada uma das senten\c{c}as a seguir, apresente as proposi\c{c}\~oes simples que a comp\~oe e os conectivos nela envolvidos.
-  \begin{enumerate}
-     \item Jo\~ao \'e pol\'itico, mas \'e honesto.
-     \item Jo\~ao \'e honesto, mas seu irm\~ao n\~ao \'e.
-     \item Vir\~ao a festa Jo\~ao ou sua irm\~a, al\'em da m\~ae.
-     \item A estrela do espet\'aculo n\~ao canta, dan\c{c}a nem representa.
-     \item Sempre que o trem apita, Jo\~ao sai correndo.
-     \item Caso Jo\~ao n\~ao perca dinheiro no jogo, ele vai a festa.
-     \item Jo\~ao vai ser multado, a menos que diminua a velocidade ou a rodovia n\~ao tenha radar.
-     \item Uma condi\c{c}\~ao suficiente para que um n\'umero natural $n$ seja primo \'e que este seja \'impar.
-     \item Jo\~ao vai ao teatro somente se estiver em cartaz uma com\'edia.
-     \item Se voc\^e for Brasileiro, gosta de futebol a menos que tor\c{c}a para o Tabajara ou \'Ibis.
-     \item A propina ser\'a paga exatamente nas situa\c{c}\~oes em que o deputado votar como instru\'ido por Jo\~ao.
- \end{enumerate}
-\end{enumerate}
+\begin{Definition}[Concatena\c{c}\~ao de listas]
+ A defini\c{c}\~ao recursiva seguinte calcula a concatena\c{c}\~ao de duas listas fornecidas como par\^ametro. 
+ \[
+  \begin{array}{lclr}
+    [\,] \text{ ++ } ys & = & ys & (1)\\
+    (x :: xs) \text{ ++ } ys & = & x :: (xs \text{ ++ } ys) & (2)
+  \end{array}
+  \]
+Intutitivamente, a concatena\c{c}\~ao \'e definida sobre a estrutura sint\'atica da lista fornecida como primeiro par\^ametro. A equa\c{c}\~ao 
+$(1)$ especifica que se a primeira lista \'e igual a $[\,]$, ent\~ao o resultado da concatena\c{c}\~ao \'e a segunda lista. Por sua vez,
+a equa\c{c}\~ao $(2)$ diz que caso a primeira lista n\~ao seja vazia, ent\~ao o resultado \'e inserir o primeiro elemento no in\'icio da lista
+resultante de se concatenar a cauda da primeira lista com a segunda.
+\end{Definition}
 
-\subsection{Formalizando Senten\c{c}as}
+\begin{Example}
+Apresentaremos, passo a passo, a execu\c{c}\~ao da fun\c{c}\~ao de concatena\c{c}\~ao para as listas $T :: F :: [\,]$ e $F :: F :: [\,]$.
+\[
+\begin{array}{lcl}
+(T :: F :: [\,]) \text{ ++ } (F :: F ::[\,]) & = & \\
+T :: ((F :: [\,]) \text{ ++ } (F :: F ::[\,])) & = & \text{pela equa\c{c}\~ao }(2)\\
+T :: (F :: ([\,] \text{ ++ } (F :: F ::[\,])) & = & \text{pela equa\c{c}\~ao }(2)\\
+T :: (F :: (F :: F ::[\,])) & = & \text{pela equa\c{c}\~ao }(1)\\
+\end{array}
+\]
+\end{Example}
 
-Considere as seguintes proposi\c{c}\~oes compostas: 
-\begin{enumerate}
-   \item  O dia est\'a lindo, embora nublado.
-   \item  O dia est\'a ensolarado e Jos\'e est\'a feliz.
-\end{enumerate}
-Ao observarmos estas duas proposi\c{c}\~oes, podemos dizer que estas possuem estrutura equivalente, pois ambas s\~ao formadas por 
-duas proposi\c{c}\~oes simples e pelo conectivo de conjun\c{c}\~ao. Desta forma, podemos representar estas proposi\c{c}\~oes compostas
-de maneira mais compacta substituindo as proposi\c{c}\~oes simples que as comp\~oe por vari\'aveis. A tabela seguinte apresenta a vari\'avel
-associada a uma determinada proposi\c{c}\~ao simples para as frases anteriores.
-\begin{table}
-  \begin{tabular}{c|l}
-    Vari\'avel & Proposi\c{c}\~ao Simples \\ \hline
-    $A$        & O dia est\'a lindo \\ 
-    $B$        & O dia est\'a nublado \\
-    $C$        & O dia est\'a ensolarado \\
-    $D$        & Jos\'e est\'a feliz\\
-  \end{tabular}
-  \centering
-\end{table}
-Utilizando a tabela anterior, podemos as senten\c{c}as em quest\~ao podem ser representadas da seguinte maneira:
-\begin{enumerate}
-  \item $A$ e $B$
-  \item $C$ e $D$
-\end{enumerate}
-Apesar do uso de vari\'aveis ter eliminado grande parte dos detalhes que n\~ao s\~ao relevantes para estrutura das proposi\c{c}\~oes em quest\~ao,
-ainda utilizamos o portugu\^es para representar os conectivos l\'ogicos utilizados em proposi\c{c}\~oes compostas. Visando tornar a nota\c{c}\~ao
-para representa\c{c}\~ao de proposi\c{c}\~oes uniforme, adotaremos os seguintes s\'imbolos para conectivos l\'ogicos, em que $A$ e $B$ denotam
- proposi\c{c}\~oes quaisquer:
-\begin{table}[h]
-  \begin{tabular}{|l|c|}
-    \hline
-    Conectivo & S\'imbolo \\ \hline
-    Nega\c{c}\~ao & $\neg A$ \\ \hline
-    Conjun\c{c}\~ao & $A \land B$ \\ \hline
-    Disjun\c{c}\~ao & $A \lor B$ \\ \hline
-    Condicional & $A \to B$ \\ \hline
-    Bicondicional & $A \leftrightarrow B$ \\ \hline
-  \end{tabular}
-  \centering
-  \caption{Nota\c{c}\~ao para conectivos l\'ogicos}
-  \label{table:2}
-\end{table}
-
-Utilizando a nota\c{c}\~ao presente na tabela \ref{table:2}, temos que as senten\c{c}as anteriores seriam representadas pelas seguintes f\'ormulas
-$A \land B$  e $C \land D$.
+As defini\c{c}\~oes apresentadas nesta se\c{c}\~ao s\~ao todas pass\'iveis de implementa\c{c}\~ao em qualquer linguagem de programa\c{c}\~ao
+funcional. Neste texto, optaremos pelo assistente de provas Coq para este fim. A se\c{c}\~ao \ref{cap1:coq} apresenta, de maneira suscinta, 
+os conceitos necess\'arios de Coq para descri\c{c}\~ao de sintaxe, sem\^antica e fun\c{c}\~oes recursivas sobre a estrutura sint\'atica de termos.
 
 \subsection{Exerc\'icios}
 
 \begin{enumerate}
-  \item Escreva cada uma das proposi\c{c}\~oes compostas a seguir utilizando a nota\c{c}\~ao simb\'olica introduzida nesta se\c{c}\~ao.
-  \begin{enumerate}
-    \item Se Jane vencer ou perder, ir\'a ficar cansada.
-    \item Rosas s\~ao vermelhas ou violetas s\~ao azuis.
-    \item Se elefantes podem subir em \'arvores, 3 \'e um n\'umero irracional.
-    \item \'E proibido fumar cigarros ou charutos.
-    \item N\~ao \'e verdade que se $\pi > 0$ se e somente se $\pi > 1$.
-    \item Se as laranjas s\~ao amarelas, ent\~ao os morangos s\~ao vermelhos.
-    \item \'E falso que se Montreal \'e a capital do Canad\'a, ent\~ao a pr\'oxima copa ser\'a realizada no Brasil.
-  \end{enumerate}
-  \item Represente utilizando nota\c{c}\~ao simb\'olica as proposi\c{c}\~oes do exerc\'icio 1 da se\c{c}\~ao \ref{cap1:ex1}.
+  \item Apresente uma defini\c{c}\~ao recursiva que calcula o valor de uma express\~ao aritm\'etica (defini\c{c}\~ao \ref{def:arithexp}).
+        Sua solu\c{c}\~ao deve possuir como dom\'inio o conjunto $\mathcal{E}$ e como contra-dom\'inio o conjunto $\mathbb{N}$. Para isso, 
+        interprete as constantes \textit{plus} e \textit{times} como as opera\c{c}\~oes de adi\c{c}\~ao e multiplica\c{c}\~ao, respectivamente; e
+        a constante \textit{const n} deve ser interpretada como um valor num\'erico pertencente ao conjunto dos n\'umeros naturais, $\mathbb{N}$.
+  \item A defini\c{c}\~ao apresentada por voc\^e no item anterior constitui uma fun\c{c}\~ao? Justifique em termos dos conceitos de totalidade
+        e termina\c{c}\~ao, apresentados na se\c{c}\~ao \ref{cap1:sem}.
 \end{enumerate}
+
+\section{Introdu\c{c}\~ao ao Assistente de Provas Coq}\label{cap1:coq}
+
+\section{Notas Bibliogr\'aficas}
