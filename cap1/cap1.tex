@@ -221,6 +221,12 @@ os conceitos necess\'arios de Coq para descri\c{c}\~ao de sintaxe, sem\^antica e
 \subsection{Exerc\'icios}
 
 \begin{enumerate}
+  \item Apresente a execu\c{c}\~ao passo a passo das seguintes express\~oes:
+  \begin{enumerate}
+    \item $\llbracket suc (suc (suc\,\,zero))\rrbracket$ 
+    \item $length (zero :: zero :: [\,])$
+    \item $(zero :: (suc\,\, zero) ::[\,])\text{++}((suc\,\,zero) :: zero :: [\,])$
+  \end{enumerate}
   \item Apresente uma defini\c{c}\~ao recursiva que calcula o valor de uma express\~ao aritm\'etica (defini\c{c}\~ao \ref{def:arithexp}).
         Sua solu\c{c}\~ao deve possuir como dom\'inio o conjunto $\mathcal{E}$ e como contra-dom\'inio o conjunto $\mathbb{N}$. Para isso, 
         interprete as constantes \textit{plus} e \textit{times} como as opera\c{c}\~oes de adi\c{c}\~ao e multiplica\c{c}\~ao, respectivamente; e
@@ -230,5 +236,78 @@ os conceitos necess\'arios de Coq para descri\c{c}\~ao de sintaxe, sem\^antica e
 \end{enumerate}
 
 \section{Introdu\c{c}\~ao ao Assistente de Provas Coq}\label{cap1:coq}
+
+Um assistente de provas \'e uma linguagem de programa\c{c}\~ao que permite a elabora\c{c}\~ao de programas e provas matem\'aticas.
+Neste trabalho, n\~ao pretendemos de forma alguma fornecer um tutorial para a utiliza\c{c}\~ao de Coq. Existem diversos bons livros
+para isso, como por exemplo \cite{coqart,Pierce12,Coqrefman}. Neste texto, descreveremos apenas os recursos necess\'arios de Coq para
+o aprendizado dos conceitos desta apostila sem mencionar os detalhes te\'oricos necess\'arios para uma completa compreens\~ao dessa ferramenta.
+
+\subsection{Representando Sintaxe em Coq}
+
+Representaremos defini\c{c}\~oes de sintaxe de termos utilizados tipos de dados em Coq. O trecho de c\'odigo Coq a seguir ilustra um
+tipo de dados que denota o conjunto $\mathcal{B}$ de valores booleanos.
+
+\begin{lstlisting}
+Inductive Bool : Set :=
+   | T : Bool
+   | F : Bool.
+\end{lstlisting}
+
+Novos tipos de dados em Coq s\~ao declarados utilizando a palavra chave \texttt{Inductive}. Al\'em do nome do novo tipo (\texttt{Bool}), sempre
+devemos especificar o universo ao qual o tipo pertence (no trecho anterior, o tipo \texttt{Bool} \'e definido como sendo do universo 
+\texttt{Set}, que representam valores sobre os quais podemos efetuar c\'alculos) e os construtores de valores deste tipo. Construtores s\~ao
+a terminologia utilizada em Coq para representar regras de forma\c{c}\~ao de elementos de um dado tipo. No exemplo anterior, o tipo \texttt{Bool}
+possui dois construtores: \texttt{T} e \texttt{F}, que representam os \'unicos elementos deste tipo.
+
+A defini\c{c}\~ao da sintaxe de n\'umeros naturais, conjunto $\mathcal{N}$, \'e feita de maneira similar:
+\begin{lstlisting}
+Inductive Nat : Set :=
+   | Zero : Nat
+   | Suc  : Nat -> Nat.
+\end{lstlisting}
+Note que, assim como a defini\c{c}\~ao de $\mathcal{N}$, o tipo \texttt{Nat} \'e definido recursivamente, pois valores de \texttt{Nat} 
+constru\'idos com a constante \texttt{Suc} esperam como par\^ametro outro valor de tipo \texttt{Nat}. O n\'umero $3$ corresponde ao seguinte
+elemento de $\mathcal{N}$: $suc\,\,(suc\,\,(suc\,\,zero))$ e a seguinte defini\c{c}\~ao em Coq:
+\begin{lstlisting}
+Definition three : Nat := Suc (Suc (Suc Zero)).
+Definition five : Nat := Suc (Suc three).
+\end{lstlisting}
+A palavra chave \texttt{Definition} permite a defini\c{c}\~ao de fun\c{c}\~oes n\~ao recursivas sobre tipos quaisquer. No trecho de c\'odigo
+anterior, \texttt{tree} representa a fun\c{c}\~ao constante que sempre retorna \texttt{Suc (Suc (Suc Zero))} como resultado. Por\'em, como
+\texttt{five} nos mostra, podemos utilizar uma defini\c{c}\~ao para criar outra, desde que isso n\~ao envolva recurs\~ao.
+
+A seguinte defini\c{c}\~ao denota o conjunto de listas sobre um certo tipo \texttt{T}, ou seja, c\'odigo Coq para o conjunto 
+\textit{List $\mathcal{T}$}. Os comandos \texttt{Notation} apenas permitem que usemos uma sintaxe mais simples para construir listas.
+
+\begin{lstlisting}
+Inductive List (T : Set) : Set :=
+  | nil  : List T
+  | cons : T -> List T -> List T.
+
+Notation "x :: l" := (cons x l) (at level 60, right associativity).
+Notation "[ ]" := nil.
+\end{lstlisting}
+As seguintes listas s\~ao id\^enticas, por\'em a segunda e a terceira utiliza nota\c{c}\~oes que facilitam a escrita destes termos.
+\begin{lstlisting}
+Definition list0 : List Bool := 
+    Cons Bool T (Cons Bool F (Nil Bool)).
+Arguments Nil {T}.
+Arguments Cons {T} _ _.
+Definition list1 : List Bool := Cons T (Cons F Nil).
+Definition list2 : List Bool := T :: F :: [].
+\end{lstlisting}
+
+A sintaxe de express\~oes aritm\'eticas, dada na defini\c{c}\~ao do conjunto $\mathcal{E}$, pode se representada pelo seguinte tipo 
+Coq:
+\begin{lstlisting}
+Inductive Exp : Set :=
+  | Const : Nat -> Exp
+  | Plus  : Exp -> Exp -> Exp
+  | Times : Exp -> Exp -> Exp.
+\end{lstlisting}
+
+\subsection{Representanto Sem\^antica em Coq}
+
+\subsection{Exerc\'icios}
 
 \section{Notas Bibliogr\'aficas}
