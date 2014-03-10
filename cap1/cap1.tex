@@ -8,26 +8,29 @@ forma de colocar a teoria em um contexto pr\'atico usando uma ferramenta computa
 \section{Linguagens Formais}
 
 Matematicamente, uma linguagem formal \'e um conjunto (finito ou infinito) de termos estruturados. Esses
-termos s\~ao de tamanho finito e s\~ao definidos sobre um conjunto finito de s\'imbolos denominado \textit{alfabeto}.
+termos s\~ao de tamanho finito e s\~ao definidos sobre um conjunto (finito) de s\'imbolos denominado \textit{alfabeto}.
 A defini\c{c}\~ao de uma linguagem formal apenas descreve a estrutura de seus elementos. Por\'em, somente a especifica\c{c}\~ao
 da sintaxe de uma linguagem n\~ao \'e de grande utilidade se estes n\~ao possu\'irem sem\^antica, isto \'e, uma maneira de
-interpretar estes elementos de maneira a lhes atribuir um significado. Na se\c{c}\~ao \ref{cap1:syn}, nosso objetivo ser\'a apresentar
+interpretar estes elementos de maneira a lhes atribuir um significado. 
+
+Iremos introduzir os conceitos de sintaxe e sem\^antica de linguagens formais usando alguns exemplos.
+Na se\c{c}\~ao \ref{cap1:syn}, nosso objetivo ser\'a apresentar
 algumas defini\c{c}\~oes de sintaxe de linguagens simples e, posteriormente na se\c{c}\~ao \ref{cap1:sem} ser\'a apresentado como
 atribuir significado aos elementos destas linguagens.
 
 \subsection{Sintaxe}\label{cap1:syn}
 
 Linguagens finitas podem (em princ\'ipio) ser especificadas pela enumera\c{c}\~ao de termos da linguagem; j\'a, linguagens
-infinitas s\~ao usualmente descritas por um conjunto finito de regras para construir o conjunto de termos inclu\'idos nesta linguagem.
+infinitas s\~ao usualmente descritas por um conjunto finito de regras para construir termos desta linguagem.
 O estudo de linguagens formais possui uma extensiva literatura e \'e o objeto de estudo da disciplina Fundamentos Te\'oricos da Computa\c{c}\~ao.
 Neste cap\'itulo, iremos apenas apresentar alguns exemplos que visam ilustrar como definir conjuntos em termos de um conjunto de regras.
 
 \begin{Definition}[Sintaxe do Conjunto de Booleanos]
   O conjunto de valores Booleanos (l\'ogicos), $\mathcal{B}$, \'e um conjunto finito, que pode ser definido pelas seguintes regras:
   \[
-      \begin{array}{lcl}
-        T & \in & \mathcal{B}\\
-        F & \in & \mathcal{B}
+      \begin{array}{l}
+        T \in\mathcal{B}\\
+        F \in\mathcal{B}
       \end{array}
   \]
 \end{Definition}
@@ -52,8 +55,10 @@ As regras anteriores podem ser entendidas como:
   \item O termo $zero$ pertence ao conjunto $\mathcal{N}$;
   \item Se $n$ \'e um termo pertencente ao conjunto $\mathcal{N}$, temos que o termo $suc\,n$ tamb\'em pertence a $\mathcal{N}$.
 \end{itemize}
-Desta forma, o conjunto de termos $\mathcal{N}$ \'e $\mathcal{N}=\{zero,\,suc\,zero,\,suc\,(suc\,zero)\,...\}$. A equival\^encia entre o 
-conjunto $\mathcal{N}$ e o conjunto de n\'umeros naturais, $\mathbb{N} = \{0,1,2,...\}$, ser\'a apresentada na se\c{c}\~ao \ref{cap1:sem}.
+Desta forma, o conjunto de termos $\mathcal{N}$ \'e $\{zero,\,suc\,zero,\,suc\,(suc\,zero),\,...\}$. 
+A equival\^encia entre o conjunto $\mathcal{N}$ e o conjunto de n\'umeros naturais, $\mathbb{N} = \{0,1,2,...\}$, 
+ser\'a apresentada na se\c{c}\~ao \ref{cap1:sem}.
+
 Antes de iniciarmos a discuss\~ao sobre como atribuir sem\^antica a termos de uma linguagem, iremos apresentar mais dois exemplos de 
 defini\c{c}\~oes de sintaxe.
 
@@ -66,10 +71,29 @@ defini\c{c}\~oes de sintaxe.
   \end{array}
   \]
 \end{Definition}
+A defini\c{c}\~ao anterior especifica que existe uma lista que n\~ao possui nenhum elemento, representada por $[\,]$. Caso a lista
+n\~ao seja vazia, esta deve possuir pelo menos um elemento. Dada uma lista $ts$ e um elemento $t$, a lista $t :: ts$ representa uma
+lista em que o primeiro elemento \'e $t$ e o restante \'e $ts$. Denominamos por \textit{cabe\c{c}a} o primeiro elemento de uma lista
+e de \textit{cauda} o restante da lista.
+
+\begin{Example}
+Alguns exemplos de listas:
+\begin{itemize}
+  \item $[\,]$, representa a lista vazia.
+  \item $T :: [\,]$, representa uma lista com um elemento ($T$). Nesta lista, a cabe\c{c}a \'e $T$ e a cauda, $[\,]$.
+  \item $F :: T :: [\,]$, representa uma lista com dois elementos, em que a cabe\c{c}a \'e $F$ e a cauda, $T :: [\,]$.
+\end{itemize}
+Nos exemplos anteriores todas as listas s\~ao elementos do conjunto de listas de booleanos, $\textit{List }\mathcal{B}$.
+\end{Example}
+
 Listas s\~ao definidas de maneira independente do conjunto de elementos que formam essas listas, isto \'e, a defini\c{c}\~ao de listas
 \'e polim\'orfica em rela\c{c}\~ao ao conjunto de seus elementos.
 Por exemplo, o conjunto de listas sobre 
-o conjunto de valores Booleanos \'e $\textit{List }\mathcal{B}=\{[\,],\,F :: [\,],\,T :: [\,],\, F :: (T :: [\,]),\, ...\}$.
+o conjunto de valores Booleanos \'e $\textit{List }\mathcal{B}=\{[\,],\,F :: [\,],\,T :: [\,],\, F :: (T :: [\,]),\, ...\}$. Por sua vez, a lista
+$zero :: (suc\,\,zero) :: [\,]$ \'e uma lista pertencente ao conjunto de listas de n\'umeros naturais, $\textit{List }\mathcal{N}$.
+
+O pr\'oximo exemplo apresenta um conjunto de termos equivalente a express\~oes aritm\'eticas envolvendo adi\c{c}\~ao e multiplica\c{c}\~ao
+sobre termos de n\'umeros naturais.
 
 \begin{Definition}[Sintaxe do Conjunto de Express\~oes Aritm\'eticas]\label{def:arithexp}
   O conjunto de termos equivalentes a express\~oes aritm\'eticas, $\mathcal{E}$, \'e definido pelas seguintes regras:
@@ -80,9 +104,23 @@ o conjunto de valores Booleanos \'e $\textit{List }\mathcal{B}=\{[\,],\,F :: [\,
     \text{se }e_1 \in \mathcal{E} \text{ e } e_2 \in \mathcal{E}\text{ ent\~ao }\textit{times }e_1\,e_2\in\mathcal{E}
   \end{array}
   \]
+  Informalmente, as constantes \textit{plus} e \textit{times} ir\~ao representar as opera\c{c}\~oes de soma e multiplica\c{c}\~ao; e
+  o termo \textit{const n} (em que $n\in\mathcal{N}$) denota um n\'umero natural.
 \end{Definition}
+
+\begin{Example}
+  Alguns exemplos de express\~oes aritm\'eticas representadas por termos de $\mathcal{E}$:
+  \begin{itemize}
+    \item \textit{const (suc zero)}, representa um termo que corresponde ao n\'umero $1$
+    \item \textit{plus (const (suc zero)) (const (suc zero))}, representa um termo que corresponde a express\~ao $1 + 1$.
+  \end{itemize}
+  Apesar de ainda n\~ao termos definido formalmente a sem\^antica dos termos do conjunto $\mathcal{E}$, \'e \'util atribuir 
+  uma sem\^antica ``informal'' a eles de maneira a facilitar o entendimento de sua estrutura sint\'atica.
+\end{Example}
+
 Nas defini\c{c}\~oes anteriores apresentamos a estrutura sint\'atica de quatro conjuntos de termos e, informalmente, explicitamos a equival\^encia
-destes com outros conjuntos j\'a conhecidos. A pr\'oxima se\c{c}\~ao descrever\'a como atribuir significado a essas defini\c{c}\~oes sint\'aticas.
+destes com outros conjuntos j\'a conhecidos. A pr\'oxima se\c{c}\~ao descrever\'a como atribuir significado formal 
+a essas defini\c{c}\~oes sint\'aticas.
 
 \subsection{Sem\^antica}\label{cap1:sem}
 
