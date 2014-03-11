@@ -23,7 +23,7 @@ atribuir significado aos elementos destas linguagens.
 Linguagens finitas podem (em princ\'ipio) ser especificadas pela enumera\c{c}\~ao de termos da linguagem; j\'a, linguagens
 infinitas s\~ao usualmente descritas por um conjunto finito de regras para construir termos desta linguagem.
 O estudo de linguagens formais possui uma extensiva literatura e \'e o objeto de estudo da disciplina Fundamentos Te\'oricos da Computa\c{c}\~ao.
-Neste cap\'itulo, iremos apenas apresentar alguns exemplos que visam ilustrar como definir conjuntos em termos de um conjunto de regras.
+Neste cap\'itulo, iremos apenas apresentar alguns exemplos que visam ilustrar como definir conjuntos em termos de regras.
 
 \begin{Definition}[Sintaxe do Conjunto de Booleanos]
   O conjunto de valores Booleanos (l\'ogicos), $\mathcal{B}$, \'e um conjunto finito, que pode ser definido pelas seguintes regras:
@@ -37,8 +37,8 @@ Neste cap\'itulo, iremos apenas apresentar alguns exemplos que visam ilustrar co
 
 Em conjunto, essas regras podem ser interpretadas como ``o conjunto de valores booleanos, $\mathcal{B}$, \'e formado apenas pelos valores 
 $T$ e $F$''.
-O conjunto de valores Booleanos \'e um conjunto finito e sua defini\c{c}\~ao utilizando regras \'e imediata. A pr\'oxima defini\c{c}\~ao,
-apresenta a sintaxe de termos equivalentes ao conjunto dos n\'umeros naturais.
+Como o conjunto de valores Booleanos \'e finito, sua defini\c{c}\~ao utilizando regras \'e imediata (basta enumerar os seus elementos). 
+A pr\'oxima defini\c{c}\~ao, mostra como definir um conjunto infinito usando um n\'umero finito de regras.
 
 \begin{Definition}[Sintaxe do Conjunto de N\'umeros Naturais]
 O conjunto de termos equivalentes aos n\'umeros naturais, $\mathcal{N}$, \'e um conjunto infinito que pode ser definido pelas seguintes regras:
@@ -53,11 +53,11 @@ O conjunto de termos equivalentes aos n\'umeros naturais, $\mathcal{N}$, \'e um 
 As regras anteriores podem ser entendidas como:
 \begin{itemize}
   \item O termo $zero$ pertence ao conjunto $\mathcal{N}$;
-  \item Se $n$ \'e um termo pertencente ao conjunto $\mathcal{N}$, temos que o termo $suc\,n$ tamb\'em pertence a $\mathcal{N}$.
+  \item Se $n$ \'e um termo pertencente ao conjunto $\mathcal{N}$, ent\~ao o termo $suc\,n$ tamb\'em pertence a $\mathcal{N}$.
 \end{itemize}
 Desta forma, o conjunto de termos $\mathcal{N}$ \'e $\{zero,\,suc\,zero,\,suc\,(suc\,zero),\,...\}$. 
-A equival\^encia entre o conjunto $\mathcal{N}$ e o conjunto de n\'umeros naturais, $\mathbb{N} = \{0,1,2,...\}$, 
-ser\'a apresentada na se\c{c}\~ao \ref{cap1:sem}.
+Apesar de j\'a termos citado que o conjunto $\mathcal{N}$ \'e equivalente ao conjunto de n\'umeros naturais, $\mathbb{N} = \{0,1,2,...\}$, 
+a equival\^encia entre eles ser\'a apresentada na se\c{c}\~ao \ref{cap1:sem}.
 
 Antes de iniciarmos a discuss\~ao sobre como atribuir sem\^antica a termos de uma linguagem, iremos apresentar mais dois exemplos de 
 defini\c{c}\~oes de sintaxe.
@@ -71,10 +71,10 @@ defini\c{c}\~oes de sintaxe.
   \end{array}
   \]
 \end{Definition}
-A defini\c{c}\~ao anterior especifica que existe uma lista que n\~ao possui nenhum elemento, representada por $[\,]$. Caso a lista
+A defini\c{c}\~ao anterior especifica que existe uma lista que n\~ao possui nenhum elemento, representada pela constante $[\,]$. Caso a lista
 n\~ao seja vazia, esta deve possuir pelo menos um elemento. Dada uma lista $ts$ e um elemento $t$, a lista $t :: ts$ representa uma
 lista em que o primeiro elemento \'e $t$ e o restante \'e $ts$. Denominamos por \textit{cabe\c{c}a} o primeiro elemento de uma lista
-e de \textit{cauda} o restante da lista.
+e de \textit{cauda} o restante da lista. Sendo assim, em $t :: ts$ temos que $t$ \'e a cabe\c{c}a e $ts$ a cauda dessa lista.
 
 \begin{Example}
 Alguns exemplos de listas:
@@ -86,7 +86,7 @@ Alguns exemplos de listas:
 Nos exemplos anteriores todas as listas s\~ao elementos do conjunto de listas de booleanos, $\textit{List }\mathcal{B}$.
 \end{Example}
 
-Listas s\~ao definidas de maneira independente do conjunto de elementos que formam essas listas, isto \'e, a defini\c{c}\~ao de listas
+Listas s\~ao definidas de maneira independente do conjunto de elementos que as formam, isto \'e, a defini\c{c}\~ao de listas
 \'e polim\'orfica em rela\c{c}\~ao ao conjunto de seus elementos.
 Por exemplo, o conjunto de listas sobre 
 o conjunto de valores Booleanos \'e $\textit{List }\mathcal{B}=\{[\,],\,F :: [\,],\,T :: [\,],\, F :: (T :: [\,]),\, ...\}$. Por sua vez, a lista
@@ -130,7 +130,10 @@ matematicamente, como por exemplo, o conjunto dos n\'umeros naturais, $\mathbb{N
 \'e definida em termos de sua estrutura sint\'atica.
 
 Antes de apresentarmos uma fun\c{c}\~ao sem\^antica, elementos de uma linguagem s\~ao apenas uma sequ\^encia estruturada de s\'imbolos
-sem significado. Como qualquer fun\c{c}\~ao, defini\c{c}\~oes sem\^anticas devem ser especificadas em termos de seu dom\'inio e 
+sem significado. Somente ap\'os a defini\c{c}\~ao de uma fun\c{c}\~ao sem\^antica podemos intepretar esses s\'imbolos de maneira 
+matematicamente precisa.
+
+Como qualquer fun\c{c}\~ao, defini\c{c}\~oes sem\^anticas devem ser especificadas em termos de seu dom\'inio e 
 contra-dom\'inio\footnote{Neste ponto, assumimos que os conceitos de dom\'inio e contra-dom\'inio de fun\c{c}\~oes \'e familiar ao leitor.
 Estes conceitos ser\~ao apresentados formalmente no cap\'itulo \ref{}}. As pr\'oximas defini\c{c}\~oes ilustram poss\'iveis fun\c{c}\~oes 
 sem\^anticas para as linguagens descritas na se\c{c}\~ao \ref{cap1:syn}.
@@ -149,13 +152,13 @@ Evidentemente, a fun\c{c}\~ao anterior n\~ao \'e a \'unica poss\'ivel maneira de
 Outra poss\'ivel defini\c{c}\~ao seria:
 \[
 \begin{array}{lcl}
-\llbracket T \rrbracket & = & \{k\in\mathbb{N}\,|\,k\neq 0\}\\
+\llbracket T \rrbracket & = & \{k\in\mathbb{Z}\,|\,k\neq 0\}\\
 \llbracket F \rrbracket & = & \{0\}\\
 \end{array}
 \]
-Em que o termo $T$ \'e associado com o conjunto de todos os n\'umeros naturais diferentes de $0$ e $F$ com o conjunto contendo 
-o n\'umero $0$. A fun\c{c}\~ao anterior atribui a sem\^antica para Booleanos similar \`a utilizada pelas linguagens de programa\c{c}\~ao
-C/C++, em que o valor verdadeiro \'e associado a qualquer inteiro n\~ao zero e falso a zero.
+Em que o termo $T$ \'e associado com o conjunto de todos os n\'umeros inteiros diferentes de $0$ e $F$ com o conjunto contendo 
+o n\'umero $0$. A fun\c{c}\~ao anterior atribui uma sem\^antica para valores Booleanos similar \`a utilizada pelas linguagens 
+de programa\c{c}\~ao C/C++, em que o valor verdadeiro \'e associado a qualquer inteiro n\~ao zero.
 
 A fun\c{c}\~ao sem\^antica para n\'umeros naturais \'e mostrada na defini\c{c}\~ao seguinte.
 
@@ -170,14 +173,14 @@ e o valor $k\in\mathbb{N}$ ao termo contendo $k$ ocorr\^encias da constante $suc
 \]
 \end{Definition}
 
-A defini\c{c}\~ao anterior \'e um exemplo de uma fun\c{c}\~ao recursiva sobre a
+A defini\c{c}\~ao anterior \'e um exemplo de uma defini\c{c}\~ao recursiva sobre a
 estrutura da sintaxe. Como a sintaxe do conjunto $\mathcal{N}$ \'e definida recursivamente, a
-fun\c{c}\~ao que lhe atribui significado \'e tamb\'em recursiva. Esperamos que o leitor deste texto
+defini\c{c}\~ao que lhe atribui significado \'e tamb\'em recursiva. Esperamos que o leitor deste texto
 seja familiar com o conceito de recurs\~ao.
 
 Para garantir que defini\c{c}\~oes recursivas sejam consideradas fun\c{c}\~oes, estas devem obedecer dois crit\'erios:
 totalidade e termina\c{c}\~ao. A totalidade especifica que a fun\c{c}\~ao deve associar todo elemento de seu dom\'inio
-a um elemento no contradom\'inio. Uma maneira de se garantir a totalidade \'e especificar uma equa\c{c}\~ao para cada uma
+a um elemento no contra-dom\'inio. Uma maneira de se garantir a totalidade \'e especificar uma equa\c{c}\~ao para cada uma
 das regras de forma\c{c}\~ao da sintaxe. Na defini\c{c}\~ao anterior, temos que a fun\c{c}\~ao que atribui sem\^antica a
 elementos do conjunto $\mathcal{N}$ \'e total, pois esta \'e definida para todas as regras de forma\c{c}\~ao da sintaxe de 
 $\mathcal{N}$. A termina\c{c}\~ao pode ser garantida permitindo que chamadas recursivas sejam feitas apenas a sub-termos.
@@ -226,7 +229,7 @@ exemplo, o resultado de executar $length\,\,T :: [\,]$  \'e $1 + length [\,]$, d
 A opera\c{c}\~ao de concatenar duas listas consiste em formar uma nova lista que consiste da segunda justaposta ao final da primeira. Por exemplo,
 o resultado de concatenar a lista $T :: F :: [\,]$ com a lista $F :: F :: [\,]$ \'e a lista $T :: F :: F :: F :: [\,]$.
 
-\begin{Definition}[Concatena\c{c}\~ao de listas]
+\begin{Definition}[Concatena\c{c}\~ao de listas]\label{def:concat:lists}
  A defini\c{c}\~ao recursiva seguinte calcula a concatena\c{c}\~ao de duas listas fornecidas como par\^ametro. 
  \[
   \begin{array}{lclr}
@@ -265,6 +268,9 @@ os conceitos necess\'arios de Coq para descri\c{c}\~ao de sintaxe, sem\^antica e
     \item $length (zero :: zero :: [\,])$
     \item $(zero :: (suc\,\, zero) ::[\,])\text{++}((suc\,\,zero) :: zero :: [\,])$
   \end{enumerate}
+  \item Na defini\c{c}\~ao \ref{def:concat:lists} foi apresentada uma defini\c{c}\~ao recursiva para a opera\c{c}\~ao de concatena\c{c}\~ao de
+        duas listas, por\'em n\~ao foi apresentada nenhuma justificativa do porqu\^e esta pode ser considerada uma fun\c{c}\~ao. Justifique
+        porqu\^e a concatena\c{c}\~ao \'e uma fun\c{c}\~ao usando os conceitos de totalidade e termina\c{c}\~ao.
   \item Apresente uma defini\c{c}\~ao recursiva que calcula o valor de uma express\~ao aritm\'etica (defini\c{c}\~ao \ref{def:arithexp}).
         Sua solu\c{c}\~ao deve possuir como dom\'inio o conjunto $\mathcal{E}$ e como contra-dom\'inio o conjunto $\mathbb{N}$. Para isso, 
         interprete as constantes \textit{plus} e \textit{times} como as opera\c{c}\~oes de adi\c{c}\~ao e multiplica\c{c}\~ao, respectivamente; e
