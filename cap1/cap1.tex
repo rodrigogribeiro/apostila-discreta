@@ -210,10 +210,10 @@ a sintaxe de listas e; 3) termina sempre, pois, a cada passo da execu\c{c}\~ao d
 
 \begin{Example}
 Visando exemplificar a defini\c{c}\~ao anterior, considere a tarefa de calcular o n\'umero de elementos da seguinte lista de valores
-booleanos: $T :: (F :: (T :: [\,]))$. A execu\c{c}\~ao de $length\,\,T :: (F :: (T :: [\,]))$ \'e apresentada abaixo:
+booleanos: $T :: (F :: (T :: [\,]))$. A execu\c{c}\~ao de $length\,\,(T :: (F :: (T :: [\,])))$ \'e apresentada abaixo:
 \[
 \begin{array}{lcl}
-length\,\,T :: (F :: (T :: [\,])) & = & \\
+length\,\,(T :: (F :: (T :: [\,]))) & = & \\
 1 + length\,\,(F :: (T :: [\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
 1 + (1 + length\,\,(T :: [\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
 1 + (1 + (1 + length\,\,[\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
@@ -224,7 +224,7 @@ length\,\,T :: (F :: (T :: [\,])) & = & \\
 \end{Example}
 
 Note que a execu\c{c}\~ao simplesmente reescreve a express\~ao de acordo com as equa\c{c}\~oes que definem a fun\c{c}\~ao $length$, ou seja, por
-exemplo, o resultado de executar $length\,\,T :: [\,]$  \'e $1 + length [\,]$, de acordo com a equa\c{c}\~ao $(2)$ de $length$.
+exemplo, o resultado de executar $length\,\,(T :: [\,])$  \'e $1 + length [\,]$, de acordo com a equa\c{c}\~ao $(2)$ de $length$.
 
 A opera\c{c}\~ao de concatenar duas listas consiste em formar uma nova lista que consiste da segunda justaposta ao final da primeira. Por exemplo,
 o resultado de concatenar a lista $T :: F :: [\,]$ com a lista $F :: F :: [\,]$ \'e a lista $T :: F :: F :: F :: [\,]$.
@@ -277,6 +277,11 @@ os conceitos necess\'arios de Coq para descri\c{c}\~ao de sintaxe, sem\^antica e
         a constante \textit{const n} deve ser interpretada como um valor num\'erico pertencente ao conjunto dos n\'umeros naturais, $\mathbb{N}$.
   \item A defini\c{c}\~ao apresentada por voc\^e no item anterior constitui uma fun\c{c}\~ao? Justifique em termos dos conceitos de totalidade
         e termina\c{c}\~ao, apresentados na se\c{c}\~ao \ref{cap1:sem}.
+  \item O objetivo deste exerc\'icio \'e explicar o porqu\^e defini\c{c}\~oes recursivas que n\~ao atendem os crit\'erios de totalidade e 
+        termina\c{c}\~ao n\~ao podem ser consideradas fun\c{c}\~oes. 
+        Para isso, apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de 
+        totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Em ambos os casos, justifique porqu\^e estas n\~ao podem ser 
+        fun\c{c}\~oes.        
 \end{enumerate}
 
 \section{Introdu\c{c}\~ao ao Assistente de Provas Coq}\label{cap1:coq}
@@ -309,48 +314,100 @@ Inductive Nat : Set :=
    | Zero : Nat
    | Suc  : Nat -> Nat.
 \end{lstlisting}
-Note que, assim como a defini\c{c}\~ao de $\mathcal{N}$, o tipo \texttt{Nat} \'e definido recursivamente, pois valores de \texttt{Nat} 
-constru\'idos com a constante \texttt{Suc} esperam como par\^ametro outro valor de tipo \texttt{Nat}. O n\'umero $3$ corresponde ao seguinte
-elemento de $\mathcal{N}$: $suc\,\,(suc\,\,(suc\,\,zero))$ e a seguinte defini\c{c}\~ao em Coq:
+O tipo \texttt{Nat} \'e definido usando dois construtores. O primeiro, \texttt{Zero}, representa a constante $zero\in\mathcal{N}$. O construtor
+\texttt{Suc} \'e o primeiro exemplo de um tipo funcional em Coq. O tipo \texttt{Nat -> Nat} denota uma fun\c{c}\~ao que recebe como par\^ametro
+um valor de tipo \texttt{Nat} e retorna um valor de \texttt{Nat}. Sendo assim, o constructor \texttt{Suc} recebe como par\^ametro um valor de
+tipo \texttt{Nat} e retorna outro valor de \texttt{Nat}. Devido ao tipo de \texttt{Suc}, temos que \texttt{Nat} \'e um tipo recursivo, isto \'e,
+ele \'e definido em termos de si pr\'oprio. Como exemplo, qualquer valor de \texttt{Nat} que seja formado pela constante \texttt{Suc}, deve
+possuir como subtermo outro valor de \texttt{Nat}. Como um exemplo, o n\'umero $3$ corresponde
+ ao seguinte elemento de $\mathcal{N}$: $suc\,\,(suc\,\,(suc\,\,zero))$ e a seguinte defini\c{c}\~ao em Coq:
 \begin{lstlisting}
 Definition three : Nat := Suc (Suc (Suc Zero)).
-Definition five : Nat := Suc (Suc three).
 \end{lstlisting}
 A palavra chave \texttt{Definition} permite a defini\c{c}\~ao de fun\c{c}\~oes n\~ao recursivas sobre tipos quaisquer. No trecho de c\'odigo
-anterior, \texttt{tree} representa a fun\c{c}\~ao constante que sempre retorna \texttt{Suc (Suc (Suc Zero))} como resultado. Por\'em, como
-\texttt{five} nos mostra, podemos utilizar uma defini\c{c}\~ao para criar outra, desde que isso n\~ao envolva recurs\~ao.
+anterior, \texttt{tree} representa a fun\c{c}\~ao constante que sempre retorna \texttt{Suc (Suc (Suc Zero))} como resultado.
+Por\'em, como \texttt{five} (apresentada a seguir) nos mostra, podemos utilizar uma defini\c{c}\~ao para criar outra, desde que isso 
+n\~ao envolva recurs\~ao.
+\begin{lstlisting}
+Definition five : Nat := Suc (Suc three).
+\end{lstlisting}
 
 A seguinte defini\c{c}\~ao denota o conjunto de listas sobre um certo tipo \texttt{T}, ou seja, c\'odigo Coq para o conjunto 
-\textit{List $\mathcal{T}$}. Os comandos \texttt{Notation} apenas permitem que usemos uma sintaxe mais simples para construir listas.
-
+\textit{List $\mathcal{T}$}. 
 \begin{lstlisting}
 Inductive List (T : Set) : Set :=
   | nil  : List T
   | cons : T -> List T -> List T.
-
-Notation "x :: l" := (cons x l) (at level 60, right associativity).
-Notation "[ ]" := nil.
 \end{lstlisting}
-As seguintes listas s\~ao id\^enticas, por\'em a segunda e a terceira utiliza nota\c{c}\~oes que facilitam a escrita destes termos.
+No c\'odigo Coq correpondente a este cap\'itulo, definimos algumas nota\c{c}\~oes para facilitar a cria\c{c}\~ao de valores de tipo lista.
+Estas nota\c{c}\~oes permitem escrever \texttt{[]} ao inv\'es de \texttt{nil} e \texttt{t :: ts} ao inv\'es de \texttt{Cons t ts}. Como
+exemplo, as seguintes listas s\~ao id\^enticas, por\'em, \texttt{myList} usa as nota\c{c}\~oes e \texttt{myList'} usa os construtores
+definidos para o tipo \texttt{List}.
 \begin{lstlisting}
-Definition list0 : List Bool := 
-    Cons Bool T (Cons Bool F (Nil Bool)).
-Arguments Nil {T}.
-Arguments Cons {T} _ _.
-Definition list1 : List Bool := Cons T (Cons F Nil).
-Definition list2 : List Bool := T :: F :: [].
+Definition myList' : List Bool := Cons T (Cons F nil).
+Definition myList : List Bool := T :: F :: [].
 \end{lstlisting}
 
-A sintaxe de express\~oes aritm\'eticas, dada na defini\c{c}\~ao do conjunto $\mathcal{E}$, pode se representada pelo seguinte tipo 
-Coq:
+Finalmente, o seguinte tipo define a  sintaxe de express\~oes aritm\'eticas, equivalente ao conjunto $\mathcal{E}$:
 \begin{lstlisting}
 Inductive Exp : Set :=
   | Const : Nat -> Exp
   | Plus  : Exp -> Exp -> Exp
   | Times : Exp -> Exp -> Exp.
 \end{lstlisting}
+Assim como fizemos para listas, definidos nota\c{c}\~oes para facilitar a escrita de valores do tipo \texttt{Exp} que s\~ao ilustradas a seguir:
+\begin{lstlisting}
+Definition myExp' : Exp := 
+      Plus (Const Zero) (Const (Suc Zero)).
+Definition myExp : Exp := 
+      (Const Zero) :+ (Const (Suc Zero)).
+\end{lstlisting}
+As nota\c{c}\~oes definidas para express\~oes visam evitar o uso dos construtores \texttt{Plus} e \texttt{Times} substituindo-os pelos s\'imbolos
+por \texttt{:+} e \texttt{:*}, respectivamente.
 
 \subsection{Representanto Sem\^antica em Coq}
+
+Conforme apresentado na se\c{c}\~ao \ref{cap1:sem}, defini\c{c}\~oes sem\^anticas s\~ao especificadas por recurs\~ao sobre a estrutura sint\'atica
+dos termos do conjunto em quest\~ao. Al\'em disso, para que defini\c{c}\~oes recursivas sejam consideradas fun\c{c}\~oes estas devem atender
+os crit\'erios de totalidade e termina\c{c}\~ao.
+
+Em Coq, toda fun\c{c}\~ao (recursiva ou n\~ao) deve obedecer os crit\'erios de totalidade e termina\c{c}\~ao. Se uma defini\c{c}\~ao 
+n\~ao atender esses crit\'erios, ser\'a emitida uma mensagem de erro. Essas restri\c{c}\~oes s\~ao fundamentais para que Coq possa ser 
+utilizado como um verificador de provas.
+
+A primeira defini\c{c}\~ao sem\^antica ser\'a
+
+\begin{lstlisting}
+Definition BoolSem (b : Bool) : nat :=
+  match b with
+    | T => 1
+    | F => 0
+  end.
+\end{lstlisting}
+
+\begin{lstlisting}
+Fixpoint NatSem (n : Nat) : nat :=
+  match n with
+    | Zero  => 0
+    | Suc n => 1 + NatSem n
+  end.
+\end{lstlisting}
+
+\begin{lstlisting}
+Fixpoint length {T} (l : List T) : nat :=
+  match l with
+    | []      => 0
+    | t :: ts => 1 + length ts
+  end.
+\end{lstlisting}
+
+\begin{lstlisting}
+Fixpoint app {T} (l l' : List T) : List T :=
+  match l with
+    | []      => l'
+    | t :: ts => t :: (app ts l')
+  end.
+\end{lstlisting}
 
 \subsection{Exerc\'icios}
 

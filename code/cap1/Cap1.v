@@ -47,10 +47,10 @@ Definition list2 : List Bool := T :: F :: [].
 
 (* Definipes semânticas *)
 
-Definition BoolSem (b : Bool) : bool :=
+Definition BoolSem (b : Bool) : nat :=
   match b with
-    | T => true
-    | F => false
+    | T => 1
+    | F => 0
   end.
 
 (* teste *)
@@ -66,3 +66,17 @@ Fixpoint NatSem (n : Nat) : nat :=
 (* teste da semântica de números naturais *)
 
 Eval compute in NatSem five.
+
+(* funções sobre listas *)
+
+Fixpoint length {T} (l : List T) : nat :=
+  match l with
+    | []      => 0
+    | t :: ts => 1 + length ts
+  end.
+
+Fixpoint app {T} (l l' : List T) : List T :=
+  match l with
+    | []      => l'
+    | t :: ts => t :: (app ts l')
+  end.
