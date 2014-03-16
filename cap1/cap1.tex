@@ -293,7 +293,7 @@ o aprendizado dos conceitos desta apostila sem mencionar os detalhes te\'oricos 
 
 \subsection{Representando Sintaxe em Coq}
 
-Representaremos defini\c{c}\~oes de sintaxe de termos utilizados tipos de dados em Coq. O trecho de c\'odigo Coq a seguir ilustra um
+Representaremos defini\c{c}\~oes de sintaxe de termos utilizando tipos de dados em Coq. O trecho de c\'odigo Coq a seguir ilustra um
 tipo de dados que denota o conjunto $\mathcal{B}$ de valores booleanos.
 
 \begin{lstlisting}
@@ -319,13 +319,13 @@ O tipo \texttt{Nat} \'e definido usando dois construtores. O primeiro, \texttt{Z
 um valor de tipo \texttt{Nat} e retorna um valor de \texttt{Nat}. Sendo assim, o constructor \texttt{Suc} recebe como par\^ametro um valor de
 tipo \texttt{Nat} e retorna outro valor de \texttt{Nat}. Devido ao tipo de \texttt{Suc}, temos que \texttt{Nat} \'e um tipo recursivo, isto \'e,
 ele \'e definido em termos de si pr\'oprio. Como exemplo, qualquer valor de \texttt{Nat} que seja formado pela constante \texttt{Suc}, deve
-possuir como subtermo outro valor de \texttt{Nat}. Como um exemplo, o n\'umero $3$ corresponde
+possuir como subtermo outro valor de \texttt{Nat}. O n\'umero $3$ corresponde
  ao seguinte elemento de $\mathcal{N}$: $suc\,\,(suc\,\,(suc\,\,zero))$ e a seguinte defini\c{c}\~ao em Coq:
 \begin{lstlisting}
 Definition three : Nat := Suc (Suc (Suc Zero)).
 \end{lstlisting}
 A palavra chave \texttt{Definition} permite a defini\c{c}\~ao de fun\c{c}\~oes n\~ao recursivas sobre tipos quaisquer. No trecho de c\'odigo
-anterior, \texttt{tree} representa a fun\c{c}\~ao constante que sempre retorna \texttt{Suc (Suc (Suc Zero))} como resultado.
+anterior, \texttt{three} representa a fun\c{c}\~ao constante que sempre retorna \texttt{Suc (Suc (Suc Zero))} como resultado.
 Por\'em, como \texttt{five} (apresentada a seguir) nos mostra, podemos utilizar uma defini\c{c}\~ao para criar outra, desde que isso 
 n\~ao envolva recurs\~ao.
 \begin{lstlisting}
@@ -363,7 +363,7 @@ Definition myExp : Exp :=
       (Const Zero) :+ (Const (Suc Zero)).
 \end{lstlisting}
 As nota\c{c}\~oes definidas para express\~oes visam evitar o uso dos construtores \texttt{Plus} e \texttt{Times} substituindo-os pelos s\'imbolos
-por \texttt{:+} e \texttt{:*}, respectivamente.
+\texttt{:+} e \texttt{:*}, respectivamente.
 
 \subsection{Representanto Sem\^antica em Coq}
 
@@ -375,8 +375,13 @@ Em Coq, toda fun\c{c}\~ao (recursiva ou n\~ao) deve obedecer os crit\'erios de t
 n\~ao atender esses crit\'erios, ser\'a emitida uma mensagem de erro. Essas restri\c{c}\~oes s\~ao fundamentais para que Coq possa ser 
 utilizado como um verificador de provas.
 
-A primeira defini\c{c}\~ao sem\^antica ser\'a
-
+A primeira defini\c{c}\~ao sem\^antica apresentada ser\'a para o tipo
+\texttt{Bool}. Como vimos na sec\c{c}\~ao \ref{cap1:sem}, a
+fun\c{c}\~ao sem\^antica para o conjunto $\mathcal{B}$ \'e tal que
+ao valor $T$ atribui-se $1$ e $0$ para $F$, ou seja, esta fun\c{c}\~ao
+possui como dom\'inio o conjunto de valores booleanos, $\mathcal{B}$
+e contra-dom\'inio o conjunto dos n\'umeros naturais, $\mathbb{N}$. 
+A seguinte fun\c{c}\~ao apresenta a sem\^antica para o tipo \texttt{Bool}:
 \begin{lstlisting}
 Definition BoolSem (b : Bool) : nat :=
   match b with
@@ -384,14 +389,63 @@ Definition BoolSem (b : Bool) : nat :=
     | F => 0
   end.
 \end{lstlisting}
+O c\'odigo anterior mostra a fun\c{c}\~ao \texttt{BoolSem} que recebe
+como par\^ametro um valor de tipo \texttt{Bool}, de nome \texttt{b}, e
+retorna um n\'umero natural, um valor de tipo \texttt{nat}. Como a
+sem\^antica de valores booleanos depende de sua sintaxe ( $1$ para $T$
+e $0$ para $F$) devemos usar casamento de padr\~ao para analisar a
+estrutura sint\'atica do par\^ametro \texttt{b} para, ent\~ao,
+retornar o resultado apropriado. O casamento de padr\~ao, em Coq, \'e
+feito usando a constru\c{c}\~ao \texttt{match}, que permite definir um
+conjunto de equa\c{c}\~oes, uma para cada possibilidade sint\'atica do
+valor analisado. Note que, Coq exige que todo \texttt{match}
+obede\c{c}a o crit\'erio de totalidade, isto é, as equa\c{c}\~oes
+devem cobrir todas as possibilidades do tipo do valor analisado.
 
+Para a fun\c{c}\~ao \texttt{BoolSem} a totalidade \'e facilmente
+atingida estabelecendo uma equa\c{c}\~ao para cada um dos valores de
+\texttt{Bool}.
+
+O pr\'oximo exemplo define a sem\^antica do tipo \texttt{Nat}. Como
+este tipo \'e recursivo, sua fun\c{c}\~ao sem\^antica tamb\'em ser\'a.
+Em Coq, definimos fun\c{c}\~oes recursivas utilizando o comando
+\texttt{Fixpoint}.
+ 
 \begin{lstlisting}
 Fixpoint NatSem (n : Nat) : nat :=
   match n with
     | Zero  => 0
-    | Suc n => 1 + NatSem n
+    | Suc n' => 1 + NatSem n'
   end.
 \end{lstlisting}
+Como o comando \texttt{Fixpoint} permite defini\c{c}\~oes recursivas,
+Coq exige que estas satisfa\c{c}am os crit\'erios de termina\c{c}\~ao
+e totalidade. Note que o \texttt{match} que define a fun\c{c}\~ao
+\texttt{NatSem} \'e total (pois, todo valor de \texttt{Nat} ou \'e
+igual a \texttt{Zero} ou igual \texttt{Suc n}, para algum \texttt{n}
+de tipo \texttt{Nat}) e termina, pois a chamada recursiva de
+\texttt{NatSem} diminui o n\'umero de constantes \texttt{Suc}
+presentes no termo.
+
+Na equa\c{c}\~ao para a constante \texttt{Suc} em \texttt{NatSem},
+temos a presen\c{a} de uma vari\'avel no lado esquerdo. Durante o
+casamento de padr\~ao, vari\'aveis s\~ao associadas a valores. Como um
+exemplo, considere executar \texttt{NatSem (Suc (Suc Zero))}. Neste
+caso, temos que a equa\c{c}\~ao:
+\begin{lstlisting}
+Suc n' => 1 + NatSem n'
+\end{lstlisting}
+ser\'a executada. Durante o processo de casamento de padr\~ao, temos
+que o valor de n' ser\'a \texttt{Suc Zero}, j\'a que o termo analisado
+pelo \texttt{match} foi \texttt{Suc (Suc Zero)}. Note que a estrutura
+do padr\~ao da equa\c{c}\~ao (\texttt{Suc n'})  faz com que o subtermo
+\texttt{Suc Zero} de \texttt{Suc (Suc Zero)} seja atribu\'ido \`a
+vari\'avel \texttt{n'}.
+
+As fun\c{c}\~oes \texttt{length} e \texttt{app} definem as
+opera\c{c}\~oes de c\'alculo do n\'umero de elementos e
+concatena\c{c}\~ao sobre listas. O c\'odigo Coq correspondente a ambas
+\'e apresentado a seguir:
 
 \begin{lstlisting}
 Fixpoint length {T} (l : List T) : nat :=
@@ -399,16 +453,45 @@ Fixpoint length {T} (l : List T) : nat :=
     | []      => 0
     | t :: ts => 1 + length ts
   end.
-\end{lstlisting}
 
-\begin{lstlisting}
 Fixpoint app {T} (l l' : List T) : List T :=
   match l with
     | []      => l'
     | t :: ts => t :: (app ts l')
   end.
 \end{lstlisting}
+A defini\c{c}\~ao destas fun\c{c}\~oes \'e simplesmente uma
+tradu\c{c}\~ao do que foi apresentado na se\c{c}\~ao \ref{cap1:sem}
+para Coq.
+
+Com isso, terminamos nossa introdu\c{c}\~ao \`a utiliza\c{c}\~ao de
+Coq para definir sintaxe e sem\^antica de linguagens formais. Nos
+capítulos seguintes, maiores detalhes da ferramenta ser\~ao
+apresentados de forma a podermos utiliz\'a-la como um recurso
+did\'atico adicional para o aprendizado do conte\'udo de Matem\'atica Discreta.
 
 \subsection{Exerc\'icios}
 
+\begin{enumerate}
+    \item Apresente uma fun\c{c}\~ao em Coq que calcula o valor de uma express\~ao aritm\'etica (defini\c{c}\~ao \ref{def:arithexp}).
+        Sua solu\c{c}\~ao deve possuir como par\^ametro um valor de
+        tipo \texttt{Exp}. O tipo de retorno de sua fun\c{c}\~ao deve
+        ser \texttt{nat}, o tipo correspondente a n\'umeros naturais
+        em Coq. 
+    \item Defina fun\c{c}\~oes que, a partir de uma lista fornecida
+      como par\^ametro, retornem a cabe\c{c}a e a cauda desta.
+\end{enumerate}
+
 \section{Notas Bibliogr\'aficas}
+
+Conceitos de sintaxe e sem\^antica s\~ao pervasivos na Ci\^encia da
+Computa\c{c}\~ao. Estes s\~ao presentes em livros de sem\^antica
+formal \cite{Winskel93}, teoria de linguagens \cite{Hopcroft06} e
+constru\c{c}\~ao de compiladores \cite{Aho86}.
+
+Coq \'e, atualmente, o mais maduro assistente de provas baseado em
+teoria de tipos e \'e empregado com sucesso em diversos projetos
+industriais e cient\'ificos. Diversos livros fornecem
+uma introdu\c{c}\~ao \`a utiliza\c{c}\~ao dessa ferramenta al\'em dos
+prop\'ositos deste texto. O leitor interessado pode aprofundar seus
+conhecimentos usando \cite{coqart,Pierce12,Coqrefman}.
