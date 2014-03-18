@@ -327,13 +327,13 @@ Tanto no Portugu\^es quanto na matem\'atica e nas linguagens de programa\c{c}\~a
 senten\c{c}a \'e ou n\~ao v\'alida na linguagem em quest\~ao. Como exemplo, em linguagens de programa\c{c}\~ao, a express\~ao $(2 + 3$ \'e
 considerada sintaticamente inv\'alida devido a falta do s\'imbolo $)$ nesta express\~ao. Em liguagens de programa\c{c}\~ao h\'a a necessidade
 de verifica\c{c}\~ao sint\'atica, pois estamos interessados no signficado (execu\c{c}\~ao) das senten\c{c}as (programas) em quest\~ao e, 
-formalmente, n\~ao h\'a como atribuir sem\^antica a senten\c{c}as sintaticamente incorreta.
+formalmente, n\~ao h\'a como atribuir sem\^antica a senten\c{c}as sintaticamente incorretas.
 
 Para definir quais senten\c{c}as da l\'ogica proposicional s\~ao pass\'iveis de atribuirmos um significado preciso, iremos definir o conjunto
 de \textit{f\'ormulas bem formadas} da l\'ogica proposicional. Neste texto o termo f\'ormula (da l\'ogica proposicional) denotar\'a f\'ormulas
-bem formadas.
+bem formadas, a menos que seja explicitamente dito o contr\'ario.
 
-\begin{Definition}[F\'ormulas Bem Formadas]
+\begin{Definition}[F\'ormulas Bem Formadas]\label{propsyn}
 O conjunto $\mathcal{F}$ de f\'ormulas bem formadas da l\'ogica proposicional \'e definido recursivamente da seguinte maneira:
 \begin{enumerate}
   \item As constantes l\'ogicas $\top,\bot \in \mathcal{F}$ e denotam verdadeiro e falso respectivamente. 
@@ -347,5 +347,45 @@ O conjunto $\mathcal{F}$ de f\'ormulas bem formadas da l\'ogica proposicional \'
 \end{enumerate}
 Todos os elementos de $\mathcal{F}$ podem ser constru\'idos pelas regras anteriores.
 \end{Definition}
-A defini\c{c}\~ao anterior \'e o primeiro exemplo de uma defini\c{c}\~ao recursiva desta apostila. De maneira simplista, uma defini\c{c}\~ao
-recursiva \'e formada por dois componentes b\'asicos:
+Apresentaremos alguns exemplos de f\'ormulas da l\'ogica e como estas
+podem ser constru\'idas utilizando a defini\c{c}\~ao \ref{propsyn}.
+\begin{Example}
+Considere as seguintes fórmulas da lógica proposicional:
+\begin{enumerate}
+  \item $\neg (A \lor \top)$
+  \item $A \to \neg A$
+\end{enumerate}
+A f\'ormula 1) pode ser constru\'ida da seguinte maneira:
+Primeiramente, pelas regras 1 e 2 temos que a vari\'avel $A$ e a
+constante $\top$ s\~ao f\'ormulas da lógica e, portanto, pela regra
+3-b temos que $A \lor \top$. Uma vez que $A \lor \top$ \'e uma
+f\'ormula, temos, pela regra 3-a, temos que $\neg (A \lor \top)$.
+
+Por sua vez, a f\'ormula $A \to \neg A$ pode ser formada da seguinte
+forma: Pela regra 2, temos que a vari\'avel $A$ \'e uma
+f\'ormula. Pela regra 3-a, temos que $\neg A$ \'e uma f\'ormula e,
+finalmente, por 3-b, temos que $A \to \neg A$.
+
+Por\'em, as seguintes express\~oes n\~ao podem ser consideradas
+f\'ormulas pois, n\~ao podem ser constru\'idas de acordo com a
+defini\c{c}\~ao \label{propsyn}: $A \lor \neg B \land$ e $A \to
+\neg$. A primeira n\~ao pode ser considerada uma f\'ormula pois,
+pela regra 3-b), o operador $\land$ precisa de dois par\^ametro. O
+mesmo problema ocorre com a segunda f\'ormula, pois de acordo com
+a regra 3-a), o operador $\neg$ precisa de um par\^ametro.
+\end{Example}
+
+Uma boa maneira de visualizar como as regras da defini\c{c}\~ao
+\ref{propsyn} s\~ao utilizadas para construir uma f\'ormula \'e
+utilizando uma \'arvore, que representa, graficamente, a estrutura do
+termo (fórmula) em quest\~ao. 
+
+N\~ao apresentaremos uma defini\c{c}\~ao
+rigorosa de como uma \'arvore \'e formada a partir da sintaxe de uma
+linguagem formal, visto que esse tema \'e parte da ementa da
+disciplina Fundamentos Te\'oricos da Computa\c{c}\~ao. Neste texto,
+utilizaremos esse conceito de maneira informal.
+
+Como um primeiro exemplo, vamos apresentar uma \'arvore para ilustrar
+a estrutura da f\'ormula $\neg A \lor B$:
+
