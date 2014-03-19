@@ -375,17 +375,47 @@ mesmo problema ocorre com a segunda f\'ormula, pois de acordo com
 a regra 3-a), o operador $\neg$ precisa de um par\^ametro.
 \end{Example}
 
-Uma boa maneira de visualizar como as regras da defini\c{c}\~ao
-\ref{propsyn} s\~ao utilizadas para construir uma f\'ormula \'e
-utilizando uma \'arvore, que representa, graficamente, a estrutura do
-termo (fórmula) em quest\~ao. 
+Em matem\'atica, \'e usual o uso de par\^enteses para impor uma ordem
+de avalia\c{c}\~ao sobre express\~oes. Como exemplo, o resultado da express\~ao $(2
++ 3)\times 5$ \'e obtido calculando-se primeiro a soma para s\'o
+ent\~ao efetuarmos a multiplica\c{c}\~ao. Em f\'ormulas da l\'ogica
+proposiconal, par\^enteses podem ser utilizados para determinar a
+ordem de avalia\c{c}\~ao.
+Por\'em, para permitir uma melhor legibilidade, utilizaremos uma ordem de preced\^encia entre
+os conectivos para evitar o excesso de par\^enteses. O conectivo de
+maior preced\^encia \'e o de nega\c{c}\~ao ($\neg$). O pr\'oximo
+conectivo de maior preced\^encia \'e a conjun\c{c}\~ao ($\land$)
+seguido da disjun\c{c}\~ao ($\lor$). Finalmente, os dois conectivos de menor
+preced\^encia s\~ao o condicional ($\to$) e o bicondicional
+($\leftrightarrow$), sendo o \'ultimo o de menor preced\^encia.
+Usando essa ordem de preced\^encia, temos que a f\'ormula $A \land  B
+\to C$ deve ser entendida como $(A \land B) \to C$, uma vez que a
+conjun\c{c}\~ao possui maior preced\^encia que o condicional ($\to$).
 
-N\~ao apresentaremos uma defini\c{c}\~ao
-rigorosa de como uma \'arvore \'e formada a partir da sintaxe de uma
-linguagem formal, visto que esse tema \'e parte da ementa da
-disciplina Fundamentos Te\'oricos da Computa\c{c}\~ao. Neste texto,
-utilizaremos esse conceito de maneira informal.
+\subsection{Exerc\'icios}
 
-Como um primeiro exemplo, vamos apresentar uma \'arvore para ilustrar
-a estrutura da f\'ormula $\neg A \lor B$:
+\begin{enumerate}
+  \item Para cada uma dos termos a seguir, use a defini\c{c}\~ao
+    de f\'ormulas bem formadas (defini\c{c}\~ao \ref{propsyn}) para
+    justificar o porqu\^e estes podem ser consideradas f\'ormulas bem
+    formadas.
+   \begin{enumerate}
+       \item $\neg A \land B \to C$
+       \item $(A \to B) \land \neg (A \lor B \to C)$
+       \item $A \to B \to C \leftrightarrow \bot$
+       \item $A \land \neg A \to B$
+       \item $A \lor B \land C$
+   \end{enumerate}
+   \item Para cada umas das f\'ormulas seguintes, acrescente
+     par\^enteses de maneira que n\~ao seja necess\'ario utilizar as
+     regras de preced\^encia entre os conectivos da l\'ogica proposicional. 
+   \begin{enumerate}
+       \item $\neg A \land B \to C$
+       \item $(A \to B) \land \neg (A \lor B \to C)$
+       \item $A \to B \to C \leftrightarrow \bot$
+       \item $A \land \neg A \to B$
+       \item $A \lor B \land C$
+   \end{enumerate}
+\end{enumerate}
 
+\section{Sem\^antica da L\'ogica Proposicional}\label{propsem}
