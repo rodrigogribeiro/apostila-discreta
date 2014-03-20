@@ -379,8 +379,8 @@ Em matem\'atica, \'e usual o uso de par\^enteses para impor uma ordem
 de avalia\c{c}\~ao sobre express\~oes. Como exemplo, o resultado da express\~ao $(2
 + 3)\times 5$ \'e obtido calculando-se primeiro a soma para s\'o
 ent\~ao efetuarmos a multiplica\c{c}\~ao. Em f\'ormulas da l\'ogica
-proposiconal, par\^enteses podem ser utilizados para determinar a
-ordem de avalia\c{c}\~ao.
+proposicional, par\^enteses podem ser utilizados para determinar a
+ordem de avalia\c{c}\~ao de uma certa express\~ao.
 Por\'em, para permitir uma melhor legibilidade, utilizaremos uma ordem de preced\^encia entre
 os conectivos para evitar o excesso de par\^enteses. O conectivo de
 maior preced\^encia \'e o de nega\c{c}\~ao ($\neg$). O pr\'oximo
@@ -391,6 +391,17 @@ preced\^encia s\~ao o condicional ($\to$) e o bicondicional
 Usando essa ordem de preced\^encia, temos que a f\'ormula $A \land  B
 \to C$ deve ser entendida como $(A \land B) \to C$, uma vez que a
 conjun\c{c}\~ao possui maior preced\^encia que o condicional ($\to$).
+
+Outra maneira de evitar o excesso de par\^enteses \'e a
+utiliza\c{c}\~ao de crit\'erios de associatividade de
+operadores. Neste texto vamos considerar que os operadores de
+conjun\c{c}\~ao e disjun\c{c}\~ao associam \`a esquerda, isto \'e, 
+temos que $A \land B \land C \land D$ denota a mesma express\~ao que
+$((A \land B) \land C) \land D$. Por sua vez, os conectivos
+condicional e bicondicional associam \`a direita, logo, temos que
+$A \to B \to C \to D$ representa a mesma express\~ao  que
+$A \to (B \to (C \to D))$.
+
 
 \subsection{Exerc\'icios}
 
@@ -416,6 +427,104 @@ conjun\c{c}\~ao possui maior preced\^encia que o condicional ($\to$).
        \item $A \land \neg A \to B$
        \item $A \lor B \land C$
    \end{enumerate}
+   \item Para cada uma das f\'ormulas seguintes, elimine os par\^enteses
+   desnecess\'arios.
+  \begin{enumerate}			
+	\item $((A\lor B)\lor (C\lor D))$
+	\item $(A\rightarrow (B\rightarrow (A\land B)))$
+	\item $\neg(A \lor (B\land C))$
+	\item $\neg(A \land (B\lor C))$			
+  \end{enumerate}
 \end{enumerate}
 
 \section{Sem\^antica da L\'ogica Proposicional}\label{propsem}
+
+As f\'ormulas da l\'ogica proposicional, descritas na se\c{c}\~ao
+\ref{propsyn}, apesar de possu\'irem uma defini\c{c}\~ao sint\'atica, 
+ainda n\~ao possuem um significado matematicamente preciso. Nesta
+se\c{c}\~ao apresentaremos a sem\^antica de f\'ormulas da l\'ogica
+proposicional, que foi inicialmente concebida por Alfred Tarski na
+primeira metade do s\'eculo XX \cite{halmos57}.
+
+Conforme apresentado no cap\'itulo \ref{cap1}, uma forma de
+atribuirmos sem\^antica a linguagens formais \'e definindo uma
+fun\c{c}\~ao cujo dom\'inio \'e o conjunto de termos da linguagem
+em quest\~ao e cujo contradom\'inio \'e um conjunto com
+significado conhecido formalmente. Para a sem\^antica da l\'ogica
+proposicional, consideraremos como dom\'inio o conjunto de f\'ormulas
+bem formadas, $\mathcal{F}$, e contradom\'inio o conjunto formado
+apenas pelos valores verdadeiro e falso, $\{T,F\}$. 
+
+Tradicionalmente, a fun\c{c}\~ao que descreve a sem\^antica de
+f\'ormulas da l\'ogica proposicional \'e apresentada utilizando 
+tabelas verdade, que descrevem o significado de conectivos em termos
+dos valores l\'ogicos das subf\'ormulas que o comp\~oe, ou seja,
+a sem\^antica deve ser definida de acordo com a estrutura da sintaxe
+das f\'ormulas. 
+
+As pr\'oximas subse\c{c}\~oes definem o significado de
+cada um dos componentes da defini\c{c}\~ao de f\'ormulas bem formadas
+da l\'ogica proposicional.
+
+
+\subsection{Sem\^antica de constantes e vari\'aveis}
+
+A sem\^antica das f\'ormulas $\top\in\mathcal{F}$ e
+$\bot\in\mathcal{F}$ \'e dada pelas constantes $T$ e $F$,
+respectivamente. Para vari\'aveis, a sem\^antica deve considerar as
+possibilidades de valores l\'ogicos que podem ser assumidos por esta
+vari\'avel. Para uma vari\'avel $A$ qualquer, temos que seu
+significado pode ser um dos valores: verdadeiro ou falso. Este fato
+\'e representado pela tabela verdade seguinte:
+\begin{table}[h]
+  \begin{tabular}{|c|}
+        \hline
+        $A$\\
+        \hline
+         F \\
+         \hline
+         T \\ \hline
+  \end{tabular}
+  \centering
+\end{table}
+
+
+\subsection{Sem\^antica da nega\c{c}\~ao ($\neg$)}
+
+O significado de uma f\'ormula $\neg \alpha$, em que $\alpha$ \'e uma
+f\'ormula da l\'ogica proposicional \'e dada pela seguinte tabela
+verdade:
+\begin{table}[h]
+  \begin{tabular}{|c|c|}
+    \hline
+    $\alpha$ & $\neg \alpha$ \\ \hline
+    $F$         & $T$ \\ \hline
+    $T$         & $F$ \\ \hline 
+  \end{tabular}
+  \centering
+\end{table}
+A primeira linha da tabela verdade da nega\c{c}\~ao diz que se uma
+f\'ormula $\alpha$ possui o valor falso ($F$) ent\~ao sua
+nega\c{c}\~ao ser\'a o valor $T$, verdadeiro. De maneira similar,
+temos que se $\alpha$ possuir o valor falso, $\neg \alpha$ possuir\'a
+o valor verdadeiro, conforme especificado na segunda linha da tabela
+verdade anterior.
+
+\subsection{Sem\^antica da conjun\c{c}\~ao ($\land$)}
+
+Dadas duas f\'ormulas quaisquer, $\alpha,\beta$, temos que
+$\alpha\land\beta$ s\'o possuir\'a o valor verdadeiro quando tanto
+$\alpha$ e $\beta$ forem verdadeiros. Esta interpreta\c{c}\~ao para a
+conjun\c{c}\~ao \'e dada pela tabela a seguir:
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $\alpha$ & $\beta$ & $\alpha \land \beta$\\ \hline
+    $F$         & $F$        & $F$ \\ \hline
+    $F$         & $T$        & $F$ \\ \hline
+    $T$         & $F$        & $F$ \\ \hline
+    $T$         & $T$        & $T$ \\ \hline
+   \end{tabular}
+  \centering
+\end{table}
+
