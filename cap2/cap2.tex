@@ -527,4 +527,102 @@ conjun\c{c}\~ao \'e dada pela tabela a seguir:
    \end{tabular}
   \centering
 \end{table}
+Note que a tabela verdade para a conjun\c{c}\~ao \'e formada por
+quatro linhas que correspondem \`as maneira de atribuir valores
+verdadeiro e falso para as subf\'ormulas $\alpha$ e $\beta$.
 
+Al\'em disso, a tabela verdade reflete o significado informal da
+conjun\c{c}\~ao, a saber: 1) basta que $\alpha$ ou $\beta$ seja falso
+para que $\alpha\land\beta$ seja falso; e 2) $\alpha\land\beta$ ser\'a
+verdadeiro apenas quando $\alpha$ e $\beta$ tamb\'em forem verdadeiros
+simultanemante.
+
+\subsection{Sem\^antica da disjun\c{c}\~ao ($\lor$)}
+
+A f\'ormula $\alpha\lor\beta$ ser\'a verdadeira quando uma ou ambas
+das f\'ormulas $\alpha$ ou $\beta$ forem verdadeiras. Disso segue que
+a \'unica maneira de $\alpha\lor\beta$ possu\'irem o valor falso \'e
+quando tanto $\alpha$ quanto $\beta$ forem falsos. 
+
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $\alpha$ & $\beta$ & $\alpha \lor \beta$\\ \hline
+    $F$         & $F$        & $F$ \\ \hline
+    $F$         & $T$        & $T$ \\ \hline
+    $T$         & $F$        & $T$ \\ \hline
+    $T$         & $T$        & $T$ \\ \hline
+   \end{tabular}
+  \centering
+\end{table}
+
+\subsection{Sem\^antica do condicional ($\to$)}
+
+O conectivo condicional, tamb\'em conhecido como implica\c{c}\~ao
+l\'ogica, possui a mais peculiar sem\^antica dentre os conectivos
+usuais da l\'ogica proposicional. A peculiaridade da defini\c{c}\~ao
+sem\^antica da implica\c{c}\~ao l\'ogica decorre do fato de que este
+conectivo \'e utilizado para representar afirmativas do tipo
+``se-ent\~ao'', mas seu significado difere um pouco da
+interpreta\c{c}\~ao cotidiana deste tipo de senten\c{c}as.
+
+Para quaisquer f\'ormulas $\alpha$ e $\beta$, temos que
+$\alpha\to\beta$ denota ``se $\alpha$ ent\~ao $\beta$''; $\alpha$
+implica $\beta$ ou ainda ``n\~ao \'e o caso que $\alpha$ \'e
+verdadeiro e $\beta$ falso''. Assim, $\alpha\to\beta$ representa que
+n\~ao \'e poss\'ivel que $\alpha$ seja verdadeiro sem que $\beta$
+tamb\'em o seja. Em outras palavras, ou $\alpha$ \'e falso ou $\alpha$
+e $\beta$ s\~ao ambos verdadeiros. 
+
+A tabela verdade para
+implica\c{c}\~ao segue diretamente da discuss\~ao anterior. 
+
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $\alpha$ & $\beta$ & $\alpha \to \beta$\\ \hline
+    $F$         & $F$        & $T$ \\ \hline
+    $F$         & $T$        & $T$ \\ \hline
+    $T$         & $F$        & $F$ \\ \hline
+    $T$         & $T$        & $T$ \\ \hline
+   \end{tabular}
+  \centering
+\end{table}
+
+A partir da tabela anterior, podemos concluir os seguintes fatos
+\'uteis sobre a implica\c{c}\~ao: 
+\begin{enumerate}
+   \item Se $\alpha$ \'e falso, ent\~ao $\alpha\to\beta$ \'e
+     verdadeiro, independente do valor de $\beta$.
+   \item Se $\beta$ \'e verdeiro, ent\~ao $\alpha\to\beta$ \'e
+     verdadeiro, independente do valor de $\alpha$.
+   \item A \'unica situa\c{c}\~ao em que $\alpha\to\beta$ possui o
+     valor falso acontece quanto $\alpha$ \'e verdadeiro e $\beta$, falso.
+\end{enumerate}
+
+\subsection{Sem\^antica do bicondicional ($\leftrightarrow$)}
+
+Escrevemos $\alpha\leftrightarrow\beta$ para representar que $\alpha$
+e $\beta$ s\~ao ambas verdadeiras ou ambas falsas. Desta forma, temos
+que $\alpha\leftrightarrow\beta$ ir\'a possuir o valor falso somente
+quando o valor l\'ogico de $\alpha$ e $\beta$ for diferente. Estes
+fatos s\~ao descritos formalmente na tabela verdade deste conectivo
+que \'e apresentada a seguir.
+
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $\alpha$ & $\beta$ & $\alpha \leftrightarrow \beta$\\ \hline
+    $F$         & $F$        & $T$ \\ \hline
+    $F$         & $T$        & $F$ \\ \hline
+    $T$         & $F$        & $F$ \\ \hline
+    $T$         & $T$        & $T$ \\ \hline
+   \end{tabular}
+  \centering
+\end{table}
+
+
+\subsection{Construindo tabelas verdade para f\'ormulas}
+
+A partir da sem\^antica de cada um dos conectivos da l\'ogica
+proposicional, podemos construir tabelas verdade para 
