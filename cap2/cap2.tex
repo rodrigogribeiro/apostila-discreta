@@ -624,5 +624,118 @@ que \'e apresentada a seguir.
 
 \subsection{Construindo tabelas verdade para f\'ormulas}
 
-A partir da sem\^antica de cada um dos conectivos da l\'ogica
-proposicional, podemos construir tabelas verdade para 
+A construç\~ao da tabela verdade de uma
+f\'ormula $\alpha$ \'e feita calculando o valor desta de acordo com a
+tabela de cada um dos conectivos nela presente e os valores l\'ogicos
+das vari\'aveis nela presentes.
+
+Considera-se uma boa pr\'atica, para construir tabelas verdade,
+adicionar colunas para ``resultados intermedi\'arios'' de uma
+f\'ormula. A no\c{c}\~ao de resultado intermedi\'ario de uma f\'ormula
+\'e definida de maneira precisa usando o conceito de
+subf\'ormula. Intuitivamente, o conjunto de subf\'ormulas \'e formado
+por todas as f\'ormulas bem formadas que comp\~oes um dado termo $\alpha$.
+
+
+\begin{Definition}[Subf\'ormula]\label{cap1sub}
+Dada uma f\'ormula $\alpha$, o conjunto de subf\'ormulas de $\alpha$, $sub(\alpha)$,
+\'e definido recursivamente da seguinte maneira:
+\[
+sub(\alpha) = \left\{ 
+    \begin{array}{ll}
+         \{\alpha\} & \text{se }\alpha = \top\text{ ou }\alpha =
+         \bot\text{ ou }\alpha \text{ \'e uma vari\'avel}\\
+         \{\neg \beta\} \cup T & \text{se }\alpha = \neg
+         \beta\text{ e } T = sub(\beta)\\
+         \{\beta \circ \rho\} \cup T \cup T' & \text{se }\alpha =
+         \beta\circ\rho \text{,
+         }\circ\in\{\land,\lor,\to,\leftrightarrow\}, \\
+         & T =
+         sub(\beta)\text{ e }T' =sub(\rho)
+     \end{array}
+                      \right.
+\]
+\end{Definition}
+\begin{Example}
+De acordo com a defini\c{c}\~ao \ref{cap1sub}, temos que o conjunto de
+subf\'ormulas de $A \land B \to \bot$ \'e $\{A\land B \to \bot,A\land B,\bot,A,B\}$. Evidentemente, temos
+que as vari\'aveis $A$, $B$, a constante $\bot$ e $A \land B \to\bot$
+pertecem ao conjunto de subf\'ormulas de $sub(A \land B
+\to\bot)$. Como $A\land B$ \'e um subtermo de $sub(A \land B \to
+\bot)$, temos que $A\land B$ tamb\'em pertence a 
+$sub(A \land B \to\bot)$.
+\end{Example}
+Como $sub(\alpha)$ \'e o conjunto de subf\'ormulas de $\alpha$, estas
+n\~ao possuem uma ordem. Para melhorar a leitura de tabelas verdade,
+podemos ordenar colunas de tabelas verdade de acordo com o tamanho de
+f\'ormulas. O conceito de tamanho de f\'ormulas \'e definido
+formalmente pela seguinte fun\c{c}\~ao recursiva:
+\[
+tamanho(\alpha)=\left\{
+  \begin{array}{ll}
+    0       & \text{se }\alpha = \bot\text{ ou }\alpha = \top\\
+    n +1 & \text{se }\alpha = \neg\beta\text{ e }n = tamanho(\beta)\\
+    n + n' + 1 & \text{se }\alpha = \beta\circ\rho\text{,
+    }\circ\in\{\land,\lor,\to,\leftrightarrow\}\\
+                     & n = tamanho(\beta)\text{ e }n' = tamanho(\rho)
+  \end{array}
+                            \right .
+\]  
+Logo, podemos escrever o conjunto $sub(A \land B \to\bot)$ ordenado
+por tamanho da seguinte maneira: $\{\bot,A,B,A\land B,A\land B \to \bot\}$.
+
+A tabela verdade de uma f\'ormula pode ser constru\'ida tomando por
+colunas cada uma das sub\'ormulas ordenadas de maneira crescente de
+acordo com o tamanho. Desta forma, temos que a tabela verdade para
+$A\land B\to \bot$ \'e:
+\[
+\begin{array}{|c|c|c|c|c|}
+  \hline
+  \bot & A & B & A\land B & A\land B \to \bot \\ \hline
+   F     & F  & F &      F         &  T                            \\
+   F     & F & T &       F         &   T                           \\
+   F     & T & F &       F         &     T                         \\
+   F     & T & T &       T         &      F                       \\ \hline
+\end{array}
+\]
+Observe que as linhas da tabela s\~ao preenchidas da seguinte maneira:
+Todas as linhas para a constante $\bot$ s\~ao preenchidas com o valor
+$F$. As linhas para vari\'aveis s\~ao formadas por todas as
+combina\c{c}\~oes de valores verdadeiro-falso para estas. Logo, se uma
+f\'ormula possuir $n$ vari\'aveis, esta ter\'a uma tabela com $2^n$
+linhas, representando as duas possibilidades (verdadeiro e falso) para
+cada uma de suas $n$ vari\'aveis.
+
+Al\'em disso, obtemos valores das linhas de acordo com a tabela
+verdade do conectivo da f\'ormula da coluna. Para facilitar, o
+resultado de colunas posteriores pode ser obtido a partir dos
+resultados de colunas anteriores.
+
+\begin{Example}\label{extable}
+Considere a tarefa de construir a tabela verdade para a f\'ormula $((A
+\to B)\land \neg B) \to \neg A$. Para isso, devemos determinar o conjunto de
+subf\'ormulas de $((A\to B)\land \neg B) \to \neg A$ e orden\'a-lo de acordo
+com o tamanho. Ao fazer isso, obtemos o seguinte conjunto:
+\[
+\{A,B,\neg A,\neg B,A\to B, (A\to B)\land \neg B,((A\to B)\land \neg
+B)\to \neg A\}
+\]
+Agora basta construir a tabela verdade:
+\[
+\begin{array}{|c|c|c|c|c|c|c|}
+  \hline
+A & B & \neg A & \neg B & A \to B & (A \to B) \land \neg B & ((A\to
+B)\land \neg B)\to \neg A\\ \hline
+F & F &   T  & T & T & T & T\\
+F & T &  T   & F & F  & F  & T\\
+T & F &   F    &  T  &  F   & F  & T \\
+T & T &   F    &  F  &  T   & F   & T \\ \hline
+\end{array}
+\]
+\end{Example}
+Note que a f\'ormula do exemplo \ref{extable} \'e sempre verdadeira
+independente do valor l\'ogico atribu\'ido \`as suas vari\'aveis. Isso
+nos permite classificar f\'ormulas de acordo com sua tabela
+verdade. Esse ser\'a o assunto da pr\'oxima se\c{c}\~ao.
+
+\subsection{Classificando F\'ormulas}
