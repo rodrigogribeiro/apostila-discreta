@@ -817,6 +817,36 @@ valores \`as suas vari\'aveis, isto \'e se $\alpha \leftrightarrow
 
 \subsection{Limita\c{c}\~oes de tabelas verdade}
 
+Tabelas verdade s\~ao um m\'etodo simples para determinar a
+satisfazibilidade de f\'ormulas da l\'ogica proposicional, pois estas
+denotam de maneira direta o significado de conectivos e
+f\'ormulas. Por\'em, a simplicidade de tabelas verdade possui um
+garnde complicador: estas possuem tamanho exponencial sobre o n\'umero
+de vari\'aveis em uma dada f\'ormula. 
+
+Em exemplos anteriores, mostramos tabelas verdade para f\'ormulas que
+possu\'iam duas vari\'aveis. Todas estas tabelas possu\'iam 4
+linhas. Considere a seguinte tabela para uma f\'ormula com $3$
+vari\'aveis:
+\[
+\begin{array}{|c|c|c|c|c|}
+  \hline
+  A & B & C & A \land B & A \land B \land C \\ \hline
+  F  & F & F & F & F \\ 
+  F & F & T & F & F \\
+  F & T & F & F & F \\
+  F  & T & T & F & F \\
+  T & F  & F & F & F \\
+  T & T & F & T & F \\
+  T & F & T & F & F \\
+  T & T & T & T & T\\ \hline
+\end{array}
+\]
+esta possui 8 linhas. De forma geral, a tabela verdade para f\'ormulas
+contendo $n$ vari\'aveis possuir\'a $2^n$ linhas, o que limita a
+utilização de tabelas verdades  para soluç\~oes de probelmas
+pr\'aticos.
+
 \subsection{Exerc\'icios}
 
 \begin{enumerate}
@@ -831,7 +861,7 @@ valores \`as suas vari\'aveis, isto \'e se $\alpha \leftrightarrow
 		\item $A\rightarrow(B\rightarrow A)$
 		\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
 	\end{enumerate}
-        \item Determine se as seguintes f\'ormulas s\~ao ou n~ao
+        \item Determine se as seguintes f\'ormulas s\~ao ou n\~ao
           equivalentes.
          \begin{enumerate}
 		\item $P\leftrightarrow Q$ e $(P\rightarrow Q)\land(\neg P\rightarrow \neg Q)$
