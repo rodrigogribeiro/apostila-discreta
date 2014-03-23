@@ -739,3 +739,114 @@ nos permite classificar f\'ormulas de acordo com sua tabela
 verdade. Esse ser\'a o assunto da pr\'oxima se\c{c}\~ao.
 
 \subsection{Classificando F\'ormulas}
+
+O objetivo desta se\c{c}\~ao \'e descrever uma maneira de classificar
+f\'ormulas da l\'ogica proposicional de acordo com o valor de sua
+tabela verdade.
+
+\begin{Definition}[Tautologia e Contradi\c{c}\~ao]
+Dizemos que uma f\'ormula da l\'ogica \'e uma tautologia se esta \'e
+sempre verdadeira independente do valor l\'ogico de suas
+vari\'aveis. Por sua vez, uma f\'ormula \'e uma contradi\c{c}\~ao se
+esta \'e sempre falsa independente do valor de suas vari\'aveis.
+\end{Definition}
+\begin{Example}
+A f\'ormula $A\land B\to A \lor B$ \'e uma tautologia, pois \'e sempre
+verdadeira independente dos valores das vari\'aveis $A$ e $B$, como
+mostrado pela tabela verdade seguinte:
+\[
+\begin{array}{|c|c|c|c|c|}
+\hline
+A & B & A \land B & A \lor B & A \land B \to A \lor B \\ \hline
+F & F & F & F & T \\
+F & T & F & T & T \\
+T & F & F & T & T \\
+T & T & T & T & T \\ \hline
+\end{array}
+\]
+Como exemplo de uma contradi\c{c}\~ao considere a f\'ormula
+$(A\to B) \land (A \land \neg B)$ e sua tabela verdade:
+\[
+\begin{array}{|c|c|c|c|c|c|}
+  \hline
+  A & B & \neg B & A \land \neg B & A \to B & (A \to B) \land (A \land
+  \neg B) \\ \hline
+  F & F & T & F & T & F \\
+  F & T & F & F & T & F \\
+  T & F & T & T & F & F \\
+  T & T & F & F & T & F \\ \hline 
+\end{array}
+\]
+\end{Example}
+\begin{Definition}[F\'ormula Satisfat\'ivel, False\'avel e Contigente]
+  Uma f\'ormula da l\'ogica \'e dita ser satisfat\'ivel se existe uma
+  maneira de atribuir valores l\'ogicos \`as suas vari\'aveis de
+  maneira a torn\'a-la verdadeira. Uma f\'ormula \'e dita ser
+  false\'avel se existe uma maneira de atribuir valores l\'ogicos \`as
+  suas vari\'aveis de maneira a torn\'a-la falsa. Finalmente, dizemos
+  que uma f\'ormula \'e contingente se esta \'e satisfat\'ivel e
+  false\'avel simultaneamente.
+\end{Definition}
+\begin{Example}
+Para ilustrar os conceitos de f\'ormula satisfat\'ivel, false\'avel e
+contingente, considere a f\'ormula $A \lor B \to \neg A$ e sua tabela
+verdade:
+\[
+\begin{array}{|c|c|c|c|c|}
+  \hline
+  A & B & \neg A & A \lor B & A \lor B \to \neg A \\ \hline
+  F & F & T & F & T \\
+  F & T & T & T & T \\
+  T & F & F & T & F \\
+  T & T & F & T & F \\ \hline
+\end{array}
+\]
+Com isso temos que $A \lor B \to \neg A$ \'e satisfaz\'ivel, pois para 
+$A = F$ e $B = F$ temos que esta f\'ormula \'e verdadeira. De maneira
+similar, para $A = T$ e $B = T$ temos que esta f\'ormula \'e falsa e,
+portanto, false\'avel. Como, $A \lor B \to \neg A$ \'e satisfaz\'ivel
+e false\'avel temos que esta pode ser classificada como contingente.
+\end{Example}
+
+Uma das aplica\c{c}\~oes dos conceitos anteriores \'e a determinar
+quando duas f\'ormulas $\alpha,\beta$ da l\'ogica proposicional s\~ao
+equivalentes. Dizemos que duas f\'ormulas s\~ao equivalentes se estas
+possuem o mesmo valor l\'ogico para a mesma atribui\c{c}\~ao de
+valores \`as suas vari\'aveis, isto \'e se $\alpha \leftrightarrow
+\beta$ \'e uma tautologia.
+
+\subsection{Limita\c{c}\~oes de tabelas verdade}
+
+\subsection{Exerc\'icios}
+
+\begin{enumerate}
+	\item Construa tabelas verdade para as f\'ormulas a seguir e
+          classifique-as como sendo tautologias, conting\^encias ou contradi\c{c}\~oes: 
+	\begin{enumerate}
+		\item $(A\rightarrow B)\leftrightarrow\neg A\lor B$
+		\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
+		\item $A\land\neg (\neg A\lor \neg B)$
+		\item $A\land B\rightarrow\neg A$
+		\item $(A\rightarrow B)\rightarrow[(A\lor C)\rightarrow (B\lor C)]$
+		\item $A\rightarrow(B\rightarrow A)$
+		\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
+	\end{enumerate}
+        \item Determine se as seguintes f\'ormulas s\~ao ou n~ao
+          equivalentes.
+         \begin{enumerate}
+		\item $P\leftrightarrow Q$ e $(P\rightarrow Q)\land(\neg P\rightarrow \neg Q)$
+		\item $(P\land\neg Q)\lor (\neg P\land Q)$ e $(P\lor Q)\land\neg(P\land Q)$
+          \end{enumerate}
+          \item Suponha que voc\^e possua um algoritmo que a partir de
+            uma f\'ormula $\alpha$ da l\'ogica responda sim se esta
+            \'e satisfaz\'ivel e falso, caso contr\'ario. Explique
+            como usar esse algoritmo para determinar se uma f\'ormula
+            \'e uma:
+            \begin{enumerate}
+              \item Tautologia
+              \item Contradi\c{c}\~ao
+             \end{enumerate}
+\end{enumerate}
+
+
+\section{Dedu\c{c}\~ao Natural para L\'ogica Proposicional}
