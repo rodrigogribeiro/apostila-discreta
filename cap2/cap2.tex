@@ -674,6 +674,7 @@ formalmente pela seguinte fun\c{c}\~ao recursiva:
 tamanho(\alpha)=\left\{
   \begin{array}{ll}
     0       & \text{se }\alpha = \bot\text{ ou }\alpha = \top\\
+    1      & \text{se }\alpha\text{ \'e uma vari\'avel}\\
     n +1 & \text{se }\alpha = \neg\beta\text{ e }n = tamanho(\beta)\\
     n + n' + 1 & \text{se }\alpha = \beta\circ\rho\text{,
     }\circ\in\{\land,\lor,\to,\leftrightarrow\}\\
@@ -844,8 +845,8 @@ vari\'aveis:
 \]
 esta possui 8 linhas. De forma geral, a tabela verdade para f\'ormulas
 contendo $n$ vari\'aveis possuir\'a $2^n$ linhas, o que limita a
-utilização de tabelas verdades  para soluç\~oes de probelmas
-pr\'aticos.
+utilização de tabelas verdades  para soluç\~oes de problemas
+pr\'aticos. 
 
 \subsection{Exerc\'icios}
 
@@ -880,3 +881,43 @@ pr\'aticos.
 
 
 \section{Dedu\c{c}\~ao Natural para L\'ogica Proposicional}
+
+A dedu\c{c}\~ao natural \'e um sistema formal que permite-nos deduzir
+consequ\^encias a partir de um conjunto de f\'ormulas. Antes de
+apresentarmos este sistema, devemos definir formalmente o que
+significa uma f\'ormula ser consequ\^encia de um conjunto de
+f\'ormulas.
+
+\begin{Definition}[Consequ\^encia L\'ogica]
+Dizemos que uma f\'ormula $\alpha$ \'e consequ\^encia l\'ogica de um
+conjunto de f\'ormulas $\Gamma$, $\Gamma \models \alpha$, se, e
+somente se sempre que toda f\'ormula em $\Gamma$ for verdadeira,
+$\alpha$ tamb\'em o \'e.
+\end{Definition}
+
+Uma maneira para determinarmos se uma f\'ormula $\alpha$ \'e
+consequ\^encia l\'ogica de um conjunto $\Gamma$ \'e construir uma
+tabela verdade. O seguinte exemplo ilustra esse uso de tabelas
+verdade.
+\begin{Example}
+Considere as seguintes proposi\c{c}\~oes:
+\begin{itemize}
+  \item Se hoje for segunda-feira, irei a reuni\~ao.
+  \item Hoje \'e segunda-feira.
+   \item Hoje Irei a reuni\~ao.
+\end{itemize}
+Note que essas proposi\c{c}\~oes podem ser modeladas pelas seguintes
+f\'ormulas:
+\begin{itemize}
+  \item $A \to B$
+  \item $A$
+  \item $B$
+\end{itemize}
+em que a vari\'avel $A$ denota ``Hoje \'e segunda-feira'' e $B$,
+``Hoje irei a reuni\~ao''.
+
+De acordo com a interpreta\c{c}\~ao usual da l\'ingua portuguesa,
+temos que ``Hoje irei a reuni\~ao'' \'e uma consequ\^encia de ``Se
+hoje for segunda-feira, irei a reuni\~ao'' e ``hoje \'e
+segunda-feira''. Desta forma, em  
+\end{Example}
