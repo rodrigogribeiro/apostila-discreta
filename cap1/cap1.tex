@@ -1,287 +1,227 @@
 \chapter{Conceitos Preliminares}\label{cap1}
 
-O objetivo deste cap\'itulo \'e apresentar alguns conceitos que ser\~ao utilizados durante o todo texto. Primeiramente,
-apresentaremos os conceitos de sintaxe e sem\^antica que s\~ao fundamentais na Ci\^encia da Computa\c{c}\~ao. Logo ap\'os,
-apresentamos uma breve introdu\c{c}\~ao ao assistente de provas Coq, que ser\'a utilizado durante esta apostila como uma
-forma de colocar a teoria em um contexto pr\'atico usando uma ferramenta computacional.
+Lógica é um \emph{sistema formal\/} para descrever e raciocinar sobre o mundo. Para isso, precisamos de uma \emph{linguagem formal\/} e de um conjunto de \emph{regras de inferência\/} ou regras de dedução, que possibilitem inferir {\emph conclusões\/}, a partir de um dado conjunto de \emph{hipóteses\/}, ou premissas. O objetivo deste primeiro capítulo é esclarecer o significado desses conceitos, que serão fundamentais ao longo de todo o texto.
+
+Para tornar mais interessante o nosso estudo de Lógica e colocar a teoria em um contexto mais prático, vamos utilizar, ao longo do curso, o assitente de provas \textbf{Coq}.  Uma breve introdução ao \textbf{Coq} é também apresentada neste capítulo.
 
 \section{Linguagens Formais}
 
-Matematicamente, uma linguagem formal \'e um conjunto (finito ou infinito) de termos estruturados. Esses
-termos s\~ao de tamanho finito e s\~ao definidos sobre um conjunto (finito) de s\'imbolos denominado \textit{alfabeto}.
-A defini\c{c}\~ao de uma linguagem formal apenas descreve a estrutura de seus elementos. Por\'em, somente a especifica\c{c}\~ao
-da sintaxe de uma linguagem n\~ao \'e de grande utilidade se estes n\~ao possu\'irem sem\^antica, isto \'e, uma maneira de
-interpretar estes elementos de maneira a lhes atribuir um significado. 
+Uma \emph{linguagem formal\/} \'e um conjunto (possivelmente infinito) de sentenças, definidas sobre um dado \emph{alfabeto\/}, ou conjunto finito de símbolos. Cada palavra da linguagem é simplesmente uma sequência finita de símbolos do alfabeto. As sentenças de uma linguagem formal são também chamadas de \emph{termos\/}, ou \emph{fórmulas}, da linguagem.
+  
+A \emph{sintaxe\/} de uma linguagem formal é especificada por um conjunto finito de regras bem definidas, que determinam a estrutura de suas sentenças. Para compreender o significado dessas sentenças, é necessário definir também a \emph{semântica\/} da linguagem, que é usualmente especificada com base nas regras de definição da sintaxe da linguagem. 
 
-Iremos introduzir os conceitos de sintaxe e sem\^antica de linguagens formais usando alguns exemplos.
-Na se\c{c}\~ao \ref{cap1:syn}, nosso objetivo ser\'a apresentar
-algumas defini\c{c}\~oes de sintaxe de linguagens simples e, posteriormente na se\c{c}\~ao \ref{cap1:sem} ser\'a apresentado como
-atribuir significado aos elementos destas linguagens.
+Nas seções a seguir apresentamos alguns exemplos de definição da sintaxe e semântica de algumas linguagens simples, com o objetivo de esclarecer melhor esses conceitos. 
 
 \subsection{Sintaxe}\label{cap1:syn}
 
-Linguagens finitas podem (em princ\'ipio) ser especificadas pela enumera\c{c}\~ao de termos da linguagem; j\'a, linguagens
-infinitas s\~ao usualmente descritas por um conjunto finito de regras para construir termos desta linguagem.
-O estudo de linguagens formais possui uma extensiva literatura e \'e o objeto de estudo da disciplina Fundamentos Te\'oricos da Computa\c{c}\~ao.
-Neste cap\'itulo, iremos apenas apresentar alguns exemplos que visam ilustrar como definir conjuntos em termos de regras.
+Uma linguagem finita pode ser especificada simplesmente pela enumera\c{c}\~ao de todas as suas  sentenças. Entretanto, isso não é muito prático, se a linguagem tem um grande número de sentenças, e certamente não é possível, no caso de linguagens infinitas. A sintaxe de uma linguagem formal é, portanto, usualmente definida na forma de um conjunto finito de regras, que especificam como podem ser construídas as sentenças dessa linguagem.
 
-\begin{Definition}[Sintaxe do Conjunto de Booleanos]
-  O conjunto de valores Booleanos (l\'ogicos), $\mathcal{B}$, \'e um conjunto finito, que pode ser definido pelas seguintes regras:
+%O estudo de linguagens formais possui uma extensiva literatura e \'e o objeto de estudo da disciplina %Fundamentos Te\'oricos da Computa\c{c}\~ao.
+%Neste cap\'itulo, iremos apenas apresentar alguns exemplos que visam ilustrar como definir conjuntos %em termos de regras.
+
+\begin{Definition}[\textbf{Valores Booleanos}]
+  O conjunto de valores lógicos, ou conjunto Booleano, contém apenas dois elementos -- $\{T,F\}$ -- que representam, respectivamente, verdade e falsidade. O nome \emph{Booleano} é uma homenagem ao matemático e lógico inglês George Boole  (1815--1864), quem primeiro desenvolveu a Lógica Booleana, que constitui a base para os circuitos dos atuais computadores digitais. O conjunto $\Bool$, dos termos que denotam valores booleanos, pode ser definido pelas seguintes regras:
   \[
       \begin{array}{l}
-        T \in\mathcal{B}\\
-        F \in\mathcal{B}
+        T \in\Bool\\
+        F \in\Bool
       \end{array}
   \]
 \end{Definition}
 
-Em conjunto, essas regras podem ser interpretadas como ``o conjunto de valores booleanos, $\mathcal{B}$, \'e formado apenas pelos valores 
-$T$ e $F$''.
-Como o conjunto de valores Booleanos \'e finito, sua defini\c{c}\~ao utilizando regras \'e imediata (basta enumerar os seus elementos). 
-A pr\'oxima defini\c{c}\~ao, mostra como definir um conjunto infinito usando um n\'umero finito de regras.
+Como o conjunto dos valores Booleanos \'e finito, sua defini\c{c}\~ao por meio de regras \'e imediata: basta enumerar uma regra que especifique a pertinência de cada um dos seus elementos. 
 
-\begin{Definition}[Sintaxe do Conjunto de N\'umeros Naturais]
-O conjunto de termos equivalentes aos n\'umeros naturais, $\mathcal{N}$, \'e um conjunto infinito que pode ser definido pelas seguintes regras:
+\begin{Definition}[\textbf{N\'umeros Naturais}]
+O conjunto $\Nat$, dos termos que representam n\'umeros naturais, pode ser definido pelas seguintes regras:
 \[
    \begin{array}{l}
-     zero \in \mathcal{N}\\
-     \text{se }n \in \mathcal{N} \text{ ent\~ao }suc\,n\in\mathcal{N}
+     \zero \in \Nat\\
+     \text{se $n \in \Nat$ ent\~ao $\suc\, n\in\Nat$}
    \end{array}
 \]
 \end{Definition}
+As regras acima constituem uma definição \emph{indutiva}, ou \emph{recursiva\/}, do conjunto $\Nat$, no sentido de que alguns elementos do conjunto $\Nat$ são definidos em termos de elementos do prórpio conjunto $\Nat$. A primeira regra especifica que o termo $\zero$ pertence ao conjunto $\Nat$. A segunda regra especifica como são construídos elementos de $\Nat$, a partir de elementos do próprio conjunto $\Nat$:  se $n$ \'e um termo pertencente ao conjunto $\Nat$, ent\~ao o termo $\suc\,n$ tamb\'em pertence a $N$. Desse modo, os termos do conjunto $\Nat$ são:
+\[ \{\zero,\,\suc\,\zero,\,\suc\,(\suc\,\zero),\, \suc\,(\suc\,(\suc\,\zero)),\,...\} \] 
 
-As regras anteriores podem ser entendidas como:
-\begin{itemize}
-  \item O termo $zero$ pertence ao conjunto $\mathcal{N}$;
-  \item Se $n$ \'e um termo pertencente ao conjunto $\mathcal{N}$, ent\~ao o termo $suc\,n$ tamb\'em pertence a $\mathcal{N}$.
-\end{itemize}
-Desta forma, o conjunto de termos $\mathcal{N}$ \'e $\{zero,\,suc\,zero,\,suc\,(suc\,zero),\,...\}$. 
-Apesar de j\'a termos citado que o conjunto $\mathcal{N}$ \'e equivalente ao conjunto de n\'umeros naturais, $\mathbb{N} = \{0,1,2,...\}$, 
-a equival\^encia entre eles ser\'a apresentada na se\c{c}\~ao \ref{cap1:sem}.
-
-Antes de iniciarmos a discuss\~ao sobre como atribuir sem\^antica a termos de uma linguagem, iremos apresentar mais dois exemplos de 
-defini\c{c}\~oes de sintaxe.
-
-\begin{Definition}[Sintaxe do Conjuntos de Listas]
-  O conjunto de listas de elementos de um conjunto $\mathcal{T}$, $\textit{List }\mathcal{T}$, \'e definido pelas seguintes regras:
+\begin{Definition}[\textbf{Listas}]
+O conjunto $\TList\, \TType$, dos termos que representam listas de elementos de um dado conjunto $\TType$, pode ser definido, indutivamente, pelas seguintes regras:
   \[
   \begin{array}{l}
-    [\,] \in \textit{List }\mathcal{T}\\
-    \text{se }t \in \mathcal{T} \text{ e } ts \in \textit{List }\mathcal{T}\text{ ent\~ao } t :: ts \in \textit{List }\mathcal{T}.
+    [\,] \in \TList\,\TType \\
+    \text{se $t \in \TType$ e $ts \in \TList\,\TType$ ent\~ao  $t :: ts \in \TList\,\TType$}
   \end{array}
   \]
 \end{Definition}
-A defini\c{c}\~ao anterior especifica que existe uma lista que n\~ao possui nenhum elemento, representada pela constante $[\,]$. Caso a lista
-n\~ao seja vazia, esta deve possuir pelo menos um elemento. Dada uma lista $ts$ e um elemento $t$, a lista $t :: ts$ representa uma
-lista em que o primeiro elemento \'e $t$ e o restante \'e $ts$. Denominamos por \textit{cabe\c{c}a} o primeiro elemento de uma lista
-e de \textit{cauda} o restante da lista. Sendo assim, em $t :: ts$ temos que $t$ \'e a cabe\c{c}a e $ts$ a cauda dessa lista.
+A primeira regra especifica que o termo $[\,]$ pertence ao conjunto $\TList\,\TType$. O termo $[\,]$  denota a lista vazia, ou seja, que n\~ao possui nenhum elemento. A segunda regra especifica como formar termos que representam listas não vazias: dada uma lista $ts \in \TList\,\TType$ e um elemento $t \in\TType$, o termo $t :: ts$ representa a lista cujo primeiro elemento, ou \emph{cabeça} da lista, é $t$, e cujo restante, ou \emph{cauda} da lista, é a lista $ts$. 
 
-\begin{Example}
-Alguns exemplos de listas:
+Note que listas são definidas de maneira independente do conjunto dos termos que constituem seus elementos -- dizemos que a definição de listas \'e \emph{polim\'orfica\/} em rela\c{c}\~ao ao conjunto de seus elementos. De acordo com a definição acima, temos, por exemplo, que as seguintes listas pertencem ao conjunto $\TList\,\Bool$:
 \begin{itemize}
-  \item $[\,]$, representa a lista vazia.
-  \item $T :: [\,]$, representa uma lista com um elemento ($T$). Nesta lista, a cabe\c{c}a \'e $T$ e a cauda, $[\,]$.
-  \item $F :: T :: [\,]$, representa uma lista com dois elementos, em que a cabe\c{c}a \'e $F$ e a cauda, $T :: [\,]$.
+  \item $[\,]$, que representa a lista vazia.
+  \item $T :: [\,]$, que representa a lista contendo apenas o elemento $T$, isto é, a lista cuja cabe\c{c}a \'e $T$ e cuja cauda é a lista $[\,]$. Esta lista é também representada, abreviadamente, como $[T]$.
+  \item $F :: T :: [\,]$, representada abreviadamente como $[F,T]$, é a lista cuja cabe\c{c}a \'e $F$ e cuja cauda é a lista $T :: [\,]$ (ou seja, $[T]$).
 \end{itemize}
-Nos exemplos anteriores todas as listas s\~ao elementos do conjunto de listas de booleanos, $\textit{List }\mathcal{B}$.
-\end{Example}
+Como exemplo de elemento do conjunto $\TList\,\Nat$ temos, por exemplo, a lista $zero :: (suc\,\,zero) :: [\,]$.
 
-Listas s\~ao definidas de maneira independente do conjunto de elementos que as formam, isto \'e, a defini\c{c}\~ao de listas
-\'e polim\'orfica em rela\c{c}\~ao ao conjunto de seus elementos.
-Por exemplo, o conjunto de listas sobre 
-o conjunto de valores Booleanos \'e $\textit{List }\mathcal{B}=\{[\,],\,F :: [\,],\,T :: [\,],\, F :: (T :: [\,]),\, ...\}$. Por sua vez, a lista
-$zero :: (suc\,\,zero) :: [\,]$ \'e uma lista pertencente ao conjunto de listas de n\'umeros naturais, $\textit{List }\mathcal{N}$.
-
-O pr\'oximo exemplo apresenta um conjunto de termos equivalente a express\~oes aritm\'eticas envolvendo adi\c{c}\~ao e multiplica\c{c}\~ao
-sobre termos de n\'umeros naturais.
-
-\begin{Definition}[Sintaxe do Conjunto de Express\~oes Aritm\'eticas]\label{def:arithexp}
-  O conjunto de termos equivalentes a express\~oes aritm\'eticas, $\mathcal{E}$, \'e definido pelas seguintes regras:
+\begin{Definition}[\textbf{Express\~oes Aritm\'eticas}]\label{def:arithexp}
+ A linguagem $\TExp$ é um conjunto dos termos que representam expressões ariméticas sobre números naturais, envolvendo apenas os operadores de adição e multiplicação, representados, respectivamente, pelos termos $\tplus$ e $\ttimes$. A linguagem $\TExp$ pode ser definida, indutivamente, pelas seguintes regras:
   \[
-  \begin{array}{l}
-    \text{se }n\in\mathcal{N}\text{, ent\~ao } \textit{const }n\in\mathcal{E}\\
-    \text{se }e_1 \in \mathcal{E} \text{ e } e_2 \in \mathcal{E}\text{ ent\~ao }\textit{plus }e_1\,e_2\in\mathcal{E}\\
-    \text{se }e_1 \in \mathcal{E} \text{ e } e_2 \in \mathcal{E}\text{ ent\~ao }\textit{times }e_1\,e_2\in\mathcal{E}
-  \end{array}
+  \begin{tabular}{l}
+    se $n\in\Nat$, ent\~ao $\tconst\,n\in\TExp$ \\
+    se $e_1 \in \TExp$  e  $e_2 \in \TExp$ ent\~ao $\tplus\,e_1\,e_2\in\TExp$\\
+    se $e_1 \in \TExp$  e  $e_2 \in \TExp$ ent\~ao $\ttimes\,e_1\,e_2\in\TExp$
+    \end{tabular}
   \]
-  Informalmente, as constantes \textit{plus} e \textit{times} ir\~ao representar as opera\c{c}\~oes de soma e multiplica\c{c}\~ao; e
-  o termo \textit{const n} (em que $n\in\mathcal{N}$) denota um n\'umero natural.
+Informalmente, as regras acima nos dizem que todo elemento de $\Nat$ constitui uma constante em $\TExp$, e que os operadores $\tplus$ e $\ttimes$ podem ser usados para construir termos que representam expressões aritméticas mais complexas, a partir de quaisquer dois termos $e_1,e_2\in\TExp$.
 \end{Definition}
 
 \begin{Example}
-  Alguns exemplos de express\~oes aritm\'eticas representadas por termos de $\mathcal{E}$:
+ Os exemplos a seguir ilustram termos da linguagem $\TExp$, mostrando a interpretação intuitiva de cada termo. Uma semântica para essa linguagem será definida formalmente na seção ~\ref{cap1:sem}. 
   \begin{itemize}
-    \item \textit{const (suc zero)}, representa um termo que corresponde ao n\'umero $1$
-    \item \textit{plus (const (suc zero)) (const (suc zero))}, representa um termo que corresponde a express\~ao $1 + 1$.
+    \item $\tconst (\suc\, \zero)$ é um termo que representa n\'umero natural $1$.
+    \item $\tplus\, (\tconst (\suc\, \zero))\, (\tconst (\suc \,\zero))$ é um termo que representa a express\~ao $1 + 1$.
   \end{itemize}
-  Apesar de ainda n\~ao termos definido formalmente a sem\^antica dos termos do conjunto $\mathcal{E}$, \'e \'util atribuir 
-  uma sem\^antica ``informal'' a eles de maneira a facilitar o entendimento de sua estrutura sint\'atica.
-\end{Example}
+ \end{Example}
 
-Nas defini\c{c}\~oes anteriores apresentamos a estrutura sint\'atica de quatro conjuntos de termos e, informalmente, explicitamos a equival\^encia
-destes com outros conjuntos j\'a conhecidos. A pr\'oxima se\c{c}\~ao descrever\'a como atribuir significado formal 
-a essas defini\c{c}\~oes sint\'aticas.
+As defini\c{c}\~oes anteriores especificam formalmente a sintaxe de quatro linguagens: $\Bool$, $\Nat$, $\TList\,\TType$ e $\TExp$.  Entretanto, o significado dos termos dessas linguagens apenas foi apresentado de maneira informal.  Na se\c{c}\~ao a seguir, mostramos como atribuir significado aos termos de uma linguagem formalmente.
 
 \subsection{Sem\^antica}\label{cap1:sem}
+A sintaxe de uma linguagem apenas define o conjunto de termos da linguagem, especificando a  estrutura desses termos, mas não atribui a eles qualquer significado. Para isso, é preciso também 
+definir a \emph{semântica} da linguagem.
 
-Defini\c{c}\~oes sem\^anticas associam significado a sintaxe. Formalmente, a sem\^antica de uma linguagem \'e descrita como
-uma fun\c{c}\~ao que associa termos da linguagem em quest\~ao a elementos de um conjunto cujo significado \'e definido
-matematicamente, como por exemplo, o conjunto dos n\'umeros naturais, $\mathbb{N}$. Idealmente, a sem\^antica de uma linguagem formal
-\'e definida em termos de sua estrutura sint\'atica.
+A sem\^antica de uma linguagem $L$ pode ser definida na forma de uma função, cujo domínio é $L$ e cujo contra-domínio é alguma estrutura matemática $S$ apropriada.\footnote{Assumimos que o leitor tem familiaridade com os conceitos de dom\'inio e contra-dom\'inio de uma função, que serão, entretanto, revisados no cap\'itulo~\ref{}}.  Tal função é usualmente representada na forma $\llbracket\,\rrbracket\,:\,L \rightarrow S$. Essa maneira de definir semântica é ilustrada a seguir, por exemplos que provêm definições semânticas para as linguagens $\Bool$, $\Nat$, $\TExp$ e $\TList\,\TType$, cujas sintaxes foram definidas na se\c{c}\~ao~\ref{cap1:syn}.
 
-Antes de apresentarmos uma fun\c{c}\~ao sem\^antica, elementos de uma linguagem s\~ao apenas uma sequ\^encia estruturada de s\'imbolos
-sem significado. Somente ap\'os a defini\c{c}\~ao de uma fun\c{c}\~ao sem\^antica podemos intepretar esses s\'imbolos de maneira 
-matematicamente precisa.
-
-Como qualquer fun\c{c}\~ao, defini\c{c}\~oes sem\^anticas devem ser especificadas em termos de seu dom\'inio e 
-contra-dom\'inio\footnote{Neste ponto, assumimos que os conceitos de dom\'inio e contra-dom\'inio de fun\c{c}\~oes \'e familiar ao leitor.
-Estes conceitos ser\~ao apresentados formalmente no cap\'itulo \ref{}}. As pr\'oximas defini\c{c}\~oes ilustram poss\'iveis fun\c{c}\~oes 
-sem\^anticas para as linguagens descritas na se\c{c}\~ao \ref{cap1:syn}.
-
-\begin{Definition}[Sem\^antica do Conjunto de Booleanos]
-Uma poss\'ivel sem\^antica de termos do conjunto $\mathcal{B}$ \'e dada pela seguinte fun\c{c}\~ao:
+\begin{Definition}[\textbf{Valores Booleanos}]
+Uma poss\'ivel sem\^antica para termos do conjunto $\Bool$ \'e dada pela fun\c{c}\~ao $\llbracket\,\rrbracket : \Bool \rightarrow \{0,1\}$, definida como:
 \[
 \begin{array}{lcl}
 \llbracket T \rrbracket & = & 1\\
 \llbracket F \rrbracket & = & 0\\
 \end{array}
 \]
-Note que o dom\'inio desta fun\c{c}\~ao \'e $\mathcal{B}$ e o contra-dom\'inio o conjunto $\{0,1\}$.
 \end{Definition}
-Evidentemente, a fun\c{c}\~ao anterior n\~ao \'e a \'unica poss\'ivel maneira de interpretarmos termos de $\mathcal{B}$.
-Outra poss\'ivel defini\c{c}\~ao seria:
+Essa não é a \'unica poss\'ivel maneira de interpretar os termos de $\Bool$. 
+Outra poss\'ivel interpretação é dada pela função $\llbracket\,\rrbracket : \Bool \rightarrow \mathbb{Z}$, definida a seguir:
 \[
 \begin{array}{lcl}
 \llbracket T \rrbracket & = & \{k\in\mathbb{Z}\,|\,k\neq 0\}\\
-\llbracket F \rrbracket & = & \{0\}\\
+\llbracket F \rrbracket & = & \{0\}
 \end{array}
 \]
-Em que o termo $T$ \'e associado com o conjunto de todos os n\'umeros inteiros diferentes de $0$ e $F$ com o conjunto contendo 
-o n\'umero $0$. A fun\c{c}\~ao anterior atribui uma sem\^antica para valores Booleanos similar \`a utilizada pelas linguagens 
-de programa\c{c}\~ao C/C++, em que o valor verdadeiro \'e associado a qualquer inteiro n\~ao zero.
+Essa interpretação associa, ao termo $T$, o conjunto de todos números inteiros diferentes de $0$; e associa o valor $0$ ao termo $F$. Essa interpretação é tal como usado nas linguagens de programa\c{c}\~ao C/C++.
 
-A fun\c{c}\~ao sem\^antica para n\'umeros naturais \'e mostrada na defini\c{c}\~ao seguinte.
 
-\begin{Definition}[Sem\^antica do Conjunto de N\'umeros Naturais]
-De maneira simplista, uma forma de atribuir significado aos elementos de $\mathcal{N}$ \'e associar o valor $0$ ao termo $zero\in\mathcal{N}$
-e o valor $k\in\mathbb{N}$ ao termo contendo $k$ ocorr\^encias da constante $suc$. Isto pode ser definido recursivamente da seguinte maneira:
+\begin{Definition}[\textbf{N\'umeros Naturais}]\label{def:sem:Nat}
+A linguagem $\Nat$ pode ser interpretada, de modo natural, sobre o conjunto dos números naturais $\mathbb{N}$: o número $0$ é associado ao termo $\zero$, e o número $k$ ao termo que contém $k$ ocorr\^encias da constante $\suc$. Essa semântica é especificada pela função $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$, a seguir. Note que essa função é definida recursivamente, sobre a estrutura da sintaxe de $\Nat$. 
 \[
 \begin{array}{lcl}
-\llbracket zero \rrbracket & = & 0\\
-\llbracket suc\,\,n\rrbracket & = & \llbracket n \rrbracket + 1, \text{ para }n\in\mathcal{N}
+\llbracket \zero \rrbracket & = & 0\\
+\llbracket \suc\,\,n\rrbracket & = & \llbracket n \rrbracket + 1
 \end{array}
 \]
 \end{Definition}
+Para que uma definição recursiva determine uma função $f : D \rightarrow C$, essa definição deve satisfazer aos dois seguintes crit\'erios:
+\begin{enumerate}
 
-A defini\c{c}\~ao anterior \'e um exemplo de uma defini\c{c}\~ao recursiva sobre a
-estrutura da sintaxe. Como a sintaxe do conjunto $\mathcal{N}$ \'e definida recursivamente, a
-defini\c{c}\~ao que lhe atribui significado \'e tamb\'em recursiva. Esperamos que o leitor deste texto
-seja familiar com o conceito de recurs\~ao.
+\item \emph{Totalidade\/}: Isso significa que a definição recursiva deve associar, a cada elemento do domínio $D$, algum elemento do contradomínio $C$.  Uma maneira de garantir totalidade de uma definição recursiva da semântica de uma linguagem $L$ é especificar uma equa\c{c}\~ao de definição para cada regra de construção de termos da sintaxe de $L$. 
 
-Para garantir que defini\c{c}\~oes recursivas sejam consideradas fun\c{c}\~oes, estas devem obedecer dois crit\'erios:
-totalidade e termina\c{c}\~ao. A totalidade especifica que a fun\c{c}\~ao deve associar todo elemento de seu dom\'inio
-a um elemento no contra-dom\'inio. Uma maneira de se garantir a totalidade \'e especificar uma equa\c{c}\~ao para cada uma
-das regras de forma\c{c}\~ao da sintaxe. Na defini\c{c}\~ao anterior, temos que a fun\c{c}\~ao que atribui sem\^antica a
-elementos do conjunto $\mathcal{N}$ \'e total, pois esta \'e definida para todas as regras de forma\c{c}\~ao da sintaxe de 
-$\mathcal{N}$. A termina\c{c}\~ao pode ser garantida permitindo que chamadas recursivas sejam feitas apenas a sub-termos.
-A fun\c{c}\~ao sem\^antica de $\mathcal{N}$ possui a propriedade de termina\c{c}\~ao, pois, a cada chamada recursiva, o 
-n\'umero de ocorr\^encias da constante $suc$ \'e decrescido de $1$. Como todo termo de $\mathcal{N}$ \'e finito, temos que
-isso \'e suficiente para garantir a termina\c{c}\~ao desta defini\c{c}\~ao recursiva.
 
-Para listas e express\~oes aritm\'eticas n\~ao estamos interessados em interpret\'a-las como algum objeto matem\'atico conhecido
-e sim em definir fun\c{c}\~oes sobre elementos destes conjuntos. Como tanto listas quanto express\~oes s\~ao definidos recursivamente,
-fun\c{c}\~oes sobre estes elementos tamb\'em ser\~ao definidas por recurs\~ao sobre a sua estrutura. Apresentaremos, como exemplo, 
-defini\c{c}\~oes de duas fun\c{c}\~oes sobre listas: uma para calcular o n\'umero de elementos da lista e outra para concatenar duas listas.
+\item \emph{Terminação\/}: Para garantir terminação, a definição recursiva deve incluir \emph{casos base\/}, ou seja, casos em que a definição é dada diretamente, e não em termos de si própria. Além disso, em todos os demais casos -- ditos \emph{recursivos\/}, ou \emph{indutivos\/} --  a definição é especificada em termos valores que se aproximam cada vez mais dos casos base. No caso da definição recursiva de uma semântica de uma linguagem $L$, a terminação pode ser garantida se a semântica de qualquer termo de $L$ é definida apenas em função da semântica de seus subtermos. 
+\end{enumerate}
 
-\begin{Definition}[Calculando o n\'umero de elementos de uma lista]
-Considere a seguinte fun\c{c}\~ao, $length$, que a partir de uma lista de elementos produz como resultado um valor $n\in\mathbb{N}$ que
-corresponde ao n\'umero de elementos da lista. Temos que a fun\c{c}\~ao $length$ possuir\'a como dom\'inio o conjunto $\textit{List }\mathcal{T}$
-e como contra-dom\'inio o conjunto $\mathbb{N}$.
+A definição \ref{def:sem:Nat} determina, de fato, a função semântica $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$: 1) satisfaz ao critério de totalidade, uma vez que inclui uma equação de definição da semântica para regra da sintaxe de $\Nat$; 2) satisfaz o critétio de terminação, pois inclui um caso base, que corresponde à definição do significado do termo $\zero$, e, no outro caso, define o significado de um termo com $k$ ocorrências da constante $\suc$,  em termos do significado do subtermo com $(k-1)$ ocorrências de $\suc$, ou seja, uma ocorrência a menos de $\suc$ do que no termo original.
+
+A linguagem $\TList\,\TType$ pode também ser interpretada sobre alguma estrutura matemática apropriada. Uma possível definição da  semântica de $\TList\,\TType$ será  apresentada mais adiante. Por enquanto, vamos tomar como base nossa interpretação informal dos termos dessa linguagem como listas, e vamos mostrar, por meio de alguns exemplos, como podemos definir funções, sobre listas representadas por esses termos. Tal como no caso da função semântica, a definição de cada uma dessas funções é também baseadaa na estrutura sintática dos termos da linguagem.
+
+\begin{Definition}[\textbf{Comprimento de uma lista}]
+A função $\length : \TList\,\TType \rightarrow \mathbb{N}$, recebe como argumento uma lista, representada como um termos de $\TList\,\TType$, e retorna o número de elementos, ou seja, o comprimento, da lista dada. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TList\,\TType$, do seguinte modo:
 \[
 \begin{array}{lclr}
-  length\,\,[\,] & = & 0 & (1)\\
-  length\,\,t :: ts & = & 1 + length\,\, ts & (2)
+  \length\,\,[\,] & = & 0 & (1)\\
+  \length\,\,(t :: ts) & = & 1 + \length\,\, ts & (2)
 \end{array}
 \]
-A defini\c{c}\~ao de $length$ constitui uma fun\c{c}\~ao pois: 1) $length$ \'e total, pois \'e definida para cada uma das regras que formam
-a sintaxe de listas e; 3) termina sempre, pois, a cada passo da execu\c{c}\~ao da fun\c{c}\~ao $length$ o primeiro elemento da lista \'e
-``descartado'' na chamada recursiva.
+Note que a definição acima determina a função $\length : \TList\,\TType \rightarrow \mathbb{N}$, pois: 1) a definição \'e total, já que existe uma equação para cada regra da definição da sintaxe de $\TList\,\TType$; e 3) termina sempre, pois inclui um caso base (a definição de $\length$ para a lista vazia) e, no caso recursivo, a definição para uma lista da forma $(t :: ts)$ é dada apenas em termos da sublista $ts$, que possui um elemento a menos do que a lista original $(t::ts)$.
 \end{Definition}
 
 \begin{Example}
-Visando exemplificar a defini\c{c}\~ao anterior, considere a tarefa de calcular o n\'umero de elementos da seguinte lista de valores
-booleanos: $T :: (F :: (T :: [\,]))$. A execu\c{c}\~ao de $length\,\,(T :: (F :: (T :: [\,])))$ \'e apresentada abaixo:
+A definição acima pode ser usada para calcular o n\'umero de elementos de uma lista, conforme mostra, passo a passo, o exemplo a seguir, que ilustra o cálculo de $\length\,\,(T :: (F :: (T :: [\,])))$:
 \[
-\begin{array}{lcl}
-length\,\,(T :: (F :: (T :: [\,]))) & = & \\
-1 + length\,\,(F :: (T :: [\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
-1 + (1 + length\,\,(T :: [\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
-1 + (1 + (1 + length\,\,[\,]))  & = & \{\text{pela equa\c{c}\~ao }(2)\}\\
-1 + (1 + (1 + 0))  & = & \{\text{pela equa\c{c}\~ao }(1)\}\\
-3                  &   & 
+\begin{array}{llcl}
+& \length\,\,(T :: (F :: (T :: [\,]))) &  & \\
+= &1 + \length\,\,(F :: (T :: [\,]))  & & \{\text{pela equa\c{c}\~ao }(2)\}\\
+= &1 + (1 + \length\,\,(T :: [\,]))  &  & \{\text{pela equa\c{c}\~ao }(2)\}\\
+= &1 + (1 + (1 + \length\,\,[\,]))  &  & \{\text{pela equa\c{c}\~ao }(2)\}\\
+= &1 + (1 + (1 + 0))  &  & \{\text{pela equa\c{c}\~ao }(1)\}\\
+= &3                  &   & 
 \end{array}
 \]
 \end{Example}
+Cada passo do cálculo acima simplesmente reescreve a express\~ao, de acordo com as equa\c{c}\~oes de definição de $\length$. Por exemplo, a expressão $\length\,\,(T :: [\,])$  pode ser reescrita como $1 + \length\, [\,]$, de acordo com a equa\c{c}\~ao $(2)$.
 
-Note que a execu\c{c}\~ao simplesmente reescreve a express\~ao de acordo com as equa\c{c}\~oes que definem a fun\c{c}\~ao $length$, ou seja, por
-exemplo, o resultado de executar $length\,\,(T :: [\,])$  \'e $1 + length [\,]$, de acordo com a equa\c{c}\~ao $(2)$ de $length$.
-
-A opera\c{c}\~ao de concatenar duas listas consiste em formar uma nova lista que consiste da segunda justaposta ao final da primeira. Por exemplo,
-o resultado de concatenar a lista $T :: F :: [\,]$ com a lista $F :: F :: [\,]$ \'e a lista $T :: F :: F :: F :: [\,]$.
-
-\begin{Definition}[Concatena\c{c}\~ao de listas]\label{def:concat:lists}
- A defini\c{c}\~ao recursiva seguinte calcula a concatena\c{c}\~ao de duas listas fornecidas como par\^ametro. 
+\begin{Definition}[\textbf{Concatena\c{c}\~ao de listas}]\label{def:concat:lists}
+A concatenação de duas listas $xs$ e $ys$, denotada como $xs\text{ ++ }ys$, resulta em uma nova lista, 
+que consiste da segunda lista justaposta ao final da primeira. Por exemplo,  $(T :: F :: [\,])\,\text{++}\,(F :: F :: [\,])$ resulta na lista $(T :: F :: F :: F :: [\,])$. A operação de concatenação de listas pode ser definida, recursivamente, do seguinte modo:
  \[
   \begin{array}{lclr}
-    [\,] \text{ ++ } ys & = & ys & (1)\\
-    (x :: xs) \text{ ++ } ys & = & x :: (xs \text{ ++ } ys) & (2)
+    [\,] \text { ++ } ys & = & ys & (1)\\
+    (x :: xs) \text{ ++ }  ys & = & x :: (xs\text{ ++ } ys) & (2)
   \end{array}
   \]
-Intutitivamente, a concatena\c{c}\~ao \'e definida sobre a estrutura sint\'atica da lista fornecida como primeiro par\^ametro. A equa\c{c}\~ao 
-$(1)$ especifica que se a primeira lista \'e igual a $[\,]$, ent\~ao o resultado da concatena\c{c}\~ao \'e a segunda lista. Por sua vez,
-a equa\c{c}\~ao $(2)$ diz que caso a primeira lista n\~ao seja vazia, ent\~ao o resultado \'e inserir o primeiro elemento no in\'icio da lista
-resultante de se concatenar a cauda da primeira lista com a segunda.
+Note que a recursão é definida sobre a estrutura sint\'atica da lista dada como primeiro par\^ametro. A equa\c{c}\~ao $(1)$ especifica que, se o primeiro parâmetro é a lista vazia, ent\~ao o resultado da concatena\c{c}\~ao \'e a segunda lista. A equa\c{c}\~ao $(2)$ apenas se aplica se o primeiro parâmetro é uma lista não vazia, isto é, da forma $(x :: xs)$. Neste caso, o resultado \'e obtido inserindo-se o primeiro elemento $x$, da lista $(x :: xs)$, no in\'icio da lista resultante de se concatenar a cauda $xs$, da primeira lista, com a segunda lista $ys$.
 \end{Definition}
 
 \begin{Example}
-Apresentaremos, passo a passo, a execu\c{c}\~ao da fun\c{c}\~ao de concatena\c{c}\~ao para as listas $T :: F :: [\,]$ e $F :: F :: [\,]$.
+O cálculo do valor de $(T :: F :: [\,])\,\text{++}\,(F :: F :: [\,])$ é ilustrado, passo a passo, a seguir:
 \[
-\begin{array}{lcl}
-(T :: F :: [\,]) \text{ ++ } (F :: F ::[\,]) & = & \\
-T :: ((F :: [\,]) \text{ ++ } (F :: F ::[\,])) & = & \text{pela equa\c{c}\~ao }(2)\\
-T :: (F :: ([\,] \text{ ++ } (F :: F ::[\,])) & = & \text{pela equa\c{c}\~ao }(2)\\
-T :: (F :: (F :: F ::[\,])) & = & \text{pela equa\c{c}\~ao }(1)\\
+\begin{array}{llcl}
+& (T :: F :: [\,]) \text{ ++ } (F :: F ::[\,])       & & \\
+= & T :: ((F :: [\,]) \text{ ++ } (F :: F ::[\,])) &  & \text{pela equa\c{c}\~ao }(2)\\
+= & T :: (F :: ([\,] \text{ ++ } (F :: F ::[\,]))  &  & \text{pela equa\c{c}\~ao }(2)\\
+= & T :: (F :: (F :: F ::[\,]))                          &  & \text{pela equa\c{c}\~ao }(1)\\
 \end{array}
 \]
 \end{Example}
 
-As defini\c{c}\~oes apresentadas nesta se\c{c}\~ao s\~ao todas pass\'iveis de implementa\c{c}\~ao em qualquer linguagem de programa\c{c}\~ao
-funcional. Neste texto, optaremos pelo assistente de provas Coq para este fim. A se\c{c}\~ao \ref{cap1:coq} apresenta, de maneira suscinta, 
-os conceitos necess\'arios de Coq para descri\c{c}\~ao de sintaxe, sem\^antica e fun\c{c}\~oes recursivas sobre a estrutura sint\'atica de termos.
+\begin{Definition}[\textbf{Expressões aritméticas}]\label{def:sem:Exp}
+Uma maneira natural interpretar a linguagem $\TExp$ é ver cada termo como uma  expressão arimética sobre números naturais, envolvendo os operadores de adição ($+$) e multiplicação ($\times$). Com essa interpretação em mente, vamos definir uma função $\eval : \TExp \rightarrow \mathbb{N}$, que mapeia cada termo de $\TExp$ no valor resultante da avaliação da expressão aritmética correspondente. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TExp$, tal como mostrado a seguir. A definição usa da função  $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$, definida anteriormente.
+\[
+\begin{array}{lcl}
+\eval\, (\tconst\, n)  & = & \llbracket n \rrbracket \\
+\eval\, (\tplus\,e_1\,e_2) & = & \eval\,e_1 + \eval\,e_2 \\
+\eval\, (\ttimes\,e_1\,e_2) & = & \eval\,e_1 \times \eval\,e_2 \\
+\end{array}
+\]
+\end{Definition}
+A função $\eval$ determina o valor da expressão aritmética representada por um termo da linguagem $\TExp$, conforme ilustrado pelo exemplo a seguir:
+\[ \small{
+\begin{array}{ll}
+&\eval\, (\ttimes\,(\tplus\,(\tconst (\suc (\suc\,\zero)))\, (\tconst (\suc\,\zero)))\, (\tconst (\suc (\suc\,\zero)))) \\
+= & \eval\, (\tplus\,(\tconst (\suc (\suc\,\zero))) (\tconst (\suc\,\zero))) \times \eval\, (\tconst (\suc (\suc\, \zero)))  \\
+=  & (\eval\, (\tconst (\suc (\suc\,\zero))) + \eval\,  (\tconst (\suc\,\zero))) \times \eval\, (\tconst (\suc (\suc\, \zero))) \\
+=  & (\llbracket \suc (\suc\,\zero) \rrbracket + \llbracket  \suc\,\zero \rrbracket) \times \llbracket \suc (\suc\,\zero) \rrbracket \\
+=  & (2 + 1) \times 2 \\
+= & 6 
+\end{array}}
+\]
+
+Todas as defini\c{c}\~oes apresentadas nesta se\c{c}\~ao podem ser implementadas em uma linguagem de programação de uso geral. Em linguagens funcionais, a implementação seria praticamente uma transcrição das definições apresentadas. Neste texto, vamos utilizar o assistente de provas Coq para implementação das definições apresentadas. Mais adiante, vamos também utilizar Coq para provar propriedades das funções definidas. 
+
+ Na se\c{c}\~ao \ref{cap1:coq}, a seguir, introduzimos alguns conceitos básicos sobre Coq. Esses conceitos serão necess\'arios para que você possa descrever, em Coq, a sintaxe e a semântica de linguagens, assim como definir funções sobre a termos de uma linguagem, com base na estrutura sint\'atica de termos, tal como ilustrado pelos exemplos apresentados anteriormente.
 
 \subsection{Exerc\'icios}
 
 \begin{enumerate}
   \item Apresente a execu\c{c}\~ao passo a passo das seguintes express\~oes:
   \begin{enumerate}
-    \item $\llbracket suc (suc (suc\,\,zero))\rrbracket$ 
-    \item $length (zero :: zero :: [\,])$
-    \item $(zero :: (suc\,\, zero) ::[\,])\text{++}((suc\,\,zero) :: zero :: [\,])$
+    \item $\llbracket \suc\, (\suc\, (suc\,\,zero))\rrbracket$ 
+    \item $\length\, (\zero :: \zero :: [\,])$
+    \item $(\zero :: (\suc\,\, \zero) ::[\,])\text{ ++ }((\suc\,\,\zero) :: \zero :: [\,])$
   \end{enumerate}
-  \item Na defini\c{c}\~ao \ref{def:concat:lists} foi apresentada uma defini\c{c}\~ao recursiva para a opera\c{c}\~ao de concatena\c{c}\~ao de
-        duas listas, por\'em n\~ao foi apresentada nenhuma justificativa do porqu\^e esta pode ser considerada uma fun\c{c}\~ao. Justifique
-        porqu\^e a concatena\c{c}\~ao \'e uma fun\c{c}\~ao usando os conceitos de totalidade e termina\c{c}\~ao.
-  \item Apresente uma defini\c{c}\~ao recursiva que calcula o valor de uma express\~ao aritm\'etica (defini\c{c}\~ao \ref{def:arithexp}).
-        Sua solu\c{c}\~ao deve possuir como dom\'inio o conjunto $\mathcal{E}$ e como contra-dom\'inio o conjunto $\mathbb{N}$. Para isso, 
-        interprete as constantes \textit{plus} e \textit{times} como as opera\c{c}\~oes de adi\c{c}\~ao e multiplica\c{c}\~ao, respectivamente; e
-        a constante \textit{const n} deve ser interpretada como um valor num\'erico pertencente ao conjunto dos n\'umeros naturais, $\mathbb{N}$.
-  \item A defini\c{c}\~ao apresentada por voc\^e no item anterior constitui uma fun\c{c}\~ao? Justifique em termos dos conceitos de totalidade
-        e termina\c{c}\~ao, apresentados na se\c{c}\~ao \ref{cap1:sem}.
-  \item O objetivo deste exerc\'icio \'e explicar o porqu\^e defini\c{c}\~oes recursivas que n\~ao atendem os crit\'erios de totalidade e 
-        termina\c{c}\~ao n\~ao podem ser consideradas fun\c{c}\~oes. 
-        Para isso, apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de 
-        totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Em ambos os casos, justifique porqu\^e estas n\~ao podem ser 
-        fun\c{c}\~oes.        
+  \item A operação de concatenação de duas listas foi definida recursivamente na Definição \ref{def:concat:lists}. Justifique que essa definição é uma fun\c{c}\~ao, mostrando que ela satisfaz  os critérios de totalidade e termina\c{c}\~ao.
+  \item Dê uma defini\c{c}\~ao recursiva para a função $\textit{nsubtermos }\TExp \rightarrow \mathbb{N}$ que, dada uma express\~ao aritm\'etica, representada como um termos de $\TExp$, retorna o número de subtermos dessa expressão. Justifique que sua definição é uma função, mostrando que ela satisfaz os critérios de totalidade e termina\c{c}\~ao.
+  \item O objetivo deste exerc\'icio \'e que você compreenda porque defini\c{c}\~oes recursivas que n\~ao atendem os crit\'erios de totalidade e termina\c{c}\~ao n\~ao podem ser consideradas fun\c{c}\~oes. 
+        Apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de 
+        totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Por que essas definições n\~ao podem ser fun\c{c}\~oes?        
 \end{enumerate}
 
 \section{Introdu\c{c}\~ao ao Assistente de Provas Coq}\label{cap1:coq}
