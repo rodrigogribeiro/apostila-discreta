@@ -183,21 +183,21 @@ O cálculo do valor de $(T :: F :: [\,])\,\text{++}\,(F :: F :: [\,])$ é ilustr
 \end{Example}
 
 \begin{Definition}[\textbf{Expressões aritméticas}]\label{def:sem:Exp}
-Uma maneira natural interpretar a linguagem $\TExp$ é ver cada termo como uma  expressão arimética sobre números naturais, envolvendo os operadores de adição ($+$) e multiplicação ($\times$). Com essa interpretação em mente, vamos definir uma função $\eval : \TExp \rightarrow \mathbb{N}$, que mapeia cada termo de $\TExp$ no valor resultante da avaliação da expressão aritmética correspondente. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TExp$, tal como mostrado a seguir. A definição usa da função  $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$, definida anteriormente.
+Uma maneira natural interpretar a linguagem $\TExp$ é ver cada termo como uma  expressão arimética sobre números naturais, envolvendo os operadores de adição ($+$) e multiplicação ($\times$). Com essa interpretação em mente, vamos definir uma função $\evalExp : \TExp \rightarrow \mathbb{N}$, que mapeia cada termo de $\TExp$ no valor resultante da avaliação da expressão aritmética correspondente. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TExp$, tal como mostrado a seguir. A definição usa da função  $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$, definida anteriormente.
 \[
 \begin{array}{lcl}
-\eval\, (\tconst\, n)  & = & \llbracket n \rrbracket \\
-\eval\, (\tplus\,e_1\,e_2) & = & \eval\,e_1 + \eval\,e_2 \\
-\eval\, (\ttimes\,e_1\,e_2) & = & \eval\,e_1 \times \eval\,e_2 \\
+\evalExp\, (\tconst\, n)  & = & \llbracket n \rrbracket \\
+\evalExp\, (\tplus\,e_1\,e_2) & = & \eval\,e_1 + \eval\,e_2 \\
+\evalExp\, (\ttimes\,e_1\,e_2) & = & \eval\,e_1 \times \eval\,e_2 \\
 \end{array}
 \]
 \end{Definition}
-A função $\eval$ determina o valor da expressão aritmética representada por um termo da linguagem $\TExp$, conforme ilustrado pelo exemplo a seguir:
+A função $\evalExp$ determina o valor da expressão aritmética representada por um termo da linguagem $\TExp$, conforme ilustrado pelo exemplo a seguir:
 \[ \small{
 \begin{array}{ll}
-&\eval\, (\ttimes\,(\tplus\,(\tconst (\suc (\suc\,\zero)))\, (\tconst (\suc\,\zero)))\, (\tconst (\suc (\suc\,\zero)))) \\
-= & \eval\, (\tplus\,(\tconst (\suc (\suc\,\zero))) (\tconst (\suc\,\zero))) \times \eval\, (\tconst (\suc (\suc\, \zero)))  \\
-=  & (\eval\, (\tconst (\suc (\suc\,\zero))) + \eval\,  (\tconst (\suc\,\zero))) \times \eval\, (\tconst (\suc (\suc\, \zero))) \\
+&\evalExp\, (\ttimes\,(\tplus\,(\tconst (\suc (\suc\,\zero)))\, (\tconst (\suc\,\zero)))\, (\tconst (\suc (\suc\,\zero)))) \\
+= & \evalExp\, (\tplus\,(\tconst (\suc (\suc\,\zero))) (\tconst (\suc\,\zero))) \times \eval\, (\tconst (\suc (\suc\, \zero)))  \\
+=  & (\evalExp\, (\tconst (\suc (\suc\,\zero))) + \eval\,  (\tconst (\suc\,\zero))) \times \evalExp\, (\tconst (\suc (\suc\, \zero))) \\
 =  & (\llbracket \suc (\suc\,\zero) \rrbracket + \llbracket  \suc\,\zero \rrbracket) \times \llbracket \suc (\suc\,\zero) \rrbracket \\
 =  & (2 + 1) \times 2 \\
 = & 6 
@@ -205,8 +205,7 @@ A função $\eval$ determina o valor da expressão aritmética representada por 
 \]
 
 Todas as defini\c{c}\~oes apresentadas nesta se\c{c}\~ao podem ser implementadas em uma linguagem de programação de uso geral. Em linguagens funcionais, a implementação seria praticamente uma transcrição das definições apresentadas. Neste texto, vamos utilizar o assistente de provas Coq para implementação das definições apresentadas. Mais adiante, vamos também utilizar Coq para provar propriedades das funções definidas. 
-
- Na se\c{c}\~ao \ref{cap1:coq}, a seguir, introduzimos alguns conceitos básicos sobre Coq. Esses conceitos serão necess\'arios para que você possa descrever, em Coq, a sintaxe e a semântica de linguagens, assim como definir funções sobre a termos de uma linguagem, com base na estrutura sint\'atica de termos, tal como ilustrado pelos exemplos apresentados anteriormente.
+Na se\c{c}\~ao \ref{cap1:coq}, a seguir, você vai aprender a descrever, em Coq, a sintaxe e a semântica de linguagens, assim como definir outras funções sobre a termos de uma linguagem, com base na estrutura sint\'atica desses termos, tal como nos exemplos apresentados anteriormente.
 
 \subsection{Exerc\'icios}
 
@@ -218,23 +217,18 @@ Todas as defini\c{c}\~oes apresentadas nesta se\c{c}\~ao podem ser implementadas
     \item $(\zero :: (\suc\,\, \zero) ::[\,])\text{ ++ }((\suc\,\,\zero) :: \zero :: [\,])$
   \end{enumerate}
   \item A operação de concatenação de duas listas foi definida recursivamente na Definição \ref{def:concat:lists}. Justifique que essa definição é uma fun\c{c}\~ao, mostrando que ela satisfaz  os critérios de totalidade e termina\c{c}\~ao.
-  \item Dê uma defini\c{c}\~ao recursiva para a função $\textit{nsubtermos }\TExp \rightarrow \mathbb{N}$ que, dada uma express\~ao aritm\'etica, representada como um termos de $\TExp$, retorna o número de subtermos dessa expressão. Justifique que sua definição é uma função, mostrando que ela satisfaz os critérios de totalidade e termina\c{c}\~ao.
+  \item Dê uma defini\c{c}\~ao recursiva para a função $\textit{nsubtermos }: \TExp \rightarrow \mathbb{N}$ que, dada uma express\~ao aritm\'etica, representada como um termos de $\TExp$, retorna o número de subtermos dessa expressão. Justifique que sua definição é uma função, mostrando que ela satisfaz os critérios de totalidade e termina\c{c}\~ao.
   \item O objetivo deste exerc\'icio \'e que você compreenda porque defini\c{c}\~oes recursivas que n\~ao atendem os crit\'erios de totalidade e termina\c{c}\~ao n\~ao podem ser consideradas fun\c{c}\~oes. 
-        Apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de 
-        totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Por que essas definições n\~ao podem ser fun\c{c}\~oes?        
+        Apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Por que essas definições n\~ao podem ser fun\c{c}\~oes?        
 \end{enumerate}
 
 \section{Introdu\c{c}\~ao ao Assistente de Provas Coq}\label{cap1:coq}
 
-Um assistente de provas \'e uma linguagem de programa\c{c}\~ao que permite a elabora\c{c}\~ao de programas e provas matem\'aticas.
-Neste trabalho, n\~ao pretendemos de forma alguma fornecer um tutorial para a utiliza\c{c}\~ao de Coq. Existem diversos bons livros
-para isso, como por exemplo \cite{coqart,Pierce12,Coqrefman}. Neste texto, descreveremos apenas os recursos necess\'arios de Coq para
-o aprendizado dos conceitos desta apostila sem mencionar os detalhes te\'oricos necess\'arios para uma completa compreens\~ao dessa ferramenta.
+Um assistente de provas \'e uma ferramenta de software para auxílio no desenvolvimento de provas de teoremas, provas de propriedades de programas ou de circuitos integrados, etc. Essa ferramente inclui uma linguagem de programa\c{c}\~ao, que possibilita descrever  algoritmos e provas matem\'aticas. Nesta seção, introduzimos alguns conceitos relacionados à construção de programas e provas em Coq, com o objetivo de que você possa utilizar essa ferramenta para a implementação de provas apresentadas longo deste texto. Para uma descrição detalhada sobre o ambiente de desenvolvimento de Coq (CoqIDE), ou sobre sua linguagem de programação (Gallina), consulte a documentação disponível na página web \url{coq.inria.fr}, ou a bibliografia sugerida no final deste capítulo. 
 
 \subsection{Representando Sintaxe em Coq}
 
-Representaremos defini\c{c}\~oes de sintaxe de termos utilizando tipos de dados em Coq. O trecho de c\'odigo Coq a seguir ilustra um
-tipo de dados que denota o conjunto $\mathcal{B}$ de valores booleanos.
+A sintaxe de termos de uma linguagem pode ser representada, em Coq, por um tipo de dados da linguagem. O trecho de c\'odigo Coq a seguir ilustra um tipo de dados que denota o conjunto dos valores Booleanos, tal como a linguagem $\mathcal{B}$, definida anteriormente.
 
 \begin{lstlisting}
 Inductive Bool : Set :=
@@ -242,86 +236,66 @@ Inductive Bool : Set :=
    | F : Bool.
 \end{lstlisting}
 
-Novos tipos de dados em Coq s\~ao declarados utilizando a palavra chave \texttt{Inductive}. Al\'em do nome do novo tipo (\texttt{Bool}), sempre
-devemos especificar o universo ao qual o tipo pertence (no trecho anterior, o tipo \texttt{Bool} \'e definido como sendo do universo 
-\texttt{Set}, que representam valores sobre os quais podemos efetuar c\'alculos) e os construtores de valores deste tipo. Construtores s\~ao
-a terminologia utilizada em Coq para representar regras de forma\c{c}\~ao de elementos de um dado tipo. No exemplo anterior, o tipo \texttt{Bool}
-possui dois construtores: \texttt{T} e \texttt{F}, que representam os \'unicos elementos deste tipo.
+Uma declaração de tipo de dados, em Coq, começa com a palavra chave \texttt{Inductive}, seguida do nome do tipo de dados e do universo ao qual o tipo de dados pertence, separados pelo símbolo \texttt{:}. Esse cabeçalho da declaração termina com o símbolo de definição \texttt{:=}, e é seguido da definição dos contrutores de valores do tipo de dados que está sendo definido. No exemplo acima, o nome do tipo de dados é \texttt{Bool}. O universo a que ele pertence é \texttt{Set}, que representa valores sobre os quais se podem efetuar c\'alculos. Os construtores de valores do tipo \texttt{Bool} são \texttt{T} e \texttt{F}, que representam os únicos elementos desse tipo. Cada construtor do tipo de dado corresponde a uma regra de definição da sintaxe de elementos de um dado tipo. Note que, para cada construtor, é também especificado o seu tipo.
 
-A defini\c{c}\~ao da sintaxe de n\'umeros naturais, conjunto $\mathcal{N}$, \'e feita de maneira similar:
+A sintaxe do conjunto de n\'umeros naturais $\Nat$ \'e feita de maneira similar:
 \begin{lstlisting}
 Inductive Nat : Set :=
    | Zero : Nat
    | Suc  : Nat -> Nat.
 \end{lstlisting}
-O tipo \texttt{Nat} \'e definido usando dois construtores. O primeiro, \texttt{Zero}, representa a constante $zero\in\mathcal{N}$. O construtor
-\texttt{Suc} \'e o primeiro exemplo de um tipo funcional em Coq. O tipo \texttt{Nat -> Nat} denota uma fun\c{c}\~ao que recebe como par\^ametro
-um valor de tipo \texttt{Nat} e retorna um valor de \texttt{Nat}. Sendo assim, o constructor \texttt{Suc} recebe como par\^ametro um valor de
-tipo \texttt{Nat} e retorna outro valor de \texttt{Nat}. Devido ao tipo de \texttt{Suc}, temos que \texttt{Nat} \'e um tipo recursivo, isto \'e,
-ele \'e definido em termos de si pr\'oprio. Como exemplo, qualquer valor de \texttt{Nat} que seja formado pela constante \texttt{Suc}, deve
-possuir como subtermo outro valor de \texttt{Nat}. O n\'umero $3$ corresponde
- ao seguinte elemento de $\mathcal{N}$: $suc\,\,(suc\,\,(suc\,\,zero))$ e a seguinte defini\c{c}\~ao em Coq:
+O tipo \texttt{Nat} tem dois construtores. O primeiro, \texttt{Zero}, representa a constante $\zero\in \Nat$. O construtor \texttt{Suc} tem tipo \texttt{Nat -> Nat}, o que significa que  \texttt{Suc} é uma função, que recebe como par\^ametro um valor de tipo \texttt{Nat} e retorna um valor de tipo \texttt{Nat}. 
+
+O tipo de \texttt{Suc} indica que \texttt{Nat} \'e um tipo de dado recursivo, isto \'e, ele \'e definido em termos de si pr\'oprio. Observe que qualquer valor de \texttt{Nat}, que seja formado pela constante \texttt{Suc}, possui como subtermo outro valor de tipo \texttt{Nat}. Por exemplo, o n\'umero $3$ corresponde ao seguinte elemento de $\Nat$: $\suc\,\,(\suc\,\,(\suc\,\,\zero))$ e à seguinte defini\c{c}\~ao em Coq:
 \begin{lstlisting}
 Definition three : Nat := Suc (Suc (Suc Zero)).
 \end{lstlisting}
-A palavra chave \texttt{Definition} permite a defini\c{c}\~ao de fun\c{c}\~oes n\~ao recursivas sobre tipos quaisquer. No trecho de c\'odigo
-anterior, \texttt{three} representa a fun\c{c}\~ao constante que sempre retorna \texttt{Suc (Suc (Suc Zero))} como resultado.
-Por\'em, como \texttt{five} (apresentada a seguir) nos mostra, podemos utilizar uma defini\c{c}\~ao para criar outra, desde que isso 
-n\~ao envolva recurs\~ao.
+A palavra chave \texttt{Definition} introduz uma defini\c{c}\~ao de função n\~ao recursiva, sobre tipos quaisquer. Neste trecho de c\'odigo, \texttt{three} representa a fun\c{c}\~ao constante que sempre retorna \texttt{Suc (Suc (Suc Zero))} como resultado.
+
+Uma função pode ser usada para definir outra função, tal como ilustra o exemplo a seguir, que define \texttt{five}, usando \texttt{three}: 
 \begin{lstlisting}
 Definition five : Nat := Suc (Suc three).
 \end{lstlisting}
 
-A seguinte defini\c{c}\~ao denota o conjunto de listas sobre um certo tipo \texttt{T}, ou seja, c\'odigo Coq para o conjunto 
-\textit{List $\mathcal{T}$}. 
+O conjunto de listas $\TList\,\TType$ pode ser definido, em Coq, como no exemplo a seguir: 
 \begin{lstlisting}
 Inductive List (T : Set) : Set :=
   | nil  : List T
   | cons : T -> List T -> List T.
 \end{lstlisting}
-No c\'odigo Coq correpondente a este cap\'itulo, definimos algumas nota\c{c}\~oes para facilitar a cria\c{c}\~ao de valores de tipo lista.
-Estas nota\c{c}\~oes permitem escrever \texttt{[]} ao inv\'es de \texttt{nil} e \texttt{t :: ts} ao inv\'es de \texttt{Cons t ts}. Como
-exemplo, as seguintes listas s\~ao id\^enticas, por\'em, \texttt{myList} usa as nota\c{c}\~oes e \texttt{myList'} usa os construtores
-definidos para o tipo \texttt{List}.
+
+No código Coq correspondente a este capítulo, definimos uma nota\c{c}\~ao mais conveniente para valores de tipo lista, de maneira que se possa escrever \texttt{[]}, ao inv\'es de \texttt{nil}, e \texttt{t :: ts}, ao inv\'es de \texttt{Cons t ts}. Desse modo, as \texttt{myList} e \texttt{myList'}, a seguir, s\~ao id\^enticas, mas \texttt{myList} usa a nova notação e \texttt{myList'} usa os construtores definidos para o tipo \texttt{List}.
 \begin{lstlisting}
 Definition myList' : List Bool := Cons T (Cons F nil).
-Definition myList : List Bool := T :: F :: [].
+Definition myList  : List Bool := T :: F :: [].
 \end{lstlisting}
 
-Finalmente, o seguinte tipo define a  sintaxe de express\~oes aritm\'eticas, equivalente ao conjunto $\mathcal{E}$:
+Finalmente, a  sintaxe de termos do conjunto $\TExp$, que representam express\~oes aritm\'eticas, pode ser definida, em Coq, do seguinte modo:
 \begin{lstlisting}
 Inductive Exp : Set :=
   | Const : Nat -> Exp
   | Plus  : Exp -> Exp -> Exp
   | Times : Exp -> Exp -> Exp.
 \end{lstlisting}
-Assim como fizemos para listas, definidos nota\c{c}\~oes para facilitar a escrita de valores do tipo \texttt{Exp} que s\~ao ilustradas a seguir:
+
+Assim como para o caso de listas, também define também uma notação mais conveniente para que se possa escrever valores do tipo \texttt{Exp}, utilizando os operadores \texttt{(:+)} e \texttt{(:\ast)}, em lugar dos construtores \texttt{Plus} e \texttt{Times}, respectivamente. Desse modo, as expressões \texttt{myExp'} e \texttt{myExp}, definidas a seguir, são idênticas, exceto que \texttt{myExp} usa a nova notação e \texttt{myExp'} usa os construtores originais.
 \begin{lstlisting}
 Definition myExp' : Exp := 
       Plus (Const Zero) (Const (Suc Zero)).
 Definition myExp : Exp := 
       (Const Zero) :+ (Const (Suc Zero)).
 \end{lstlisting}
-As nota\c{c}\~oes definidas para express\~oes visam evitar o uso dos construtores \texttt{Plus} e \texttt{Times} substituindo-os pelos s\'imbolos
-\texttt{:+} e \texttt{:*}, respectivamente.
 
 \subsection{Representanto Sem\^antica em Coq}
 
-Conforme apresentado na se\c{c}\~ao \ref{cap1:sem}, defini\c{c}\~oes sem\^anticas s\~ao especificadas por recurs\~ao sobre a estrutura sint\'atica
-dos termos do conjunto em quest\~ao. Al\'em disso, para que defini\c{c}\~oes recursivas sejam consideradas fun\c{c}\~oes estas devem atender
-os crit\'erios de totalidade e termina\c{c}\~ao.
+Conforme vimos na se\c{c}\~ao \ref{cap1:sem}, a sem\^antica de uma linguagem pode ser definida indutivamente, sobre a estrutura sint\'atica dos termos dessa linguagem. Além disso, para que essa defini\c{c}\~ao recursiva determine uma fun\c{c}\~ao semântica, ela deve satisfazer os crit\'erios de totalidade e termina\c{c}\~ao.
 
-Em Coq, toda fun\c{c}\~ao (recursiva ou n\~ao) deve obedecer os crit\'erios de totalidade e termina\c{c}\~ao. Se uma defini\c{c}\~ao 
-n\~ao atender esses crit\'erios, ser\'a emitida uma mensagem de erro. Essas restri\c{c}\~oes s\~ao fundamentais para que Coq possa ser 
-utilizado como um verificador de provas.
+Em Coq, toda fun\c{c}\~ao (recursiva ou n\~ao) deve satisfazer os crit\'erios de totalidade e termina\c{c}\~ao. Essas restri\c{c}\~oes s\~ao fundamentais para que Coq possa ser 
+utilizado como um verificador de provas. Se uma defini\c{c}\~ao n\~ao satisfaz  esses crit\'erios, é emitida uma mensagem de erro. 
 
-A primeira defini\c{c}\~ao sem\^antica apresentada ser\'a para o tipo
-\texttt{Bool}. Como vimos na sec\c{c}\~ao \ref{cap1:sem}, a
-fun\c{c}\~ao sem\^antica para o conjunto $\mathcal{B}$ \'e tal que
-ao valor $T$ atribui-se $1$ e $0$ para $F$, ou seja, esta fun\c{c}\~ao
-possui como dom\'inio o conjunto de valores booleanos, $\mathcal{B}$
-e contra-dom\'inio o conjunto dos n\'umeros naturais, $\mathbb{N}$. 
-A seguinte fun\c{c}\~ao apresenta a sem\^antica para o tipo \texttt{Bool}:
+Como primeiro exemplo, vamos escrever, em Coq, uma definição de semântica para o tipo
+\texttt{Bool}. Como vimos na sec\c{c}\~ao \ref{cap1:sem}, podemos definir a sem\^antica para o conjunto $\Bool$ como uma função $\llbracket\,\rrbracket : \Bool \rightarrow \mathbb{Bool}$, que associa a $T$ o valor $1$, e associa a $F$ o valor $0$.
+Essa função semântica pode ser definida, em Coq, sobre o tipo \texttt{Bool}, do seguinte modo:
 \begin{lstlisting}
 Definition BoolSem (b : Bool) : nat :=
   match b with
@@ -329,27 +303,16 @@ Definition BoolSem (b : Bool) : nat :=
     | F => 0
   end.
 \end{lstlisting}
-O c\'odigo anterior mostra a fun\c{c}\~ao \texttt{BoolSem} que recebe
-como par\^ametro um valor de tipo \texttt{Bool}, de nome \texttt{b}, e
-retorna um n\'umero natural, um valor de tipo \texttt{nat}. Como a
-sem\^antica de valores booleanos depende de sua sintaxe ( $1$ para $T$
-e $0$ para $F$) devemos usar casamento de padr\~ao para analisar a
-estrutura sint\'atica do par\^ametro \texttt{b} para, ent\~ao,
-retornar o resultado apropriado. O casamento de padr\~ao, em Coq, \'e
-feito usando a constru\c{c}\~ao \texttt{match}, que permite definir um
-conjunto de equa\c{c}\~oes, uma para cada possibilidade sint\'atica do
-valor analisado. Note que, Coq exige que todo \texttt{match}
-obede\c{c}a o crit\'erio de totalidade, isto é, as equa\c{c}\~oes
-devem cobrir todas as possibilidades do tipo do valor analisado.
+Esse trecho de c\'odigo define a fun\c{c}\~ao \texttt{BoolSem}, que recebe
+como par\^ametro um valor \texttt{b}, de tipo \texttt{Bool}, e
+retorna um n\'umero natural, isto é, um valor de tipo \texttt{nat}. Como a
+sem\^antica é definida com base na sintaxe de valores do tipo \texttt{Bool}, é usado \emph{casamento de padr\~ao\/} para analisar a estrutura sint\'atica do par\^ametro \texttt{b}.  e ent\~ao retornar o resultado apropriado. Em Coq, o casamento de padr\~ao \'e feito usando a constru\c{c}\~ao \texttt{match}, que permite definir um conjunto de equa\c{c}\~oes, uma para cada possibilidade sint\'atica do valor analisado. Note que Coq exige que todo \texttt{match} obede\c{c}a o crit\'erio de totalidade, isto é, as equa\c{c}\~oes devem cobrir todas as possibilidades de valores do tipo analisado.
 
-Para a fun\c{c}\~ao \texttt{BoolSem} a totalidade \'e facilmente
-atingida estabelecendo uma equa\c{c}\~ao para cada um dos valores de
-\texttt{Bool}.
+Para a fun\c{c}\~ao \texttt{BoolSem} a totalidade \'e facilmente obtida estabelecendo-se uma equa\c{c}\~ao para cada um dos valores do tipo \texttt{Bool}.
 
-O pr\'oximo exemplo define a sem\^antica do tipo \texttt{Nat}. Como
-este tipo \'e recursivo, sua fun\c{c}\~ao sem\^antica tamb\'em ser\'a.
-Em Coq, definimos fun\c{c}\~oes recursivas utilizando o comando
-\texttt{Fixpoint}.
+O exemplo a seguir define a sem\^antica do tipo \texttt{Nat}. Como
+este tipo \'e recursivo, sua fun\c{c}\~ao sem\^antica é tamb\'em definia recursivamente.
+Em Coq, definimos fun\c{c}\~oes recursivas utilizando o comando \texttt{Fixpoint}.
  
 \begin{lstlisting}
 Fixpoint NatSem (n : Nat) : nat :=
@@ -358,34 +321,11 @@ Fixpoint NatSem (n : Nat) : nat :=
     | Suc n' => 1 + NatSem n'
   end.
 \end{lstlisting}
-Como o comando \texttt{Fixpoint} permite defini\c{c}\~oes recursivas,
-Coq exige que estas satisfa\c{c}am os crit\'erios de termina\c{c}\~ao
-e totalidade. Note que o \texttt{match} que define a fun\c{c}\~ao
-\texttt{NatSem} \'e total (pois, todo valor de \texttt{Nat} ou \'e
-igual a \texttt{Zero} ou igual \texttt{Suc n}, para algum \texttt{n}
-de tipo \texttt{Nat}) e termina, pois a chamada recursiva de
-\texttt{NatSem} diminui o n\'umero de constantes \texttt{Suc}
-presentes no termo.
+A função semântica \texttt{NatSem} tem como parâmetro um valor \texttt{n}, do tipo \texttt{Nat}. Conforme especificado pelo casamento de padrão usado na definição de \texttt{NatSem}, esse valor pode ser de um dos dois seguintes tipos: \texttt{Zero}, ou \texttt{Suc n'}, para algum valor \texttt{n'}, do tipo \texttt{Nat}. Uma variável usada em um casamento de padrão, tal como \texttt{n'}, no padrão \texttt{Suc n'}, casa com qualquer valor. Por exemplo, na avaliação da expressão \texttt{NatSem (Suc (Suc Zero))}, o argumento \texttt{(Suc (Suc Zero))$ casa com o padrão \texttt{Suc n'}, sendo o valor \texttt{(Suc Zero)} associado à variável \texttt{n'}. Desse modo, na chamada recursiva, o argumento de \texttt{NatSem} será \texttt{(Suc Zero)}. 
 
-Na equa\c{c}\~ao para a constante \texttt{Suc} em \texttt{NatSem},
-temos a presen\c{a} de uma vari\'avel no lado esquerdo. Durante o
-casamento de padr\~ao, vari\'aveis s\~ao associadas a valores. Como um
-exemplo, considere executar \texttt{NatSem (Suc (Suc Zero))}. Neste
-caso, temos que a equa\c{c}\~ao:
-\begin{lstlisting}
-Suc n' => 1 + NatSem n'
-\end{lstlisting}
-ser\'a executada. Durante o processo de casamento de padr\~ao, temos
-que o valor de n' ser\'a \texttt{Suc Zero}, j\'a que o termo analisado
-pelo \texttt{match} foi \texttt{Suc (Suc Zero)}. Note que a estrutura
-do padr\~ao da equa\c{c}\~ao (\texttt{Suc n'})  faz com que o subtermo
-\texttt{Suc Zero} de \texttt{Suc (Suc Zero)} seja atribu\'ido \`a
-vari\'avel \texttt{n'}.
+Note que a definição recursiva de \texttt{NatSem} \'e total, pois todo valor de tipo \texttt{Nat}, ou \'e igual a \texttt{Zero}, ou é igual a \texttt{Suc n}, para algum \texttt{n} de tipo \texttt{Nat}). Além disso, a recursão sempre termina, pois, na chamada recursiva, o  n\'umero de constantes \texttt{Suc} presentes no termo passado como argumento é decrescido de 1, eventualmente reduzindo o termo ao caso base \texttt{Zero}.
 
-As fun\c{c}\~oes \texttt{length} e \texttt{app} definem as
-opera\c{c}\~oes de c\'alculo do n\'umero de elementos e
-concatena\c{c}\~ao sobre listas. O c\'odigo Coq correspondente a ambas
-\'e apresentado a seguir:
+Os exemplos a seguir ilustram a implementação, em Coq, de funções definidas sobre listas. A função \texttt{length} recebe como argumento uma lista e retorna o número de elementos dessa lista. A função \texttt{app} recebe como argumentos duas listas e retorna a lista obtida concatenand-se a segunda lista depois da primeira. 
 
 \begin{lstlisting}
 Fixpoint length {T} (l : List T) : nat :=
@@ -400,38 +340,37 @@ Fixpoint app {T} (l l' : List T) : List T :=
     | t :: ts => t :: (app ts l')
   end.
 \end{lstlisting}
-A defini\c{c}\~ao destas fun\c{c}\~oes \'e simplesmente uma
-tradu\c{c}\~ao do que foi apresentado na se\c{c}\~ao \ref{cap1:sem}
-para Coq.
+Observe que a defini\c{c}\~ão de cada uma dessas fun\c{c}\~oes é uma simples 
+tradu\c{c}\~ao, para Coq, da definição apresentada na se\c{c}\~ao \ref{cap1:sem}.
 
-Com isso, terminamos nossa introdu\c{c}\~ao \`a utiliza\c{c}\~ao de
-Coq para definir sintaxe e sem\^antica de linguagens formais. Nos
-capítulos seguintes, maiores detalhes da ferramenta ser\~ao
-apresentados de forma a podermos utiliz\'a-la como um recurso
-did\'atico adicional para o aprendizado do conte\'udo de Matem\'atica Discreta.
+Como último exemplo, vamos definir a função \texttt{head}, que recebe como parâmetro uma lista e retorna a cabeça da lista. No caso em que a lista passada como argumento é vazia, a cabeça da lista não é definida. Para que a definição satisfaça o critério de totalidade, vamos definir a função \texttt{head} com um primeiro parâmetro adicional -- \texttt{default} -- que especifica o valor a ser retornado pela função no caso em que a lista passada como argumento é vazia. A definição da função \texttt{head}, em Coq, é apresentada a seguir.
+
+\begin{lstlisting}
+Definition head {T} (default : T) (l : List T) : T :=
+  match l with
+  | nil => default
+  | h :: t => h
+  end.
+\end{lstlisting}
+
+Essa breve introdução a Coq ilustra como definir sintaxe e semântica de linguagens neste sistema. Nos próximos capítulos vamos abordar um pouco mais sobre os recursos dessa ferramenta, de maneira que ela possa ser usada como um recurso did\'atico adicional para o aprendizado do conte\'udo de Matem\'atica Discreta.
 
 \subsection{Exerc\'icios}
 
 \begin{enumerate}
-    \item Apresente uma fun\c{c}\~ao em Coq que calcula o valor de uma express\~ao aritm\'etica (defini\c{c}\~ao \ref{def:arithexp}).
-        Sua solu\c{c}\~ao deve possuir como par\^ametro um valor de
-        tipo \texttt{Exp}. O tipo de retorno de sua fun\c{c}\~ao deve
-        ser \texttt{nat}, o tipo correspondente a n\'umeros naturais
-        em Coq. 
-    \item Defina fun\c{c}\~oes que, a partir de uma lista fornecida
-      como par\^ametro, retornem a cabe\c{c}a e a cauda desta.
+    \item Escreva, em Coq, uma definição da fun\c{c}\~ao \texttt{evalExp}, que calcula o valor de uma express\~ao aritm\'etica. Essa função tem como parâmetro um valor do tipo \texttt{Exp} e retorna como resultado um valor do tipo \texttt{nat}, o tipo correspondente a n\'umeros naturais, em Coq. 
+    \item Defina, em Coq, a função \texttt{tail}, que recebe como parâmetro uma lista, e retorna a cabeça dessa lista. Note que, se a lista passada como argumento for vazia, isto é \texttt{nil} (ou \texttt{[\,]}), a cauda é a própria lista vazia.
+        \item Defina, em Coq, a função \texttt{last}, que recebe como parâmetro uma lista, e retorna o último elemento da lista. Assim como no caso da função \texttt{head}, essa função não seria definida no caso em que a lista é vazia. Esse problema deve ser evitado tal como foi feito no caso da definição da função \texttt{head}, ou seja, incluindo na definição um parâmetro adicional, que especifica o valor a ser retornado pela função no caso em que a lista passada como argumento for vazia. 
+
 \end{enumerate}
 
 \section{Notas Bibliogr\'aficas}
 
-Conceitos de sintaxe e sem\^antica s\~ao pervasivos na Ci\^encia da
-Computa\c{c}\~ao. Estes s\~ao presentes em livros de sem\^antica
-formal \cite{Winskel93}, teoria de linguagens \cite{Hopcroft06} e
-constru\c{c}\~ao de compiladores \cite{Aho86}.
+Conceitos de sintaxe e sem\^antica s\~ao pervasivos em Ci\^encia da
+Computa\c{c}\~ao, e s\~ao abordados mais detalhadamente em livros sobre sem\^antica
+formal de linguagens de programação \cite{Winskel93}, teoria de linguagens formais \cite{Sipser12, Hopcroft06} e constru\c{c}\~ao de compiladores \cite{Aho86}.
 
 Coq \'e, atualmente, o mais maduro assistente de provas baseado em
 teoria de tipos e \'e empregado com sucesso em diversos projetos
-industriais e cient\'ificos. Diversos livros fornecem
-uma introdu\c{c}\~ao \`a utiliza\c{c}\~ao dessa ferramenta al\'em dos
-prop\'ositos deste texto. O leitor interessado pode aprofundar seus
-conhecimentos usando \cite{coqart,Pierce12,Coqrefman}.
+industriais e cient\'ificos. A página web de Coq, disponível em \url{coq.inria.fr} provê uma extensa documentação sobre essa ferramenta, inlcuindo tutoriais e manuais de referência. Diversos livros apresentam também uma introdu\c{c}\~ao \`a utiliza\c{c}\~ao a Coq. O leitor interessado em aprofundar seus
+conhecimentos sobre Coq, ou sobre seu uso em especificação formal e prova de propriedades de software,tais como \cite{coqart,Pierce12,Coqrefman}.
