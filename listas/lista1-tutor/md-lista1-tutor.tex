@@ -1,0 +1,134 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+
+\newcounter{conta}
+ 
+\begin{document}
+ 
+ \hfill DECSI - UFOP \\
+{\it Matem\'atica Discreta}
+ \hfill $\mbox{1}^{\mbox{\underline{o}}}$ semestre de 2014 \\
+Professor: \parbox[t]{14cm}{Rodrigo Geraldo Ribeiro \\
+                     e-mail: rodrigo@decsi.ufop.br}
+ 
+\noindent {\bf Lista de Exerc\'icios} \hfill {\bf Tema: L\'ogica de
+  Primeira Ordem}
+ 
+\vspace*{3mm}
+\begin{enumerate}
+   \item Sejam $A,B,C,D,E,F$ as seguintes proposi\c{c}\~oes l\'ogicas:
+   \[
+      \begin{array}{ccl}
+        A & = & \text{Todos os homens s\~ao mortais}\\
+        B & = & \text{Os pol\'iticos s\~ao honestos}\\
+        C & = & \text{A verdade \'e bela}\\
+        D & = & \text{A beleza \'e verdadeira}\\
+        E & = & \text{Existem infinitos n\'umeros primos}\\
+        F & = & \text{A Terra \'e plana}\\
+      \end{array}
+   \]
+   Represente as seguintes sente\c{c}as como f\'ormulas da l\'ogica proposicional.
+   \begin{enumerate}
+      \item Se existem infinitos n\'umeros primos ent\~ao a verdade \'e bela.
+      \item Se os pol\'iticos s\~ao honestos ent\~ao a Terra \'e plana e n\~ao \'e 
+            verdade que todos os homens s\~ao mortais.
+      \item A verdade n\~ao \'e bela somente se os pol\'iticos n\~ao s\~ao honestos.
+   \end{enumerate}
+   \item Construa tabelas verdade para as f\'ormulas seguintes e classifique cada uma delas
+         como sendo tautologia, contradi\c{c}\~ao ou contingente.
+   \begin{enumerate}
+      \item $P\lor Q \rightarrow Q \lor P$
+      \item $((P\land Q)\lor (P\land R))\leftrightarrow(P\land (Q\lor R))$
+      \item $(P\rightarrow Q) \land P\land \neg Q$
+      \item $(P \rightarrow Q)\land \neg P \rightarrow Q$
+   \end{enumerate}
+   \item No projeto de circuitos eletr\^onicos, conectivos l\'ogicos s\~ao representados por componentes denominados portas l\'ogicas.
+         Existem portas l\'ogicas que representam os conectivos $\neg, \lor, \land$. Uma porta l\'ogica muito utilizada em circuitos
+         \'e a chamada porta ``ou-exclusivo'', representada algebricamente por $A \oplus B$. A f\'ormula $A\oplus B$ \'e verdadeira
+         sempre que $A$ e $B$ possuem valores l\'ogicos diferentes.
+         Com base no apresentado, responda:
+   \begin{enumerate}
+     \item Apresente a tabela verdade para $A\oplus B$.
+     \item Dizemos que duas f\'ormulas da l\'ogica proposicional $f_1$ e $f_2$ s\~ao equivalentes se $f_1 \leftrightarrow f_2$ \'e uma
+           tautologia. Mostre que $A \oplus B$ e $\neg (A \leftrightarrow B)$ s\~ao equivalentes.
+     \item Apresente uma f\'ormula na forma normal conjuntiva equivalente a $A\oplus B$ e mostre que estas s\~ao realmente equivalentes.
+   \end{enumerate}
+   \item Considere a tarefa de modelar um conectivo l\'ogico que possua um
+     comportamento similar ao comando ``if'' presente em linguagens de
+     programa\c{c}\~ao. A f\'ormula $a\,?\,b\,:\,c$ deve possuir o valor
+     l\'ogico $b$ caso $a = T$ e $c$, se $a = F$.
+   \begin{enumerate}
+     \item Apresente a tabela verdade para esse conectivo.
+     \item Encontre uma f\'ormula na forma normal conjuntiva equivalente a $a\,?\,b\,:\,c$.
+   \end{enumerate}
+   \item Mostre que as seguintes equival\^encias s\~ao verdadeiras utilizando \'algebra booleana.
+   \begin{enumerate}
+     \item $A \lor (B \land \neg A) \equiv A \lor B$
+     \item $(A \lor B)\land (A \lor \neg B) \equiv A$
+     \item $\neg (A \rightarrow \neg B) \equiv A \land B$
+     \item $A \lor \neg (A \land \neg B) \equiv T$
+   \end{enumerate}
+   \item Prove os seguintes sequentes utilizando dedu\c{c}\~ao natural.
+   \begin{enumerate}
+     \item $P,Q,R\vdash P \land (Q \land R)$
+     \item $A\land \neg A\vdash F$
+     \item $A, A\rightarrow B, B\rightarrow C, C \rightarrow D \vdash D$
+     \item $A\rightarrow B, \neg B \vdash \neg A$
+     \item $A \lor (B \land C) \vdash (A \lor B) \land (A \lor C)$
+     \item $A \rightarrow B \vdash \neg B\rightarrow \neg A$
+     \item $B\lor \neg B, A\rightarrow B\vdash \neg A \lor B$
+     \item $A \to (B \to C)\,\vdash\,(A \to B) \to (A \to C)$
+     \item $\vdash A \lor B \to (\neg A \to B)$
+     \item $\vdash A \land B \to \neg (A \to \neg B)$
+   \end{enumerate}
+\item Traduza as seguintes sente\c{c}as para f\'ormulas da l\'ogica de predicados utilizando os seguintes s\'imbolos
+         para representar predicados:
+   \[
+      \begin{array}{ccl}
+        h(x) & = & x \text{ \'e um homem.}\\
+        l(x) & = & x \text{ \'e um livro.}\\
+        p(x) & = & x \text{ pensa}\\
+        g(x,y) & = & x \text{ gosta de }y\\
+      \end{array}
+   \]
+   \begin{enumerate}
+     \item Todos os homens pensam.
+     \item Todos os homens que pensam, gostam de livros.
+     \item Todos os homens gostam de livros, menos Di\'ogenes.
+     \item Nenhum livro pensa.
+     \item Pelo menos um homem n\~ao pensa.
+     \item Alguns homens n\~ao pensam, mas gostam de todos os livros.
+   \end{enumerate}
+   \item Para cada uma das f\'ormulas a seguir, indique se ela \'e verdadeira ou falsa, 
+         quando o universo de discurso \'e cada um dos seguintes conjuntos: $\mathbb{N}$: conjunto
+         dos n\'umeros naturais, $\mathbb{Z}$: conjunto dos n\'umeros inteiros e $\mathbb{R}$ conjunto
+         dos n\'umeros reais.
+         \begin{center}
+         \begin{tabular}{|l|c|c|c|}
+             \hline
+             F\'ormula & $\mathbb{N}$ & $\mathbb{Z}$ & $\mathbb{R}$ \\ \hline
+             $\exists x. x^2 = 2$ & & &\\ \hline
+             $\forall x. \exists y. x^2 = y$ & & & \\ \hline
+             $\forall x. x\neq 0 \rightarrow \exists y. xy = 1$ & & & \\ \hline
+             $\exists x. \exists y. (x + 2y^2 = 2) \land (2x + 4y = 5)$ & & & \\
+             \hline
+         \end{tabular}
+         \end{center}
+         \item Prove os seguintes sequentes utilizando dedu\c{c}\~ao natural.
+         \begin{enumerate}
+           \item $\forall x. p(x) \rightarrow q(x) \vdash \forall x. p(x) \rightarrow \forall x. q(x)$
+           \item $\exists x. \neg p(x) \vdash \neg \forall x. p(x)$
+           \item $\forall x. a(x)\rightarrow b(x) \lor c(x), \forall x. \neg b(x)\vdash \forall x. a(x)\rightarrow\forall x.b(x)\lor c(x)$
+         \end{enumerate}
+         \item Prove as seguintes equival\^encias utilizando regras alg\'ebricas para l\'ogica de predicados.
+         \begin{enumerate}
+            \item $\forall x. p(x) \rightarrow \neg q(x) \equiv \neg \exists x. p(x) \land q(x)$
+            \item $\neg \forall x.\exists y. r(x,y)\land \neg p(x,y)\equiv\exists x.\forall y.r(x,y)\rightarrow p(x,y)$
+         \end{enumerate}
+   \end{enumerate}
+\end{document}

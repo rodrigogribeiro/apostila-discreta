@@ -1,0 +1,587 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+\usepackage{proof}
+%\usepackage[linesnumbered, vlined]{algorithm2e}
+
+
+\newtheorem*{Solucao}{Solu\c{c}\~ao}
+\newcommand{\F}{$F$}
+\newcommand{\T}{$T$}
+ 
+\begin{document}
+ 
+ \hfill DECEA - UFOP \\
+{\it Matem\'atica Discreta}
+ \hfill $\mbox{1}^{\mbox{\underline{o}}}$ semestre de 2014 \\
+Professor: \parbox[t]{14cm}{Rodrigo Geraldo Ribeiro \\
+                     e-mail: rodrigo@decsi.ufop.br}
+ 
+\noindent {\bf Lista de Exerc\'icios 1} \hfill {\bf Tema: L\'ogica Proposicional}
+ 
+\vspace*{3mm}
+\begin{enumerate}
+	\item Represente as frases a seguir como f\'ormulas da l\'ogica
+          proposicional e classifique cada uma destas f\'ormulas como sendo
+          uma tautologia, contradi\c{c}\~ao ou como uma f\'ormula contingente.
+	\begin{enumerate}
+		\item Jo\~ao \'e pol\'itico, mas \'e honesto.
+                  \begin{Solucao}
+                    \verb| |\\
+                    Proposi\c{c}\~oes simples:\\
+                    $A$: Jo\~ao \'e Pol\'itico.\\
+                    $B$: Jo\~ao \'e Honesto.\\
+                    F\'ormula: $A \land B$. Contingente.
+                  \end{Solucao}
+		\item Jo\~ao \'e honesto, mas seu irm\~ao n\~ao \'e.
+                  \begin{Solucao}
+                    \verb| |\\
+                    Proposi\c{c}\~oes simples:\\
+                    $A$: Jo\~ao \'e honesto.\\
+                    $B$: O irm\~ao de Jo\~ao \'e honesto.\\
+                    F\'ormula: $A \land \neg B$. Contingente.
+                  \end{Solucao}
+		\item Vir\~ao a festa Jo\~ao ou sua irm\~a, al\'em da
+                  m\~ae.
+                  \begin{Solucao}
+                    \verb| |\\
+                    Proposi\c{c}\~oes simples:\\
+                    $A$: Jo\~ao vai a festa.\\
+                    $B$: A irm\~a de Jo\~ao vai a festa.
+                    $C$: A m\~ae de Jo\~ao vai a festa.
+                    F\'ormula: $(A \lor B) \land C$. Contingente.
+                  \end{Solucao}
+		\item A estrela do espet\'aculo n\~ao canta, dan\c{c}a
+                  nem representa.
+                  \begin{Solucao}
+                    \verb| |\\
+                    Proposi\c{c}\~oes simples:\\
+                    $A$: A estrela canta.\\
+                    $B$: A estrela dan\c{c}a.\\
+                    $C$: A estrela representa.\\
+                    F\'ormula: $\neg A \land \neg B \land \neg C$. Contingente.
+                  \end{Solucao}
+		\item Sempre que o trem apita, Jo\~ao sai correndo.
+                 \begin{Solucao}
+                    \verb| |\\
+                    Proposi\c{c}\~oes simples:\\
+                    $A$: O trem apita.\\
+                    $B$: Jo\~ao sai correndo.\\
+                    F\'ormula: $A \to B$. Contingente.
+                  \end{Solucao}
+		\item Caso Jo\~ao n\~ao perca dinheiro no jogo, ele
+                  vai a festa.
+                  \begin{Solucao}
+                    \verb| |\\
+                    Proposi\c{c}\~oes simples:\\
+                    $A$: Jo\~ao perdeu dinheiro.\\
+                    $B$: Jo\~ao vai a festa.\\
+                    F\'ormula: $\neg A \to B$. Contingente.
+                  \end{Solucao}
+	\end{enumerate}
+	\item Construa tabelas verdade para as f\'ormulas a seguir e
+          classifique-as como sendo tautologias, conting\^encias ou contradi\c{c}\~oes: 
+	\begin{enumerate}
+		\item $(A\rightarrow B)\leftrightarrow\neg A\lor B$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|c|c|c|}
+                      \hline
+                      $A$ & $B$ & $\neg A$ & $\neg A \lor B$ & $A \to B$ & $(A
+                      \to B) \leftrightarrow \neg A \lor B$ \\ \hline
+                      $F$  & $F$ & $T$ & $T$ & $T$ & $T$ \\
+                      $F$  & $T$ & $T$ & $T$ & $T$ & $T$ \\
+                      $T$ & $F$  & $F$ & $F$ & $F$ & $T$ \\
+                      $T$ & $T$ & $F$ & $T$ & $T$ & $T$\\ \hline
+                    \end{tabular}
+
+                    tautologia.
+                  \end{Solucao}
+
+		\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
+
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+                      \hline
+                      $A$ & $B$ & $C$ &  $A \land B$ & $B\lor C$ & $(A \land B)
+                      \lor C$ & $A\land (B \lor C)$ & 
+                      $(A \land B) \lor C \to A\land (B\lor C)$ \\ \hline
+                      $F$  & $F$ & $F$ & $F$ & $F$ & $F$ & $F$ & $T$ \\
+                      $F$  & $F$ & $T$ & $T$ & $T$ & $F$ & $F$ & $T$ \\
+                      \F & \T & \F & \F & \T & \F & \F & \T \\ 
+                      \F & \T & \T & \F & \T & \T & \F & \F \\
+                      \T & \F & \F & \F & \F & \F & \F & \T \\
+                      \T & \T & \F & \T & \T & \T & \T & \T \\
+                      \T & \T & \T & \T & \T & \T & \T & \T \\ \hline
+                    \end{tabular}
+
+                    contingente.
+                  \end{Solucao}
+
+		\item $A\land\neg (\neg A\lor \neg B)$
+
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|c|c|c|c|}
+                      \hline
+                      $A$ & $B$ & $\neg A$ & $\neg B$ & $\neg A \lor
+                      \neg B$ & $\neg (\neg A \lor \neg B) $ & $A
+                      \land \neg (\neg A \lor \neg B)$ \\ \hline
+                      \F & \F & \T & \T & \T & \F & \F \\
+                      \F & \T & \T & \F & \T & \F & \F \\
+                      \T & \F & \F & \T & \T & \F & \F \\
+                      \T & \T & \F & \F & \F & \T & \T \\ \hline
+                     \end{tabular}
+
+                     contingente.
+                  \end{Solucao}
+		\item $A\land B\rightarrow\neg A$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|c|c|}
+                      \hline
+                      $A$ & $B$ & $\neg A$ & $A\land B$ & $A \land B
+                      \to \neg A$ \\ \hline
+                      \F & \F & \T & \F & \T \\
+                      \F & \T & \T & \F & \T \\
+                      \T & \F & \F & \F & \T \\
+                      \T & \T & \F & \T & \F \\ \hline
+                     \end{tabular}
+
+                     contingente.
+                   \end{Solucao}
+		\item $(A\rightarrow B)\rightarrow[(A\lor
+                  C)\rightarrow (B\lor C)]$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+                      \hline
+                      $A$ & $B$ & $C$ & $A \to B$ & $A \lor C$ & $B
+                      \lor C$ & $(A \lor C) \to (B \lor C)$ & $(A\rightarrow B)\rightarrow[(A\lor
+                  C)\rightarrow (B\lor C)]$ \\ \hline
+                      \F & \F & \F & \T & \F & \F & \T & \T \\
+                      \F & \F & \T & \T & \T & \T & \T & \T \\
+                      \F & \T & \F & \T & \F & \T & \T & \T \\
+                      \F & \T & \T & \T & \T & \T & \T & \T \\
+                      \T & \F & \F & \F & \T & \F & \F & \T \\
+                      \T & \F & \T & \F & \T & \T & \T & \T \\
+                      \T & \T & \F & \T & \T & \T & \T & \T \\
+                      \T & \T & \T & \T & \T & \T & \T & \T \\ \hline
+                     \end{tabular}
+
+                     tautologia.
+                    \end{Solucao}
+		\item $A\rightarrow(B\rightarrow A)$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|c|}
+                      \hline
+                      $A$ & $B$ & $B \to A$ & $A \to (B \to A)$ \\
+                      \hline
+                      \F & \F & \T & \T \\
+                      \F & \T & \F & \T \\
+                      \T & \F & \T & \T \\
+                      \T & \T & \T & \T \\ \hline
+                    \end{tabular}
+
+                    tautologia.
+                    \end{Solucao}
+		\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|c|c|c|c|}
+                      \hline
+                      $A$ & $B$ & $\neg A$ & $\neg B$ & $\neg A \lor
+                      \neg B$ & $A \to B$ & $(A \to B) \leftrightarrow
+                      (\neg A \lor \neg B)$\\ \hline
+                      \F & \F & \T & \T & \T & \T & \T \\
+                      \F & \T & \T & \F & \T & \T & \T \\
+                      \T & \F & \F & \T & \T & \F & \F \\
+                      \T & \T & \F & \F & \F & \T & \F \\ \hline
+                      \end{tabular}
+
+                      contingente.
+                  \end{Solucao}
+	\end{enumerate}
+	\item Sejam $P$ e $Q$ duas f\'ormulas quaisquer da l\'ogica proposicional. Dizemos que $P$ \'e equivalente a $Q$, 
+	      $P\equiv Q$, se estas f\'ormulas sempre possuem o mesmo valor l\'ogico para o mesmo valor de vari\'aveis. As
+	      f\'ormulas $a\rightarrow b$ e $\neg a\lor b$ s\~ao equivalentes pois possuem o mesmo valor l\'ogico para o
+	      mesmo valor de vari\'aveis, como pode ser visto pela tabela verdade seguinte:
+	      \begin{center}
+	      \begin{tabular}{|c|c|c|c|}
+	      	\hline
+	      	$a$ & $b$ & $a\rightarrow b$ & $\neg a\lor b$ \\
+	      	\hline
+	      	$F$ & $F$ &     $T$          &       $T$\\
+	      	$F$ & $T$ &     $T$          &       $T$\\
+	      	$T$ & $F$ &     $F$          &       $F$\\
+	      	$T$ & $T$ &     $T$          &       $T$\\
+	      	\hline
+	      \end{tabular}
+	      \end{center}
+              Baseado no apresentado, verifique se as seguintes f\'ormulas
+              s\~ao equivalentes ou n\~ao.
+	\begin{enumerate}
+		\item $P\leftrightarrow Q$ e $(P\rightarrow
+                  Q)\land(\neg P\rightarrow \neg Q)$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|}
+                      \hline
+                      $P$ & $Q$ & $(P\leftrightarrow
+                      Q)\leftrightarrow[(P \to Q) \land (\neg P \to
+                      \neg Q)]$ \\ \hline
+                      \F & \F & \T \\
+                      \F & \T & \T \\
+                      \T & \F & \T \\
+                      \T & \T & \T \\ \hline
+                    \end{tabular}
+
+                    S\~ao equivalentes.
+                  \end{Solucao}
+                  
+		\item $(P\land\neg Q)\lor (\neg P\land Q)$ e $(P\lor
+                  Q)\land\neg(P\land Q)$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \begin{tabular}{|c|c|c|}
+                      \hline
+                      $P$ & $Q$ & $[(P\land\neg Q)\lor (\neg P\land Q)]\leftrightarrow[(P\lor
+                  Q)\land\neg(P\land Q)]$ \\ \hline
+                  \F & \F & \T \\
+                  \F & \T & \T \\
+                  \T & \F & \T \\
+                  \T & \T & \T \\ \hline
+                    \end{tabular}
+
+                    S\~ao equivalentes.
+                  \end{Solucao}
+	\end{enumerate}	      
+	\item Prove os seguintes sequentes usando dedu\c{c}\~ao natural:
+	\begin{enumerate}
+		\item $(p\land q)\land r,\, s\land t\,\vdash\,q\land
+                  s$
+                  \begin{Solucao}
+                    \[
+                    \infer[\scriptstyle{(\land-I)}]
+                            {q \land s}
+                            {
+                              \infer[\scriptstyle{(\land_{ED})}]
+                                      {q}
+                                      {
+                                        \infer[\scriptstyle{(\land_{EE})}]
+                                                 {p\land q}
+                                                 {(p\land q)\land r}
+                                      }
+                                      & 
+                                \infer[\scriptstyle{(\land_{EE})}]
+                                         {s}
+                                         {s \land t}
+                            }
+                    \]
+                    \end{Solucao}
+		\item $(p\land q)\land r\,\vdash\,(p\land r)\lor z$
+
+                 \begin{Solucao}
+                   \[
+                   \infer[\scriptstyle{(\lor_{IE})}]
+                           {(p \land r) \lor z}
+                           {
+                             \infer[\scriptstyle{(\land_{I})}]
+                                      {p \land r}
+                                      {
+                                        \infer[\scriptstyle{(\land_{EE})}]
+                                                 {p}
+                                                 {
+                                                   \infer[\scriptstyle{(\land_{EE})}]
+                                                            {p \land q}
+                                                            {(p \land
+                                                              q) \land
+                                                            r}
+                                                 }
+                                                 &
+                                         \infer[\scriptstyle{(\land_{ED})}]
+                                                  {r}
+                                                  {(p\land q) \land r}
+                                      }
+                           }
+                   \]
+                 \end{Solucao}
+		\item $q\rightarrow (p\rightarrow r),\, \neg r,\, q\,
+                  \vdash\,\neg p$
+                \begin{Solucao}
+                  \[
+                  \infer[\scriptstyle{(\to_I)^1}]
+                          {\neg p}
+                          {
+                            \infer[\scriptstyle{\to_E}]
+                                     {F}
+                                     {
+                                       \neg r
+                                       &
+                                       \infer[\scriptstyle{(\to_E)}]
+                                               {r}
+                                               {
+                                                 p^1
+                                                 &
+                                                 \infer[\scriptstyle{(\to_E)}]
+                                                          {p \to r}
+                                                          {
+                                                            q \to (p
+                                                            \to r)  
+                                                            & 
+                                                            q
+                                                          }
+                                               }
+                                     }
+                          }
+                  \]
+                \end{Solucao}
+		\item $p\,\vdash\, q\rightarrow(p\land q)$
+                  \begin{Solucao}
+                    \[
+                    \infer[\scriptstyle{(\to_I)}^1]
+                             {q \to (p \land q)}
+                             {
+                               \infer[\scriptstyle{\land_I}]
+                                        {p\land q}
+                                        {p & q^1}
+                             }
+                    \]
+                  \end{Solucao}
+		\item $(p\rightarrow r)\land (q\rightarrow r),\,
+                  p\land q\,\vdash\, q\land r$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \[
+                    \infer[\scriptstyle{(\land_I)}]
+                             {q \land r}
+                             {
+                               \infer[\scriptstyle{(\land_{ED})}]
+                                        {q}
+                                        {p\land q}
+                                &
+                                \infer[\scriptstyle{(\to_{E})}]
+                                         {r}
+                                         {
+                                           \infer[\scriptstyle{\land_{EE}}]
+                                                    {p \to r}
+                                                    {(p \to r) \land
+                                                      (q \to r)}
+                                            &
+                                            \infer[\scriptstyle{(\land_{EE})}]
+                                                     {p}
+                                                     {p\land q}
+                                         }
+                             }
+                    \]
+                  \end{Solucao}
+		\item $p\rightarrow q, r\rightarrow s\vdash (p\lor
+                  r)\rightarrow (q\lor s)$
+                  \begin{Solucao}
+                    \[
+                    \infer[\scriptstyle{(\to_I)}^1]
+                             {(p \lor r ) \to (q \lor s)}
+                             {
+                               \infer[\scriptstyle{(\lor_E)}^2]
+                                        {q \lor s}
+                                        {
+                                          p\lor r^1 
+                                          &
+                                          \infer[\scriptstyle{\lor_{IE}}]
+                                                   {q \lor s}
+                                                   {
+                                                     \infer[\scriptstyle{\to_E}]
+                                                              {q}
+                                                              {p \to q
+                                                              & p^2}
+                                                   }
+                                          &
+                                          \infer[\scriptstyle{\lor_{ID}}]
+                                                  {q\lor s}
+                                                  {
+                                                    \infer[\scriptstyle{\to_E}]
+                                                             {s}
+                                                             {
+                                                               r \to s
+                                                               & r^2
+                                                             }
+                                                  }
+                                        }
+                             }
+                    \]
+                  \end{Solucao}
+		\item $q\rightarrow r\vdash (p\rightarrow
+                  q)\rightarrow(p\rightarrow r)$
+                  \begin{Solucao}
+                    \verb| |\\
+                  \[
+                    \infer[\scriptstyle{(\to_I)^1}]
+                             {(p \to q)\to (p \to r)}
+                             {
+                               \infer[\scriptstyle{(\to_I)}^2]
+                                        {p \to r}
+                                        {
+                                          \infer[\scriptstyle{\to_E}]
+                                                   {r}
+                                                   {
+                                                     q \to r 
+                                                     & 
+                                                     \infer[\scriptstyle{(\to_E)}]
+                                                              {q}
+                                                              {p \to q^1
+                                                              & p^2}
+                                                   }
+                                        }
+                             }
+                             \]
+                  \end{Solucao}
+		\item $(p\land q)\lor(p\land r)\vdash p\land(q\lor r)$
+                  \begin{Solucao}
+                    \verb| |\\
+                    \[
+                    \infer[(\lor_E)^1]
+                             {p \land (q \lor r)}
+                             {
+                               (p\land q)\lor(p\land r) 
+                               &
+                               \infer[\scriptstyle{\land_I}]
+                                        {p\land (q \lor r)}
+                                        {
+                                          \infer[\scriptstyle{\land_{EE}}]
+                                                   {p}
+                                                   {p \land q^1}
+                                           &
+                                           \infer[\scriptstyle{\lor_{IE}}]
+                                                    {q\lor r}
+                                                    {
+                                                        \infer[\scriptstyle{\land_{ED}}]
+                                                                 {q}
+                                                                 {p \land q^1}
+                                                    } 
+                                       }
+                                &
+                               \infer[\scriptstyle{\land_I}]
+                                        {p\land (q \lor r)}
+                                        {
+                                          \infer[\scriptstyle{\land_{ED}}]
+                                                   {p}
+                                                   {p \land r^1}
+                                           &
+                                           \infer[\scriptstyle{\lor_{IE}}]
+                                                    {q\lor r}
+                                                    {
+                                                        \infer[\scriptstyle{\land_{ED}}]
+                                                                 {r}
+                                                                 {p \land r^1}
+                                                    }
+                                        }
+                             }
+                    \]
+                  \end{Solucao}
+	\end{enumerate}
+	\item Prove as seguintes equival\^encias usando racioc\'inio \'algebrico:
+	\begin{enumerate}
+		\item $(A\lor B)\land B\equiv B$
+                \begin{Solucao}
+                  \[
+                  \begin{array}{lc}
+                    (A \lor B) \land B & \equiv \\
+                    (A \lor B) \land (B \lor F) & \equiv \\
+                    (B \lor A) \land (B \lor F) & \equiv \\
+                    B \lor (A \land F) & \equiv \\
+                    B \lor F & \equiv \\
+                    B
+                  \end{array}
+                  \]
+                \end{Solucao}
+		\item $(\neg A\land B)\lor (A\land\neg B)\equiv (A\lor
+                  B)\land \neg (A\land B)$
+                  \begin{Solucao}
+                    \[
+                    \begin{array}{lc}
+                      (\neg A\land B)\lor (A\land\neg B) & \equiv \\
+                      ((\neg A \land B) \lor A) \land ((\neg A \land B)
+                      \lor \neg B) & \equiv \\
+                      ((\neg A \lor A)\land (A \lor B)) \land ((\neg A
+                      \lor \neg B) \land (B \lor \neg B)) & \equiv \\
+                      T \land (A \lor B) \land (\neg A \lor \neg B)
+                      \land T & \equiv \\
+                      (A \lor B) \land (\neg A \lor \neg B) & \equiv
+                      \\
+                      (A \lor B) \land \neg (A \land B)
+                    \end{array}
+                    \]
+                  \end{Solucao}
+		\item $((A\rightarrow B)\rightarrow A)\rightarrow
+                  A\equiv T$
+                  \begin{Solucao}
+                    \[
+                    \begin{array}{lc}
+                    ((A\rightarrow B)\rightarrow A)\rightarrow A &
+                    \equiv \\
+                    ((\neg A \lor B) \to A) \to A & \equiv \\
+                    (\neg (\neg A \lor B) \lor A) \to A & \equiv \\
+                    \neg (\neg (\neg A \lor B) \lor A) \lor A & \equiv
+                    \\
+                    \neg ((\neg \neg A \land \neg B) \lor A) \lor A &
+                    \equiv\\
+                    (\neg (A \land \neg B) \land \neg A) \lor A &
+                    \equiv \\
+                    ((\neg A \lor \neg \neg B) \land \neg A) \lor A &
+                    \equiv \\
+                    ((\neg A \lor B) \land \neg A) \lor A & \equiv \\
+                    ((\neg A \land \neg A) \lor (\neg A \lor B)) \lor
+                    A & \equiv \\
+                    \neg A \lor (\neg A \lor B) \lor A & \equiv \\
+                    \neg A \lor A \lor (\neg A \lor B) & \equiv \\
+                    T \lor (\neg A \lor B) & \equiv \\
+                    T
+                    \end{array}
+                    \]
+                  \end{Solucao}
+	\end{enumerate}
+        \item Mostre que podemos representar todos os conectivos da
+          l\'ogica proposicional utilizando apenas vari\'aveis, a
+          constante $F$ (falso) e o conectivo de implica\c{c}\~ao.
+          \begin{Solucao}
+            \verb| |\\
+            \begin{enumerate}
+              \item Nega\c{c}\~ao: $\neg A \equiv A \to F$
+              \item Disjun\c{c}\~ao:
+                \[
+                \begin{array}{lc}
+                  A \lor B & \equiv \\
+                  \neg \neg A \lor B & \equiv \\
+                  \neg A \to B & \equiv \\
+                  (A \to F) \to B
+                \end{array}
+                \]
+                \item Conjun\c{c}\~ao:
+                  \[
+                  \begin{array}{lc}
+                    A \land B & \equiv \\
+                    \neg \neg A \land \neg \neg B & \equiv \\
+                    \neg (\neg A \lor \neg B) & \equiv \\
+                    \neg (((\neg A) \to F) \to (\neg B)) & \equiv \\
+                    (((A \to F) \to F) \to (B \to F)) \to F
+                  \end{array}
+                  \]
+                  \item Bicondicional:
+                  \[
+                  \begin{array}{lc}
+                  A \leftrightarrow B & \equiv \\
+                  (A \to B) \land (B \to A) & \equiv \\
+                  ((((A \to B) \to F) \to F) \to ((B \to A) \to F))
+                  \to F
+                  \end{array}
+                  \]  
+            \end{enumerate}
+          \end{Solucao}
+\end{enumerate}
+\end{document}

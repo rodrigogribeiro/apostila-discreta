@@ -1,0 +1,45 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+%\usepackage[linesnumbered, vlined]{algorithm2e}
+
+\newcounter{conta}
+ 
+\begin{document}
+ 
+ \hfill DECSI - UFOP \\
+{\it Matem\'atica Discreta}
+ \hfill $\mbox{1}^{\mbox{\underline{o}}}$ semestre de 2014 \\
+Professor: \parbox[t]{14cm}{Rodrigo Geraldo Ribeiro \\
+                     e-mail: rodrigo@decsi.ufop.br}
+ 
+\noindent {\bf Lista de Exerc\'icios 2} \hfill {\bf Tema: L\'ogica de Predicados}
+ 
+\vspace*{3mm}
+\begin{enumerate}
+  	\item Expresse as seguintes frases utilizando l\'ogica de predicados. 
+	      Para isso, crie predicados, fun\c{c}\~oes e constantes do dom\'inio
+	      de interpreta\c{c}\~ao que julgar adequados.
+	\begin{enumerate}
+		\item Quem faz exerc\'icios tem melhor qualidade de vida.
+		\item Alunos n\~ao gostam de fazer provas.
+		\item Nem tudo que reluz \'e ouro.
+		\item Quem conhece Godofredo o adora.
+		\item N\~ao conhe\c{c}o quem n\~ao odeie as brincadeiras de Eud\'esio.
+		\item Ningu\'em visita Hermengarda, a menos que ela esteja af\^onica.
+	\end{enumerate}
+	\item Prove os seguintes sequentes usando dedu\c{c}\~ao natural:
+	\begin{enumerate}
+		\item $\{\forall x. (p(x)\rightarrow q(x))\}\vdash(\forall x.\neg q(x))\rightarrow(\forall x.\neg p(x))$
+		\item $\{\forall x. (p(x)\rightarrow \neg q(x))\}\vdash\neg (\exists x. (p(x)\land q(x)))$
+		\item $\{\forall x.(a(x)\rightarrow (b(x)\lor c(x))),\forall x.\neg b(x)\}\vdash(\forall x. a(x))\rightarrow 
+		       (\forall x. c(x))$
+		\item $\{\exists x. (p(x)\land q(x)), \forall x. (p(x)\rightarrow r(x))\}\vdash\exists (r(x)\land q(x))$
+		\item $\{\forall x. p(a,x,x), \forall x.\forall y.\forall z. p(x,y,z)\rightarrow p(f(x),y,f(z))\}\vdash p(f(a),a,f(a))$
+	\end{enumerate}
+   \end{enumerate}
+\end{document}

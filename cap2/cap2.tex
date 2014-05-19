@@ -1,0 +1,923 @@
+\chapter{L\'ogica Proposicional}
+
+\begin{chapquote}
+`Uma vez pessoa me disse: `Me conven\c{c}a de que l\'ogica \'e \'util.' --- `Voc\^e deseja que eu prove isso?', respondi.
+--- `Sim.', ele respondeu. --- `Ent\~ao, eu devo produzir um argumento que comprove este fato?' --- Ele concordou. --- `Ent\~ao,
+como voc\^e saber\'a que eu n\~ao produzi um argumento falacioso?' --- Ele nada disse. --- `Veja, voc\^e acaba de se convencer
+de que a l\'ogica \'e necess\'aria, uma vez que sem ela voc\^e n\~ao \'e capaz de saber se esta \'e necess\'aria ou n\~ao.'
+Epicteto 1, Discursos 3 II xxv.
+\end{chapquote}
+
+\section{Motiva\c{c}\~ao}
+
+A l\'ogica prov\^e um ferramental para o racioc\'inio sobre matem\'atica, algoritmos
+e circuitos digitais. A aplicabilidade da l\'ogica permeia diversas \'areas da computa\c{c}\~ao,
+citaremos aqui apenas alguns exemplos:
+
+\begin{itemize}
+  \item \textbf{Engenharia de Software}: considera-se uma boa pr\'atica especificar um sistema antes 
+        de iniciar a sua codifica\c{c}\~ao. Uma das v\'arias t\'ecnicas de especifica\c{c}\~ao de 
+        software \'e o uso de l\'ogica.
+  \item \textbf{Aplica\c{c}\~oes de Miss\~ao Cr\'itica}: dizemos que uma determinada aplica\c{c}\~ao 
+        \'e de miss\~ao cr\'itica se essa est\'a relacionada a algum risco (de vida, elevados preju\'izos financeiros, etc.).
+        Em tais aplica\c{c}\~oes, a utiliza\c{c}\~ao de testes para garantir o funcionamento adequado 
+        n\~ao \'e suficiente. O que espera-se \'e uma prova de corretude do programa em quest\~ao, isso \'e uma
+        demonstra\c{c}\~ao de que o programa comporta-se de acordo com sua especifica\c{c}\~ao em todas as
+        situa\c{c}\~oes poss\'iveis. A l\'ogica \'e a fundamenta\c{c}\~ao matem\'atica de demonstra\c{c}\~oes de
+        corre\c{c}\~ao de programas.
+   \item \textbf{Recupera\c{c}\~ao de informa\c{c}\~ao}: em m\'aquinas de busca para Web, utiliza-se l\'ogica para
+         especificar como propriedades que classificam uma determinada p\'agina como relevante ou n\~ao com base
+         em seu conte\'udo.
+   \item \textbf{Circuitos Digitais e Arquitetura de Computadores:} l\'ogica \'e a linguagem utilizada para descrever
+         sinais produzidos e recebidos como entrada por componentes eletr\^onicos. Um problema comum no projeto de
+         circuitos eletr\^onicos \'e determinar uma vers\~ao equivalente, por\'em mais eficiente, de um circuito l\'ogico.
+         T\'ecnicas para solu\c{c}\~ao desse problema s\~ao baseadas em algoritmos eficientes para o processamento de
+         f\'ormulas da l\'ogica.
+   \item \textbf{Bancos de dados}: um recurso fundamental de qualquer sistema gerenciador de bancos de dados \'e uma linguagem
+         simples e expressiva para recuperar informa\c{c}\~oes nele armazenadas. A utiliza\c{c}\~ao de recursos baseados em 
+         l\'ogica \'e a chave para a expressividade de linguagens para consultas a bancos de dados.       
+\end{itemize}
+
+Al\'em das \'areas citadas anteriormente, a l\'ogica \'e fundamental no estudo e no projeto de linguagens de programa\c{c}\~ao
+e da teoria de computabilidade.
+
+Neste cap\'itulo, discutiremos as dificuldades presentes na utiliza\c{c}\~ao do Portugu\^es para expressar racioc\'inio 
+l\'ogico e como contorn\'a-las utilizando l\'ogica formal. Existem diversos tipos de l\'ogicas formais, cada uma com 
+uma aplica\c{c}\~ao espec\'ifica. Inicialmente consideraremos uma l\'ogica bem simples chamada de l\'ogica proposicional.
+Primeiramente, iremos analisar a sintaxe da linguagem da l\'ogica proposicional e depois consideraremos tr\^es sistemas 
+matem\'aticos para racioc\'inio sobre f\'ormulas da l\'ogica proposicional: tabelas verdade, dedu\c{c}\~ao natural e \'algebra 
+Booleana.
+
+\emph{Tabelas verdade} definem o significado dos conectivos l\'ogicos e como eles podem ser utilizados para calcular os 
+valores de express\~oes e provar que duas proposi\c{c}\~oes s\~ao logicamente equivalentes. Como tabelas verdade
+expressam diretamente o siginificado de prpoposi\c{c}\~oes, dizemos que essas s\~ao uma abordagem baseada em sem\^antica para l\'ogica.
+Tabelas verdade s\~ao de simples entendimento, por\'em n\~ao possuem s\~ao \'uteis na solu\c{c}\~ao de problemas reais devido ao seu tamanho.
+
+\emph{Dedu\c{c}\~ao Natural} \'e uma formaliza\c{c}\~ao de princ\'ipios b\'asicos de racioc\'inio l\'ogico utilizado no cotidiano.
+A dedu\c{c}\~ao natural prov\^e um conjunto de regras de infer\^encia que especificam exatamente quais fatos podem ser deduzidos
+a partir de um conjunto de fatos dados. Em dedu\c{c}\~ao natural n\~ao h\'a a no\c{c}\~ao de `valor l\'ogico` de proposi\c{c}\~oes;
+j\'a que tudo no sistema est\'a encapsulado em suas regras de infer\^encia. Conforme veremos posteriormente, essas regras s\~ao baseadas
+na estrutura das proposi\c{c}\~oes envolvidas, a dedu\c{c}\~ao natural \'e uma abordagem puramente sint\'atica para a l\'ogica. Diversas
+t\'ecnicas utilizadas em pesquisas na \'areas de linguagens de programa\c{c}\~ao s\~ao baseadas em sistemas l\'ogicos que s\~ao de alguma
+maneira relacionados \`a dedu\c{c}\~ao natural.
+
+\emph{\'Algebra Booleana} \'e uma abordagem para formaliza\c{c}\~ao da l\'ogica baseada em um conjunto de equa\c{c}\~oes --- as leis
+da \'algebra Booleana --- para especificar que certas proposi\c{c}\~oes s\~ao iguais a outras. A \'algebra Booleana \'e uma abordagem
+axiom\'atica, similar a \'algebra elementar e geometria, pois prov\^e um conjunto de leis para manipular proposi\c{c}\~oes. T\'ecnicas
+alg\'ebricas para a l\'ogica s\~ao fundamentais para o projeto de circuitos digitais.
+
+\section{Introdu\c{c}\~ao \`a L\'ogica Formal}\label{cap1:sec1}
+
+A l\'ogica formal foi inicialmente concebida na gr\'ecia antiga onde fil\'osofos desejavam ser capazes de analisar argumentos 
+em linguagem natural. Os gregos eram fascinados pela id\'eia de que alguns argumentos eram sempre verdadeiros e outros sempre
+falsos. Por\'em, eles rapidamente perceberam que o racioc\'inio l\'ogico \'e dif\'icil de ser analisado usando linguagens naturais
+como o Grego (ou o Portugu\^es!). Isso se deve principalmente devido \`as \emph{ambiguidades} inerentes \`as linguagens naturais.
+Uma das maneiras de se evitar essas dificuldades \'e o uso de vari\'aveis que denominaremos \emph{vari\'aveis proposicionais}. 
+
+Suponha que um conhecido lhe diga `O dia est\'a ensolarado e estou feliz`. Aparentemente essa frase possui interpreta\c{c}\~ao
+\'obvia, mas ao observ\'a-la com cuidado percebe-se que o significado dessa n\~ao \'e t\~ao evidente. Talvez essa pessoa goste
+de dias ensolarados e fica contente quando esse fato ocorre. Note que existe uma conex\~ao entre as duas partes da senten\c{c}a,
+dessa forma, a palavra `e` presente na frase `O dia est\'a ensolarado e estou feliz` significa `e, portanto`. Por\'em, essa an\'alise
+depende de nossa experi\^encia em relacionar o clima com a felicidade das pessoas. Considere agora o seguinte exemplo: 
+`Gatos s\~ao peludos e elefantes pesados`. Essa senten\c{c}a possui a mesma estrutura do exemplo anterior, mas ningu\'em ir\'a tentar
+relacionar o peso de elefantes com a quantidade de pelos de gatos. Neste caso, a palavra `e` significa `e, tamb\'em`. Pode-se perceber que a
+palavra `e` possui diversos significados sutis, e escolhemos o significado apropriado usando nosso conhecimento do mundo \`a nossa volta.
+Perceba que as duas simples frases de exemplo consideradas ilustram as dificuldades de interpreta\c{c}\~ao que podem surgir ao se utilizar
+uma linguagem natural. As dificuldades em se dar um significado preciso a frases em linguagem natural n\~ao se restringem a somente como 
+intepretar a palavra `e`. O estudo preciso da sem\^antica de senten\c{c}as expressas em linguagem natural \'e objeto de estudo da lingu\'istica
+e da filosofia.
+
+Ao inv\'es de tentarmos o imposs\'ivel --- expressar, de maneira precisa,  racioc\'inio l\'ogico em linguagem natural  --- n\'os iremos separar
+a estrutura l\'ogica de um argumento de todas as conota\c{c}\~oes da l\'ingua portuguesa. Faremos isso utilizando \textbf{proposi\c{c}\~oes}, que
+s\~ao definidas a seguir.
+
+\begin{Definition}[Proposi\c{c}\~ao]
+  Definimos por proposi\c{c}\~ao qualquer senten\c{c}a pass\'ivel de possuir um dos valores l\'ogicos: verdadeiro ou falso.
+\end{Definition}
+
+Sempre que poss\'ivel, ap\'os uma defini\c{c}\~ao, apresentaremos alguns exemplos para ilustr\'a-la.
+
+\begin{Example}
+  Quais das seguintes senten\c{c}as podem ser consideradas proposi\c{c}\~oes?
+  \begin{enumerate}
+    \item Hoje \'e segunda-feira.
+    \item $10 < 7$
+    \item $x + 1 = 3$
+    \item Como est\'a voc\^e?
+    \item Ela \'e muito talentosa
+    \item Existe vida em outros planetas.
+  \end{enumerate}
+  Neste exemplo, temos que a senten\c{c}a $1$ \'e uma proposi\c{c}\~ao, pois o dia de hoje pode ser ou n\~ao segunda-feira tornando essa frase
+  verdadeira ou falsa. A senten\c{c}a $2$ \'e uma proposi\c{c}\~ao, pois temos que $10$ n\~ao \'e menor do que $7$. Logo, o valor l\'ogico dessa
+  senten\c{c}a \'e igual a falso. A senten\c{c}a $3$ n\~ao \'e uma proposi\c{c}\~ao pois seu valor l\'ogico depende do valor atribu\'ido a 
+  vari\'avel $x$. Se $x = 2$, temos que a senten\c{c}a $3$ \'e verdadeira. A mesma senten\c{c}a $3$ \'e falsa para qualquer outro valor de $x$. 
+  Logo, como n\~ao \'e poss\'ivel determinar de maneira \'unica o valor l\'ogico da senten\c{c}a $3$, essa n\~ao \'e considerada uma 
+  proposi\c{c}\~ao. 
+  A senten\c{c}a $4$ n\~ao \'e uma proposi\c{c}\~ao pois n\~ao \'e poss\'ivel atribuir um valor verdadeiro ou falso para uma pergunta.
+  A senten\c{c}a $5$ n\~ao \'e uma proposi\c{c}\~ao pois ``ela'' n\~ao est\'a especificada. Portanto, o fato de ``ela'' ser talentosa ou n\~ao
+  depende de quem \'e ``ela''. Logo, essa senten\c{c}a n\~ao \'e uma proposi\c{c}\~ao.
+  A senten\c{c}a $6$ \'e uma proposi\c{c}\~ao pois o fato de existir vida em outros planetas pode ser verdadeiro ou falso.
+\end{Example}
+
+No conceito de proposi\c{c}\~ao est\~ao impl\'icitas duas propriedades fundamentais da l\'ogica cl\'assica:
+\begin{itemize}
+  \item O princ\'ipio da n\~ao contradi\c{c}\~ao: Nenhuma proposi\c{c}\~ao \'e verdadeira e falsa simultaneamente.
+  \item O princ\'ipio do terceiro exclu\'ido: Toda proposi\c{c}\~ao \'e verdadeira ou falsa.
+\end{itemize}
+
+Por\'em n\~ao \'e dif\'icil perceber que existem proposi\c{c}\~oes que s\~ao compostas por outras proposi\c{c}\~oes menores. Considere a
+seguinte frase: `Gatos s\~ao peludos e elefantes pesados`. Esta \'e formada por duas proposi\c{c}\~oes distintas, a saber: 1) Gatos s\~ao peludos; 
+2) Elefantes s\~ao pesados. Deste exemplo podemos perceber que \'e poss\'ivel combinar proposi\c{c}\~oes menores para formar outras. Desta maneira,
+podemos classificar proposi\c{c}\~oes como sendo simples ou compostas que ser\~ao definidas a seguir.
+
+\begin{Definition}[Proposi\c{c}\~ao simples e composta]
+   Dizemos que uma proposi\c{c}\~ao \'e simples se essa n\~ao puder ser decomposta em proposi\c{c}\~oes menores e composta caso
+   essa possa ser divida em uma ou mais proposi\c{c}\~oes. 
+\end{Definition}
+\begin{Example}
+  Classifique as seguintes proposi\c{c}\~oes como simples ou compostas. Caso a proposi\c{c}\~ao em quest\~ao seja composta, identifique
+  as proposi\c{c}\~oes simples que a comp\~oe.
+  \begin{enumerate}
+    \item Di\'ogenes trabalha como carteiro.
+    \item Jo\~aozinho n\~ao conta mentiras.
+    \item O bandido \'e franc\^es.
+    \item Se Cl\'eber ganhar elei\c{c}\~ao, ent\~ao os impostos ser\~ao reduzidos.
+    \item O processador \'e r\'apido mas a impressora \'e lenta.
+    \item Se Jo\~ao correr vai ficar cansado.
+  \end{enumerate}
+  A primeira proposi\c{c}\~ao \'e simples, pois n\~ao pode ser dividida em proposi\c{c}\~oes menores. Isto \'e, n\~ao poss\'ivel decompor a frase
+  em ``peda\c{c}os'' de maneira que estes possam ter valores l\'ogicos verdadeiro ou falso. A proposi\c{c}\~ao 2) \'e composta, pois possui como
+  compontente a proposi\c{c}\~ao `Jo\~aozinho conta mentiras`. A proposi\c{c}\~ao 3) \'e simples. A proposi\c{c}\~ao 4) \'e composta e esta \'e 
+  formada pelas seguintes proposi\c{c}\~oes simples: `Cl\'eber ganhou a elei\c{c}\~ao` e `Os impostos ser\~ao reduzidos`. A proposi\c{c}\~ao 5)
+  tamb\'em \'e composta e \'e formada pelas proposi\c{c}\~oes: `O processador \'e r\'apido` e `A impressora \'e lenta`. Finalmente, a 
+  proposi\c{c}\~ao 6) \'e tamb\'em composta e formada por `Jo\~ao corre` e `Jo\~ao fica cansado`.
+\end{Example}
+
+Proposi\c{c}\~oes compostas combinam proposi\c{c}\~oes simples utilizando conectivos que a partir do valor l\'ogico das proposi\c{c}\~oes simples
+permitem obter o valor da proposi\c{c}\~ao composta em quest\~ao. Existem um n\'umero infinito de conectivos l\'ogicos poss\'iveis. Iremos nos
+ater aos usualmente utilizados na matem\'atica. Estes s\~ao definidos a seguir.
+
+\begin{Definition}[Conectivos]
+  Os cinco principais conectivos da l\'ogica cl\'assica expressam as seguintes no\c{c}\~oes descritas informalmente abaixo:
+  \begin{itemize}
+    \item \textit{Nega\c{c}\~ao}: A proposi\c{c}\~ao afirma que certa proposi\c{c}\~ao n\~ao \'e verdadeira, ou seja, \'e falsa 
+          (de acordo com o princ\'ipio do terceiro exclu\'ido). Exemplo: \textit{O c\'eu n\~ao est\'a nublado hoje} diz que a
+          proposi\c{c}\~ao \textit{O c\'eu est\'a nublado hoje} \'e falsa.
+    \item \textit{Conjun\c{c}\~ao}: Afirma que a proposi\c{c}\~ao em quest\~ao s\'o \'e verdadeira quando as duas proposi\c{c}\~oes que
+          que a comp\~oe s\~ao tamb\'em verdadeiras. Exemplo: \textit{O dia est\'a lindo, embora nublado} diz que \textit{o dia est\'a lindo}
+          e \textit{nublado}.
+    \item \textit{Disjun\c{c}\~ao}: Afirma que pelo menos uma dentre duas proposi\c{c}\~oes \'e verdadeira. Exemplo: \textit{Diocreciano estuda
+          muito ou \'e inteligente} diz que \textit{Diocreciano estudo muito} ou \textit{Diocreciano \'e inteligente} ou 
+          \textit{Diocreciano estudo muito e \'e inteligente}. 
+    \item \textit{Condicional}: Afirma que caso uma certa proposi\c{c}\~ao seja verdadeira, uma outra tamb\'em o \'e, ou seja, n\~ao \'e o caso
+          que a primeira possa ser verdadeira e a outra falsa. Exemplo: \textit{Se hoje chover, n\~ao irei \`a pra\c{c}a} diz que se a 
+          proposi\c{c}\~ao \textit{hoje ir\'a chover} for verdadeira ent\~ao a proposi\c{c}\~ao \textit{n\~ao irei a pra\c{c}a} tamb\'em ser\'a
+          verdadeira.
+     \item \textit{Bicondicional}: Afirma que uma proposi\c{c}\~ao \'e verdadeira exatamente nos casos que uma outra tamb\'em o \'e.
+           Exemplo: \textit{o n\'umero \'e par se e somente se seu quadrado tamb\'em \'e par} diz que as proposi\c{c}\~oes
+           \textit{o n\'umero \'e par} e \textit{o quadrado do n\'umero \'e par} s\~ao ambas verdadeiras ou ambas falsas.
+  \end{itemize}
+\end{Definition}
+
+Algumas palavras da l\'ingua portuguesa s\~ao frequentemente utilizadas em proposi\c{c}\~oes para denotar conectivos. A tabela \ref{table:1}
+apresenta algumas destas palavras e quais conectivos estas representam. Nesta tabela utilizamos as vari\'aveis A e B para denotar proposi\c{c}\~oes
+quaisquer.
+
+\begin{table}
+  \begin{tabular}{|c|l|}
+    \hline
+    \textbf{Conectivo L\'ogico}  & \textbf{Express\~ao em Portugu\^es} \\ \hline
+     Conjun\c{c}\~ao             & A e B; A mas B; A tamb\'em B ; A al\'em disso B\\ \hline
+     Disjun\c{c}\~ao             & A ou B\\ \hline
+    \multirow{7}{*}{Condicional} 
+    & Se A, ent\~ao B \\ 
+    & A implica B     \\ 
+    & A logo, B \\ 
+    & A s\'o se B \\
+    & A somente se B\\
+    & B segue de A \\
+    & A \'e uma condi\c{c}\~ao suficiente para B\\
+    & basta A para B \\
+    & B \'e uma condi\c{c}\~ao necess\'aria para A \\ \hline
+    \multirow{2}{*}{Bicondicional} 
+    & A se e somente se B \\
+    & A \'e condi\c{c}\~ao necess\'aria e suficiente para B \\ \hline
+    \multirow{3}{*}{Nega\c{c}\~ao}
+    & n\~ao A \\
+    & \'E falso que A\\
+    & N\~ao \'e verdade que A \\ \hline
+  \end{tabular}
+  \centering
+  \caption{Relacionando palavras do portugu\^es com conectivos l\'ogicos}
+  \label{table:1}
+\end{table}
+
+\begin{Example}
+  Quais s\~ao os conectivos presentes nas seguintes proposi\c{c}\~oes compostas?
+    \begin{enumerate}
+    \item Jo\~aozinho n\~ao conta mentiras.
+    \item Se Cl\'eber ganhar elei\c{c}\~ao, ent\~ao os impostos ser\~ao reduzidos.
+    \item O processador \'e r\'apido mas a impressora \'e lenta.
+    \item Amanh\~a irei \`a pra\c{c}a ou ao supermercado.
+    \item Pagarei todas minhas d\'ividas se e somente se meu sal\'ario sair.
+  \end{enumerate}
+  Neste exemplo, temos que o conectivo presente na proposi\c{c}\~ao 1) \'e a nega\c{c}\~ao e a proposi\c{c}\~ao 2 \'e formada por um condicional.
+  A proposi\c{c}\~ao 3) \'e formada pelo conectivo de conjun\c{c}\~ao. Por sua vez, a proposi\c{c}\~ao 4) \'e formada pelo conectivo 
+  de disjun\c{c}\~ao e a proposi\c{c}\~ao 5 pelo bicondicional.
+\end{Example}
+
+Apesar da tabela \ref{table:1} ser um guia \'util na identifica\c{c}\~ao de conectivos, certamente ela n\~ao \'e exaustiva. Al\'em disso,
+diversas senten\c{c}as da l\'ingua portuguesa n\~ao podem ser representadas utilizando apenas esses tipos de composi\c{c}\~ao. Usualmente
+elementos que n\~ao possuem uma correspond\^encia direta com a l\'ogica proposicional podem ser ``despresados'' durante a modelagem em
+quest\~ao. Outro ponto referente a modelagem utilizando l\'ogica proposicional \'e que o conceito de proposi\c{c}\~ao simples e composta
+\'e relativo ao problema a ser representado. Por exemplo, considere a seguinte proposi\c{c}\~ao: \textit{5 n\~ao \'e um n\'umero par}. Esta
+proposi\c{c}\~ao pode ser considerada composta --- formada pela nega\c{c}\~ao de \textit{5 \'e um n\'umero par} --- ou considerada uma 
+proposi\c{c}\~ao simples, indivis\'ivel. A tarefa de determinar a ``granularidade'' do que deve ser considerado como proposi\c{c}\~ao
+simples varia de problema para problema. Visando tornar esse tipo de conceito uniforme, nesta apostila adotaremos como conven\c{c}\~ao que
+uma proposi\c{c}\~ao simples \'e uma proposi\c{c}\~ao que n\~ao pode ser dividida em proposi\c{c}\~oes menores. Desta maneira, a proposi\c{c}\~ao
+\textit{5 n\~ao \'e um n\'umero par} ser\'a considerada uma proposi\c{c}\~ao composta.
+
+\subsection{Exerc\'icios}\label{cap1:ex1}
+
+\begin{enumerate}
+  \item Para cada uma das senten\c{c}as a seguir, apresente as proposi\c{c}\~oes simples que a comp\~oe e os conectivos nela envolvidos.
+  \begin{enumerate}
+     \item Jo\~ao \'e pol\'itico, mas \'e honesto.
+     \item Jo\~ao \'e honesto, mas seu irm\~ao n\~ao \'e.
+     \item Vir\~ao a festa Jo\~ao ou sua irm\~a, al\'em da m\~ae.
+     \item A estrela do espet\'aculo n\~ao canta, dan\c{c}a nem representa.
+     \item Sempre que o trem apita, Jo\~ao sai correndo.
+     \item Caso Jo\~ao n\~ao perca dinheiro no jogo, ele vai a festa.
+     \item Jo\~ao vai ser multado, a menos que diminua a velocidade ou a rodovia n\~ao tenha radar.
+     \item Uma condi\c{c}\~ao suficiente para que um n\'umero natural $n$ seja primo \'e que este seja \'impar.
+     \item Jo\~ao vai ao teatro somente se estiver em cartaz uma com\'edia.
+     \item Se voc\^e for Brasileiro, gosta de futebol a menos que tor\c{c}a para o Tabajara ou \'Ibis.
+     \item A propina ser\'a paga exatamente nas situa\c{c}\~oes em que o deputado votar como instru\'ido por Jo\~ao.
+ \end{enumerate}
+\end{enumerate}
+
+\subsection{Formalizando Senten\c{c}as}
+
+Considere as seguintes proposi\c{c}\~oes compostas: 
+\begin{enumerate}
+   \item  O dia est\'a lindo, embora nublado.
+   \item  O dia est\'a ensolarado e Jos\'e est\'a feliz.
+\end{enumerate}
+Ao observarmos estas duas proposi\c{c}\~oes, podemos dizer que estas possuem estrutura equivalente, pois ambas s\~ao formadas por 
+duas proposi\c{c}\~oes simples e pelo conectivo de conjun\c{c}\~ao. Desta forma, podemos representar estas proposi\c{c}\~oes compostas
+de maneira mais compacta substituindo as proposi\c{c}\~oes simples que as comp\~oe por vari\'aveis. A tabela seguinte apresenta a vari\'avel
+associada a uma determinada proposi\c{c}\~ao simples para as frases anteriores.
+\begin{table}[h]
+  \begin{tabular}{c|l}
+    Vari\'avel & Proposi\c{c}\~ao Simples \\ \hline
+    $A$        & O dia est\'a lindo \\ 
+    $B$        & O dia est\'a nublado \\
+    $C$        & O dia est\'a ensolarado \\
+    $D$        & Jos\'e est\'a feliz\\
+  \end{tabular}
+  \centering
+\end{table}
+
+Utilizando a tabela anterior, podemos as senten\c{c}as em quest\~ao podem ser representadas da seguinte maneira:
+\begin{enumerate}
+  \item $A$ e $B$
+  \item $C$ e $D$
+\end{enumerate}
+Apesar do uso de vari\'aveis ter eliminado grande parte dos detalhes que n\~ao s\~ao relevantes para estrutura das proposi\c{c}\~oes em quest\~ao,
+ainda utilizamos o portugu\^es para representar os conectivos l\'ogicos utilizados em proposi\c{c}\~oes compostas. Visando tornar a nota\c{c}\~ao
+para representa\c{c}\~ao de proposi\c{c}\~oes uniforme, adotaremos os seguintes s\'imbolos para conectivos l\'ogicos, em que $A$ e $B$ denotam
+ proposi\c{c}\~oes quaisquer:
+\begin{table}[h]
+  \begin{tabular}{|l|c|}
+    \hline
+    Conectivo & S\'imbolo \\ \hline
+    Nega\c{c}\~ao & $\neg A$ \\ \hline
+    Conjun\c{c}\~ao & $A \land B$ \\ \hline
+    Disjun\c{c}\~ao & $A \lor B$ \\ \hline
+    Condicional & $A \to B$ \\ \hline
+    Bicondicional & $A \leftrightarrow B$ \\ \hline
+  \end{tabular}
+  \centering
+  \caption{Nota\c{c}\~ao para conectivos l\'ogicos}
+  \label{table:2}
+\end{table}
+
+Utilizando a nota\c{c}\~ao presente na tabela \ref{table:2}, temos que as senten\c{c}as anteriores seriam representadas pelas seguintes f\'ormulas
+$A \land B$  e $C \land D$.
+
+\subsection{Exerc\'icios}
+
+\begin{enumerate}
+  \item Escreva cada uma das proposi\c{c}\~oes compostas a seguir utilizando a nota\c{c}\~ao simb\'olica introduzida nesta se\c{c}\~ao.
+  \begin{enumerate}
+    \item Se Jane vencer ou perder, ir\'a ficar cansada.
+    \item Rosas s\~ao vermelhas ou violetas s\~ao azuis.
+    \item Se elefantes podem subir em \'arvores, 3 \'e um n\'umero irracional.
+    \item \'E proibido fumar cigarros ou charutos.
+    \item N\~ao \'e verdade que se $\pi > 0$ se e somente se $\pi > 1$.
+    \item Se as laranjas s\~ao amarelas, ent\~ao os morangos s\~ao vermelhos.
+    \item \'E falso que se Montreal \'e a capital do Canad\'a, ent\~ao a pr\'oxima copa ser\'a realizada no Brasil.
+  \end{enumerate}
+  \item Represente utilizando nota\c{c}\~ao simb\'olica as proposi\c{c}\~oes do exerc\'icio 1 da se\c{c}\~ao \ref{cap1:ex1}.
+\end{enumerate}
+
+\section{Sintaxe da L\'ogica Proposicional}
+
+Tanto no Portugu\^es quanto na matem\'atica e nas linguagens de programa\c{c}\~ao, existem regras que determinam quando uma determinada 
+senten\c{c}a \'e ou n\~ao v\'alida na linguagem em quest\~ao. Como exemplo, em linguagens de programa\c{c}\~ao, a express\~ao $(2 + 3$ \'e
+considerada sintaticamente inv\'alida devido a falta do s\'imbolo $)$ nesta express\~ao. Em liguagens de programa\c{c}\~ao h\'a a necessidade
+de verifica\c{c}\~ao sint\'atica, pois estamos interessados no signficado (execu\c{c}\~ao) das senten\c{c}as (programas) em quest\~ao e, 
+formalmente, n\~ao h\'a como atribuir sem\^antica a senten\c{c}as sintaticamente incorretas.
+
+Para definir quais senten\c{c}as da l\'ogica proposicional s\~ao pass\'iveis de atribuirmos um significado preciso, iremos definir o conjunto
+de \textit{f\'ormulas bem formadas} da l\'ogica proposicional. Neste texto o termo f\'ormula (da l\'ogica proposicional) denotar\'a f\'ormulas
+bem formadas, a menos que seja explicitamente dito o contr\'ario.
+
+\begin{Definition}[F\'ormulas Bem Formadas]\label{propsyn}
+O conjunto $\mathcal{F}$ de f\'ormulas bem formadas da l\'ogica proposicional \'e definido recursivamente da seguinte maneira:
+\begin{enumerate}
+  \item As constantes l\'ogicas $\top,\bot \in \mathcal{F}$ e denotam verdadeiro e falso respectivamente. 
+  \item Seja $\mathcal{V}$ o conjunto (infinito) de vari\'aveis proposicionais. Ent\~ao $\mathcal{V} \subseteq \mathcal{F}$.
+  \item Se $\alpha,\beta \in \mathcal{F}$, ent\~ao:
+  \begin{enumerate}
+    \item $\neg \alpha \in \mathcal{F}$.
+    \item $\alpha \circ \beta \in \mathcal{F}$, em que $\circ \in \{\land,\lor,\to,\leftrightarrow\}$.
+    \item $(\alpha)\in\mathcal{F}$.
+  \end{enumerate}
+\end{enumerate}
+Todos os elementos de $\mathcal{F}$ podem ser constru\'idos pelas regras anteriores.
+\end{Definition}
+Apresentaremos alguns exemplos de f\'ormulas da l\'ogica e como estas
+podem ser constru\'idas utilizando a defini\c{c}\~ao \ref{propsyn}.
+\begin{Example}
+Considere as seguintes fórmulas da lógica proposicional:
+\begin{enumerate}
+  \item $\neg (A \lor \top)$
+  \item $A \to \neg A$
+\end{enumerate}
+A f\'ormula 1) pode ser constru\'ida da seguinte maneira:
+Primeiramente, pelas regras 1 e 2 temos que a vari\'avel $A$ e a
+constante $\top$ s\~ao f\'ormulas da lógica e, portanto, pela regra
+3-b temos que $A \lor \top$. Uma vez que $A \lor \top$ \'e uma
+f\'ormula, temos, pela regra 3-a, temos que $\neg (A \lor \top)$.
+
+Por sua vez, a f\'ormula $A \to \neg A$ pode ser formada da seguinte
+forma: Pela regra 2, temos que a vari\'avel $A$ \'e uma
+f\'ormula. Pela regra 3-a, temos que $\neg A$ \'e uma f\'ormula e,
+finalmente, por 3-b, temos que $A \to \neg A$.
+
+Por\'em, as seguintes express\~oes n\~ao podem ser consideradas
+f\'ormulas pois, n\~ao podem ser constru\'idas de acordo com a
+defini\c{c}\~ao \label{propsyn}: $A \lor \neg B \land$ e $A \to
+\neg$. A primeira n\~ao pode ser considerada uma f\'ormula pois,
+pela regra 3-b), o operador $\land$ precisa de dois par\^ametro. O
+mesmo problema ocorre com a segunda f\'ormula, pois de acordo com
+a regra 3-a), o operador $\neg$ precisa de um par\^ametro.
+\end{Example}
+
+Em matem\'atica, \'e usual o uso de par\^enteses para impor uma ordem
+de avalia\c{c}\~ao sobre express\~oes. Como exemplo, o resultado da express\~ao $(2
++ 3)\times 5$ \'e obtido calculando-se primeiro a soma para s\'o
+ent\~ao efetuarmos a multiplica\c{c}\~ao. Em f\'ormulas da l\'ogica
+proposicional, par\^enteses podem ser utilizados para determinar a
+ordem de avalia\c{c}\~ao de uma certa express\~ao.
+Por\'em, para permitir uma melhor legibilidade, utilizaremos uma ordem de preced\^encia entre
+os conectivos para evitar o excesso de par\^enteses. O conectivo de
+maior preced\^encia \'e o de nega\c{c}\~ao ($\neg$). O pr\'oximo
+conectivo de maior preced\^encia \'e a conjun\c{c}\~ao ($\land$)
+seguido da disjun\c{c}\~ao ($\lor$). Finalmente, os dois conectivos de menor
+preced\^encia s\~ao o condicional ($\to$) e o bicondicional
+($\leftrightarrow$), sendo o \'ultimo o de menor preced\^encia.
+Usando essa ordem de preced\^encia, temos que a f\'ormula $A \land  B
+\to C$ deve ser entendida como $(A \land B) \to C$, uma vez que a
+conjun\c{c}\~ao possui maior preced\^encia que o condicional ($\to$).
+
+Outra maneira de evitar o excesso de par\^enteses \'e a
+utiliza\c{c}\~ao de crit\'erios de associatividade de
+operadores. Neste texto vamos considerar que os operadores de
+conjun\c{c}\~ao e disjun\c{c}\~ao associam \`a esquerda, isto \'e, 
+temos que $A \land B \land C \land D$ denota a mesma express\~ao que
+$((A \land B) \land C) \land D$. Por sua vez, os conectivos
+condicional e bicondicional associam \`a direita, logo, temos que
+$A \to B \to C \to D$ representa a mesma express\~ao  que
+$A \to (B \to (C \to D))$.
+
+
+\subsection{Exerc\'icios}
+
+\begin{enumerate}
+  \item Para cada uma dos termos a seguir, use a defini\c{c}\~ao
+    de f\'ormulas bem formadas (defini\c{c}\~ao \ref{propsyn}) para
+    justificar o porqu\^e estes podem ser consideradas f\'ormulas bem
+    formadas.
+   \begin{enumerate}
+       \item $\neg A \land B \to C$
+       \item $(A \to B) \land \neg (A \lor B \to C)$
+       \item $A \to B \to C \leftrightarrow \bot$
+       \item $A \land \neg A \to B$
+       \item $A \lor B \land C$
+   \end{enumerate}
+   \item Para cada umas das f\'ormulas seguintes, acrescente
+     par\^enteses de maneira que n\~ao seja necess\'ario utilizar as
+     regras de preced\^encia entre os conectivos da l\'ogica proposicional. 
+   \begin{enumerate}
+       \item $\neg A \land B \to C$
+       \item $(A \to B) \land \neg (A \lor B \to C)$
+       \item $A \to B \to C \leftrightarrow \bot$
+       \item $A \land \neg A \to B$
+       \item $A \lor B \land C$
+   \end{enumerate}
+   \item Para cada uma das f\'ormulas seguintes, elimine os par\^enteses
+   desnecess\'arios.
+  \begin{enumerate}			
+	\item $((A\lor B)\lor (C\lor D))$
+	\item $(A\rightarrow (B\rightarrow (A\land B)))$
+	\item $\neg(A \lor (B\land C))$
+	\item $\neg(A \land (B\lor C))$			
+  \end{enumerate}
+\end{enumerate}
+
+\section{Sem\^antica da L\'ogica Proposicional}\label{propsem}
+
+As f\'ormulas da l\'ogica proposicional, descritas na se\c{c}\~ao
+\ref{propsyn}, apesar de possu\'irem uma defini\c{c}\~ao sint\'atica, 
+ainda n\~ao possuem um significado matematicamente preciso. Nesta
+se\c{c}\~ao apresentaremos a sem\^antica de f\'ormulas da l\'ogica
+proposicional, que foi inicialmente concebida por Alfred Tarski na
+primeira metade do s\'eculo XX \cite{halmos57}.
+
+Conforme apresentado no cap\'itulo \ref{cap1}, uma forma de
+atribuirmos sem\^antica a linguagens formais \'e definindo uma
+fun\c{c}\~ao cujo dom\'inio \'e o conjunto de termos da linguagem
+em quest\~ao e cujo contradom\'inio \'e um conjunto com
+significado conhecido formalmente. Para a sem\^antica da l\'ogica
+proposicional, consideraremos como dom\'inio o conjunto de f\'ormulas
+bem formadas, $\mathcal{F}$, e contradom\'inio o conjunto formado
+apenas pelos valores verdadeiro e falso, $\{T,F\}$. 
+
+Tradicionalmente, a fun\c{c}\~ao que descreve a sem\^antica de
+f\'ormulas da l\'ogica proposicional \'e apresentada utilizando 
+tabelas verdade, que descrevem o significado de conectivos em termos
+dos valores l\'ogicos das subf\'ormulas que o comp\~oe, ou seja,
+a sem\^antica deve ser definida de acordo com a estrutura da sintaxe
+das f\'ormulas. 
+
+As pr\'oximas subse\c{c}\~oes definem o significado de
+cada um dos componentes da defini\c{c}\~ao de f\'ormulas bem formadas
+da l\'ogica proposicional.
+
+
+\subsection{Sem\^antica de constantes e vari\'aveis}
+
+A sem\^antica das f\'ormulas $\top\in\mathcal{F}$ e
+$\bot\in\mathcal{F}$ \'e dada pelas constantes $T$ e $F$,
+respectivamente. Para vari\'aveis, a sem\^antica deve considerar as
+possibilidades de valores l\'ogicos que podem ser assumidos por esta
+vari\'avel. Para uma vari\'avel $A$ qualquer, temos que seu
+significado pode ser um dos valores: verdadeiro ou falso. Este fato
+\'e representado pela tabela verdade seguinte:
+\begin{table}[h]
+  \begin{tabular}{|c|}
+        \hline
+        $A$\\
+        \hline
+         F \\
+         \hline
+         T \\ \hline
+  \end{tabular}
+  \centering
+\end{table}
+
+
+\subsection{Sem\^antica da nega\c{c}\~ao ($\neg$)}
+
+O significado de uma f\'ormula $\neg \alpha$, em que $\alpha$ \'e uma
+f\'ormula da l\'ogica proposicional \'e dada pela seguinte tabela
+verdade:
+\begin{table}[h]
+  \begin{tabular}{|c|c|}
+    \hline
+    $\alpha$ & $\neg \alpha$ \\ \hline
+    $F$         & $T$ \\ \hline
+    $T$         & $F$ \\ \hline 
+  \end{tabular}
+  \centering
+\end{table}
+A primeira linha da tabela verdade da nega\c{c}\~ao diz que se uma
+f\'ormula $\alpha$ possui o valor falso ($F$) ent\~ao sua
+nega\c{c}\~ao ser\'a o valor $T$, verdadeiro. De maneira similar,
+temos que se $\alpha$ possuir o valor falso, $\neg \alpha$ possuir\'a
+o valor verdadeiro, conforme especificado na segunda linha da tabela
+verdade anterior.
+
+\subsection{Sem\^antica da conjun\c{c}\~ao ($\land$)}
+
+Dadas duas f\'ormulas quaisquer, $\alpha,\beta$, temos que
+$\alpha\land\beta$ s\'o possuir\'a o valor verdadeiro quando tanto
+$\alpha$ e $\beta$ forem verdadeiros. Esta interpreta\c{c}\~ao para a
+conjun\c{c}\~ao \'e dada pela tabela a seguir:
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $\alpha$ & $\beta$ & $\alpha \land \beta$\\ \hline
+    $F$         & $F$        & $F$ \\ \hline
+    $F$         & $T$        & $F$ \\ \hline
+    $T$         & $F$        & $F$ \\ \hline
+    $T$         & $T$        & $T$ \\ \hline
+   \end{tabular}
+  \centering
+\end{table}
+Note que a tabela verdade para a conjun\c{c}\~ao \'e formada por
+quatro linhas que correspondem \`as maneira de atribuir valores
+verdadeiro e falso para as subf\'ormulas $\alpha$ e $\beta$.
+
+Al\'em disso, a tabela verdade reflete o significado informal da
+conjun\c{c}\~ao, a saber: 1) basta que $\alpha$ ou $\beta$ seja falso
+para que $\alpha\land\beta$ seja falso; e 2) $\alpha\land\beta$ ser\'a
+verdadeiro apenas quando $\alpha$ e $\beta$ tamb\'em forem verdadeiros
+simultanemante.
+
+\subsection{Sem\^antica da disjun\c{c}\~ao ($\lor$)}
+
+A f\'ormula $\alpha\lor\beta$ ser\'a verdadeira quando uma ou ambas
+das f\'ormulas $\alpha$ ou $\beta$ forem verdadeiras. Disso segue que
+a \'unica maneira de $\alpha\lor\beta$ possu\'irem o valor falso \'e
+quando tanto $\alpha$ quanto $\beta$ forem falsos. 
+
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $\alpha$ & $\beta$ & $\alpha \lor \beta$\\ \hline
+    $F$         & $F$        & $F$ \\ \hline
+    $F$         & $T$        & $T$ \\ \hline
+    $T$         & $F$        & $T$ \\ \hline
+    $T$         & $T$        & $T$ \\ \hline
+   \end{tabular}
+  \centering
+\end{table}
+
+\subsection{Sem\^antica do condicional ($\to$)}
+
+O conectivo condicional, tamb\'em conhecido como implica\c{c}\~ao
+l\'ogica, possui a mais peculiar sem\^antica dentre os conectivos
+usuais da l\'ogica proposicional. A peculiaridade da defini\c{c}\~ao
+sem\^antica da implica\c{c}\~ao l\'ogica decorre do fato de que este
+conectivo \'e utilizado para representar afirmativas do tipo
+``se-ent\~ao'', mas seu significado difere um pouco da
+interpreta\c{c}\~ao cotidiana deste tipo de senten\c{c}as.
+
+Para quaisquer f\'ormulas $\alpha$ e $\beta$, temos que
+$\alpha\to\beta$ denota ``se $\alpha$ ent\~ao $\beta$''; $\alpha$
+implica $\beta$ ou ainda ``n\~ao \'e o caso que $\alpha$ \'e
+verdadeiro e $\beta$ falso''. Assim, $\alpha\to\beta$ representa que
+n\~ao \'e poss\'ivel que $\alpha$ seja verdadeiro sem que $\beta$
+tamb\'em o seja. Em outras palavras, ou $\alpha$ \'e falso ou $\alpha$
+e $\beta$ s\~ao ambos verdadeiros. 
+
+A tabela verdade para
+implica\c{c}\~ao segue diretamente da discuss\~ao anterior. 
+
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $\alpha$ & $\beta$ & $\alpha \to \beta$\\ \hline
+    $F$         & $F$        & $T$ \\ \hline
+    $F$         & $T$        & $T$ \\ \hline
+    $T$         & $F$        & $F$ \\ \hline
+    $T$         & $T$        & $T$ \\ \hline
+   \end{tabular}
+  \centering
+\end{table}
+
+A partir da tabela anterior, podemos concluir os seguintes fatos
+\'uteis sobre a implica\c{c}\~ao: 
+\begin{enumerate}
+   \item Se $\alpha$ \'e falso, ent\~ao $\alpha\to\beta$ \'e
+     verdadeiro, independente do valor de $\beta$.
+   \item Se $\beta$ \'e verdeiro, ent\~ao $\alpha\to\beta$ \'e
+     verdadeiro, independente do valor de $\alpha$.
+   \item A \'unica situa\c{c}\~ao em que $\alpha\to\beta$ possui o
+     valor falso acontece quanto $\alpha$ \'e verdadeiro e $\beta$, falso.
+\end{enumerate}
+
+\subsection{Sem\^antica do bicondicional ($\leftrightarrow$)}
+
+Escrevemos $\alpha\leftrightarrow\beta$ para representar que $\alpha$
+e $\beta$ s\~ao ambas verdadeiras ou ambas falsas. Desta forma, temos
+que $\alpha\leftrightarrow\beta$ ir\'a possuir o valor falso somente
+quando o valor l\'ogico de $\alpha$ e $\beta$ for diferente. Estes
+fatos s\~ao descritos formalmente na tabela verdade deste conectivo
+que \'e apresentada a seguir.
+
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|}
+    \hline
+    $\alpha$ & $\beta$ & $\alpha \leftrightarrow \beta$\\ \hline
+    $F$         & $F$        & $T$ \\ \hline
+    $F$         & $T$        & $F$ \\ \hline
+    $T$         & $F$        & $F$ \\ \hline
+    $T$         & $T$        & $T$ \\ \hline
+   \end{tabular}
+  \centering
+\end{table}
+
+
+\subsection{Construindo tabelas verdade para f\'ormulas}
+
+A construç\~ao da tabela verdade de uma
+f\'ormula $\alpha$ \'e feita calculando o valor desta de acordo com a
+tabela de cada um dos conectivos nela presente e os valores l\'ogicos
+das vari\'aveis nela presentes.
+
+Considera-se uma boa pr\'atica, para construir tabelas verdade,
+adicionar colunas para ``resultados intermedi\'arios'' de uma
+f\'ormula. A no\c{c}\~ao de resultado intermedi\'ario de uma f\'ormula
+\'e definida de maneira precisa usando o conceito de
+subf\'ormula. Intuitivamente, o conjunto de subf\'ormulas \'e formado
+por todas as f\'ormulas bem formadas que comp\~oes um dado termo $\alpha$.
+
+
+\begin{Definition}[Subf\'ormula]\label{cap1sub}
+Dada uma f\'ormula $\alpha$, o conjunto de subf\'ormulas de $\alpha$, $sub(\alpha)$,
+\'e definido recursivamente da seguinte maneira:
+\[
+sub(\alpha) = \left\{ 
+    \begin{array}{ll}
+         \{\alpha\} & \text{se }\alpha = \top\text{ ou }\alpha =
+         \bot\text{ ou }\alpha \text{ \'e uma vari\'avel}\\
+         \{\neg \beta\} \cup T & \text{se }\alpha = \neg
+         \beta\text{ e } T = sub(\beta)\\
+         \{\beta \circ \rho\} \cup T \cup T' & \text{se }\alpha =
+         \beta\circ\rho \text{,
+         }\circ\in\{\land,\lor,\to,\leftrightarrow\}, \\
+         & T =
+         sub(\beta)\text{ e }T' =sub(\rho)
+     \end{array}
+                      \right.
+\]
+\end{Definition}
+\begin{Example}
+De acordo com a defini\c{c}\~ao \ref{cap1sub}, temos que o conjunto de
+subf\'ormulas de $A \land B \to \bot$ \'e $\{A\land B \to \bot,A\land B,\bot,A,B\}$. Evidentemente, temos
+que as vari\'aveis $A$, $B$, a constante $\bot$ e $A \land B \to\bot$
+pertecem ao conjunto de subf\'ormulas de $sub(A \land B
+\to\bot)$. Como $A\land B$ \'e um subtermo de $sub(A \land B \to
+\bot)$, temos que $A\land B$ tamb\'em pertence a 
+$sub(A \land B \to\bot)$.
+\end{Example}
+Como $sub(\alpha)$ \'e o conjunto de subf\'ormulas de $\alpha$, estas
+n\~ao possuem uma ordem. Para melhorar a leitura de tabelas verdade,
+podemos ordenar colunas de tabelas verdade de acordo com o tamanho de
+f\'ormulas. O conceito de tamanho de f\'ormulas \'e definido
+formalmente pela seguinte fun\c{c}\~ao recursiva:
+\[
+tamanho(\alpha)=\left\{
+  \begin{array}{ll}
+    0       & \text{se }\alpha = \bot\text{ ou }\alpha = \top\\
+    1      & \text{se }\alpha\text{ \'e uma vari\'avel}\\
+    n +1 & \text{se }\alpha = \neg\beta\text{ e }n = tamanho(\beta)\\
+    n + n' + 1 & \text{se }\alpha = \beta\circ\rho\text{,
+    }\circ\in\{\land,\lor,\to,\leftrightarrow\}\\
+                     & n = tamanho(\beta)\text{ e }n' = tamanho(\rho)
+  \end{array}
+                            \right .
+\]  
+Logo, podemos escrever o conjunto $sub(A \land B \to\bot)$ ordenado
+por tamanho da seguinte maneira: $\{\bot,A,B,A\land B,A\land B \to \bot\}$.
+
+A tabela verdade de uma f\'ormula pode ser constru\'ida tomando por
+colunas cada uma das sub\'ormulas ordenadas de maneira crescente de
+acordo com o tamanho. Desta forma, temos que a tabela verdade para
+$A\land B\to \bot$ \'e:
+\[
+\begin{array}{|c|c|c|c|c|}
+  \hline
+  \bot & A & B & A\land B & A\land B \to \bot \\ \hline
+   F     & F  & F &      F         &  T                            \\
+   F     & F & T &       F         &   T                           \\
+   F     & T & F &       F         &     T                         \\
+   F     & T & T &       T         &      F                       \\ \hline
+\end{array}
+\]
+Observe que as linhas da tabela s\~ao preenchidas da seguinte maneira:
+Todas as linhas para a constante $\bot$ s\~ao preenchidas com o valor
+$F$. As linhas para vari\'aveis s\~ao formadas por todas as
+combina\c{c}\~oes de valores verdadeiro-falso para estas. Logo, se uma
+f\'ormula possuir $n$ vari\'aveis, esta ter\'a uma tabela com $2^n$
+linhas, representando as duas possibilidades (verdadeiro e falso) para
+cada uma de suas $n$ vari\'aveis.
+
+Al\'em disso, obtemos valores das linhas de acordo com a tabela
+verdade do conectivo da f\'ormula da coluna. Para facilitar, o
+resultado de colunas posteriores pode ser obtido a partir dos
+resultados de colunas anteriores.
+
+\begin{Example}\label{extable}
+Considere a tarefa de construir a tabela verdade para a f\'ormula $((A
+\to B)\land \neg B) \to \neg A$. Para isso, devemos determinar o conjunto de
+subf\'ormulas de $((A\to B)\land \neg B) \to \neg A$ e orden\'a-lo de acordo
+com o tamanho. Ao fazer isso, obtemos o seguinte conjunto:
+\[
+\{A,B,\neg A,\neg B,A\to B, (A\to B)\land \neg B,((A\to B)\land \neg
+B)\to \neg A\}
+\]
+Agora basta construir a tabela verdade:
+\[
+\begin{array}{|c|c|c|c|c|c|c|}
+  \hline
+A & B & \neg A & \neg B & A \to B & (A \to B) \land \neg B & ((A\to
+B)\land \neg B)\to \neg A\\ \hline
+F & F &   T  & T & T & T & T\\
+F & T &  T   & F & F  & F  & T\\
+T & F &   F    &  T  &  F   & F  & T \\
+T & T &   F    &  F  &  T   & F   & T \\ \hline
+\end{array}
+\]
+\end{Example}
+Note que a f\'ormula do exemplo \ref{extable} \'e sempre verdadeira
+independente do valor l\'ogico atribu\'ido \`as suas vari\'aveis. Isso
+nos permite classificar f\'ormulas de acordo com sua tabela
+verdade. Esse ser\'a o assunto da pr\'oxima se\c{c}\~ao.
+
+\subsection{Classificando F\'ormulas}
+
+O objetivo desta se\c{c}\~ao \'e descrever uma maneira de classificar
+f\'ormulas da l\'ogica proposicional de acordo com o valor de sua
+tabela verdade.
+
+\begin{Definition}[Tautologia e Contradi\c{c}\~ao]
+Dizemos que uma f\'ormula da l\'ogica \'e uma tautologia se esta \'e
+sempre verdadeira independente do valor l\'ogico de suas
+vari\'aveis. Por sua vez, uma f\'ormula \'e uma contradi\c{c}\~ao se
+esta \'e sempre falsa independente do valor de suas vari\'aveis.
+\end{Definition}
+\begin{Example}
+A f\'ormula $A\land B\to A \lor B$ \'e uma tautologia, pois \'e sempre
+verdadeira independente dos valores das vari\'aveis $A$ e $B$, como
+mostrado pela tabela verdade seguinte:
+\[
+\begin{array}{|c|c|c|c|c|}
+\hline
+A & B & A \land B & A \lor B & A \land B \to A \lor B \\ \hline
+F & F & F & F & T \\
+F & T & F & T & T \\
+T & F & F & T & T \\
+T & T & T & T & T \\ \hline
+\end{array}
+\]
+Como exemplo de uma contradi\c{c}\~ao considere a f\'ormula
+$(A\to B) \land (A \land \neg B)$ e sua tabela verdade:
+\[
+\begin{array}{|c|c|c|c|c|c|}
+  \hline
+  A & B & \neg B & A \land \neg B & A \to B & (A \to B) \land (A \land
+  \neg B) \\ \hline
+  F & F & T & F & T & F \\
+  F & T & F & F & T & F \\
+  T & F & T & T & F & F \\
+  T & T & F & F & T & F \\ \hline 
+\end{array}
+\]
+\end{Example}
+\begin{Definition}[F\'ormula Satisfat\'ivel, False\'avel e Contigente]
+  Uma f\'ormula da l\'ogica \'e dita ser satisfat\'ivel se existe uma
+  maneira de atribuir valores l\'ogicos \`as suas vari\'aveis de
+  maneira a torn\'a-la verdadeira. Uma f\'ormula \'e dita ser
+  false\'avel se existe uma maneira de atribuir valores l\'ogicos \`as
+  suas vari\'aveis de maneira a torn\'a-la falsa. Finalmente, dizemos
+  que uma f\'ormula \'e contingente se esta \'e satisfat\'ivel e
+  false\'avel simultaneamente.
+\end{Definition}
+\begin{Example}
+Para ilustrar os conceitos de f\'ormula satisfat\'ivel, false\'avel e
+contingente, considere a f\'ormula $A \lor B \to \neg A$ e sua tabela
+verdade:
+\[
+\begin{array}{|c|c|c|c|c|}
+  \hline
+  A & B & \neg A & A \lor B & A \lor B \to \neg A \\ \hline
+  F & F & T & F & T \\
+  F & T & T & T & T \\
+  T & F & F & T & F \\
+  T & T & F & T & F \\ \hline
+\end{array}
+\]
+Com isso temos que $A \lor B \to \neg A$ \'e satisfaz\'ivel, pois para 
+$A = F$ e $B = F$ temos que esta f\'ormula \'e verdadeira. De maneira
+similar, para $A = T$ e $B = T$ temos que esta f\'ormula \'e falsa e,
+portanto, false\'avel. Como, $A \lor B \to \neg A$ \'e satisfaz\'ivel
+e false\'avel temos que esta pode ser classificada como contingente.
+\end{Example}
+
+Uma das aplica\c{c}\~oes dos conceitos anteriores \'e a determinar
+quando duas f\'ormulas $\alpha,\beta$ da l\'ogica proposicional s\~ao
+equivalentes. Dizemos que duas f\'ormulas s\~ao equivalentes se estas
+possuem o mesmo valor l\'ogico para a mesma atribui\c{c}\~ao de
+valores \`as suas vari\'aveis, isto \'e se $\alpha \leftrightarrow
+\beta$ \'e uma tautologia.
+
+\subsection{Limita\c{c}\~oes de tabelas verdade}
+
+Tabelas verdade s\~ao um m\'etodo simples para determinar a
+satisfazibilidade de f\'ormulas da l\'ogica proposicional, pois estas
+denotam de maneira direta o significado de conectivos e
+f\'ormulas. Por\'em, a simplicidade de tabelas verdade possui um
+garnde complicador: estas possuem tamanho exponencial sobre o n\'umero
+de vari\'aveis em uma dada f\'ormula. 
+
+Em exemplos anteriores, mostramos tabelas verdade para f\'ormulas que
+possu\'iam duas vari\'aveis. Todas estas tabelas possu\'iam 4
+linhas. Considere a seguinte tabela para uma f\'ormula com $3$
+vari\'aveis:
+\[
+\begin{array}{|c|c|c|c|c|}
+  \hline
+  A & B & C & A \land B & A \land B \land C \\ \hline
+  F  & F & F & F & F \\ 
+  F & F & T & F & F \\
+  F & T & F & F & F \\
+  F  & T & T & F & F \\
+  T & F  & F & F & F \\
+  T & T & F & T & F \\
+  T & F & T & F & F \\
+  T & T & T & T & T\\ \hline
+\end{array}
+\]
+esta possui 8 linhas. De forma geral, a tabela verdade para f\'ormulas
+contendo $n$ vari\'aveis possuir\'a $2^n$ linhas, o que limita a
+utilização de tabelas verdades  para soluç\~oes de problemas
+pr\'aticos. 
+
+\subsection{Exerc\'icios}
+
+\begin{enumerate}
+	\item Construa tabelas verdade para as f\'ormulas a seguir e
+          classifique-as como sendo tautologias, conting\^encias ou contradi\c{c}\~oes: 
+	\begin{enumerate}
+		\item $(A\rightarrow B)\leftrightarrow\neg A\lor B$
+		\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
+		\item $A\land\neg (\neg A\lor \neg B)$
+		\item $A\land B\rightarrow\neg A$
+		\item $(A\rightarrow B)\rightarrow[(A\lor C)\rightarrow (B\lor C)]$
+		\item $A\rightarrow(B\rightarrow A)$
+		\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
+	\end{enumerate}
+        \item Determine se as seguintes f\'ormulas s\~ao ou n\~ao
+          equivalentes.
+         \begin{enumerate}
+		\item $P\leftrightarrow Q$ e $(P\rightarrow Q)\land(\neg P\rightarrow \neg Q)$
+		\item $(P\land\neg Q)\lor (\neg P\land Q)$ e $(P\lor Q)\land\neg(P\land Q)$
+          \end{enumerate}
+          \item Suponha que voc\^e possua um algoritmo que a partir de
+            uma f\'ormula $\alpha$ da l\'ogica responda sim se esta
+            \'e satisfaz\'ivel e falso, caso contr\'ario. Explique
+            como usar esse algoritmo para determinar se uma f\'ormula
+            \'e uma:
+            \begin{enumerate}
+              \item Tautologia
+              \item Contradi\c{c}\~ao
+             \end{enumerate}
+\end{enumerate}
+
+
+\section{Dedu\c{c}\~ao Natural para L\'ogica Proposicional}
+
+A dedu\c{c}\~ao natural \'e um sistema formal que permite-nos deduzir
+consequ\^encias a partir de um conjunto de f\'ormulas. Antes de
+apresentarmos este sistema, devemos definir formalmente o que
+significa uma f\'ormula ser consequ\^encia de um conjunto de
+f\'ormulas.
+
+\begin{Definition}[Consequ\^encia L\'ogica]
+Dizemos que uma f\'ormula $\alpha$ \'e consequ\^encia l\'ogica de um
+conjunto de f\'ormulas $\Gamma$, $\Gamma \models \alpha$, se, e
+somente se sempre que toda f\'ormula em $\Gamma$ for verdadeira,
+$\alpha$ tamb\'em o \'e.
+\end{Definition}
+
+Uma maneira para determinarmos se uma f\'ormula $\alpha$ \'e
+consequ\^encia l\'ogica de um conjunto $\Gamma$ \'e construir uma
+tabela verdade. O seguinte exemplo ilustra esse uso de tabelas
+verdade.
+\begin{Example}
+Considere as seguintes proposi\c{c}\~oes:
+\begin{itemize}
+  \item Se hoje for segunda-feira, irei a reuni\~ao.
+  \item Hoje \'e segunda-feira.
+   \item Hoje Irei a reuni\~ao.
+\end{itemize}
+Note que essas proposi\c{c}\~oes podem ser modeladas pelas seguintes
+f\'ormulas:
+\begin{itemize}
+  \item $A \to B$
+  \item $A$
+  \item $B$
+\end{itemize}
+em que a vari\'avel $A$ denota ``Hoje \'e segunda-feira'' e $B$,
+``Hoje irei a reuni\~ao''.
+
+De acordo com a interpreta\c{c}\~ao usual da l\'ingua portuguesa,
+temos que ``Hoje irei a reuni\~ao'' \'e uma consequ\^encia de ``Se
+hoje for segunda-feira, irei a reuni\~ao'' e ``hoje \'e
+segunda-feira''. Desta forma, em  
+\end{Example}

@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+%\usepackage[linesnumbered, vlined]{algorithm2e}
+
+\newcounter{conta}
+ 
+\begin{document}
+ 
+ \hfill DECEA - UFOP \\
+{\it Matem\'atica Discreta}
+ \hfill $\mbox{1}^{\mbox{\underline{o}}}$ semestre de 2014 \\
+Professor: \parbox[t]{14cm}{Rodrigo Geraldo Ribeiro \\
+                     e-mail: rodrigo@decsi.ufop.br}
+ 
+\noindent {\bf Lista de Exerc\'icios 1} \hfill {\bf Tema: L\'ogica Proposicional}
+ 
+\vspace*{3mm}
+\begin{enumerate}
+	\item Represente as frases a seguir como f\'ormulas da l\'ogica
+          proposicional e classifique cada uma destas f\'ormulas como sendo
+          uma tautologia, contradi\c{c}\~ao ou como uma f\'ormula contingente.
+	\begin{enumerate}
+		\item Jo\~ao \'e pol\'itico, mas \'e honesto.
+		\item Jo\~ao \'e honesto, mas seu irm\~ao n\~ao \'e.
+		\item Vir\~ao a festa Jo\~ao ou sua irm\~a, al\'em da m\~ae.
+		\item A estrela do espet\'aculo n\~ao canta, dan\c{c}a nem representa.
+		\item Sempre que o trem apita, Jo\~ao sai correndo.
+		\item Caso Jo\~ao n\~ao perca dinheiro no jogo, ele vai a festa.
+	\end{enumerate}
+	\item Construa tabelas verdade para as f\'ormulas a seguir e
+          classifique-as como sendo tautologias, conting\^encias ou contradi\c{c}\~oes: 
+	\begin{enumerate}
+		\item $(A\rightarrow B)\leftrightarrow\neg A\lor B$
+		\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
+		\item $A\land\neg (\neg A\lor \neg B)$
+		\item $A\land B\rightarrow\neg A$
+		\item $(A\rightarrow B)\rightarrow[(A\lor C)\rightarrow (B\lor C)]$
+		\item $A\rightarrow(B\rightarrow A)$
+		\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
+	\end{enumerate}
+	\item Sejam $P$ e $Q$ duas f\'ormulas quaisquer da l\'ogica proposicional. Dizemos que $P$ \'e equivalente a $Q$, 
+	      $P\equiv Q$, se estas f\'ormulas sempre possuem o mesmo valor l\'ogico para o mesmo valor de vari\'aveis. As
+	      f\'ormulas $a\rightarrow b$ e $\neg a\lor b$ s\~ao equivalentes pois possuem o mesmo valor l\'ogico para o
+	      mesmo valor de vari\'aveis, como pode ser visto pela tabela verdade seguinte:
+	      \begin{center}
+	      \begin{tabular}{|c|c|c|c|}
+	      	\hline
+	      	$a$ & $b$ & $a\rightarrow b$ & $\neg a\lor b$ \\
+	      	\hline
+	      	$F$ & $F$ &     $T$          &       $T$\\
+	      	$F$ & $T$ &     $T$          &       $T$\\
+	      	$T$ & $F$ &     $F$          &       $F$\\
+	      	$T$ & $T$ &     $T$          &       $T$\\
+	      	\hline
+	      \end{tabular}
+	      \end{center}
+              Baseado no apresentado, verifique se as seguintes f\'ormulas
+              s\~ao equivalentes ou n\~ao.
+	\begin{enumerate}
+		\item $P\leftrightarrow Q$ e $(P\rightarrow Q)\land(\neg P\rightarrow \neg Q)$
+		\item $(P\land\neg Q)\lor (\neg P\land Q)$ e $(P\lor Q)\land\neg(P\land Q)$
+	\end{enumerate}	      
+	\item Prove os seguintes sequentes usando dedu\c{c}\~ao natural:
+	\begin{enumerate}
+		\item $(p\land q)\land r,\, s\land t\,\vdash\,q\land s$
+		\item $(p\land q)\land r\,\vdash\,(p\land r)\lor z$
+		\item $q\rightarrow (p\rightarrow r),\, \neg r,\, q\, \vdash\,\neg p$
+		\item $p\,\vdash\, q\rightarrow(p\land q)$
+		\item $(p\rightarrow r)\land (q\rightarrow r),\, p\land q\,\vdash\, q\land r$
+		\item $p\rightarrow q, r\rightarrow s\vdash (p\lor r)\rightarrow (q\lor s)$
+		\item $q\rightarrow r\vdash (p\rightarrow q)\rightarrow(p\rightarrow r)$
+		\item $(p\land q)\lor(p\land r)\vdash p\land(q\lor r)$
+	\end{enumerate}
+	\item Prove as seguintes equival\^encias usando racioc\'inio \'algebrico:
+	\begin{enumerate}
+		\item $(A\lor B)\land B\equiv B$
+		\item $(\neg A\land B)\lor (A\land\neg B)\equiv (A\lor B)\land \neg (A\land B)$
+		\item $((A\rightarrow B)\rightarrow A)\rightarrow A\equiv T$
+	\end{enumerate}
+        \item Mostre que podemos representar todos os conectivos da
+          l\'ogica proposicional utilizando apenas vari\'aveis, a
+          constante $F$ (falso) e o conectivo de implica\c{c}\~ao.
+\end{enumerate}
+\end{document}

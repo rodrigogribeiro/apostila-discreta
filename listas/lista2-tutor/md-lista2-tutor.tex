@@ -1,0 +1,115 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+\usepackage{latexsym}
+%\usepackage[linesnumbered, vlined]{algorithm2e}
+
+\newcounter{conta}
+ 
+\begin{document}
+ 
+ \hfill DECEA - UFOP \\
+{\it Matem\'atica Discreta I}
+ \hfill $\mbox{2}^{\mbox{\underline{o}}}$ semestre de 2013 \\
+Professor: \parbox[t]{14cm}{Rodrigo Geraldo Ribeiro \\
+                     e-mail: rodrigogribeiro@decea.ufop.br}
+ 
+\noindent {\bf Lista de Exerc\'icios} \hfill {\bf Tema: L\'ogica de Predicados, Conjuntos e Combinat\'oria}
+ 
+\vspace*{3mm}
+\begin{enumerate}
+   \item Traduza as seguintes sente\c{c}as para f\'ormulas da l\'ogica de predicados utilizando os seguintes s\'imbolos
+         para representar predicados:
+   \[
+      \begin{array}{ccl}
+        h(x) & = & x \text{ \'e um homem.}\\
+        l(x) & = & x \text{ \'e um livro.}\\
+        p(x) & = & x \text{ pensa}\\
+        g(x,y) & = & x \text{ gosta de }y\\
+      \end{array}
+   \]
+   \begin{enumerate}
+     \item Todos os homens pensam.
+     \item Todos os homens que pensam, gostam de livros.
+     \item Todos os homens gostam de livros, menos Di\'ogenes.
+     \item Nenhum livro pensa.
+     \item Pelo menos um homem n\~ao pensa.
+     \item Alguns homens n\~ao pensam, mas gostam de todos os livros.
+   \end{enumerate}
+   \item Para cada uma das f\'ormulas a seguir, indique se ela \'e verdadeira ou falsa, 
+         quando o universo de discurso \'e cada um dos seguintes conjuntos: $\mathbb{N}$: conjunto
+         dos n\'umeros naturais, $\mathbb{Z}$: conjunto dos n\'umeros inteiros e $\mathbb{R}$ conjunto
+         dos n\'umeros reais.
+         \begin{center}
+         \begin{tabular}{|l|c|c|c|}
+             \hline
+             F\'ormula & $\mathbb{N}$ & $\mathbb{Z}$ & $\mathbb{R}$ \\ \hline
+             $\exists x. x^2 = 2$ & & &\\ \hline
+             $\forall x. \exists y. x^2 = y$ & & & \\ \hline
+             $\forall x. x\neq 0 \rightarrow \exists y. xy = 1$ & & & \\ \hline
+             $\exists x. \exists y. (x + 2y^2 = 2) \land (2x + 4y = 5)$ & & & \\
+             \hline
+         \end{tabular}
+         \end{center}
+         \item Prove os seguintes sequentes utilizando dedu\c{c}\~ao natural.
+         \begin{enumerate}
+           \item $\forall x. p(x) \rightarrow q(x) \vdash \forall x. p(x) \rightarrow \forall x. q(x)$
+           \item $\exists x. \neg p(x) \vdash \neg \forall x. p(x)$
+           \item $\forall x. a(x)\rightarrow b(x) \lor c(x), \forall x. \neg b(x)\vdash \forall x. a(x)\rightarrow\forall x.b(x)\lor c(x)$
+         \end{enumerate}
+         \item Prove as seguintes equival\^encias utilizando regras alg\'ebricas para l\'ogica de predicados.
+         \begin{enumerate}
+            \item $\forall x. p(x) \rightarrow \neg q(x) \equiv \neg \exists x. p(x) \land q(x)$
+            \item $\neg \forall x.\exists y. r(x,y)\land \neg p(x,y)\equiv\exists x.\forall y.r(x,y)\rightarrow p(x,y)$
+         \end{enumerate}
+         \item Sejam $A$ e $B$ dois conjuntos quaisquer. Define-se o operador de diferen\c{c}a sim\'etrica, $A\bigtriangleup B$, como
+           \[
+           A \bigtriangleup B = (A \cup B) - (A \cap B)
+           \]
+           Com base nesta equival\^encia e nas outras equival\^encias da teoria de conjuntos, prove:
+          \begin{enumerate}
+            \item $A \bigtriangleup A = \emptyset$
+            \item $A \bigtriangleup B = B \bigtriangleup A$
+            \item $A \bigtriangleup U = \overline{A}$
+          \end{enumerate}
+          \item Prove, usando equival\^encias alg\'ebricas da teoria de conjuntos, as seguintes equival\^encias: 
+            \begin{enumerate}
+              \item $(A - C) \cap (C - B) = \emptyset$.
+              \item $(A\cup (B - A)) = A \cup B$
+              \item $(A - (B - A)) = \emptyset$
+            \end{enumerate}
+          \item Prove o conhecido Paradoxo de Russell:
+            \[
+            \begin{array}{lcl}
+              P(x) &= &x \not\in x\\
+              S &= &\{x\,|\, P(x)\}
+            \end{array}
+            \]
+             utilizando regras alg\'ebricas da teoria de conjuntos. Para isso, voc\^e dever\'a mostrar que tanto $S\in S$ e
+             $S\not\in S$ s\~ao equivalentes a $F$.
+             \item[\ ] \textbf{Aten\c{c}\~ao:} Nas quest\~oes envolvendo o conte\'udo de an\'alise combinat\'oria \'e \textbf{imprescind\'ivel}
+                       a apresenta\c{c}\~ao de um texto descrevendo o racioc\'inio utilizado para a solu\c{c}\~ao.
+             \item Suponha que, em Springfield, tenham entrado em cartaz 3 filmes, 2 pe\c{c}as de teatro e que Moe tenha dinheiro apenas para um
+               desses eventos. Quantas possibilidades de programas Moe possui?
+             \item Em uma lanchonete, existem 5 tipos de doces, 7 salgados e 3 bebidas. Supondo que Kyle possui dinheiro apenas para uma bebida 
+                   e deve optar por um doce ou um salgado, quantas op\c{c}\~oes de lanche Kyle possui?
+             \item Um amigo apresentou-me 10 livros de matem\'atica discreta, 5 de teoria da computação e 8 de compiladores. Al\'em disso, esse
+                   amigo disse que eu poderia escolher dois livros desde que esses n\~ao fossem da mesma mat\'eria. Quantas op\c{c}\~oes de 
+                   escolha eu possuo?
+             \item De quantas maneiras duas pessoas podem estacionar seus carros em uma garagem com 6 vagas?
+             \item Quantos n\'umeros de dois d\'igitos podemos formar com os algarismos do conjunto $A=\{1,2,3,4,5\}$?
+             \item Quantos subconjuntos de dois elementos podemos formar a partir de $A=\{1,2,3,4,5\}$?
+             \item De quantas maneiras podemos distribuir 8 brinquedos entre 3 garotos de maneira que os dois mais velhos recebam 3 briquedos e o
+                   mais novo 2 brinquedos?
+             \item Quantas s\~ao as permuta\c{c}\~oes da palavra BRASIL em que a letra B ocupa o primeiro lugar ou R ocupa o segundo ou 
+                   L ocupa o sexto lugar?
+             \item Se uma urna cont\'em 4 bolas vermelhas, 7 verdes, 9 azuis e 6 amarelas, qual \'e o menor n\'umero de bolas que devemos retirar
+                   (sem olhar) de maneira a ter certeza de termos retirado pelo menos 3 da mesma cor?
+             \item \'E verdade que em qualquer grupo de 20 pessoas, pelo menos 3 delas nasceram no mesmo dia da semana? Justifique sua resposta.
+             \item De quantas maneiras podemos permutar tr\^es a's, tr\^es b's e tr\^es c's de modo que 3 letras iguais nunca sejam adjacentes?
+\end{enumerate}
+\end{document}

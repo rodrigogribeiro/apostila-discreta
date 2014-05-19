@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+%\usepackage[linesnumbered, vlined]{algorithm2e}
+
+\newcounter{conta}
+ 
+\begin{document}
+ 
+ \hfill DECEA - UFOP \\
+{\it Matem\'atica Discreta I}
+ \hfill $\mbox{2}^{\mbox{\underline{o}}}$ semestre de 2013 \\
+Professor: \parbox[t]{14cm}{Rodrigo Geraldo Ribeiro \\
+                     e-mail: rodrigogribeiro@decea.ufop.br}
+ 
+\noindent {\bf Lista de Exerc\'icios 3} \hfill {\bf Tema: Teoria de Conjuntos e Combinat\'oria}
+ 
+\vspace*{3mm}
+\begin{enumerate}
+	\item Represente as seguintes f\'ormulas expressas utilizando a linguagem da teoria de conjuntos
+	      utilizando f\'ormulas da l\'ogica de predicados. Voc\^e poder\'a utilizar apenas 
+	      os seguintes s\'imbolos em suas respostas: $\in,\not\in,=,\neq,\land,\lor,\rightarrow,\leftrightarrow,\forall,\exists$.
+	      Observe que n\~ao \'e permitido utilizar $\neg$, logo, voc\^e dever\'a utilizar equival\^encias alg\'ebricas para eliminar
+	      as ocorr\^encias de $\neg$.
+	\begin{enumerate}
+		\item $\mathcal{F}\subseteq\mathcal{P}(A)$
+		\item $A\subseteq\{2n\, |\, n\in\mathbb{N}\}$
+		\item $\{n^2 + n + 1\,|\, n\in\mathbb{N}\}\subseteq\{2n + 1\,|\,n\in\mathbb{N}\}$
+		\item $\mathcal{P}(\bigcup_{i\in I}A_i)\not\subseteq \bigcup_{i\in I}\mathcal{P}(A_i)$
+		\item $x\in\bigcup\mathcal{F} - \mathcal{G}$
+		\item $\{x\in B\,|\,x\not\in C\}\in\mathcal{P}(A)$
+		\item $x\in\bigcap_{i\in I}(A_i\bigcup B_i)$
+		\item $x\in (\bigcap_{i\in I} A_i)\cup(\bigcap_{i \in I} B_i)$
+	\end{enumerate}
+	\item Seja $I=\{2,3,4,5\}$ e para cada $i\in I$ considere que $A_i=\{i , i+1, i -1, 2i\}$.
+	\begin{enumerate}
+		\item Liste os elementos de $\mathcal{F} = \{A_i\,|\,i\in I\}$.
+		\item Calcule $\bigcap_{i \in I} A_i$ e $\bigcup_{i \in I} A_i$.
+	\end{enumerate}
+	\item Mostre, utilizando equival\^encias alg\'ebricas da l\'ogica, que $x\in\mathcal{P}(A\cap B)$ \'e equivalente a 
+              $x\in\mathcal{P}(A)\cap\mathcal{P}(B)$, para qualquer $x$.
+        \item Apresente exemplos de conjuntos $A$ e $B$ tais que $\mathcal{P}(A\cup B)\neq \mathcal{P}(A) \cup \mathcal{P}(B)$.
+	\item Mostre que se $\mathcal{F} = \emptyset$  ent\~ao a f\'ormula $x\in\bigcup\mathcal{F}$ \'e 
+              equivalente a $F$ (contradi\c{c}\~ao).
+	\item Mostre que se $\mathcal{F} = \emptyset$  ent\~ao a f\'ormula $x\in\bigcap\mathcal{F}$ \'e 
+              equivalente a $T$ (tautologia).
+	\item Uma reuni\~ao via v\'ideo confer\^encia est\'a acontecendo reunindo dois grupos: um na cidade de 
+              Springfield e outro na cidade de Shelbyville. Supondo que existam 35 troncos telef\^onicos de 
+              Springfield para South Park e 23 de South Park para Shelbyville. De
+  	      quantas maneiras diferentes \'e poss\'ivel transmitir os dados desta confer\^encia?
+	\item Durante o estudo de l\'ogica proposicional, vimos que o significado dos conectivos \'e dados por tabelas verdade. 
+              Al\'em disso, vimos que a l\'ogica proposicional possui um conectivo un\'ario (o conectivo $\neg$) e 
+              quatro conectivos bin\'arios (os conectivos
+	      $\land,\lor,\rightarrow$ e $\leftrightarrow$). Evidentemente, esses 4 conectivos n\~ao representam o n\'umero total 
+              de conectivos 
+	      bin\'arios para a l\'ogica proposicional. Quantos conectivos bin\'arios diferentes podem ser 
+              constru\'idos para a l\'ogica proposicional?
+	\item Um restaurante local lan\c{c}ou uma promo\c{c}\~ao onde voc\^e pode fazer sua refei\c{c}\~ao 
+              escolhendo entre 5 entradas, 3 
+	      saladas, 4 pratos principais, 6 sobremesas e tr\^es bebidas. Quantas possibilidades de 
+              refei\c{c}\~oes diferentes s\~ao poss\'iveis
+	      neste card\'apio?
+	\item Neste exerc\'icicio todos os itens referem-se ao conjunto dos n\'umeros inteiros contendo 3 d\'igitos. 
+	\begin{enumerate} 
+		\item Quantos s\~ao divis\'iveis por 4 ou 5?
+		\item Quantos s\~ao divis\'iveis por 4 e n\~ao por 5?
+		\item Quantos s\~ao pares e n\~ao s\~ao divis\'iveis por 5?
+	\end{enumerate}
+	\item Neste exerc\'icio todos os itens referem-se ao conjunto de bytes (cadeias de 8 bits).
+	\begin{enumerate}
+		\item Quantas terminam com 000?
+		\item Quantas possuem exatamente 1 d\'igito `0'?
+		\item Quantas come\c{c}am ou terminam com 1?
+	\end{enumerate}
+	\item Neste exerc\'icio todos os itens referem-se a um baralho padr\~ao formado por 52 duas cartas, 
+              sendo estas de 13 tipos diferentes de
+	      cada um dos 4 naipes. Considere que uma m\~ao (quantidade de cartas distribu\'idas a cada jogador 
+              no in\'icio de uma partida) \'e
+	      composta por 5 cartas.
+	\begin{enumerate}
+		\item Quantas m\~aos cont\^em apenas cartas de um mesmo naipe?
+		\item Quantas m\~aos cont\^em 4 cartas de um mesmo tipo?
+	\end{enumerate}
+\end{enumerate}
+\end{document}
