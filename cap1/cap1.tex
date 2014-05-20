@@ -278,6 +278,7 @@ Inductive Exp : Set :=
   | Times : Exp -> Exp -> Exp.
 \end{lstlisting}
 
+
 Assim como para o caso de listas, também define também uma notação mais conveniente para que se possa escrever valores do tipo \texttt{Exp}, utilizando os operadores \texttt{(:+)} e \texttt{(:*)}, em lugar dos construtores \texttt{Plus} e \texttt{Times}, respectivamente. Desse modo, as expressões \texttt{myExp'} e \texttt{myExp}, definidas a seguir, são idênticas, exceto que \texttt{myExp} usa a nova notação e \texttt{myExp'} usa os construtores originais.
 \begin{lstlisting}
 Definition myExp' : Exp := 
@@ -321,6 +322,7 @@ Fixpoint NatSem (n : Nat) : nat :=
     | Suc n' => 1 + NatSem n'
   end.
 \end{lstlisting}
+
 A função semântica \texttt{NatSem} tem como parâmetro um valor \texttt{n}, do tipo \texttt{Nat}. Conforme especificado pelo casamento de padrão usado na definição de \texttt{NatSem}, esse valor pode ser de um dos dois seguintes tipos: \texttt{Zero}, ou \texttt{Suc n'}, para algum valor \texttt{n'}, do tipo \texttt{Nat}. Uma variável usada em um casamento de padrão, tal como \texttt{n'}, no padrão \texttt{Suc n'}, casa com qualquer valor. Por exemplo, na avaliação da expressão \texttt{NatSem (Suc (Suc Zero))}, o argumento \texttt{(Suc (Suc Zero))} casa com o padrão \texttt{Suc n'}, sendo o valor \texttt{(Suc Zero)} associado à variável \texttt{n'}. Desse modo, na chamada recursiva, o argumento de \texttt{NatSem} será \texttt{(Suc Zero)}. 
 
 Note que a definição recursiva de \texttt{NatSem} \'e total, pois todo valor de tipo \texttt{Nat}, ou \'e igual a \texttt{Zero}, ou é igual a \texttt{Suc n}, para algum \texttt{n} de tipo \texttt{Nat}). Além disso, a recursão sempre termina, pois, na chamada recursiva, o  n\'umero de constantes \texttt{Suc} presentes no termo passado como argumento é decrescido de 1, eventualmente reduzindo o termo ao caso base \texttt{Zero}.
@@ -340,6 +342,7 @@ Fixpoint app {T} (l l' : List T) : List T :=
     | t :: ts => t :: (app ts l')
   end.
 \end{lstlisting}
+
 Observe que a defini\c{c}\~ao de cada uma dessas fun\c{c}\~oes é uma simples 
 tradu\c{c}\~ao, para Coq, da definição apresentada na se\c{c}\~ao \ref{cap1:sem}.
 

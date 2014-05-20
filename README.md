@@ -13,9 +13,12 @@ Código Coq
 ----------
 
 Todo o código Coq para a apostila encontra-se na pasta code.
+<<<<<<< HEAD
 
-Listas de Exercício
+Listas de Exercícios
 ---------------
 
 Todas as listas de exercícios e suas respectivas soluções encontram-se
 na pasta listas.
+======
+
