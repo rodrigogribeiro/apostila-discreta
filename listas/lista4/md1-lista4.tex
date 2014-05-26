@@ -1,0 +1,100 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+%\usepackage[linesnumbered, vlined]{algorithm2e}
+
+\newcounter{conta}
+\theoremstyle{definition}
+\newtheorem{Definition}{Defini\c{c}\~ao}
+
+\begin{document}
+ 
+ \hfill DECEA - UFOP \\
+{\it Matem\'atica Discreta}
+ \hfill $\mbox{1}^{\mbox{\underline{o}}}$ semestre de 2014 \\
+Professor: \parbox[t]{14cm}{Rodrigo Geraldo Ribeiro \\
+                     e-mail: rodrigo@decsi.ufop.br}
+ 
+\noindent {\bf Lista de Exerc\'icios 4} \hfill {\bf Tema: Demonstra\c{c}\~ao
+  de Teoremas}
+\vspace*{3mm}
+\rule{\textwidth}{0.1mm}
+\begin{center}
+   \textbf{Defini\c{c}\~oes}
+\end{center}
+\begin{Definition}
+   Seja $n\in\mathbb{Z}$. Dizemos que $n$ \'e \textbf{par} se existe
+   $k\in\mathbb{Z}$ tal que $n = 2k$; $n$ \'e \textbf{\'impar} se existe
+      $k\in\mathbb{Z}$ tal que $n = 2k + 1$.
+\end{Definition}
+\begin{Definition}
+  Sejam $n,d\in\mathbb{Z}$. Dizemos que $n$ \'e \textbf{divis\'ivel} por $d$
+  (representado como $d\,\mid\,n$) se existe $k\in\mathbb{Z}$ tal que
+  $n = kd$.
+\end{Definition}
+\begin{Definition}
+  Um n\'umero $n\in\mathbb{Z}$ \'e um \textbf{quadrado perfeito} se existe
+  $k\in\mathbb{Z}$ tal que $n = k^2$.
+\end{Definition}
+\begin{Definition}
+  Seja $\mathcal{F}$ uma fam\'ilia de conjuntos. Define-se o conjunto $\bigcup
+  ! \mathcal{F}$ por \[\bigcup ! \mathcal{F} = \{x\,|\,\exists ! A. A\in
+    \mathcal{F}\land x\in A\}\].
+\end{Definition}
+\rule{\textwidth}{0.1mm}
+\begin{enumerate}
+        \item Prove que se $n$ \'e \'impar, ent\~ao $3n +9$ \'e par.
+        \item Considere o seguinte teorema: Se $n$ \'e par, ent\~ao $n^2$ \'e par.
+        \begin{enumerate}
+          \item Apresente uma prova direta para esse teorema.
+          \item Apresente uma prova pela contrapositiva para esse teorema.
+        \end{enumerate}
+        \item Prove que se $n$ e $m$ s\~ao n\'umeros \'impares ent\~ao $n + m$
+          \'e par.
+        \item Prove que se $n$ \'e par e $m$ \'e \'impar ou 
+              $n$ \'e \'impar e $m$ \'e par ent\~ao $n + m$ \'e \'impar.
+        \item Prove que se a soma de dois n\'umeros inteiros \'e par, sua
+          diferen\c{c}a tamb\'em o \'e.
+        \item Prove que se $n$ e $m$ s\~ao dois quadrados prefeitos, $nm$
+          também \'e um quadrado perfeito.
+        \item Prove que se $n$ \'e um inteiro e $3n + 2$ \'e \'impar, ent\~ao
+          $n$ \'e \'impar.
+        \item Prove que o produto de dois n\'umeros inteiros consecutivos \'e
+          par.
+        \item Prove que a soma de dois n\'umeros inteiros consectivos \'e \'impar.
+	\item Prove que, se $A\subseteq B$ e $B\subseteq C$, ent\~ao $A\subseteq C$.
+	\item Prove que, se $\overline{A}\subseteq\overline{B}$ ent\~ao $B\subseteq{A}$.
+	\item Prove que, se $A\subseteq B$ ent\~ao $\mathcal{P}(A)\subseteq\mathcal{P}(B)$.
+	\item Prove que, $\mathcal{P}(A)\cap\mathcal{P}(B)=\mathcal{P}(A\cap B)$
+	\item Prove que, $\mathcal{P}(A)\cup\mathcal{P}(B)\subseteq\mathcal{P}(A\cup B)$
+	\item Prove que, se $(A - B)\cup (B - A) = A\cup B$ ent\~ao $A\cap B =\emptyset$ (isto \'e $A$ e $B$ s\~ao disjuntos).
+	\item Prove que, se $A \cup B = A - B$ ent\~ao $B=\emptyset$.
+	\item Prove que, se $A\cap B = A$ ent\~ao $A\subseteq B$.
+	\item Suponha que $A - B \subseteq C\cap D$ e que $x\in A$. Prove que se $x\not\in D$ ent\~ao $x\in B$.
+	\item Suponha que $A\subseteq C$ e que $B$ e $C$ s\~ao disjuntos. Prove que se $x\in A$ ent\~ao $x\not\in B$.
+	\item Prove que se $A$ e $B - C$ s\~ao disjuntos, ent\~ao $A\cap B\subseteq C$.
+	\item Prove que se $\mathcal{F}$ \'e uma fam\'ilia de conjuntos e $A\in\mathcal{F}$, ent\~ao 
+	      $A\subseteq\bigcup\mathcal{F}$.
+	\item Prove que $A=\bigcup\mathcal{P}(A)$, para qualquer conjunto
+          $A$. 
+       \item Prove que se $\emptyset\in\mathcal{F}$ ent\~ao
+         $\bigcap\mathcal{F} = \emptyset$.
+       \item Prove que para todo n\'umero $x\in\mathbb{R}$, existe um \'unico
+         $y\in\mathbb{R}$ tal que $x^2y = x - y$.
+       \item Prove que para qualquer fam\'ilia $\mathcal{F}$, $\bigcup
+         !\mathcal{F}\subseteq \bigcup\mathcal{F}$.
+       \item Seja $P(x)$ uma f\'ormula da l\'ogica de predicados em que $x$ \'e uma vari\'avel livre.
+       \begin{enumerate}
+         \item Encontre uma f\'ormula da l\'ogica de predicados que represente: ``existem exatamente dois valores de $x$ que fazem $P(x)$ 
+               ser verdadeira''.
+         \item Baseado na resposta do item anterior, descreva uma estrat\'egia de prova para f\'ormulas ``existem exatamente dois valores de $x$
+               que tornam $P(x)$ verdadeiro''.
+         \item Utilizando a estrat\'egia de prova criada por voc\^e, mostre que a equa\c{c}\~ao $x^3 = x^2$ possui exatamente duas ra\'izes.
+       \end{enumerate}
+\end{enumerate}
+\end{document}
