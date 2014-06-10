@@ -50,15 +50,15 @@ Booleana.
 
 \emph{Tabelas verdade} definem o significado dos conectivos l\'ogicos e como eles podem ser utilizados para calcular os 
 valores de express\~oes e provar que duas proposi\c{c}\~oes s\~ao logicamente equivalentes. Como tabelas verdade
-expressam diretamente o siginificado de prpoposi\c{c}\~oes, dizemos que essas s\~ao uma abordagem baseada em sem\^antica para l\'ogica.
-Tabelas verdade s\~ao de simples entendimento, por\'em n\~ao possuem s\~ao \'uteis na solu\c{c}\~ao de problemas reais devido ao seu tamanho.
+expressam diretamente o siginificado de propoposi\c{c}\~oes, dizemos que essas s\~ao uma abordagem baseada em sem\^antica para l\'ogica.
+Tabelas verdade s\~ao de simples entendimento, por\'em n\~ao s\~ao \'uteis na solu\c{c}\~ao de problemas reais devido ao seu tamanho.
 
 \emph{Dedu\c{c}\~ao Natural} \'e uma formaliza\c{c}\~ao de princ\'ipios b\'asicos de racioc\'inio l\'ogico utilizado no cotidiano.
 A dedu\c{c}\~ao natural prov\^e um conjunto de regras de infer\^encia que especificam exatamente quais fatos podem ser deduzidos
 a partir de um conjunto de fatos dados. Em dedu\c{c}\~ao natural n\~ao h\'a a no\c{c}\~ao de `valor l\'ogico` de proposi\c{c}\~oes;
 j\'a que tudo no sistema est\'a encapsulado em suas regras de infer\^encia. Conforme veremos posteriormente, essas regras s\~ao baseadas
 na estrutura das proposi\c{c}\~oes envolvidas, a dedu\c{c}\~ao natural \'e uma abordagem puramente sint\'atica para a l\'ogica. Diversas
-t\'ecnicas utilizadas em pesquisas na \'areas de linguagens de programa\c{c}\~ao s\~ao baseadas em sistemas l\'ogicos que s\~ao de alguma
+t\'ecnicas utilizadas em pesquisas na \'area de linguagens de programa\c{c}\~ao s\~ao baseadas em sistemas l\'ogicos que s\~ao de alguma
 maneira relacionados \`a dedu\c{c}\~ao natural.
 
 \emph{\'Algebra Booleana} \'e uma abordagem para formaliza\c{c}\~ao da l\'ogica baseada em um conjunto de equa\c{c}\~oes --- as leis
@@ -816,7 +816,7 @@ possuem o mesmo valor l\'ogico para a mesma atribui\c{c}\~ao de
 valores \`as suas vari\'aveis, isto \'e se $\alpha \leftrightarrow
 \beta$ \'e uma tautologia.
 
-\subsection{Limita\c{c}\~oes de tabelas verdade}
+\subsection{Limita\c{c}\~oes de tabelas verdade}\label{limitacao-tabela-verdade}
 
 Tabelas verdade s\~ao um m\'etodo simples para determinar a
 satisfazibilidade de f\'ormulas da l\'ogica proposicional, pois estas
@@ -892,7 +892,11 @@ f\'ormulas.
 Dizemos que uma f\'ormula $\alpha$ \'e consequ\^encia l\'ogica de um
 conjunto de f\'ormulas $\Gamma$, $\Gamma \models \alpha$, se, e
 somente se sempre que toda f\'ormula em $\Gamma$ for verdadeira,
-$\alpha$ tamb\'em o \'e.
+$\alpha$ tamb\'em o \'e. Isto \'e, se
+\[
+     \left(\bigwedge_{\varphi\in\Gamma}\varphi\right)\to \alpha
+\] 
+\'e uma tautologia.
 \end{Definition}
 
 Uma maneira para determinarmos se uma f\'ormula $\alpha$ \'e
@@ -919,5 +923,49 @@ em que a vari\'avel $A$ denota ``Hoje \'e segunda-feira'' e $B$,
 De acordo com a interpreta\c{c}\~ao usual da l\'ingua portuguesa,
 temos que ``Hoje irei a reuni\~ao'' \'e uma consequ\^encia de ``Se
 hoje for segunda-feira, irei a reuni\~ao'' e ``hoje \'e
-segunda-feira''. Desta forma, em  
+segunda-feira''. Mas ser\'a que a defini\c{c}\~ao formal de
+consequ\^encia l\'ogica, coincide com a no\c{c}\~ao usual de
+consequ\^encias dedutivas utilizadas coloquialmente na l\'ingua
+portuguesa?
+
+Considerando as f\'ormulas $A\to B$, $A$ e $B$ que
+modelam estas proposi\c{c}\~oes citadas, temos que se  $B$ \'e uma
+consequ\^encia de $A \to B$ e $A$ se $[(A\to B)\land A]\to B$ \'e uma
+tautologia, o que pode ser verificado pela tabela verdade abaixo:
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+$A$ & $B$ & $A\to B$ & $(A\to B)\land A$ & $[(A\to B)\land A]\to B$\\
+\hline
+\F   & \F    &     \T       &      \F                     & \T \\
+\F   & \T    &     \T       &     \F                      & \T \\
+\T   & \F    &     \F       &     \F                      & \T \\
+\T   & \T   &     \T        &    \T                       & \T \\ \hline 
+\end{tabular}
+\centering
+\end{table}
+
+Desta maneira, temos que a f\'ormula $B$ \'e uma consequ\^encia
+l\'ogica de $A \to B$ e $A$.
 \end{Example}
+
+Logo, podemos utilizar tabelas verdade para determinar a validade de
+consequ\^encias l\'ogicas. Um inconveniente desta abordagem \'e que,
+como j\'a apresentado na Se\c{c}\~ao \ref{limitacao-tabela-verdade}, o
+n\'umero de linhas de uma tabela verdade
+para uma f\'ormula com $n$ vari\'aveis \'e $2^n$.
+
+Uma alternativa ao uso de tabelas verdade para determinar a validade
+de consequ\^encias l\'ogicas \'e a utiliza\c{c}\~ao de
+\textit{Dedu\c{c}\~ao Natural}. A dedu\c{c}\~ao natural \'e um sistema
+formal que permite o racioc\'inio dedutivo com base no significado dos
+conectivos l\'ogicos sem a necessidade de utilizar tabelas verdade ou
+avaliar express\~oes l\'ogicas. 
+
+\begin{Definition}[Sequente]
+Sejam $\alpha_1,...,\alpha_n,\varphi$ f\'ormulas bem formadas da
+l\'ogica proposicional. A nota\c{c}\~ao
+$\alpha_1,...,\alpha_n\,\vdash\,\varphi$ \'e denominada de sequente e
+representa que $\varphi$ pode ser deduzida a partir de
+$\alpha_1,...,\alpha_n$ utilizando as regras da dedu\c{c}\~ao natural.
+\end{Definition}

@@ -133,14 +133,14 @@ A definição \ref{def:sem:Nat} determina, de fato, a função semântica $\llbr
 A linguagem $\TList\,\TType$ pode também ser interpretada sobre alguma estrutura matemática apropriada. Uma possível definição da  semântica de $\TList\,\TType$ será  apresentada mais adiante. Por enquanto, vamos tomar como base nossa interpretação informal dos termos dessa linguagem como listas, e vamos mostrar, por meio de alguns exemplos, como podemos definir funções, sobre listas representadas por esses termos. Tal como no caso da função semântica, a definição de cada uma dessas funções é também baseadaa na estrutura sintática dos termos da linguagem.
 
 \begin{Definition}[\textbf{Comprimento de uma lista}]
-A função $\length : \TList\,\TType \rightarrow \mathbb{N}$, recebe como argumento uma lista, representada como um termos de $\TList\,\TType$, e retorna o número de elementos, ou seja, o comprimento, da lista dada. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TList\,\TType$, do seguinte modo:
+A função $\length : \TList\,\TType \rightarrow \mathbb{N}$, recebe como argumento uma lista, representada como um termo de $\TList\,\TType$, e retorna o número de elementos, ou seja, o comprimento, da lista dada. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TList\,\TType$, do seguinte modo:
 \[
 \begin{array}{lclr}
   \length\,\,[\,] & = & 0 & (1)\\
   \length\,\,(t :: ts) & = & 1 + \length\,\, ts & (2)
 \end{array}
 \]
-Note que a definição acima determina a função $\length : \TList\,\TType \rightarrow \mathbb{N}$, pois: 1) a definição \'e total, já que existe uma equação para cada regra da definição da sintaxe de $\TList\,\TType$; e 3) termina sempre, pois inclui um caso base (a definição de $\length$ para a lista vazia) e, no caso recursivo, a definição para uma lista da forma $(t :: ts)$ é dada apenas em termos da sublista $ts$, que possui um elemento a menos do que a lista original $(t::ts)$.
+Note que a definição acima determina a função $\length : \TList\,\TType \rightarrow \mathbb{N}$, pois: 1) a definição \'e total, já que existe uma equação para cada regra da definição da sintaxe de $\TList\,\TType$; e 2) termina sempre, pois inclui um caso base (a definição de $\length$ para a lista vazia) e, no caso recursivo, a definição para uma lista da forma $(t :: ts)$ é dada apenas em termos da sublista $ts$, que possui um elemento a menos do que a lista original $(t::ts)$.
 \end{Definition}
 
 \begin{Example}
@@ -183,7 +183,7 @@ O cálculo do valor de $(T :: F :: [\,])\,\text{++}\,(F :: F :: [\,])$ é ilustr
 \end{Example}
 
 \begin{Definition}[\textbf{Expressões aritméticas}]\label{def:sem:Exp}
-Uma maneira natural interpretar a linguagem $\TExp$ é ver cada termo como uma  expressão arimética sobre números naturais, envolvendo os operadores de adição ($+$) e multiplicação ($\times$). Com essa interpretação em mente, vamos definir uma função $\evalExp : \TExp \rightarrow \mathbb{N}$, que mapeia cada termo de $\TExp$ no valor resultante da avaliação da expressão aritmética correspondente. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TExp$, tal como mostrado a seguir. A definição usa da função  $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$, definida anteriormente.
+Uma maneira natural de interpretar a linguagem $\TExp$ é ver cada termo como uma  expressão arimética sobre números naturais, envolvendo os operadores de adição ($+$) e multiplicação ($\times$). Com essa interpretação em mente, vamos definir uma função $\evalExp : \TExp \rightarrow \mathbb{N}$, que mapeia cada termo de $\TExp$ no valor resultante da avaliação da expressão aritmética correspondente. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TExp$, tal como mostrado a seguir. A definição usa da função  $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$, definida anteriormente.
 \[
 \begin{array}{lcl}
 \evalExp\, (\tconst\, n)  & = & \llbracket n \rrbracket \\
@@ -224,7 +224,7 @@ Na se\c{c}\~ao \ref{cap1:coq}, a seguir, você vai aprender a descrever, em Coq,
 
 \section{Introdu\c{c}\~ao ao Assistente de Provas Coq}\label{cap1:coq}
 
-Um assistente de provas \'e uma ferramenta de software para auxílio no desenvolvimento de provas de teoremas, provas de propriedades de programas ou de circuitos integrados, etc. Essa ferramente inclui uma linguagem de programa\c{c}\~ao, que possibilita descrever  algoritmos e provas matem\'aticas. Nesta seção, introduzimos alguns conceitos relacionados à construção de programas e provas em Coq, com o objetivo de que você possa utilizar essa ferramenta para a implementação de provas apresentadas longo deste texto. Para uma descrição detalhada sobre o ambiente de desenvolvimento de Coq (CoqIDE), ou sobre sua linguagem de programação (Gallina), consulte a documentação disponível na página web \url{coq.inria.fr}, ou a bibliografia sugerida no final deste capítulo. 
+Um assistente de provas \'e uma ferramenta de software para auxílio no desenvolvimento de provas de teoremas, provas de propriedades de programas ou de circuitos integrados, etc. Essa ferramenta inclui uma linguagem de programa\c{c}\~ao, que possibilita descrever  algoritmos e provas matem\'aticas. Nesta seção, introduzimos alguns conceitos relacionados à construção de programas e provas em Coq, com o objetivo de que você possa utilizar essa ferramenta para a implementação de provas apresentadas ao longo deste texto. Para uma descrição detalhada sobre o ambiente de desenvolvimento de Coq (CoqIDE), ou sobre sua linguagem de programação (Gallina), consulte a documentação disponível na página web \url{coq.inria.fr}, ou a bibliografia sugerida no final deste capítulo. 
 
 \subsection{Representando Sintaxe em Coq}
 
@@ -279,7 +279,7 @@ Inductive Exp : Set :=
 \end{lstlisting}
 
 
-Assim como para o caso de listas, também define também uma notação mais conveniente para que se possa escrever valores do tipo \texttt{Exp}, utilizando os operadores \texttt{(:+)} e \texttt{(:*)}, em lugar dos construtores \texttt{Plus} e \texttt{Times}, respectivamente. Desse modo, as expressões \texttt{myExp'} e \texttt{myExp}, definidas a seguir, são idênticas, exceto que \texttt{myExp} usa a nova notação e \texttt{myExp'} usa os construtores originais.
+Assim como para o caso de listas, definiremos uma notação mais conveniente para que se possa escrever valores do tipo \texttt{Exp}, utilizando os operadores \texttt{(:+)} e \texttt{(:*)}, em lugar dos construtores \texttt{Plus} e \texttt{Times}, respectivamente. Desse modo, as expressões \texttt{myExp'} e \texttt{myExp}, definidas a seguir, são idênticas, exceto que \texttt{myExp} usa a nova notação e \texttt{myExp'} usa os construtores originais.
 \begin{lstlisting}
 Definition myExp' : Exp := 
       Plus (Const Zero) (Const (Suc Zero)).
@@ -287,7 +287,7 @@ Definition myExp : Exp :=
       (Const Zero) :+ (Const (Suc Zero)).
 \end{lstlisting}
 
-\subsection{Representanto Sem\^antica em Coq}
+\subsection{Representando Sem\^antica em Coq}
 
 Conforme vimos na se\c{c}\~ao \ref{cap1:sem}, a sem\^antica de uma linguagem pode ser definida indutivamente, sobre a estrutura sint\'atica dos termos dessa linguagem. Além disso, para que essa defini\c{c}\~ao recursiva determine uma fun\c{c}\~ao semântica, ela deve satisfazer os crit\'erios de totalidade e termina\c{c}\~ao.
 
@@ -295,7 +295,7 @@ Em Coq, toda fun\c{c}\~ao (recursiva ou n\~ao) deve satisfazer os crit\'erios de
 utilizado como um verificador de provas. Se uma defini\c{c}\~ao n\~ao satisfaz  esses crit\'erios, é emitida uma mensagem de erro. 
 
 Como primeiro exemplo, vamos escrever, em Coq, uma definição de semântica para o tipo
-\texttt{Bool}. Como vimos na sec\c{c}\~ao \ref{cap1:sem}, podemos definir a sem\^antica para o conjunto $\Bool$ como uma função $\llbracket\,\rrbracket : \Bool \rightarrow \mathbb{Bool}$, que associa a $T$ o valor $1$, e associa a $F$ o valor $0$.
+\texttt{Bool}. Como vimos na sec\c{c}\~ao \ref{cap1:sem}, podemos definir a sem\^antica para o conjunto $\Bool$ como uma função $\llbracket\,\rrbracket : \Bool \rightarrow \mathbb{N}$, que associa a $T$ o valor $1$, e associa a $F$ o valor $0$.
 Essa função semântica pode ser definida, em Coq, sobre o tipo \texttt{Bool}, do seguinte modo:
 \begin{lstlisting}
 Definition BoolSem (b : Bool) : nat :=
@@ -325,9 +325,9 @@ Fixpoint NatSem (n : Nat) : nat :=
 
 A função semântica \texttt{NatSem} tem como parâmetro um valor \texttt{n}, do tipo \texttt{Nat}. Conforme especificado pelo casamento de padrão usado na definição de \texttt{NatSem}, esse valor pode ser de um dos dois seguintes tipos: \texttt{Zero}, ou \texttt{Suc n'}, para algum valor \texttt{n'}, do tipo \texttt{Nat}. Uma variável usada em um casamento de padrão, tal como \texttt{n'}, no padrão \texttt{Suc n'}, casa com qualquer valor. Por exemplo, na avaliação da expressão \texttt{NatSem (Suc (Suc Zero))}, o argumento \texttt{(Suc (Suc Zero))} casa com o padrão \texttt{Suc n'}, sendo o valor \texttt{(Suc Zero)} associado à variável \texttt{n'}. Desse modo, na chamada recursiva, o argumento de \texttt{NatSem} será \texttt{(Suc Zero)}. 
 
-Note que a definição recursiva de \texttt{NatSem} \'e total, pois todo valor de tipo \texttt{Nat}, ou \'e igual a \texttt{Zero}, ou é igual a \texttt{Suc n}, para algum \texttt{n} de tipo \texttt{Nat}). Além disso, a recursão sempre termina, pois, na chamada recursiva, o  n\'umero de constantes \texttt{Suc} presentes no termo passado como argumento é decrescido de 1, eventualmente reduzindo o termo ao caso base \texttt{Zero}.
+Note que a definição recursiva de \texttt{NatSem} \'e total, pois todo valor de tipo \texttt{Nat}, ou \'e igual a \texttt{Zero}, ou é igual a \texttt{Suc n}, para algum \texttt{n} de tipo \texttt{Nat}. Além disso, a recursão sempre termina, pois, na chamada recursiva, o  n\'umero de constantes \texttt{Suc} presentes no termo passado como argumento é decrescido de 1, eventualmente reduzindo o termo ao caso base \texttt{Zero}.
 
-Os exemplos a seguir ilustram a implementação, em Coq, de funções definidas sobre listas. A função \texttt{length} recebe como argumento uma lista e retorna o número de elementos dessa lista. A função \texttt{app} recebe como argumentos duas listas e retorna a lista obtida concatenand-se a segunda lista depois da primeira. 
+Os exemplos a seguir ilustram a implementação, em Coq, de funções definidas sobre listas. A função \texttt{length} recebe como argumento uma lista e retorna o número de elementos dessa lista. A função \texttt{app} recebe como argumentos duas listas e retorna a lista obtida concatenando-se a segunda lista depois da primeira. 
 
 \begin{lstlisting}
 Fixpoint length {T} (l : List T) : nat :=
