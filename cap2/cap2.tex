@@ -850,45 +850,16 @@ contendo $n$ vari\'aveis possuir\'a $2^n$ linhas, o que limita a
 utilização de tabelas verdades  para soluç\~oes de problemas
 pr\'aticos. 
 
-\subsection{Exerc\'icios}
+\subsection{Consequ\^encia l\'ogica}\label{consequencia-logica}
 
-\begin{enumerate}
-	\item Construa tabelas verdade para as f\'ormulas a seguir e
-          classifique-as como sendo tautologias, conting\^encias ou contradi\c{c}\~oes: 
-	\begin{enumerate}
-		\item $(A\rightarrow B)\leftrightarrow\neg A\lor B$
-		\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
-		\item $A\land\neg (\neg A\lor \neg B)$
-		\item $A\land B\rightarrow\neg A$
-		\item $(A\rightarrow B)\rightarrow[(A\lor C)\rightarrow (B\lor C)]$
-		\item $A\rightarrow(B\rightarrow A)$
-		\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
-	\end{enumerate}
-        \item Determine se as seguintes f\'ormulas s\~ao ou n\~ao
-          equivalentes.
-         \begin{enumerate}
-		\item $P\leftrightarrow Q$ e $(P\rightarrow Q)\land(\neg P\rightarrow \neg Q)$
-		\item $(P\land\neg Q)\lor (\neg P\land Q)$ e $(P\lor Q)\land\neg(P\land Q)$
-          \end{enumerate}
-          \item Suponha que voc\^e possua um algoritmo que a partir de
-            uma f\'ormula $\alpha$ da l\'ogica responda sim se esta
-            \'e satisfaz\'ivel e falso, caso contr\'ario. Explique
-            como usar esse algoritmo para determinar se uma f\'ormula
-            \'e uma:
-            \begin{enumerate}
-              \item Tautologia
-              \item Contradi\c{c}\~ao
-             \end{enumerate}
-\end{enumerate}
-
-
-\section{Dedu\c{c}\~ao Natural para L\'ogica Proposicional}
-
-A dedu\c{c}\~ao natural \'e um sistema formal que permite-nos deduzir
-consequ\^encias a partir de um conjunto de f\'ormulas. Antes de
-apresentarmos este sistema, devemos definir formalmente o que
-significa uma f\'ormula ser consequ\^encia de um conjunto de
-f\'ormulas.
+A no\c{c}\~ao de consequ\^encia l\'ogica \'e um dos mais importantes
+conceitos no estudo de l\'ogica. Informalmente, a consequ\^encia
+l\'ogica expressa quando um argumento l\'ogico \'e considerado
+v\'alido. Dizemos que argumentos s\~ao v\'alidos se sua conclus\~ao
+\'e uma consequ\^encia de suas premissas (tamb\'em chamadas de hip\'oteses), em que tanto a conclus\~ao
+quanto as premissas s\~ao proposi\c{c}\~oes. A pr\'oxima
+defini\c{c}\~ao descreve de maneira precisa o que \'e uma
+consequ\^encia l\'ogica.
 
 \begin{Definition}[Consequ\^encia L\'ogica]
 Dizemos que uma f\'ormula $\alpha$ \'e consequ\^encia l\'ogica de um
@@ -951,18 +922,71 @@ Desta maneira, temos que a f\'ormula $B$ \'e uma consequ\^encia
 l\'ogica de $A \to B$ e $A$.
 \end{Example}
 
-Logo, podemos utilizar tabelas verdade para determinar a validade de
-consequ\^encias l\'ogicas. Um inconveniente desta abordagem \'e que,
-como j\'a apresentado na Se\c{c}\~ao \ref{limitacao-tabela-verdade}, o
-n\'umero de linhas de uma tabela verdade
-para uma f\'ormula com $n$ vari\'aveis \'e $2^n$.
+Evidentemente, utilizar tabelas verdade para determinar
+consequ\^encias l\'ogicas possui o inconveniente de que tabelas
+verdade s\~ao exponenciais no n\'umero de vari\'aveis presentes em uma
+f\'ormula, logo, mesmo para senten\c{c}as envolvendo poucas
+proposi\c{c}\~oes, o uso de tabelas verdade para verificar a validade
+de argumentos \'e impratic\'avel, como j\'a apresentado na se\c{c}\~ao 
+\ref{limitacao-tabela-verdade}. Na se\c{c}\~ao
+\ref{deducao-natural-proposicional}, apresentaremos o sistema de
+dedu\c{c}\~ao natural para l\'ogica proposicional que permite
+verificar consequ\^encias l\'ogicas sem a constru\c{c}\~ao de uma
+tabela verdade.
 
-Uma alternativa ao uso de tabelas verdade para determinar a validade
-de consequ\^encias l\'ogicas \'e a utiliza\c{c}\~ao de
-\textit{Dedu\c{c}\~ao Natural}. A dedu\c{c}\~ao natural \'e um sistema
-formal que permite o racioc\'inio dedutivo com base no significado dos
-conectivos l\'ogicos sem a necessidade de utilizar tabelas verdade ou
-avaliar express\~oes l\'ogicas. 
+\subsection{Exerc\'icios}
+
+\begin{enumerate}
+        \item Obtenha o conjunto de subf\'ormulas de cada f\'ormula a
+          seguir utilizando a defini\c{c}\~ao \ref{cap1sub}.
+        \begin{enumerate}
+           \item $P\lor Q \rightarrow Q \lor P$
+           \item $((P\land Q)\lor (P\land R))\leftrightarrow(P\land (Q\lor R))$
+           \item $(P\rightarrow Q) \land P\land \neg Q$
+           \item $(P \rightarrow Q)\land \neg P \rightarrow Q$
+        \end{enumerate}
+	\item Construa tabelas verdade para as f\'ormulas a seguir e
+          classifique-as como sendo tautologias, conting\^encias ou contradi\c{c}\~oes: 
+	\begin{enumerate}
+		\item $(A\rightarrow B)\leftrightarrow\neg A\lor B$
+		\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
+		\item $A\land\neg (\neg A\lor \neg B)$
+		\item $A\land B\rightarrow\neg A$
+		\item $(A\rightarrow B)\rightarrow[(A\lor C)\rightarrow (B\lor C)]$
+		\item $A\rightarrow(B\rightarrow A)$
+		\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
+	\end{enumerate}
+        \item Determine se as seguintes f\'ormulas s\~ao ou n\~ao
+          equivalentes.
+         \begin{enumerate}
+		\item $P\leftrightarrow Q$ e $(P\rightarrow Q)\land(\neg P\rightarrow \neg Q)$
+		\item $(P\land\neg Q)\lor (\neg P\land Q)$ e $(P\lor Q)\land\neg(P\land Q)$
+          \end{enumerate}
+          \item Suponha que voc\^e possua um algoritmo que a partir de
+            uma f\'ormula $\alpha$ da l\'ogica responda sim se esta
+            \'e satisfaz\'ivel e falso, caso contr\'ario. Explique
+            como usar esse algoritmo para determinar se uma f\'ormula
+            \'e uma:
+            \begin{enumerate}
+              \item Tautologia
+              \item Contradi\c{c}\~ao
+             \end{enumerate}
+\end{enumerate}
+
+
+\section{Dedu\c{c}\~ao Natural para L\'ogica Proposicional}\label{deducao-natural-proposicional}
+
+A dedu\c{c}\~ao natural \'e um sistema formal que permite a
+dedu\c{c}\~ao de consequ\^encias l\'ogicas sem a necessidade de
+substituir vari\'aveis por valores l\'ogicos ou avaliar express\~oes.
+O formalismo de dedu\c{c}\~ao natural \'e intensivamente estudado por
+cientistas da computa\c{c}\~ao, uma vez que este \'e o formalismo
+subjacente a ferramentas para verifica\c{c}\~ao de provas por
+computador como Coq.
+
+De maneira simples, a dedu\c{c}\~ao natural consiste de um conjunto de
+regras que permitem estabelecer a validade de argumentos representados
+como sequentes, que s\~ao definidos a seguir.
 
 \begin{Definition}[Sequente]
 Sejam $\alpha_1,...,\alpha_n,\varphi$ f\'ormulas bem formadas da
@@ -971,3 +995,427 @@ $\alpha_1,...,\alpha_n\,\vdash\,\varphi$ \'e denominada de sequente e
 representa que $\varphi$ pode ser deduzida a partir de
 $\alpha_1,...,\alpha_n$ utilizando as regras da dedu\c{c}\~ao natural.
 \end{Definition}
+
+Como argumentos s\~ao formados por premissas e uma conclus\~ao, temos
+que no sequente 
+\[\alpha_1,...,\alpha_n\,\vdash\,\varphi\]
+o conjunto formado pelas f\'ormulas $\alpha_i$, $1\leq i \leq n$,
+s\~ao as premissas e
+$\varphi$ a conclus\~ao do argumento representado.
+
+Para determinar a validade de argumentos utilizando dedu\c{c}\~ao
+natural, devemos ser capazes de inferir a conclus\~ao a partir das
+premissas, utilizando as regras da dedu\c{c}\~ao natural. Regras da
+dedu\c{c}\~ao natural s\~ao expressas escrevendo as premissas acima de
+uma linha horizontal que as seperam da conclus\~ao.
+
+\[
+      \infer
+           {\text{Conclus\~ao}}
+          {\text{F\'ormula}_1,...,\text{F\'ormula}_n}
+\]
+Esta nota\c{c}\~ao expressa, intuitivamente, que se formos capazes de
+determinar a validade de cada uma das f\'ormulas $\text{Formula}_i,\:
+1\leq i \leq n$, ent\~ao a Conclus\~ao tamb\'em ser\'a verdadeira. 
+
+A maioria das regras da dedu\c{c}\~ao natural podem ser dividas em duas categorias.
+Regras de introdu\c{c}\~ao s\~ao aquelas nas quais um novo conectivo
+\'e inclu\'ido na f\'ormula da conclus\~ao e s\~ao utilizadas para
+construir express\~oes mais complexas a partir de outras mais simples.
+Por sua vez, regras de elimina\c{c}\~ao possuem como premissa uma
+f\'ormula com um certo conectivo e este \'e removido da
+conclus\~ao. Estas regras s\~ao utilizadas para decompor express\~oes
+complexas em express\~oes mais simples.
+
+Visando simplificar a quantidade de regras para a dedu\c{c}\~ao
+natural, utilizaremos apenas os conectivos de disju\c{c}\~ao ($\lor$),
+conjun\c{c}\~ao ($\land$), implica\c{c}\~ao ($\to$) e a constante
+($\bot$). Esta conven\c{c}\~ao n\~ao compromete a expressividade da
+l\'ogica pois os conectivos de nega\c{c}\~ao, bicondicional e a
+constante $\top$ podem ser definidos da seguinte maneira:
+\[
+\begin{array}{lcl}
+   \neg A & \equiv & A \to \bot \\
+   A \leftrightarrow B & \equiv & (A \to B) \land (B \to A) \\
+  \top   & \equiv & \bot \to \bot
+\end{array}
+\]
+
+\'E f\'acil verificar, utilizando tabelas verdade, que as
+abrevia\c{c}\~oes anteriores s\~ao realmente equivalentes.
+As pr\'oximas se\c{c}\~oes descrevem cada uma das regras da
+dedu\c{c}\~ao natural apresentando exemplos de sua utiliza\c{c}\~ao.
+
+\subsection{Regra para identidade ($\Id$)}
+
+A primeira regra da dedu\c{c}\~ao natural expressa um fato bastante
+\'obvio: se voc\^e deseja provar que uma f\'ormula $\alpha$
+\'e verdadeira e $\alpha$ \'e uma das f\'ormulas presentes no conjunto
+de hip\'oteses, ent\~ao voc\^e pode conclu\'i-la utilizando a regra
+$\Id$, que \'e apresentada a seguir.
+
+\[
+\infer[\Id]
+         {\Gamma \vdash \alpha}
+         {\alpha \in \Gamma}
+\]
+
+Por\'em, a utiliza\c{c}\~ao do conjunto de hip\'oteses $\Gamma$, pode
+ser omitida, para facilitar a leitura das dedu\c{c}\~oes. Usando esta
+nota\c{c}\~ao simplificada, podemos expressar a regra $\Id$, da
+seguinte maneira:
+
+\[
+\infer[\Id]
+         {\alpha}
+         {}
+\]
+
+Note que na vers\~ao ``simplificada'' da regra, todas as refer\^encias
+ao conjunto de hip\'oteses $\Gamma$ foram removidas, por\'em, s\'o
+podemos utilizar esta regra se a f\'ormula $\alpha$ pertencer ao
+conjunto de hip\'oteses.
+
+\subsection{Regras para a conjun\c{c}\~ao ($\land$)}
+
+\subsubsection{Introdu\c{c}\~ao da conjun\c{c}\~ao $\andI$}
+
+De maneira simples, a regra de introdu\c{c}\~ao da conjun\c{c}\~ao
+($\{\land\,I\}$), diz que se for poss\'ivel deduzir uma f\'ormula $\alpha$, a
+partir de um conjunto de hip\'oteses (premissas) $\Gamma$ e tamb\'em
+for poss\'ivel deduzir $\beta$ a partir deste mesmo conjunto de
+hip\'oteses $\Gamma$, ent\~ao a partir de $\Gamma$ \'e poss\'ivel
+inferir $\alpha\land \beta$.  Isto \'e expresso de maneira concisa pela
+seguinte regra:
+\[
+    \infer[\andI]
+             {\Gamma\,\vdash\,\alpha \land \beta}
+             {\Gamma\,\vdash\,\alpha & \Gamma\,\vdash\, \beta}
+\]
+Como j\'a dito anteriormente, omitimos o conjunto de hip\'oteses $\Gamma$ obtendo a
+seguinte vers\~ao simplificada desta regra:
+\[
+    \infer[\andI]
+             {\alpha \land \beta}
+             {\alpha & \beta}
+\]
+Para uma melhor compreens\~ao de como construir demonstra\c{c}\~oes
+utilizando dedu\c{c}\~ao natural utilizando estas regras, considere os
+seguintes exemplos.
+
+\begin{Example}
+    Como um primeiro exemplo, considere a tarefa de determinar a
+    validade do seguinte sequente: $P, Q \,\vdash\, P \land Q$. Temos
+    que neste sequente o conjunto de hip\'oteses \'e
+    $\Gamma=\{P,Q\}$ e a conclus\~ao $P\land Q$. Este sequente pode
+    ser provado utilizando a regra $\andI$, conforme a dedu\c{c}\~ao a seguir:
+
+    \[
+         \infer[\andI] 
+                  {P \land Q}
+                  {P & Q}
+    \]
+
+    A mesma dedu\c{c}\~ao deixando o conjunto de hip\'oteses
+    expl\'icito \'e apresentada abaixo:
+
+    \[
+         \infer[\andI] 
+                  {\{P,Q\}\,\vdash\,P \land Q}
+                  {
+                    \infer[\Id]
+                             {\{P,Q\} \,\vdash\,P}
+                             {P \in \{P,Q\}}
+                    &
+                    \infer[\Id]
+                             {\{P,Q\} \,\vdash\,Q}
+                             {Q \in \{P,Q\}}
+                  }
+    \]
+    Note que o uso do conjunto de hip\'oteses torna as dedu\c{c}\~oes
+    mais verbosas e, portanto, dificulta a leitura. Por isso, vamos
+    utilizar a vers\~ao simplificada das regras, exceto em alguns
+    exemplos como este.
+\end{Example}
+
+\begin{Example}
+   Considere a tarefa de demonstrar a validade do seguinte sequente:
+   $P,\,Q,\,R\,\vdash\,(P\land Q)\land R$. Para obter a conclus\~ao a
+   partir das hip\'oteses, temos que utilizar a regra $\andI$ duas
+   vezes, uma para deduzir $P \land Q$ e outra para deduzir $(P\land
+   Q)\land R$, conforme apresentado na dedu\c{c}\~ao seguinte:
+  \[
+      \infer[\andI]
+               {(P\land Q)\land R}
+               {
+                   \infer[\andI]
+                            {P\land Q}
+                            {
+                              \infer[\Id]
+                                       {P}{}
+                               &
+                               \infer[\Id]
+                                        {Q}{}
+                            }
+                    &
+                    \infer[\Id]
+                            {R}{}
+               }
+  \]
+\end{Example}
+
+\subsubsection{Elimina\c{c}\~ao da conjun\c{c}\~ao  $\andEE$,
+  $\andED$}
+
+O conectivo de conjun\c{c}\~ao ($\land$) possui duas regras de
+elimina\c{c}\~ao. Estas regras expressam o fato de que se sabemos que
+$\alpha \land \beta$ \'e verdadeira, ent\~ao $\alpha$ \'e verdadeira e
+$\beta$ \'e verdadeiro. A regra de elimina\c{c}\~ao da conjun\c{c}\~ao
+\`a esquerda ($\andEE$) permite concluir $\alpha$ a partir de
+$\alpha\land \beta$, isto \'e, mantemos a f\'ormula \`a esquerda. Por
+sua vez, a regra de elimina\c{c}\~ao \`a direita permite concluir a
+f\'ormula \`a direita do conectivo $\land$. Ambas as regras s\~ao
+apresentadas a seguir.
+
+\[
+\begin{array}{cc}
+     \infer[\andEE]
+              {\alpha}
+              {\alpha \land \beta}
+      &
+     \infer[\andED]
+              {\beta}
+              {\alpha \land \beta}
+\end{array}
+\]
+
+Os exemplos seguintes ilustram a utiliza\c{c}\~ao destas regras.
+
+\begin{Example}
+     Utilizando as regras para conjun\c{c}\~ao podemos provar que $P,
+     Q \land R \vdash P \land R$ \'e um sequente v\'alido. Note que
+     para isso, utilizaremos as regras de introdu\c{c}\~ao e
+     elimina\c{c}\~ao a esquerda para a conjun\c{c}\~ao, conforme
+     ilustrado a seguir.
+     \[
+         \infer[\andI]
+                  {P \land R}
+                  {
+                    \infer[\Id]
+                            {P}{}
+                     &
+                     \infer[\andED]
+                              {R}
+                              {Q \land R}
+                  }
+     \]
+\end{Example}
+\begin{Example}
+     Outro sequente que podemos provar utilizando as regras para
+     conjun\c{c}\~ao \'e $P\land (Q\land R) \vdash (P \land Q) \land
+     R$, cuja dedu\c{c}\~ao \'e apresentada a seguir:
+
+    \[
+         \infer[\andI]
+                 {(P \land Q) \land R}
+                {
+                    \infer[\andI]
+                             {P\land Q}
+                             {
+                                 \infer[\andEE]
+                                          {P}
+                                          {
+                                             \infer[\Id]{P\land
+                                               (Q\land R)} {}
+                                         }
+                                  &
+                                  \infer[\andEE]
+                                           {Q}
+                                           {
+                                              \infer[\andED]
+                                                       {Q\land R}
+                                                       {
+                                                         \infer[\Id]{P\land
+                                                           (Q\land
+                                                           R)}{}
+                                                       }
+                                           }
+                             }
+                   &
+                   \infer[\andED]
+                           {R}
+                           {
+                              \infer[\andED]
+                                       {Q \land R}
+                                       {
+                                         \infer[\Id]{P\land (Q\land
+                                           R)}{}
+                                        }
+                           }
+                }
+    \]
+    Inicialmente, utilizamos a regra $\andI$ para deduzir $(P\land
+    Q)\land R$, a partir de $P\land Q$ e $R$. A dedu\c{c}\~ao de
+    $P\land Q$ utiliza $\andI$ e tr\^es elimina\c{c}\~oes da
+    conjun\c{c}\~ao sobre a hip\'otese $P \land (Q\land R)$. Para a
+    dedu\c{c}\~ao de $R$, utilizamos duas elimina\c{c}\~oes da
+    conjun\c{c}\~ao sobre $P\land (Q\land R)$.
+\end{Example}
+
+\subsection{Regras para a implica\c{c}\~ao ($\to$)}
+
+\subsubsection{Elimina\c{c}\~ao da implica\c{c}\~ao ($\to\,E$)}
+
+Em nosso cotidiano, provavelmente a regra de dedu\c{c}\~ao que mais
+utilizamos \'e a regra de elimina\c{c}\~ao da implica\c{c}\~ao,
+$\impE$. Esta regra afirma que se conseguirmos deduzir que $\alpha \to
+\beta$ \'e verdade e que $\alpha$ \'e verdade, ent\~ao, utilizando a
+regra $\impE$, podemos deduzir que $\beta$ possui o valor
+verdadeiro. Esta regra \'e apresentada a seguir:
+
+\[
+    \infer[\impE]{\beta}
+                        {\alpha \to \beta & \alpha}
+\]
+O pr\'oximos exemplo apresenta uma simples aplica\c{c}\~ao desta
+regra.
+\begin{Example}
+  O sequente $A \to B, B\to C, A \vdash A \land C$ possui a seguinte
+  demonstra\c{c}\~ao:
+  \[
+       \infer[\andI]{A \land C}
+                          {
+                            \infer[\Id]{A}{}
+                            &
+                            \infer[\impE]{C}
+                                     {
+                                       \infer[\Id]{B\to C}
+                                                      {}
+                                        &
+                                        \infer[\impE]{B}
+                                                            {
+                                                              \infer[\Id]{A
+                                                              \to B}{}
+                                                              &
+                                                              \infer[\Id]{A}{}
+                                                            }
+                                     }
+                          }
+  \]
+\end{Example}
+
+\subsubsection{Introdu\c{c}\~ao da implica\c{c}\~ao ($\impI$)}
+
+A regra de introdu\c{c}\~ao da implica\c{c}\~ao, $\impI$, especifica
+que para deduzirmos uma f\'ormula $\alpha\to\beta$, a partir de um
+conjunto de hip\'oteses $\Gamma$, devemos obter uma prova de $\beta$
+utilizando $\alpha$ como uma hip\'otese adicional. Esta regra \'e
+apresentada abaixo:
+
+\[
+     \infer[\impI]{\Gamma \vdash \alpha \to \beta}
+                        {\Gamma \cup \{\alpha\}\vdash \beta}
+\]
+
+Note que o efeito de utilizar a regra $\impI$ \'e adicionar o lado
+esquerdo da implica\c{c}\~ao a ser deduzida como uma hip\'otese
+adicional. O pr\'oximo exemplo ilustra a utiliza\c{c}\~ao desta regra.
+
+\begin{Example}
+   Considere a tarefa de deduzir que $\vdash A \land B \to A$. Note
+   que de acordo com a regra $\impI$, devemos transformar o sequente
+   $\vdash A \land B \to A$, no sequente $A \land B \vdash A$. Por sua
+   vez, o sequente $A \land B \vdash A$ pode ser deduzido de maneira
+   imediata utilizando $\andEE$. A dedu\c{c}\~ao completa \'e
+   apresentada a seguir.
+   \[
+       \infer[\impI]{\vdash A \land B \to A}
+                          {
+                            \infer[\andEE]{\{A\land B\} \vdash A}
+                                                 {
+                                                   \infer[\Id]{\{A\land
+                                                     B\} \vdash A
+                                                     \land B}
+                                                     {A\land B \in
+                                                       \{A\land B\}}
+                                                 }
+                          }
+   \]
+Neste exemplo, pode-se perceber a utilidade do s\'imbolo $\vdash$,
+tornar expl\'icita a separa\c{c}\~ao das hip\'oteses e da conclus\~ao
+de um sequente. Antes de utilizarmos a regra $\impI$, o conjunto de
+hip\'oteses deste sequente era vazio, isto \'e este sequente n\~ao
+possu\'ia hip\'oteses. Usar a regra $\impI$ nos permitiu incluir o
+lado esquerdo de $A\land B \to A$ ($A \land B$) no conjunto de
+hip\'oteses, possibilitanto assim, o t\'ermino desta dedu\c{c}\~ao.
+\end{Example}
+
+Note que ao observarmos a dedu\c{c}\~ao do exemplo anterior, esta permite-nos pensar
+que $A \land B$ \'e uma hip\'otese deste sequente, visto que aplicamos
+a regra $\Id$ para deduz\'i-la. Por\'em, a f\'ormula $A \land B$ \'e
+uma hip\'otese de ``visibilidade local'', cujo \'unico prop\'osito \'e
+possibilitar a demonstra\c{c}\~ao do sequente $A\land B \vdash
+A$. Assim que obtemos a dedu\c{c}\~ao desejada, a hip\'otese adicional
+pode ser ``descartada'', isto \'e, eliminada do conjunto de
+hip\'oteses do sequente em quest\~ao. Em nosso exemplo, a visibilidade
+da hip\'otese adicional $A \land B$ \'e toda a dedu\c{c}\~ao acima do
+uso da regra $\impI$.
+
+Em dedu\c{c}\~oes maiores, manter, de maneira consistente, quais
+hip\'oteses tempor\'arias est\~ao ou n\~ao visi\'iveis em um dado
+ponto da demonstra\c{c}\~ao pode ser uma tarefa complicada. Uma
+solu\c{c}\~ao para isso \'e manter o conjunto de hip\'oteses em todo
+ponto da dedu\c{c}\~ao, mas como j\'a argumentamos diversas vezes
+neste texto, isso prejudica o entendimento das demonstra\c{c}\~oes.
+Visando
+facilitar a legibilidade das dedu\c{c}\~oes, vamos numerar cada
+hip\'otese tempor\'aria e indicar com o mesmo n\'umero a regra que a
+introduziu. Isto permitir\'a definir a visibilidade de uma
+hip\'otese como sendo toda a dedu\c{c}\~ao ``acima'' da regra que a
+introduziu. Al\'em disso, omitiremos o conjunto de hip\'oteses da
+regra de introdu\c{c}\~ao da implica\c{c}\~ao, escrevendo-a da
+seguinte forma simplificada:
+\[
+     \infer[\impI]{\alpha\to \beta}
+                        {\alpha \vdash \beta}
+\]
+em que a nota\c{c}\~ao ``$\alpha \vdash \beta$'', denota ``deduzir
+$\beta$ utilizando $\alpha$ como hip\'otese adicional''.
+Utilizando a conven\c{c}\~ao de numera\c{c}\~ao de hip\'oteses locais
+e vers\~ao simplificada da regra $\impI$, a dedu\c{c}\~ao do
+exemplo anterior, ficaria como: 
+
+   \[
+       \infer[\impI^1]{A \land B \to A}
+                          {
+                            \infer[\andEE]{A}
+                                                 {
+                                                   \infer[\Id]{A
+                                                     \land B^1}
+                                                     {}
+                                                 }
+                          }
+   \]
+Note que a visibilidade de $A\land B$ \'e delimitada pela regra
+$\impI$ que foi numerada com o valor $1$. Este mesmo valor foi
+utilizado para marcar a utiliza\c{c}\~ao de $A\land B$ quando da
+utiliza\c{c}\~ao da regra $\Id$, para explicitar o uso de uma
+hip\'otese tempor\'aria. 
+
+\subsection{Regras para a disjun\c{c}\~ao ($\lor$)}
+
+\subsection{Exerc\'icios}
+
+\begin{enumerate}
+	\item Prove os seguintes sequentes usando dedu\c{c}\~ao natural:
+	\begin{enumerate}
+		\item $(P\land Q)\land R,\, S\land T\,\vdash\,Q\land S$
+		\item $(P\land Q)\land R\,\vdash\,(P\land R)\lor Z$
+		\item $Q\rightarrow (P\rightarrow R),\, \neg R,\, Q\, \vdash\,\neg P$
+		\item $P\,\vdash\, Q\rightarrow(P\land Q)$
+		\item $(P\rightarrow R)\land (Q\rightarrow R),\, P\land Q\,\vdash\, Q\land R$
+		\item $P\rightarrow Q, R\rightarrow S\vdash (P\lor R)\rightarrow (Q\lor S)$
+		\item $Q\rightarrow R\vdash (P\rightarrow Q)\rightarrow(P\rightarrow Q)$
+		\item $(P\land Q)\lor(P\land R)\vdash P\land(Q\lor R)$
+	\end{enumerate}
+\end{enumerate}
