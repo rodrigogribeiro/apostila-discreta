@@ -15,12 +15,12 @@ e circuitos digitais. A aplicabilidade da l\'ogica permeia diversas \'areas da c
 citaremos aqui apenas alguns exemplos:
 
 \begin{itemize}
-  \item \textbf{Engenharia de Software}: considera-se uma boa pr\'atica especificar um sistema antes 
-        de iniciar a sua codifica\c{c}\~ao. Uma das v\'arias t\'ecnicas de especifica\c{c}\~ao de 
+  \item \textbf{Engenharia de Software}: considera-se uma boa pr\'atica especificar um sistema antes
+        de iniciar a sua codifica\c{c}\~ao. Uma das v\'arias t\'ecnicas de especifica\c{c}\~ao de
         software \'e o uso de l\'ogica.
-  \item \textbf{Aplica\c{c}\~oes de Miss\~ao Cr\'itica}: dizemos que uma determinada aplica\c{c}\~ao 
+  \item \textbf{Aplica\c{c}\~oes de Miss\~ao Cr\'itica}: dizemos que uma determinada aplica\c{c}\~ao
         \'e de miss\~ao cr\'itica se essa est\'a relacionada a algum risco (de vida, elevados preju\'izos financeiros, etc.).
-        Em tais aplica\c{c}\~oes, a utiliza\c{c}\~ao de testes para garantir o funcionamento adequado 
+        Em tais aplica\c{c}\~oes, a utiliza\c{c}\~ao de testes para garantir o funcionamento adequado
         n\~ao \'e suficiente. O que espera-se \'e uma prova de corretude do programa em quest\~ao, isso \'e uma
         demonstra\c{c}\~ao de que o programa comporta-se de acordo com sua especifica\c{c}\~ao em todas as
         situa\c{c}\~oes poss\'iveis. A l\'ogica \'e a fundamenta\c{c}\~ao matem\'atica de demonstra\c{c}\~oes de
@@ -34,21 +34,21 @@ citaremos aqui apenas alguns exemplos:
          T\'ecnicas para solu\c{c}\~ao desse problema s\~ao baseadas em algoritmos eficientes para o processamento de
          f\'ormulas da l\'ogica.
    \item \textbf{Bancos de dados}: um recurso fundamental de qualquer sistema gerenciador de bancos de dados \'e uma linguagem
-         simples e expressiva para recuperar informa\c{c}\~oes nele armazenadas. A utiliza\c{c}\~ao de recursos baseados em 
-         l\'ogica \'e a chave para a expressividade de linguagens para consultas a bancos de dados.       
+         simples e expressiva para recuperar informa\c{c}\~oes nele armazenadas. A utiliza\c{c}\~ao de recursos baseados em
+         l\'ogica \'e a chave para a expressividade de linguagens para consultas a bancos de dados.
 \end{itemize}
 
 Al\'em das \'areas citadas anteriormente, a l\'ogica \'e fundamental no estudo e no projeto de linguagens de programa\c{c}\~ao
 e da teoria de computabilidade.
 
-Neste cap\'itulo, discutiremos as dificuldades presentes na utiliza\c{c}\~ao do Portugu\^es para expressar racioc\'inio 
-l\'ogico e como contorn\'a-las utilizando l\'ogica formal. Existem diversos tipos de l\'ogicas formais, cada uma com 
+Neste cap\'itulo, discutiremos as dificuldades presentes na utiliza\c{c}\~ao do Portugu\^es para expressar racioc\'inio
+l\'ogico e como contorn\'a-las utilizando l\'ogica formal. Existem diversos tipos de l\'ogicas formais, cada uma com
 uma aplica\c{c}\~ao espec\'ifica. Inicialmente consideraremos uma l\'ogica bem simples chamada de l\'ogica proposicional.
-Primeiramente, iremos analisar a sintaxe da linguagem da l\'ogica proposicional e depois consideraremos tr\^es sistemas 
-matem\'aticos para racioc\'inio sobre f\'ormulas da l\'ogica proposicional: tabelas verdade, dedu\c{c}\~ao natural e \'algebra 
+Primeiramente, iremos analisar a sintaxe da linguagem da l\'ogica proposicional e depois consideraremos tr\^es sistemas
+matem\'aticos para racioc\'inio sobre f\'ormulas da l\'ogica proposicional: tabelas verdade, dedu\c{c}\~ao natural e \'algebra
 Booleana.
 
-\emph{Tabelas verdade} definem o significado dos conectivos l\'ogicos e como eles podem ser utilizados para calcular os 
+\emph{Tabelas verdade} definem o significado dos conectivos l\'ogicos e como eles podem ser utilizados para calcular os
 valores de express\~oes e provar que duas proposi\c{c}\~oes s\~ao logicamente equivalentes. Como tabelas verdade
 expressam diretamente o siginificado de propoposi\c{c}\~oes, dizemos que essas s\~ao uma abordagem baseada em sem\^antica para l\'ogica.
 Tabelas verdade s\~ao de simples entendimento, por\'em n\~ao s\~ao \'uteis na solu\c{c}\~ao de problemas reais devido ao seu tamanho.
@@ -68,22 +68,22 @@ alg\'ebricas para a l\'ogica s\~ao fundamentais para o projeto de circuitos digi
 
 \section{Introdu\c{c}\~ao \`a L\'ogica Formal}\label{cap1:sec1}
 
-A l\'ogica formal foi inicialmente concebida na gr\'ecia antiga onde fil\'osofos desejavam ser capazes de analisar argumentos 
+A l\'ogica formal foi inicialmente concebida na gr\'ecia antiga onde fil\'osofos desejavam ser capazes de analisar argumentos
 em linguagem natural. Os gregos eram fascinados pela id\'eia de que alguns argumentos eram sempre verdadeiros e outros sempre
 falsos. Por\'em, eles rapidamente perceberam que o racioc\'inio l\'ogico \'e dif\'icil de ser analisado usando linguagens naturais
 como o Grego (ou o Portugu\^es!). Isso se deve principalmente devido \`as \emph{ambiguidades} inerentes \`as linguagens naturais.
-Uma das maneiras de se evitar essas dificuldades \'e o uso de vari\'aveis que denominaremos \emph{vari\'aveis proposicionais}. 
+Uma das maneiras de se evitar essas dificuldades \'e o uso de vari\'aveis que denominaremos \emph{vari\'aveis proposicionais}.
 
 Suponha que um conhecido lhe diga `O dia est\'a ensolarado e estou feliz`. Aparentemente essa frase possui interpreta\c{c}\~ao
 \'obvia, mas ao observ\'a-la com cuidado percebe-se que o significado dessa n\~ao \'e t\~ao evidente. Talvez essa pessoa goste
 de dias ensolarados e fica contente quando esse fato ocorre. Note que existe uma conex\~ao entre as duas partes da senten\c{c}a,
 dessa forma, a palavra `e` presente na frase `O dia est\'a ensolarado e estou feliz` significa `e, portanto`. Por\'em, essa an\'alise
-depende de nossa experi\^encia em relacionar o clima com a felicidade das pessoas. Considere agora o seguinte exemplo: 
+depende de nossa experi\^encia em relacionar o clima com a felicidade das pessoas. Considere agora o seguinte exemplo:
 `Gatos s\~ao peludos e elefantes pesados`. Essa senten\c{c}a possui a mesma estrutura do exemplo anterior, mas ningu\'em ir\'a tentar
 relacionar o peso de elefantes com a quantidade de pelos de gatos. Neste caso, a palavra `e` significa `e, tamb\'em`. Pode-se perceber que a
 palavra `e` possui diversos significados sutis, e escolhemos o significado apropriado usando nosso conhecimento do mundo \`a nossa volta.
 Perceba que as duas simples frases de exemplo consideradas ilustram as dificuldades de interpreta\c{c}\~ao que podem surgir ao se utilizar
-uma linguagem natural. As dificuldades em se dar um significado preciso a frases em linguagem natural n\~ao se restringem a somente como 
+uma linguagem natural. As dificuldades em se dar um significado preciso a frases em linguagem natural n\~ao se restringem a somente como
 intepretar a palavra `e`. O estudo preciso da sem\^antica de senten\c{c}as expressas em linguagem natural \'e objeto de estudo da lingu\'istica
 e da filosofia.
 
@@ -109,10 +109,10 @@ Sempre que poss\'ivel, ap\'os uma defini\c{c}\~ao, apresentaremos alguns exemplo
   \end{enumerate}
   Neste exemplo, temos que a senten\c{c}a $1$ \'e uma proposi\c{c}\~ao, pois o dia de hoje pode ser ou n\~ao segunda-feira tornando essa frase
   verdadeira ou falsa. A senten\c{c}a $2$ \'e uma proposi\c{c}\~ao, pois temos que $10$ n\~ao \'e menor do que $7$. Logo, o valor l\'ogico dessa
-  senten\c{c}a \'e igual a falso. A senten\c{c}a $3$ n\~ao \'e uma proposi\c{c}\~ao pois seu valor l\'ogico depende do valor atribu\'ido a 
-  vari\'avel $x$. Se $x = 2$, temos que a senten\c{c}a $3$ \'e verdadeira. A mesma senten\c{c}a $3$ \'e falsa para qualquer outro valor de $x$. 
-  Logo, como n\~ao \'e poss\'ivel determinar de maneira \'unica o valor l\'ogico da senten\c{c}a $3$, essa n\~ao \'e considerada uma 
-  proposi\c{c}\~ao. 
+  senten\c{c}a \'e igual a falso. A senten\c{c}a $3$ n\~ao \'e uma proposi\c{c}\~ao pois seu valor l\'ogico depende do valor atribu\'ido a
+  vari\'avel $x$. Se $x = 2$, temos que a senten\c{c}a $3$ \'e verdadeira. A mesma senten\c{c}a $3$ \'e falsa para qualquer outro valor de $x$.
+  Logo, como n\~ao \'e poss\'ivel determinar de maneira \'unica o valor l\'ogico da senten\c{c}a $3$, essa n\~ao \'e considerada uma
+  proposi\c{c}\~ao.
   A senten\c{c}a $4$ n\~ao \'e uma proposi\c{c}\~ao pois n\~ao \'e poss\'ivel atribuir um valor verdadeiro ou falso para uma pergunta.
   A senten\c{c}a $5$ n\~ao \'e uma proposi\c{c}\~ao pois ``ela'' n\~ao est\'a especificada. Portanto, o fato de ``ela'' ser talentosa ou n\~ao
   depende de quem \'e ``ela''. Logo, essa senten\c{c}a n\~ao \'e uma proposi\c{c}\~ao.
@@ -126,7 +126,7 @@ No conceito de proposi\c{c}\~ao est\~ao impl\'icitas duas propriedades fundament
 \end{itemize}
 
 Por\'em n\~ao \'e dif\'icil perceber que existem proposi\c{c}\~oes que s\~ao compostas por outras proposi\c{c}\~oes menores. Considere a
-seguinte frase: ``Gatos s\~ao peludos e elefantes pesados''. Esta \'e formada por duas proposi\c{c}\~oes distintas, a saber: 1) Gatos s\~ao peludos; 
+seguinte frase: ``Gatos s\~ao peludos e elefantes pesados''. Esta \'e formada por duas proposi\c{c}\~oes distintas, a saber: 1) Gatos s\~ao peludos;
 2) Elefantes s\~ao pesados. Deste exemplo podemos perceber que \'e poss\'ivel combinar proposi\c{c}\~oes menores para formar outras. Desta maneira,
 podemos classificar proposi\c{c}\~oes como sendo simples ou compostas que ser\~ao definidas a seguir.
 
@@ -134,7 +134,7 @@ podemos classificar proposi\c{c}\~oes como sendo simples ou compostas que ser\~a
    Dizemos que uma proposi\c{c}\~ao \'e simples se essa n\~ao puder
    ser decomposta em proposi\c{c}\~oes menores. Por sua vez, uma
    proposi\c{c}\~ao \'e composta caso
-   essa possa ser dividida em uma ou mais proposi\c{c}\~oes. 
+   essa possa ser dividida em uma ou mais proposi\c{c}\~oes.
 \end{Definition}
 \begin{Example}
   Classifique as seguintes proposi\c{c}\~oes como simples ou compostas. Caso a proposi\c{c}\~ao em quest\~ao seja composta, identifique
@@ -149,9 +149,9 @@ podemos classificar proposi\c{c}\~oes como sendo simples ou compostas que ser\~a
   \end{enumerate}
   A primeira proposi\c{c}\~ao \'e simples, pois n\~ao pode ser dividida em proposi\c{c}\~oes menores. Isto \'e, n\~ao poss\'ivel decompor a frase
   em ``peda\c{c}os'' de maneira que estes possam ter valores l\'ogicos verdadeiro ou falso. A proposi\c{c}\~ao 2) \'e composta, pois possui como
-  componente a proposi\c{c}\~ao ``Jo\~aozinho conta mentiras''. A proposi\c{c}\~ao 3) \'e simples. A proposi\c{c}\~ao 4) \'e composta e esta \'e 
+  componente a proposi\c{c}\~ao ``Jo\~aozinho conta mentiras''. A proposi\c{c}\~ao 3) \'e simples. A proposi\c{c}\~ao 4) \'e composta e esta \'e
   formada pelas seguintes proposi\c{c}\~oes simples: ``Cl\'eber ganhou a elei\c{c}\~ao'' e ``Os impostos ser\~ao reduzidos''. A proposi\c{c}\~ao 5)
-  tamb\'em \'e composta e \'e formada pelas proposi\c{c}\~oes: ``O processador \'e r\'apido'' e ``A impressora \'e lenta''. Finalmente, a 
+  tamb\'em \'e composta e \'e formada pelas proposi\c{c}\~oes: ``O processador \'e r\'apido'' e ``A impressora \'e lenta''. Finalmente, a
   proposi\c{c}\~ao 6) \'e tamb\'em composta e formada por ``Jo\~ao corre'' e ``Jo\~ao fica cansado''.
 \end{Example}
 
@@ -162,17 +162,17 @@ ater aos usualmente utilizados na matem\'atica. Estes s\~ao definidos a seguir.
 \begin{Definition}[Conectivos]
   Os cinco principais conectivos da l\'ogica cl\'assica expressam as seguintes no\c{c}\~oes descritas informalmente abaixo:
   \begin{itemize}
-    \item \textit{Nega\c{c}\~ao}: A proposi\c{c}\~ao afirma que certa proposi\c{c}\~ao n\~ao \'e verdadeira, ou seja, \'e falsa 
+    \item \textit{Nega\c{c}\~ao}: A proposi\c{c}\~ao afirma que certa proposi\c{c}\~ao n\~ao \'e verdadeira, ou seja, \'e falsa
           (de acordo com o princ\'ipio do terceiro exclu\'ido). Exemplo: \textit{O c\'eu n\~ao est\'a nublado hoje} diz que a
           proposi\c{c}\~ao \textit{O c\'eu est\'a nublado hoje} \'e falsa.
     \item \textit{Conjun\c{c}\~ao}: Afirma que a proposi\c{c}\~ao em quest\~ao s\'o \'e verdadeira quando as duas proposi\c{c}\~oes que
           a comp\~oe s\~ao tamb\'em verdadeiras. Exemplo: \textit{O dia est\'a lindo, embora nublado} diz que \textit{o dia est\'a lindo}
           e \textit{nublado}.
     \item \textit{Disjun\c{c}\~ao}: Afirma que pelo menos uma dentre duas proposi\c{c}\~oes \'e verdadeira. Exemplo: \textit{Diocreciano estuda
-          muito ou \'e inteligente} diz que \textit{Diocreciano estudo muito} ou \textit{Diocreciano \'e inteligente} ou 
-          \textit{Diocreciano estudo muito e \'e inteligente}. 
+          muito ou \'e inteligente} diz que \textit{Diocreciano estudo muito} ou \textit{Diocreciano \'e inteligente} ou
+          \textit{Diocreciano estudo muito e \'e inteligente}.
     \item \textit{Condicional}: Afirma que caso uma certa proposi\c{c}\~ao seja verdadeira, uma outra tamb\'em o \'e, ou seja, n\~ao \'e o caso
-          que a primeira possa ser verdadeira e a outra falsa. Exemplo: \textit{Se hoje chover, n\~ao irei \`a pra\c{c}a} diz que se a 
+          que a primeira possa ser verdadeira e a outra falsa. Exemplo: \textit{Se hoje chover, n\~ao irei \`a pra\c{c}a} diz que se a
           proposi\c{c}\~ao \textit{hoje ir\'a chover} for verdadeira ent\~ao a proposi\c{c}\~ao \textit{n\~ao irei a pra\c{c}a} tamb\'em ser\'a
           verdadeira.
      \item \textit{Bicondicional}: Afirma que uma proposi\c{c}\~ao \'e verdadeira exatamente nos casos que uma outra tamb\'em o \'e.
@@ -191,17 +191,17 @@ quaisquer.
     \textbf{Conectivo L\'ogico}  & \textbf{Express\~ao em Portugu\^es} \\ \hline
      Conjun\c{c}\~ao             & A e B; A mas B; A tamb\'em B ; A al\'em disso B\\ \hline
      Disjun\c{c}\~ao             & A ou B\\ \hline
-    \multirow{7}{*}{Condicional} 
-    & Se A, ent\~ao B \\ 
-    & A implica B     \\ 
-    & A logo, B \\ 
+    \multirow{7}{*}{Condicional}
+    & Se A, ent\~ao B \\
+    & A implica B     \\
+    & A logo, B \\
     & A s\'o se B \\
     & A somente se B\\
     & B segue de A \\
     & A \'e uma condi\c{c}\~ao suficiente para B\\
     & basta A para B \\
     & B \'e uma condi\c{c}\~ao necess\'aria para A \\ \hline
-    \multirow{2}{*}{Bicondicional} 
+    \multirow{2}{*}{Bicondicional}
     & A se e somente se B \\
     & A \'e condi\c{c}\~ao necess\'aria e suficiente para B \\ \hline
     \multirow{3}{*}{Nega\c{c}\~ao}
@@ -224,7 +224,7 @@ quaisquer.
     \item Pagarei todas minhas d\'ividas se e somente se meu sal\'ario sair.
   \end{enumerate}
   Neste exemplo, temos que o conectivo presente na proposi\c{c}\~ao 1) \'e a nega\c{c}\~ao e a proposi\c{c}\~ao 2 \'e formada por um condicional.
-  A proposi\c{c}\~ao 3) \'e formada pelo conectivo de conjun\c{c}\~ao. Por sua vez, a proposi\c{c}\~ao 4) \'e formada pelo conectivo 
+  A proposi\c{c}\~ao 3) \'e formada pelo conectivo de conjun\c{c}\~ao. Por sua vez, a proposi\c{c}\~ao 4) \'e formada pelo conectivo
   de disjun\c{c}\~ao e a proposi\c{c}\~ao 5 pelo bicondicional.
 \end{Example}
 
@@ -233,7 +233,7 @@ diversas senten\c{c}as da l\'ingua portuguesa n\~ao podem ser representadas util
 elementos que n\~ao possuem uma correspond\^encia direta com a l\'ogica proposicional podem ser ``despresados'' durante a modelagem em
 quest\~ao. Outro ponto referente a modelagem utilizando l\'ogica proposicional \'e que o conceito de proposi\c{c}\~ao simples e composta
 \'e relativo ao problema a ser representado. Por exemplo, considere a seguinte proposi\c{c}\~ao: \textit{5 n\~ao \'e um n\'umero par}. Esta
-proposi\c{c}\~ao pode ser considerada composta --- formada pela nega\c{c}\~ao de \textit{5 \'e um n\'umero par} --- ou considerada uma 
+proposi\c{c}\~ao pode ser considerada composta --- formada pela nega\c{c}\~ao de \textit{5 \'e um n\'umero par} --- ou considerada uma
 proposi\c{c}\~ao simples, indivis\'ivel. A tarefa de determinar a ``granularidade'' do que deve ser considerado como proposi\c{c}\~ao
 simples varia de problema para problema. Visando tornar esse tipo de conceito uniforme, nesta apostila adotaremos como conven\c{c}\~ao que
 uma proposi\c{c}\~ao simples \'e uma proposi\c{c}\~ao que n\~ao pode ser dividida em proposi\c{c}\~oes menores. Desta maneira, a proposi\c{c}\~ao
@@ -260,19 +260,19 @@ uma proposi\c{c}\~ao simples \'e uma proposi\c{c}\~ao que n\~ao pode ser dividid
 
 \subsection{Formalizando Senten\c{c}as}
 
-Considere as seguintes proposi\c{c}\~oes compostas: 
+Considere as seguintes proposi\c{c}\~oes compostas:
 \begin{enumerate}
    \item  O dia est\'a lindo, embora nublado.
    \item  O dia est\'a ensolarado e Jos\'e est\'a feliz.
 \end{enumerate}
-Ao observarmos estas duas proposi\c{c}\~oes, podemos dizer que estas possuem estrutura equivalente, pois ambas s\~ao formadas por 
+Ao observarmos estas duas proposi\c{c}\~oes, podemos dizer que estas possuem estrutura equivalente, pois ambas s\~ao formadas por
 duas proposi\c{c}\~oes simples e pelo conectivo de conjun\c{c}\~ao. Desta forma, podemos representar estas proposi\c{c}\~oes compostas
 de maneira mais compacta substituindo as proposi\c{c}\~oes simples que as comp\~oe por vari\'aveis. A tabela seguinte apresenta a vari\'avel
 associada a uma determinada proposi\c{c}\~ao simples para as frases anteriores.
 \begin{table}[h]
   \begin{tabular}{c|l}
     Vari\'avel & Proposi\c{c}\~ao Simples \\ \hline
-    $A$        & O dia est\'a lindo \\ 
+    $A$        & O dia est\'a lindo \\
     $B$        & O dia est\'a nublado \\
     $C$        & O dia est\'a ensolarado \\
     $D$        & Jos\'e est\'a feliz\\
@@ -325,10 +325,10 @@ $A \land B$  e $C \land D$.
 
 \section{Sintaxe da L\'ogica Proposicional}
 
-Tanto no Portugu\^es quanto na matem\'atica e nas linguagens de programa\c{c}\~ao, existem regras que determinam quando uma determinada 
+Tanto no Portugu\^es quanto na matem\'atica e nas linguagens de programa\c{c}\~ao, existem regras que determinam quando uma determinada
 senten\c{c}a \'e ou n\~ao v\'alida na linguagem em quest\~ao. Como exemplo, em linguagens de programa\c{c}\~ao, a express\~ao ``$(2 + 3$'' \'e
 considerada sintaticamente inv\'alida devido a falta do s\'imbolo ``$)$'' nesta express\~ao. Em liguagens de programa\c{c}\~ao h\'a a necessidade
-de verifica\c{c}\~ao sint\'atica, pois estamos interessados no signficado (execu\c{c}\~ao) das senten\c{c}as (programas) em quest\~ao e, 
+de verifica\c{c}\~ao sint\'atica, pois estamos interessados no signficado (execu\c{c}\~ao) das senten\c{c}as (programas) em quest\~ao e,
 formalmente, n\~ao h\'a como atribuir sem\^antica a senten\c{c}as sintaticamente incorretas.
 
 Para definir quais senten\c{c}as da l\'ogica proposicional s\~ao pass\'iveis de atribuirmos um significado preciso, iremos definir o conjunto
@@ -338,7 +338,7 @@ bem formadas, a menos que seja explicitamente dito o contr\'ario.
 \begin{Definition}[F\'ormulas Bem Formadas]\label{propsyn}
 O conjunto $\mathcal{F}$ de f\'ormulas bem formadas da l\'ogica proposicional \'e definido recursivamente da seguinte maneira:
 \begin{enumerate}
-  \item As constantes l\'ogicas $\top,\bot \in \mathcal{F}$ e denotam verdadeiro e falso respectivamente. 
+  \item As constantes l\'ogicas $\top,\bot \in \mathcal{F}$ e denotam verdadeiro e falso respectivamente.
   \item Seja $\mathcal{V}$ o conjunto (infinito) de vari\'aveis proposicionais. Ent\~ao $\mathcal{V} \subseteq \mathcal{F}$.
   \item Se $\alpha,\beta \in \mathcal{F}$, ent\~ao:
   \begin{enumerate}
@@ -397,7 +397,7 @@ conjun\c{c}\~ao possui maior preced\^encia que o condicional ($\to$).
 Outra maneira de evitar o excesso de par\^enteses \'e a
 utiliza\c{c}\~ao de crit\'erios de associatividade de
 operadores. Neste texto vamos considerar que os operadores de
-conjun\c{c}\~ao e disjun\c{c}\~ao associam \`a esquerda, isto \'e, 
+conjun\c{c}\~ao e disjun\c{c}\~ao associam \`a esquerda, isto \'e,
 temos que $A \land B \land C \land D$ denota a mesma express\~ao que
 $((A \land B) \land C) \land D$. Por sua vez, os conectivos
 condicional e bicondicional associam \`a direita, logo, temos que
@@ -421,7 +421,7 @@ $A \to (B \to (C \to D))$.
    \end{enumerate}
    \item Para cada umas das f\'ormulas seguintes, acrescente
      par\^enteses de maneira que n\~ao seja necess\'ario utilizar as
-     regras de preced\^encia entre os conectivos da l\'ogica proposicional. 
+     regras de preced\^encia entre os conectivos da l\'ogica proposicional.
    \begin{enumerate}
        \item $\neg A \land B \to C$
        \item $(A \to B) \land \neg (A \lor B \to C)$
@@ -431,18 +431,18 @@ $A \to (B \to (C \to D))$.
    \end{enumerate}
    \item Para cada uma das f\'ormulas seguintes, elimine os par\^enteses
    desnecess\'arios.
-  \begin{enumerate}			
+  \begin{enumerate}
 	\item $((A\lor B)\lor (C\lor D))$
 	\item $(A\rightarrow (B\rightarrow (A\land B)))$
 	\item $\neg(A \lor (B\land C))$
-	\item $\neg(A \land (B\lor C))$			
+	\item $\neg(A \land (B\lor C))$
   \end{enumerate}
 \end{enumerate}
 
 \section{Sem\^antica da L\'ogica Proposicional}\label{propsem}
 
 As f\'ormulas da l\'ogica proposicional, descritas na se\c{c}\~ao
-\ref{propsyn}, apesar de possu\'irem uma defini\c{c}\~ao sint\'atica, 
+\ref{propsyn}, apesar de possu\'irem uma defini\c{c}\~ao sint\'atica,
 ainda n\~ao possuem um significado matematicamente preciso. Nesta
 se\c{c}\~ao apresentaremos a sem\^antica de f\'ormulas da l\'ogica
 proposicional, que foi inicialmente concebida por Alfred Tarski na
@@ -455,14 +455,14 @@ em quest\~ao e cujo contradom\'inio \'e um conjunto com
 significado conhecido formalmente. Para a sem\^antica da l\'ogica
 proposicional, consideraremos como dom\'inio o conjunto de f\'ormulas
 bem formadas, $\mathcal{F}$, e contradom\'inio o conjunto formado
-apenas pelos valores verdadeiro e falso, $\{T,F\}$. 
+apenas pelos valores verdadeiro e falso, $\{T,F\}$.
 
 Tradicionalmente, a fun\c{c}\~ao que descreve a sem\^antica de
-f\'ormulas da l\'ogica proposicional \'e apresentada utilizando 
+f\'ormulas da l\'ogica proposicional \'e apresentada utilizando
 tabelas verdade, que descrevem o significado de conectivos em termos
 dos valores l\'ogicos das subf\'ormulas que o comp\~oe, ou seja,
 a sem\^antica deve ser definida de acordo com a estrutura da sintaxe
-das f\'ormulas. 
+das f\'ormulas.
 
 As pr\'oximas subse\c{c}\~oes definem o significado de
 cada um dos componentes da defini\c{c}\~ao de f\'ormulas bem formadas
@@ -501,7 +501,7 @@ verdade:
     \hline
     $\alpha$ & $\neg \alpha$ \\ \hline
     $F$         & $T$ \\ \hline
-    $T$         & $F$ \\ \hline 
+    $T$         & $F$ \\ \hline
   \end{tabular}
   \centering
 \end{table}
@@ -544,7 +544,7 @@ simultanemante.
 A f\'ormula $\alpha\lor\beta$ ser\'a verdadeira quando uma ou ambas
 das f\'ormulas $\alpha$ ou $\beta$ forem verdadeiras. Disso segue que
 a \'unica maneira de $\alpha\lor\beta$ possu\'irem o valor falso \'e
-quando tanto $\alpha$ quanto $\beta$ forem falsos. 
+quando tanto $\alpha$ quanto $\beta$ forem falsos.
 
 \begin{table}[h]
   \begin{tabular}{|c|c|c|}
@@ -574,10 +574,10 @@ implica $\beta$ ou ainda ``n\~ao \'e o caso que $\alpha$ \'e
 verdadeiro e $\beta$ falso''. Assim, $\alpha\to\beta$ representa que
 n\~ao \'e poss\'ivel que $\alpha$ seja verdadeiro sem que $\beta$
 tamb\'em o seja. Em outras palavras, ou $\alpha$ \'e falso ou $\alpha$
-e $\beta$ s\~ao ambos verdadeiros. 
+e $\beta$ s\~ao ambos verdadeiros.
 
 A tabela verdade para
-implica\c{c}\~ao segue diretamente da discuss\~ao anterior. 
+implica\c{c}\~ao segue diretamente da discuss\~ao anterior.
 
 \begin{table}[h]
   \begin{tabular}{|c|c|c|}
@@ -592,7 +592,7 @@ implica\c{c}\~ao segue diretamente da discuss\~ao anterior.
 \end{table}
 
 A partir da tabela anterior, podemos concluir os seguintes fatos
-\'uteis sobre a implica\c{c}\~ao: 
+\'uteis sobre a implica\c{c}\~ao:
 \begin{enumerate}
    \item Se $\alpha$ \'e falso, ent\~ao $\alpha\to\beta$ \'e
      verdadeiro, independente do valor de $\beta$.
@@ -643,7 +643,7 @@ por todas as f\'ormulas bem formadas que comp\~oes um dado termo $\alpha$.
 Dada uma f\'ormula $\alpha$, o conjunto de subf\'ormulas de $\alpha$, $sub(\alpha)$,
 \'e definido recursivamente da seguinte maneira:
 \[
-sub(\alpha) = \left\{ 
+sub(\alpha) = \left\{
     \begin{array}{ll}
          \{\alpha\} & \text{se }\alpha = \top\text{ ou }\alpha =
          \bot\text{ ou }\alpha \text{ \'e uma vari\'avel}\\
@@ -664,7 +664,7 @@ subf\'ormulas de $A \land B \to \bot$ \'e $\{A\land B \to \bot,A\land B,\bot,A,B
 que as vari\'aveis $A$, $B$, a constante $\bot$ e $A \land B \to\bot$
 pertecem ao conjunto de subf\'ormulas de $sub(A \land B
 \to\bot)$. Como $A\land B$ \'e um subtermo de $sub(A \land B \to
-\bot)$, temos que $A\land B$ tamb\'em pertence a 
+\bot)$, temos que $A\land B$ tamb\'em pertence a
 $sub(A \land B \to\bot)$.
 \end{Example}
 Como $sub(\alpha)$ \'e o conjunto de subf\'ormulas de $\alpha$, estas
@@ -683,7 +683,7 @@ tamanho(\alpha)=\left\{
                      & n = tamanho(\beta)\text{ e }n' = tamanho(\rho)
   \end{array}
                             \right .
-\]  
+\]
 Logo, podemos escrever o conjunto $sub(A \land B \to\bot)$ ordenado
 por tamanho da seguinte maneira: $\{\bot,A,B,A\land B,A\land B \to \bot\}$.
 
@@ -777,7 +777,7 @@ $(A\to B) \land (A \land \neg B)$ e sua tabela verdade:
   F & F & T & F & T & F \\
   F & T & F & F & T & F \\
   T & F & T & T & F & F \\
-  T & T & F & F & T & F \\ \hline 
+  T & T & F & F & T & F \\ \hline
 \end{array}
 \]
 \end{Example}
@@ -804,7 +804,7 @@ verdade:
   T & T & F & T & F \\ \hline
 \end{array}
 \]
-Com isso temos que $A \lor B \to \neg A$ \'e satisfaz\'ivel, pois para 
+Com isso temos que $A \lor B \to \neg A$ \'e satisfaz\'ivel, pois para
 $A = F$ e $B = F$ temos que esta f\'ormula \'e verdadeira. De maneira
 similar, para $A = T$ e $B = T$ temos que esta f\'ormula \'e falsa e,
 portanto, false\'avel. Como, $A \lor B \to \neg A$ \'e satisfaz\'ivel
@@ -825,7 +825,7 @@ satisfazibilidade de f\'ormulas da l\'ogica proposicional, pois estas
 denotam de maneira direta o significado de conectivos e
 f\'ormulas. Por\'em, a simplicidade de tabelas verdade possui um
 grande complicador: estas possuem tamanho exponencial sobre o n\'umero
-de vari\'aveis em uma dada f\'ormula. 
+de vari\'aveis em uma dada f\'ormula.
 
 Em exemplos anteriores, mostramos tabelas verdade para f\'ormulas que
 possu\'iam duas vari\'aveis. Todas estas tabelas possu\'iam 4
@@ -835,7 +835,7 @@ vari\'aveis:
 \begin{array}{|c|c|c|c|c|}
   \hline
   A & B & C & A \land B & A \land B \land C \\ \hline
-  F  & F & F & F & F \\ 
+  F  & F & F & F & F \\
   F & F & T & F & F \\
   F & T & F & F & F \\
   F  & T & T & F & F \\
@@ -848,7 +848,7 @@ vari\'aveis:
 esta possui 8 linhas. De forma geral, a tabela verdade para f\'ormulas
 contendo $n$ vari\'aveis possuir\'a $2^n$ linhas, o que limita a
 utilização de tabelas verdades  para soluç\~oes de problemas
-pr\'aticos. 
+pr\'aticos.
 
 \subsection{Consequ\^encia l\'ogica}\label{consequencia-logica}
 
@@ -868,7 +868,7 @@ somente se sempre que toda f\'ormula em $\Gamma$ for verdadeira,
 $\alpha$ tamb\'em o \'e. Isto \'e, se
 \[
      \left(\bigwedge_{\varphi\in\Gamma}\varphi\right)\to \alpha
-\] 
+\]
 \'e uma tautologia.
 \end{Definition}
 
@@ -913,7 +913,7 @@ $A$ & $B$ & $A\to B$ & $(A\to B)\land A$ & $[(A\to B)\land A]\to B$\\
 \F   & \F    &     \T       &      \F                     & \T \\
 \F   & \T    &     \T       &     \F                      & \T \\
 \T   & \F    &     \F       &     \F                      & \T \\
-\T   & \T   &     \T        &    \T                       & \T \\ \hline 
+\T   & \T   &     \T        &    \T                       & \T \\ \hline
 \end{tabular}
 \centering
 \end{table}
@@ -927,7 +927,7 @@ consequ\^encias l\'ogicas possui o inconveniente de que tabelas
 verdade s\~ao exponenciais no n\'umero de vari\'aveis presentes em uma
 f\'ormula, logo, mesmo para senten\c{c}as envolvendo poucas
 proposi\c{c}\~oes, o uso de tabelas verdade para verificar a validade
-de argumentos \'e impratic\'avel, como j\'a apresentado na se\c{c}\~ao 
+de argumentos \'e impratic\'avel, como j\'a apresentado na se\c{c}\~ao
 \ref{limitacao-tabela-verdade}. Na se\c{c}\~ao
 \ref{deducao-natural-proposicional}, apresentaremos o sistema de
 dedu\c{c}\~ao natural para l\'ogica proposicional que permite
@@ -946,7 +946,7 @@ tabela verdade.
            \item $(P \rightarrow Q)\land \neg P \rightarrow Q$
         \end{enumerate}
 	\item Construa tabelas verdade para as f\'ormulas a seguir e
-          classifique-as como sendo tautologias, conting\^encias ou contradi\c{c}\~oes: 
+          classifique-as como sendo tautologias, conting\^encias ou contradi\c{c}\~oes:
 	\begin{enumerate}
 		\item $(A\rightarrow B)\leftrightarrow\neg A\lor B$
 		\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
@@ -997,7 +997,7 @@ $\alpha_1,...,\alpha_n$ utilizando as regras da dedu\c{c}\~ao natural.
 \end{Definition}
 
 Como argumentos s\~ao formados por premissas e uma conclus\~ao, temos
-que no sequente 
+que no sequente
 \[\alpha_1,...,\alpha_n\,\vdash\,\varphi\]
 o conjunto formado pelas f\'ormulas $\alpha_i$, $1\leq i \leq n$,
 s\~ao as premissas e
@@ -1016,7 +1016,7 @@ uma linha horizontal que as seperam da conclus\~ao.
 \]
 Esta nota\c{c}\~ao expressa, intuitivamente, que se formos capazes de
 determinar a validade de cada uma das f\'ormulas $\text{Formula}_i,\:
-1\leq i \leq n$, ent\~ao a Conclus\~ao tamb\'em ser\'a verdadeira. 
+1\leq i \leq n$, ent\~ao a Conclus\~ao tamb\'em ser\'a verdadeira.
 
 A maioria das regras da dedu\c{c}\~ao natural podem ser dividas em duas categorias.
 Regras de introdu\c{c}\~ao s\~ao aquelas nas quais um novo conectivo
@@ -1111,7 +1111,7 @@ seguintes exemplos.
     ser provado utilizando a regra $\andI$, conforme a dedu\c{c}\~ao a seguir:
 
     \[
-         \infer[\andI] 
+         \infer[\andI]
                   {P \land Q}
                   {P & Q}
     \]
@@ -1120,7 +1120,7 @@ seguintes exemplos.
     expl\'icito \'e apresentada abaixo:
 
     \[
-         \infer[\andI] 
+         \infer[\andI]
                   {\{P,Q\}\,\vdash\,P \land Q}
                   {
                     \infer[\Id]
@@ -1277,7 +1277,9 @@ verdadeiro. Esta regra \'e apresentada a seguir:
     \infer[\impE]{\beta}
                         {\alpha \to \beta & \alpha}
 \]
-O pr\'oximos exemplo apresenta uma simples aplica\c{c}\~ao desta
+A regra de elimina\c{c}\~ao da implica\c{c}\~ao, $\impE$, \'e tamb\'em
+conhecida como \textit{modus ponens}.
+O pr\'oximo exemplo apresenta uma simples aplica\c{c}\~ao desta
 regra.
 \begin{Example}
   O sequente $A \to B, B\to C, A \vdash A \land C$ possui a seguinte
@@ -1383,7 +1385,7 @@ em que a nota\c{c}\~ao ``$\alpha \vdash \beta$'', denota ``deduzir
 $\beta$ utilizando $\alpha$ como hip\'otese adicional''.
 Utilizando a conven\c{c}\~ao de numera\c{c}\~ao de hip\'oteses locais
 e vers\~ao simplificada da regra $\impI$, a dedu\c{c}\~ao do
-exemplo anterior, ficaria como: 
+exemplo anterior, ficaria como:
 
    \[
        \infer[\impI^1]{A \land B \to A}
@@ -1400,9 +1402,277 @@ Note que a visibilidade de $A\land B$ \'e delimitada pela regra
 $\impI$ que foi numerada com o valor $1$. Este mesmo valor foi
 utilizado para marcar a utiliza\c{c}\~ao de $A\land B$ quando da
 utiliza\c{c}\~ao da regra $\Id$, para explicitar o uso de uma
-hip\'otese tempor\'aria. 
+hip\'otese tempor\'aria.
+
+A seguir apresentamos mais dois exemplos para estas regras.
+
+\begin{Example}
+Neste exemplo, mostraremos que se sabe-se que $A \to B$ e $B \to C$
+s\~ao verdadeiras, ent\~ao $A \to C$ tamb\'em ser\'a verdadeira. Tal
+fato \'e expresso pelo seguinte sequente: $\{A\to B,B\to C\}\vdash A
+\to C$. A dedu\c{c}\~ao \'e apresentada abaixo:
+\[
+     \infer[\impI^1]
+              {A \to C}
+              {
+                \infer[\impE]
+                         {C}
+                         {
+                           \infer[\Id]{B\to C}{} &
+                           \infer[\impE]
+                                    {B}
+                                    {
+                                      \infer[\Id]{A\to B}{} &
+                                      \infer[\Id]{A^1}{}
+                                    }
+                         }
+              }
+\]
+\end{Example}
+O pr\'oximo exemplo apresenta um resultado quase imediato utilizando a
+dedu\c{c}\~ao anterior, este resultado \'e conhecido em muitos livros
+de l\'ogica como \textit{modus tollens}.
+\begin{Example}
+O \textit{modus tollens} especifica que se $A\to B$ e $\neg B$ s\~ao
+f\'ormulas verdadeiras, ent\~ao, $\neg A$ tamb\'em deve ser
+verdadeira. Note que $\neg B \equiv B\to \bot$ . Ent\~ao, usando o
+resultado do exemplo anterior, temos que
+a partir de $A\to B$ e $B \to \bot$ podemos deduzir $A \to \bot$.
+Evidentemente, podemos deduzir este resultado sem apelar para o
+exemplo anterior. Deixamos essa dedu\c{c}\~ao como um exerc\'icio para
+o leitor.
+\end{Example}
 
 \subsection{Regras para a disjun\c{c}\~ao ($\lor$)}
+
+\subsubsection{Introdu\c{c}\~ao da disjun\c{c}\~ao $\orIE$, $\orID$}
+
+As regras para introdu\c{c}\~ao da disjun\c{c}\~ao estabelecem
+condi\c{c}\~oes que devem ser satisfeitas para que possamos deduzir
+uma f\'ormula contendo o conectivo $\lor$. Caso $\alpha$ seja
+verdadeiro, temos que  $\alpha \lor \beta$ e $\beta\lor \alpha$
+tamb\'em devem ser verdadeiros, para qualquer f\'ormula $\beta$.
+Como basta uma das f\'ormuas ser verdadeira para que toda a
+disjun\c{c}\~ao tamb\'em o seja, temos duas regras para introduzir o
+conectivo $\lor$, apresentadas a seguir:
+\[
+\begin{array}{cc}
+    \infer[\orIE]{\Gamma \vdash \alpha \lor \beta}
+                      {\Gamma \vdash \alpha}
+    &
+    \infer[\orID]{\Gamma \vdash \alpha \lor \beta}
+                      {\Gamma \vdash \beta}
+\end{array}
+\]
+Assim como em regras anteriores, omitiremos o conjunto de hip\'oteses
+$\Gamma$, obtendo as seguintes formas simplificadas das regras anteriores:
+\[
+\begin{array}{cc}
+    \infer[\orIE]{\alpha \lor \beta}
+                      {\alpha}
+    &
+    \infer[\orID]{\alpha \lor \beta}
+                      {\beta}
+\end{array}
+\]
+O pr\'oximo exemplo ilustra a utiliza\c{c}\~ao destas regras.
+\begin{Example}
+Considere a tarefa de demonstrar o seguinte sequente: $\{P \land Q\}
+\vdash P \lor Q$. Como a conclus\~ao deste sequente possui o conectivo
+$\lor$, podemos iniciar sua prova utilizando uma das regras de
+introdu\c{c}\~ao da disjun\c{c}\~ao, conforme ilustrado na
+dedu\c{c}\~ao abaixo:
+\[
+     \infer[\orID]{P \lor Q}
+                        {
+                          \infer[\andED]{Q}
+                                                {
+                                                  \infer[\Id]{P\land Q}{}
+                                                }
+                        }
+\]
+\end{Example}
+Por\'em, esta n\~ao \'e a \'unica maneira de se demonstrar esse
+sequente. Podemos deduz\'i-lo iniciando com a regra $\orIE$, conforme
+apresentado a seguir:
+\[
+     \infer[\orIE]{P \lor Q}
+                        {
+                          \infer[\andEE]{P}
+                                                {
+                                                  \infer[\Id]{P\land Q}{}
+                                                }
+                        }
+\]
+Como existem duas demonstra\c{c}\~oes para esse sequente, qual destas
+seria a correta? A resposta \'e simples: Ambas! O fato de um sequente
+admitir mais de uma demonstra\c{c}\~ao permite-nos ``escolher'' entre
+qualquer uma destas. Isso quer dizer, que podemos considerar
+diferentes dedu\c{c}\~oes de um sequente como sendo ``iguais''. Este
+fato de considerar diferentes dedu\c{c}\~oes de um mesmo sequente como
+sendo iguais \'e conhecido como \textit{irrelev\^ancia de
+  provas}\footnote{Do ingl\^es: Proof Irrelevance.}.  Note que, como
+podemos considerar ambas as provas como sendo equivalentes, n\~ao h\'a
+necessidade de se construir ambas ou de se escolher uma em detrimento
+da outra.
+
+\subsubsection{Elimina\c{c}\~ao da disjun\c{c}\~ao $\orE$}
+
+A regra de elimina\c{c}\~ao da disjun\c{c}\~ao especifica o que pode
+ser deduzido a partir do fato de que $\alpha \lor \beta$ \'e
+verdadeira. Note que, se $\alpha\lor \beta$ \'e uma f\'ormula
+verdadeira, n\~ao podemos concluir diretamente que $\alpha$ ou $\beta$
+tamb\'em devem ser verdadeiras. Isto decorre do significado da
+disjun\c{c}\~ao. Se $\alpha \lor \beta$ \'e verdadeira, temos que
+$\alpha$ pode ser verdadeira ou $\beta$ pode ser verdadeira ou
+ambas\footnote{Lembre-se da tabela verdade para a disjun\c{c}\~ao!}!
+
+Contudo, se sabemos que $\alpha \lor \beta$ \'e verdadeira e que uma
+f\'ormula $\gamma$ pode ser inferida a partir de $\alpha$ e tamb\'em
+de $\beta$, podemos ent\~ao deduzir que $\gamma$ deve ser verdadeira.
+Estas id\'eias s\~ao ilustradas pela regra de elimina\c{c}\~ao da
+disjun\c{c}\~ao, $\orE$, apresentada a seguir:
+\[
+   \infer[\orE]{\Gamma \vdash \gamma}
+                    {\Gamma \vdash \alpha \lor \beta &
+                      \Gamma\cup\{\alpha\} \vdash \gamma &
+                      \Gamma\cup\{\beta\} \vdash \gamma}
+\]
+Note que, assim como a regra $\impI$, a elimina\c{c}\~ao da
+disjun\c{c}\~ao permite a inclus\~ao de novas hip\'oteses. Novamente,
+utilizaremos a conven\c{c}\~ao de numerar as hip\'oteses tempor\'arias
+de maneira que sua visibilidade na demonstra\c{c}\~ao fique
+evidente. Eliminando as ocorr\^encias do conjunto de hip\'oteses
+$\Gamma$, podemos reescrever a regra $\orE$, da seguinte maneira:
+\[
+   \infer[\orE]{\gamma}
+                    {\alpha \lor \beta &
+                      \alpha \vdash \gamma &
+                      \beta \vdash \gamma}
+\]
+\begin{Example}
+Neste exemplo, considere a tarefa de demonstrar o seguinte sequente: $\{A\lor B, A \to C, B\to C\}
+\vdash C$. Para deduzir $C$, utilizaremos a regra $\orE$ sobre $A \lor
+B$ para obter hip\'oteses que possibilitem deduzir $C$ a partir das
+implicações $A\to C$ e $B\to C$. Esta dedução é apresentada abaixo:
+\[
+    \infer[\orE^1]{C}
+                  {\infer[\Id]{A \lor B}{} &
+                    \infer[\impE]{C}
+                             {
+                                \infer[\Id]{A\to C}{} & A^1
+                             }
+                     &
+                     \infer[\impE]{C}
+                              {
+                                 \infer[\Id]{B\to C}{} & B^1
+                              }
+                  }
+\]
+\end{Example}
+\begin{Example}
+Vamos considerar um dedução utilizando $\orE$ um pouco mais complexa:
+provar o sequente $\{(A \land B) \lor (A \land C)\}\vdash b \lor C$.
+
+Para demonstrar o sequente anterior, utilizaremos a regra $\orE$ sobre
+a hipótese $(A \land B)\lor (A \land C)$ e utilizaremos as hipóteses
+introduzidas por esta regra para deduzir $B\lor C$.
+
+\[
+\infer[\orE^1]{B \lor C}
+        {
+          \infer[\Id]{(A \land B)\lor (A\land C)}{} &
+          \infer[\orIE]{B \lor C}
+                  {
+                     \infer[\andED]{B}
+                             {
+                               \infer[\Id]{A\land B^1}{}
+                             }
+                  } &
+          \infer[\orID]{B \lor C}
+                  {
+                     \infer[\andED]{C}
+                             {
+                               \infer[\Id]{A\land C^1}{}
+                             }
+                  }
+        }
+\]
+
+\end{Example}
+
+\subsection{Contradição}
+
+A regra da contradição especifica que podemos deduzir \emph{qualquer
+  fórmula} a partir de uma dedução de $\bot$ (falso).
+
+\[
+\infer[\ctr]{\Gamma \vdash \alpha}
+                 {\Gamma \vdash \bot}
+\]
+Esta regra expressa a ``inutilidade'' de uma hipótese falsa, pois caso
+$\bot$ seja dedutível, então qualquer fórmula pode ser deduzida. Os
+próximos exemplos apresentam aplicações desta regra.
+
+\begin{Example}
+O sequente $\{A, \neg A \}\vdash B$ é provável utilizando as regras
+$\ctr$, $\impE$ e $\Id$, conforme a dedução abaixo:
+
+\[
+\infer[\ctr]{B}
+        {
+           \infer[\impE]{\bot}
+                    {
+                         \infer[\Id]{\neg A}{} &
+                         \infer[\Id]{A}{}
+                    }
+        }
+\]
+Note que implicitamente esta demonstração utiliza o fato de que $\neg
+A$ é equivalente a $A \to \bot$ para utilizar a regra $\impE$.
+\end{Example}
+O próximo exemplo mostra uma propriedade do conectivo $\lor$: se
+$A\lor B$ é verdadeiro e $\neg A$ também o é, temos que
+necessariamente $B$ deve ser verdadeiro.
+\begin{Example}
+O sequente $\{A \lor B,\neg A\}\vdash B$ possui a seguinte
+demonstração:
+\[
+\infer[\orE^1]{B}
+         {
+           \infer[\Id]{A\lor B}{} &
+           \infer[\ctr]{B}
+                  {
+                    \infer[\impE]{\bot}
+                            {
+                              \infer[\Id]{\neg A}{} &
+                              \infer[\Id]{A^1}{}
+                            }
+                  } &
+           \infer[\Id]{B^1}{}
+         }
+\]
+\end{Example}
+
+\subsection{Reductio ad Absurdum}
+
+A regra \emph{Reduction ad Absurdum} (redução ao absurdo) especifica
+que se conseguirmos deduzir $\bot$ a partir de $\neg \alpha$ então $\alpha$ deve
+ser uma fórmula verdadeira.
+
+\[
+    \infer[\raa]{\Gamma \vdash \alpha}
+                     {\Gamma\cup\{\neg \alpha\}\vdash \bot}
+\]
+
+A regra $\raa$ é a formalização lógica de um conceito amplamente
+utilizando em matemática: o de prova por contradição. Se desejamos
+demonstrar que $\alpha$ é verdadeiro, basta supor que este é falso e a
+partir desta suposição obter um resultado absurdo (contradição).
+
+Utilizando a regra $\raa$, podemos demonstrar qualquer
+sequente. Inclusive, alguns sequentes são somente demonstráveis
+utilizando esta regra.
 
 \subsection{Exerc\'icios}
 

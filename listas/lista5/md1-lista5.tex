@@ -1,0 +1,64 @@
+\documentclass[11pt,a4paper]{report}
+
+\usepackage[brazil]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{fullpage}
+%\usepackage[linesnumbered, vlined]{algorithm2e}
+
+\newcounter{conta}
+ 
+\begin{document}
+ 
+\noindent Cursos de Sistemas de Informa\c{c}\~ao / Engenharia de Computa\c{c}\~ao
+ \hfill DECEA - UFOP \\
+{\it Matem\'atica Discreta I}
+ \hfill $\mbox{2}^{\mbox{\underline{o}}}$ semestre de 2012 \\
+Professor: \parbox[t]{14cm}{Rodrigo Geraldo Ribeiro \\
+                     e-mail: rodrigogribeiro@decea.ufop.br}
+ 
+\noindent {\bf Lista de Exerc\'icios 5} \hfill {\bf Tema: Rela\c{c}\~oes}
+ 
+\vspace*{3mm}
+\begin{enumerate}
+	\item Sejam $A=\{1,2,3\}$, $B=\{4,5,6\}$, $R=\{(1,4), (1,5), (2,5), (3,6)\}$ e $S=\{(4,5), (4,6), (5,4), (6,6)\}$.
+	      Note que $R\subseteq A\times B$ e $S\subseteq B\times B$. Encontre as seguintes rela\c{c}\~oes:
+	\begin{enumerate}
+		\item $S\circ R$
+		\item $S\circ S$
+		\item $S^{-1}\circ R$
+		\item $R^{-1}\circ S$
+	\end{enumerate}
+	\item Seja $R$ uma rela\c{c}\~ao sobre um conjunto $A$. Prove que
+          $R\circ R^{-1}\subseteq i_{A}$, em que $i_{A}=\{(x,x)\,|\,x\in A\}$.
+	\item Sejam $A$ e $B$ dois conjuntos quaisquer.
+	\begin{enumerate}
+		\item Prove que para toda rela\c{c}\~ao $R\subseteq A\times B$, $R\circ i_{A} = R$
+		\item Prove que para toda rela\c{c}\~ao $R\subseteq A\times B$, $i_{B}\circ R = R$
+	\end{enumerate}
+	\item Seja $R$ uma ordem parcial sobre $A$, $B\subseteq A$ e $b\in B$.
+	\begin{enumerate}
+		\item Prove que se $b$ \'e o elemento m\'inimo de $B$, ent\~ao $b$ \'e o maior limite inferior de $B$.
+		\item Prove que se $b$ \'e o elemento m\'aximo de $B$, ent\~ao $b$ \'e o menor limite superior de $B$.
+	\end{enumerate}
+	\item Seja $R$ uma rela\c{c}\~ao reflexiva e transitiva sobre um conjunto $A$. Prove que $R\cap R^{-1}$ \'e uma 
+	      rela\c{c}\~ao de equival\^encia.
+        \item Seja $R = \{(x,x)\,|\,x\in A\}$ uma rela\c{c}\~ao sobre um
+          conjunto $A$. Prove que $R^{-1} = R$.
+        \item Seja $R\subseteq A\times B$ uma rela\c{c}\~ao definida sobre
+          conjuntos $A$ e $B$. O complemento de $R$, $\overline{R}$, \'e
+          definido como:
+          \[
+          \overline{R} = \{(x,y)\,|\,\neg xRy\}
+          \]
+          Prove que $\overline{R} = (A\times B) - R$.
+          \item Suponha que $R,S\subseteq A\times A$ sejam duas rela\c{c}\~oes
+            reflexivas. Prove que $R\cap S$ e $R\cup S$ s\~ao rela\c{c}\~ao
+            reflexivas.
+         \item Suponha que $R_1$ e $R_2$ s\~ao duas rela\c{c}\~oes
+           sobre um conjunto $A$ e que $S_1$ e $S_2$ s\~ao os fechamentos
+           reflexivos de $R_1$ e $R_2$, respectivamente. Prove que $S_1
+           \subseteq S_2$.
+\end{enumerate}
+\end{document}
