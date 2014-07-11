@@ -1670,22 +1670,107 @@ utilizando em matemática: o de prova por contradição. Se desejamos
 demonstrar que $\alpha$ é verdadeiro, basta supor que este é falso e a
 partir desta suposição obter um resultado absurdo (contradição).
 
-Utilizando a regra $\raa$, podemos demonstrar qualquer
-sequente. Inclusive, alguns sequentes são somente demonstráveis
-utilizando esta regra.
+Utilizando esta regra, podemos deduzir algumas demonstrações que não
+seriam possíveis utilizando outras regras da dedução natural. O
+seguinte exemplo, ilustra essa situação.
+
+\begin{Example}
+O seguinte sequente somente pode ser demonstrado utilizando a regra
+$\raa$: $\vdash \neg\neg A \to A$. A demonstração deste sequente é
+apresentada a seguir:
+\[
+     \infer[\impI^1]{\neg\neg A \to A}
+           {
+             \infer[\raa^2]{A}
+                      {
+                        \infer[\impE]{\bot}
+                                 {
+                                   \infer[\Id]{\neg\neg A^1}{} &
+                                   \infer[\Id]{\neg A^2}{}
+                                 }
+                      }
+           }
+\]
+Note que ao utilizarmos a regra de $\raa$, adquirimos como hipótese
+adicional $\neg A$ que possibilita a utilização da regra $\impE$, que
+conclui a demonstração.
+\end{Example}
 
 \subsection{Exerc\'icios}
 
 \begin{enumerate}
-	\item Prove os seguintes sequentes usando dedu\c{c}\~ao natural:
+	\item Prove os seguintes sequentes usando dedu\c{c}\~ao
+          natural. Tente demonstrá-los sem utilizar a regra $\raa$.
 	\begin{enumerate}
-		\item $(P\land Q)\land R,\, S\land T\,\vdash\,Q\land S$
-		\item $(P\land Q)\land R\,\vdash\,(P\land R)\lor Z$
-		\item $Q\rightarrow (P\rightarrow R),\, \neg R,\, Q\, \vdash\,\neg P$
-		\item $P\,\vdash\, Q\rightarrow(P\land Q)$
-		\item $(P\rightarrow R)\land (Q\rightarrow R),\, P\land Q\,\vdash\, Q\land R$
-		\item $P\rightarrow Q, R\rightarrow S\vdash (P\lor R)\rightarrow (Q\lor S)$
-		\item $Q\rightarrow R\vdash (P\rightarrow Q)\rightarrow(P\rightarrow Q)$
-		\item $(P\land Q)\lor(P\land R)\vdash P\land(Q\lor R)$
+		\item $\{(P\land Q)\land R,\, S\land T\}\vdash\,Q\land S$
+		\item $\{(P\land Q)\land R\}\,\vdash\,(P\land R)\lor Z$
+		\item $\{Q\rightarrow (P\rightarrow R),\, \neg R,\, Q\,\} \vdash\,\neg P$
+		\item $\{P\}\,\vdash\, Q\rightarrow(P\land Q)$
+		\item $\{(P\rightarrow R)\land (Q\rightarrow R),\, P\land Q\}\,\vdash\, Q\land R$
+		\item $\{P\rightarrow Q, R\rightarrow S\}\vdash (P\lor R)\rightarrow (Q\lor S)$
+		\item $\{Q\rightarrow R\}\vdash (P\rightarrow Q)\rightarrow(P\rightarrow Q)$
+		\item $\{(P\land Q)\lor(P\land R)\}\vdash P\land(Q\lor
+                  R)$
+                  \item $\{\neg(A \lor B)\}\vdash \neg A \land \neg B$
+                  \item $\{\neg A \land \neg B\}\vdash \neg (A\lor B)$
+                  \item $\{\neg(A \land B)\}\vdash \neg A \lor \neg B$
+                  \item $\{\neg A \lor \neg B\}\vdash \neg (A\land B)$
 	\end{enumerate}
+        \item Demonstre os seguintes sequentes. Nestes sequentes você
+          terá que utilizar a regra $\raa$ para deduzí-los.
+        \begin{enumerate}
+             \item $\{A \to B\}\vdash \neg A \lor B$
+             \item $\vdash (\neg B \to \neg A)\to (A \to B)$
+             \item $\vdash (A \to B)\to (\neg A \to B) \to B$
+             \item $\vdash ((A \to B)\to A)\to A$
+        \end{enumerate}
 \end{enumerate}
+
+\section{Álgebra Booleana para Lógica Proposicional}
+
+Até o presente momento, apresentamos duas abordagens para o estudo da
+lógica proposicional: uma baseada na semântica, utilizando tabelas
+verdade e, uma abordagem sintática utilizando regras de inferência da
+dedução natural. Além destas duas abordagens, existe uma terceira,
+a álgebra booleana, que é uma abordagem axiomática para o estudo da
+lógica.
+
+A álgebra booleana consiste de um conjunto de leis que estabelecem
+quando duas fórmulas podem ser consideradas
+logicamente equivalentes. A próxima definição apresenta o conceito de
+equivalência lógica.
+
+\begin{Definition}[Equivalência Lógica]
+Dizemos que duas
+fórmulas $\alpha$ e $\beta$ são equivalentes se estas possuem o mesmo valor lógico para
+uma mesma atribuição de valores às suas variáveis. Podemos verificar
+se $\alpha$ e $\beta$ são equivalentes se a
+fórmula $\alpha\leftrightarrow\beta$ é uma tautologia.
+\end{Definition}
+
+\begin{Example}
+As fórmulas $\neg \neg A$ e $A$ são equivalentes,
+o que pode ser verificado pela seguinte tabela verdade:
+\begin{table}[h]
+  \begin{tabular}{|c|c|c|c|} \hline
+      $A$ & $\neg A$ & $\neg \neg A$ & $\neg\neg A\leftrightarrow A$
+      \\ \hline
+      $F$ & $T$ & $F$ & $T$\\
+      $T$ & $F$ & $T$ & $T$ \\ \hline
+   \end{tabular}
+   \centering
+\end{table}
+\end{Example}
+Evidentemente, o uso de tabelas verdade para determinar a equivalência
+lógica de duas fórmulas possui o inconveniente de que tabelas verdade
+são exponenciais no número de variáveis das fórmulas envolvidas. Desta
+maneira, a álgebra booleana é uma alternativa mais eficiente para determinar
+equivalência de duas fórmulas.
+
+A álgebra booleana é uma forma de raciocínio algébrico sobre
+fórmulas, o que, de maneira simples, permite: 1) mostrar que duas
+fórmulas são iguais por meio de uma sequência de igualdades e; 2) se
+duas fórmulas são consideradas iguais, você pode utilizar esse fato
+para adicionar uma nova igualdade a uma sequência já existente. A
+noção de ``sequência de igualdades'' é formalizada em termos da
+seguinte propriedade: se $a= b$ e $b = c$ então $a = c$.
