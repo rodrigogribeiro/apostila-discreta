@@ -1897,8 +1897,8 @@ conectivos $\land$ e $\lor$.
      \centering
 \end{table}
 
-Os próximos exemplos mostram como utilizar essas regras para
-demonstrar duas equivalências.
+O próximo exemplo mostram como utilizar essas regras para
+demonstrar uma equivalência.
 
 \begin{Example}
 As fórmulas $(\bot \land A)\lor B$ e $B$ são equivalentes, o que pode
@@ -1914,6 +1914,493 @@ B
 \]
 \end{Example}
 
-\begin{Example}
+Encerraremos esta seção apresentando um conjunto de leis que descreve
+o relacionamento dos conectivos $\land$ e $\lor$ com a negação lógica
+e leis que mostram que estes conectivos distribuem um sobre o outro.
+Em álgebra, sabemos que a multiplicação distribui sobre a adição, isto
+é, para quaisquer valores numéricos $a,b$ e $c$ temos que $a \times (b
++ c) = (a\times b) + (a\times c)$. A tabela seguinte apresenta estas
+leis:
 
+\begin{table}[h]
+  \begin{tabular}{|cccl|}
+    \hline
+      $\alpha\land (\beta \lor \gamma)$ & = & $(\alpha \land
+      \beta)\lor(\alpha \land \gamma)$ &
+      $\{\land-\text{distribui}-\lor\}$\\
+        $\alpha\lor (\beta \land \gamma)$ & = & $(\alpha \lor
+      \beta)\land(\alpha \lor \gamma)$ & $\{\lor-\text{distribui}-\land\}$\\
+      $\neg (\alpha\land \beta)$ & = & $\neg \alpha \lor \neg \beta$ &
+      $\{\text{DeMorgan}-\land\}$\\
+      $\neg (\alpha\lor \beta)$ & = & $\neg \alpha \land \neg \beta$ &
+      $\{\text{DeMorgan}-\lor\}$\\
+      \hline
+  \end{tabular}
+  \centering
+\end{table}
+
+As duas últimas regras apresentadas são conhecidas como leis de
+DeMorgan e estas possuem explicações intuitivas. Por exemplo,
+$\neg (\alpha \land \beta)$ especifica que ``não é verdade que
+$\alpha$ e $\beta$ são simultaneamente verdadeiros'' logo, temos que
+ou $\alpha$ é falso ou $\beta$ é falso. Pode-se explicar a regra
+$\text{DeMorgan}-\lor$ de maneira similar.
+
+\subsection{Leis Envolvendo a Negação}
+
+As leis algébricas relacionadas com o conectivo de negação são bem
+diretas e refletem o significado deste conectivo:
+
+\begin{table}[h]
+  \begin{tabular}{|cccl|}
+    \hline
+    $\neg \top$ & = & $\bot$ & $\{\text{negação-}\top\}$\\
+    $\neg \bot$ & = & $\top$ & $\{\text{negação-}\bot\}$\\
+    $\alpha\land\neg\alpha$ & = & $\bot$ &
+    $\{\text{complemento-}\land\}$\\
+    $\alpha\lor\neg\alpha$ & = & $\top$ &
+    $\{\text{complemento-}\lor\}$\\
+    $\neg(\neg\alpha)$ & = & $\alpha$ & $\{\text{dupla-negação}\}$\\
+    \hline
+  \end{tabular}
+  \centering
+\end{table}
+
+Utilizando as leis apresentadas até o momento, podemos demonstrar a
+equivalência $A\land \neg (B \lor A) = \bot$.
+
+\begin{Example}
+A fórmula $A \land \neg (B \lor A)$ é equivalente a $\bot$, conforme
+demonstrado abaixo:
+\[
+    \begin{array}{lcl}
+      A \land \neg (B \lor A) & = & \{\text{DeMorgan}-\lor\}\\
+      A \land \neg B \land \neg A & = & \{\land-\text{comutativo}\}\\
+      A \land \neg A \land \neg B & = & \{\text{complemento}-\land\}\\
+      \bot \land \neg B & = & \{\land-\text{comutativo}\}\\
+      \neg B \land \bot & = & \{\land-\text{null}\}\\
+      \bot & &
+    \end{array}
+\]
 \end{Example}
+
+\subsection{Leis Envolvendo a Implicação e Bicondicional}
+
+As leis algébricas para a implicação e bicondicional mostram como
+expressar esses conectivos em termos de outros.
+
+\begin{table}[h]
+  \begin{tabular}{|cccl|}
+    \hline
+        $\alpha \to \beta$ & = & $\neg \alpha \lor \beta$ &
+        $\{\text{implicação}\}$\\
+        $\alpha \leftrightarrow \beta$ & = & $(\alpha \to \beta)\land
+        (\beta \to \alpha)$ & \{\text{bicondicional}\}\\
+    \hline
+  \end{tabular}
+  \centering
+\end{table}
+Usando as equivalências até aqui apresentadas, podemos demonstrar
+alguns resultados conhecidos da lógica, como por exemplo, a
+contrapositiva de uma implicação, que é apresentada no próximo
+exemplo.
+\begin{Example}
+A fórmula $A\to B$ é equivalente a $\neg B \to \neg A$, conforme
+demonstrado a seguir:
+\[
+\begin{array}{lcl}
+  A \to B & = & \{\text{implicação}\}\\
+ \neg A \lor B & = & \{\text{dupla-negação}\}\\
+\neg A \lor \neg(\neg B) & = & \{\lor-\text{comutativo}\}\\
+ \neg(\neg B) \lor \neg A & = & \{\text{implicação}\}\\
+ \neg B \to \neg A & &\\
+\end{array}
+\]
+Note que no último passo, utilizamos a regra da implicação, que
+especifica que  $\alpha \to \beta = \neg \alpha \lor \beta$, sobre a
+fórmula $\neg(\neg B)\lor \neg A$. Neste caso, temos que $\alpha =
+\neg B$ e $\beta = \neg A$, o que nos permite deduzir que
+$\neg(\neg B)\lor \neg A = \neg B \to \neg A$.
+\end{Example}
+
+Uma das aplicações da álgebra boolena é permitir expressar algumas
+funções lógicas (conectivos) em termos de outros. Por exemplo,
+utilizando as leis de DeMorgan, podemos expressar o conectivo $\land$
+em termos de $\lor$ e $\neg$, conforme apresentado abaixo:
+\[
+\begin{array}{lc}
+  A \land B & = \\
+\neg\neg A \land \neg\neg B & = \\
+\neg(\neg A \lor \neg B)
+\end{array}
+\]
+Uma vez que podemos expressar conectivos em termos de outros, cabe
+perguntar se existe um conjunto ``mínimo'' de conectivos a partir dos
+quais é possível definir todos os outros. A próxima definição
+formaliza este conceito.
+
+\begin{Definition}[Conjunto Completo de Conectivos]
+Seja
+$\mathcal{C}\subseteq\{\bot,\neg,\lor,\land,\to,\leftrightarrow\}$ um
+conjunto de conectivos. Dizemos que $\mathcal{C}$ é completo para
+$\{\bot,\neg,\lor,\land,\to,\leftrightarrow\}$ se é possível expressar
+todos os conectivos não presentes em $\mathcal{C}$ em termos dos
+conectivos presentes no conjunto $\mathcal{C}$ e variáveis.
+\end{Definition}
+
+\begin{Example}
+O conjunto $\{\neg,\lor\}$ é completo, pois é possível expressar todos
+os outros conectivos da lógica utilizando apenas $\neg$, $\lor$ e
+variáveis, conforme apresentado abaixo:
+\begin{enumerate}
+     \item A constrante $\bot$ pode ser representada como $\neg (\alpha
+       \lor \neg \alpha)$. Sabe-se que $\alpha \lor \neg \alpha= \top$, pela regra
+       $\{\lor-\text{null}\}$, e que $\bot = \neg \top$. Logo, $\bot = \neg
+       (\alpha \lor \neg \alpha)$, para qualquer fórmula $\alpha$.
+     \item Conectivo de conjunção pode ser represento por $\neg$ e
+       $\lor$ da seguinte maneira, em que $\alpha$ e $\beta$ são
+       fórmulas quaisquer:
+\[
+\begin{array}{lc}
+  \alpha \land \beta & = \\
+\neg\neg \alpha \land \neg\neg \beta & = \\
+\neg(\neg \alpha \lor \neg \beta)
+\end{array}
+\]
+    \item A implicação lógica possui representação direta:
+      $\alpha\to\beta = \neg\alpha\lor\beta$.
+    \item Finalmente, representamos o conectivo bicondicional da
+      seguinte forma:
+\[
+\begin{array}{lc}
+    \alpha\leftrightarrow\beta & =\\
+   (\alpha \to \beta)\land (\beta \to \alpha) & = \\
+   (\neg \alpha \lor \beta) \land (\neg \beta\lor \alpha)
+\end{array}
+\]
+    Agora, utilizaremos o fato de que deduzimos em um item anterior
+    que  $A \land B = \neg (\neg A \lor \neg B)$ e, consideraremos que
+   $A = \neg\alpha \lor \beta$ e $B = \neg \beta \lor \alpha$. Com
+   isso, obtemos:
+\[
+\neg(\neg (\neg\alpha \lor \beta)\lor \neg (\neg \beta \lor \alpha))
+\]
+que é a representação do conectivo bicondicional em termos de $\neg$ e $\lor$.
+\end{enumerate}
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+	\item Prove as seguintes equival\^encias usando racioc\'inio \'algebrico:
+	\begin{enumerate}
+		\item $(A\lor B)\land B\equiv B$
+		\item $(\neg A\land B)\lor (A\land\neg B)\equiv (A\lor B)\land \neg (A\land B)$
+		\item $((A\rightarrow B)\rightarrow A)\rightarrow A\equiv T$
+	\end{enumerate}
+        \item Mostre que o conjunto $\{\neg,\land\}$ é completo para
+          os conectivos
+          $\{\bot,\neg,\lor,\land,\to,\leftrightarrow\}$.
+        \item Mostre que o conjunto $\{\neg,\to\}$ é completo para os
+          conectivos $\{\bot,\neg,\lor,\land,\to,\leftrightarrow\}$.
+        \item Descreva como podemos determinar que uma fórmula é uma
+          tautologia utilizando leis da álgebra booleana.
+        \item O conectivo de negação conjunta,
+          $\alpha\downarrow\beta$, é definido como verdadeiro sempre
+          que $\alpha$ ou $\beta$ são falsos.
+         \begin{enumerate}
+              \item Apresente a tabela verdade para
+                $\alpha\downarrow\beta$.
+              \item Mostre que o conjunto $\{\bot,\downarrow\}$ é completo
+                para os conectivos $\{\bot,\neg,\lor,\land,\to,\leftrightarrow\}$.
+         \end{enumerate}
+\end{enumerate}
+
+
+\section{Formas Normais}
+
+A lógica proposicional possui diversas aplicações práticas na ciência
+da computação. Porém, algumas destas aplicações exigem que as fórmulas
+possuam uma certa estrutura. Nesta seção apresentaremos duas formas
+normais que são amplamente utilizadas: a forma normal disjuntiva,
+aplicada em minimização de fórmulas lógicas e a formal normal
+conjuntiva, utilizada como entrada para algoritmos para teste de
+satisfazibilidade.
+
+\subsection{Forma Normal Conjuntiva}
+
+A definição seguinte apresenta condições para que uma dada fórmula bem
+formada da lógica proposicional seja considerada uma fórmula na forma
+normal conjuntiva.
+
+\begin{Definition}[Forma Normal Conjuntiva]\label{FNC}
+Definimos o conjunto de fórmulas da lógica proposicional na forma
+normal conjuntiva (FNC), da seguinte maneira:
+\begin{enumerate}
+  \item As constantes lógicas $\bot$ e $\top$ são fórmulas na forma
+    normal conjuntiva.
+  \item Seja $\mathcal{V}$ o conjunto de todas as variáveis da lógica
+    proposicional. Seja $\alpha \in \mathcal{V}$ e
+    $\neg\alpha\in\mathcal{V}$ são fórmulas na forma normal
+    conjuntiva. Dá-se o nome de literal a fórmulas que são variáveis
+    ou negação de variáveis.
+  \item Seja $\{l_1,...,l_n\}$ um conjunto de $n\geq 0$
+    literais. Então, \[\bigvee_{i=1}^nl_i\] é uma fórmula na forma
+    normal conjuntiva. Dá-se o nome de cláusula a fórmulas que
+    consistem apenas de uma disjunção de literais.
+  \item Seja $\{C_1,...,C_n\}$ um conjunto de $n\geq 0$
+    cláusulas. Então, \[\bigwedge_{i=1}^nC_i\] é uma fórmula na forma
+    normal conjuntiva.
+\end{enumerate}
+\end{Definition}
+Os exemplos a seguir ilustram o conceito de fórmulas na forma normal conjuntiva.
+\begin{Example}
+São exemplos de fórmulas na forma normal conjuntiva:
+\begin{itemize}
+     \item $\bot,\top,\alpha,\neg\alpha$, em que $\alpha$ é uma
+       variável.
+     \item Sejam $x_1$, $x_2$ e $x_3$ variáveis da lógica
+       proposicional. Então $\neg x_1 \lor x_2 \lor x_3$ e $x_1\lor
+       \neg x_2 \lor \neg x_3$ são cláusulas e, portanto, são, cada
+       uma, fórmulas na forma normal conjuntiva.
+     \item Sejam $\neg x_1 \lor x_2 \lor x_3$, $x_1\lor
+       \neg x_2 \lor \neg x_3$ e $x_4 \lor \neg x_5$ cláusulas. Então, a fórmula
+       $(\neg x_1 \lor x_2 \lor x_3)\land (x_1\lor
+       \neg x_2 \lor \neg x_3) \land (x_4 \lor \neg x_5)$ está na forma normal conjuntiva.
+\end{itemize}
+Os próximos exemplos mostram fórmulas que não estão na forma normal
+conjuntiva.
+\begin{itemize}
+    \item $A \to B \land (C \leftrightarrow B)$, não está na FNC, pois possui o conectivo de
+      implicação e bicondicional.
+    \item $\neg (A \land B)$, não está na FNC, pois a negação não está
+      associada somente a variáveis.
+    \item $A\lor(B \land C)$, não está na FNC, pois, de acordo com a
+      definição \ref{FNC}, o conectivo $\lor$ ocorre apenas em
+      cláusulas e não no nível mais externo da fórmula.
+\end{itemize}
+\end{Example}
+A definição \ref{FNC} mostra que apenas um subconjunto das fórmulas
+bem formadas da lógica proposicional pode ser considerada na
+FNC. Porém, este fato não constitui uma limitação já que toda fórmula
+bem formada da lógica proposicional pode ser convertida para FNC,
+seguindo-se o algoritmo seguinte.
+\begin{algorithm}
+  \begin{algorithmic}[1]
+     \Require{Uma fórmula bem formada $\alpha$}
+     \For{Todas as subfórmulas $\beta,\gamma,\varphi$ de $\alpha$}
+         \State{Eliminar bicondicionais usando $\beta \leftrightarrow
+           \gamma = (\beta\to\gamma)\land (\gamma\to\beta)$}
+         \State{Eliminar implicações usando $\beta \to \gamma = \neg
+           \beta \lor \gamma$}
+         \State{Empurrar as negações usando as leis de
+           DeMorgan\[\begin{array}{lcl}\neg(\beta\land \gamma) & = &
+             \neg \beta \lor \neg \gamma\\ \neg(\beta \lor \gamma) & =
+             & \neg \beta \land \neg \gamma\end{array}\]  até que
+           estas fiquem associadas a variáveis}
+         \State{Elimine duplas negações usando $\neg \neg \beta  =
+           \beta$}
+         \State{Aplique, enquanto possível, a distributividade do
+           $\lor$ sobre $\land$:\[\beta\lor(\gamma \land \varphi) =
+           (\beta\lor \gamma)\land(\beta \lor \varphi))\]}
+     \EndFor
+     \State{A fórmula resultante estará na forma normal conjuntiva.}
+  \end{algorithmic}
+  \caption{Convertendo para a Forma Normal Conjuntiva}
+  \label{fncconvert}
+\end{algorithm}
+O próximo exemplo mostra como converter uma fórmula da lógica para a
+forma normal conjuntiva.
+\begin{Example}
+Mostraremos como converter a fórmula $A\to (B\land C)$ para a forma
+normal conjuntiva. Para isso, executaremos, passo a passo, o algoritmo
+\ref{fncconvert}.
+\begin{enumerate}
+  \item O passo 1 do algoritmo é desnecessário, já que a fórmula $A
+    \to (B\land C)$ não possui bicondicionais.
+  \item No passo 2, eliminamos a implicação:
+    \[A \to (B\land C) = \neg A \lor (B\land C)\]
+  \item No passo 3, não há nada a fazer já que a negação está
+    associada somente a variáveis.
+   \item No passo 4, não há nada a fazer já que não há dupla negações.
+   \item No passo 5, temos que distribuir o $\lor$ sobre o $\land$,
+     obtendo: \[\neg A \lor (B\land C) = (\neg A \lor B)\land (\neg A
+     \lor C)\]
+\end{enumerate}
+\end{Example}
+\begin{Example}
+Mostraremos como converter a fórmula $\neg (A\leftrightarrow B)$ para
+a forma normal conjuntiva, passo a passo.
+\begin{enumerate}
+  \item No passo 1, eliminamos o bicondicional
+    obtendo: \[\neg(A\leftrightarrow B) = \neg[(A \to
+    B)\land (B\to A)]\]
+  \item No passo 2, eliminamos a implicação obtendo:
+   \[\neg[(A \to
+    B)\land (B\to A)  = \neg[(\neg A \lor B) \land (\neg B \lor A)]\]
+  \item No passo 3, movemos as negações utilizando as leis de
+    DeMorgan:
+   \[
+       \begin{array}{lc}
+         \neg[(\neg A \lor B) \land (\neg B \lor A)] & =\\
+         \neg (\neg A \lor B) \lor \neg (\neg B \lor A) & = \\
+         (\neg\neg A \land \neg B) \lor (\neg\neg B\land\neg A)
+       \end{array}
+   \]
+   \item No passo 4, eliminamos as duplas negações:
+  \[         (\neg\neg A \land \neg B) \lor (\neg\neg B\land\neg A) =
+  (A \land \neg B) \lor (B\land\neg A)\]
+  \item Finalmente, no passo 5 distribuímos o $\lor$ sobre $\land$:
+  \[
+      \begin{array}{lc}
+        (A \land \neg B) \lor (B\land\neg A) & = \\
+        ((A\land \neg B) \lor B) \land ((A \land \neg B) \lor \neg A)
+        & = \\
+        ((A \lor B) \land (\neg B \lor B)) \land ((A \lor \neg A)
+        \land (\neg B \lor \neg A))
+      \end{array}
+  \]
+\end{enumerate}
+Obtendo assim a fórmula equivalente a $\neg (A\leftrightarrow B)$ na
+forma normal conjuntiva.
+\end{Example}
+
+
+\subsection{Forma Normal Disjuntiva}
+
+
+A próxima definição especifica as condições para que uma fórmula
+esteja na forma normal disjuntiva (FND).
+
+\begin{Definition}[Forma Normal Disjuntiva]\label{FND}
+Definimos o conjunto de fórmulas da lógica proposicional na forma
+normal disjuntiva  (FND), da seguinte maneira:
+\begin{enumerate}
+  \item As constantes lógicas $\bot$ e $\top$ são fórmulas na forma
+    normal disjuntiva.
+  \item Seja $\mathcal{V}$ o conjunto de todas as variáveis da lógica
+    proposicional. Seja $\alpha \in \mathcal{V}$ e
+    $\neg\alpha\in\mathcal{V}$ são fórmulas na forma normal
+    disjuntiva. Dá-se o nome de literal a fórmulas que são variáveis
+    ou negação de variáveis.
+  \item Seja $\{l_1,...,l_n\}$ um conjunto de $n\geq 0$
+    literais. Então, \[\bigwedge_{i=1}^nl_i\] é uma fórmula na forma
+    normal disjuntiva. Dá-se o nome de cláusula dual a fórmulas que
+    consistem apenas de uma conjunção de literais.
+  \item Seja $\{C_1,...,C_n\}$ um conjunto de $n\geq 0$
+    cláusulas duais. Então, \[\bigvee_{i=1}^nC_i\] é uma fórmula na forma
+    normal disjuntiva.
+\end{enumerate}
+\end{Definition}
+O seguinte algoritmo pode ser utilizado para converter qualquer
+fórmula da lógica proposicional para a forma normal disjuntiva.
+
+\begin{algorithm}
+  \begin{algorithmic}[2]
+     \Require{Uma fórmula bem formada $\alpha$}
+     \For{Todas as subfórmulas $\beta,\gamma,\varphi$ de $\alpha$}
+         \State{Eliminar bicondicionais usando $\beta \leftrightarrow
+           \gamma = (\beta\to\gamma)\land (\gamma\to\beta)$}
+         \State{Eliminar implicações usando $\beta \to \gamma = \neg
+           \beta \lor \gamma$}
+         \State{Empurrar as negações usando as leis de
+           DeMorgan\[\begin{array}{lcl}\neg(\beta\land \gamma) & = &
+             \neg \beta \lor \neg \gamma\\ \neg(\beta \lor \gamma) & =
+             & \neg \beta \land \neg \gamma\end{array}\]  até que
+           estas fiquem associadas a variáveis}
+         \State{Elimine duplas negações usando $\neg \neg \beta  =
+           \beta$}
+         \State{Aplique, enquanto possível, a distributividade do
+           $\land$ sobre $\lor$:\[\beta\land(\gamma \lor \varphi) =
+           (\beta\land \gamma)\lor(\beta \land\varphi))\]}
+     \EndFor
+     \State{A fórmula resultante estará na forma normal disjuntiva.}
+  \end{algorithmic}
+  \caption{Convertendo para a Forma Normal Disjuntiva}
+  \label{fndconvert}
+\end{algorithm}
+A seguir, os próximos exemplos mostram a conversão de duas fórmulas
+para a forma normal disjuntiva utilizando o algoritmo
+\ref{fndconvert}.
+
+\begin{Example}
+Mostraremos como converter a fórmula $A\to (B\land C)$ para a forma
+normal disjuntiva. Para isso, executaremos, passo a passo, o algoritmo
+\ref{fndconvert}.
+\begin{enumerate}
+  \item O passo 1 do algoritmo é desnecessário, já que a fórmula $A
+    \to (B\land C)$ não possui bicondicionais.
+  \item No passo 2, eliminamos a implicação:
+    \[A \to (B\land C) = \neg A \lor (B\land C)\]
+  \item No passo 3, não há nada a fazer já que a negação está
+    associada somente a variáveis.
+   \item No passo 4, não há nada a fazer já que não há dupla negações.
+   \item No passo 5, não há nada a fazer já que não há conjunções a
+     serem distribuídas sobre disjunções.
+\end{enumerate}
+\end{Example}
+\begin{Example}
+Mostraremos como converter a fórmula $\neg (A\leftrightarrow B)$ para
+a forma normal disjuntiva, passo a passo.
+\begin{enumerate}
+  \item No passo 1, eliminamos o bicondicional
+    obtendo: \[\neg(A\leftrightarrow B) = \neg[(A \to
+    B)\land (B\to A)]\]
+  \item No passo 2, eliminamos a implicação obtendo:
+   \[\neg[(A \to
+    B)\land (B\to A)  = \neg[(\neg A \lor B) \land (\neg B \lor A)]\]
+  \item No passo 3, movemos as negações utilizando as leis de
+    DeMorgan:
+   \[
+       \begin{array}{lc}
+         \neg[(\neg A \lor B) \land (\neg B \lor A)] & =\\
+         \neg (\neg A \lor B) \lor \neg (\neg B \lor A) & = \\
+         (\neg\neg A \land \neg B) \lor (\neg\neg B\land\neg A)
+       \end{array}
+   \]
+   \item No passo 4, eliminamos as duplas negações:
+  \[         (\neg\neg A \land \neg B) \lor (\neg\neg B\land\neg A) =
+  (A \land \neg B) \lor (B\land\neg A)\]
+  \item No passo 5, não há o que fazer pois não há conjunções para
+    serem distribuídas sobre disjunções. Logo, a fórmula
+   \[(A \land \neg B) \lor (B\land\neg A)\]
+   está na forma normal disjuntiva.
+\end{enumerate}
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+        \item Para cada uma das fórmulas a seguir, apresente fórmulas
+          equivalentes na forma normal conjuntiva e disjuntiva.
+	\begin{enumerate}
+		\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
+		\item $A\land\neg (\neg A\lor \neg B)$
+		\item $A\land B\rightarrow\neg A$
+		\item $(A\rightarrow B)\rightarrow[(A\lor C)\rightarrow (B\lor C)]$
+		\item $A\rightarrow(B\rightarrow A)$
+		\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
+	\end{enumerate}
+\end{enumerate}
+
+\section{Lógica Proposicional no Assistente de Provas Coq}
+
+Até o presente momento, estudamos a lógica proposicional de um ponto
+de vista matemático. Nesta seção, utilizaremos o assistente de provas
+Coq para consolidar os conceitos estudados em uma ferramenta
+computacional.
+
+\subsection{Sintaxe da Lógica Proposicional em Coq}
+
+Nesta seção descreveremos como representar a sintaxe de fórmulas da
+lógica proposicional em Coq.
+
+\subsection{Semântica da Lógica Proposicional em Coq}
+
+\subsection{Dedução Natural para Lógica Proposicional em Coq}
+
+\subsection{Álgebra Booleana para Lógica Proposicional em Coq}
+
+\section{Considerações Metamatemáticas}
+
+\section{Notas Bibliográficas}
