@@ -1737,8 +1737,8 @@ lógica.
 
 A álgebra booleana consiste de um conjunto de leis que estabelecem
 quando duas fórmulas podem ser consideradas
-logicamente equivalentes. A próxima definição apresenta o conceito de
-equivalência lógica.
+logicamente equivalentes. A próxima definição apresenta as condições
+para que duas fórmulas sejam consideradas equivalentes.
 
 \begin{Definition}[Equivalência Lógica]
 Dizemos que duas
@@ -1762,15 +1762,158 @@ o que pode ser verificado pela seguinte tabela verdade:
 \end{table}
 \end{Example}
 Evidentemente, o uso de tabelas verdade para determinar a equivalência
-lógica de duas fórmulas possui o inconveniente de que tabelas verdade
-são exponenciais no número de variáveis das fórmulas envolvidas. Desta
-maneira, a álgebra booleana é uma alternativa mais eficiente para determinar
-equivalência de duas fórmulas.
+lógica de duas fórmulas possui o inconveniente de que o númeor de
+linhas de uma tabela verdade é exponencial no número de variáveis de
+uma fórmula. O objetivo desta seção é apresentar a álgebra booleana
+que permite determinar se duas fórmulas são equivalentes sem a
+utilização de tabelas verdade.
 
 A álgebra booleana é uma forma de raciocínio algébrico sobre
 fórmulas, o que, de maneira simples, permite: 1) mostrar que duas
-fórmulas são iguais por meio de uma sequência de igualdades e; 2) se
-duas fórmulas são consideradas iguais, você pode utilizar esse fato
-para adicionar uma nova igualdade a uma sequência já existente. A
+fórmulas são iguais por meio de uma sequência de igualdades \footnote{A
 noção de ``sequência de igualdades'' é formalizada em termos da
-seguinte propriedade: se $a= b$ e $b = c$ então $a = c$.
+seguinte propriedade, denominada \emph{transitividade}: se $a= b$ e $b
+= c$ então $a = c$.} e; 2) se $x = y$ e você possui uma expressão que
+possui ocorrências de $x$, você pode substituir ocorrências de
+$x$ por $y$ nesta expressão. Essa última propriedade é conhecida como
+\emph{indiscernibilidade de valores iguais}\footnote{Essa regra é
+  comumente citada na comunidade de lógica e teoria de tipos como
+  regra de Leibniz, que pode ser expressa da seguinte maneira: Seja
+  $P$ uma propriedade qualquer, se sabemos que $x = y$ e que a
+  propriedade $P$ é verdadeira para $x$, então esta também deve ser
+  para o valor $y$.}. Como exemplo, considere
+que $x = y + 2$ e que $z = 2 \times x + 5$, usando a propriedade de
+indiscernibilidade de iguais, temos que
+\[
+\begin{array}{lcl}
+z & = & \\
+2 \times x + 5 & = & \{\text{pela def. de }z\}\\
+2\times (y + 2) & = & \{\text{por }x = y + 2\}\\
+2\times y + 4
+\end{array}
+\]
+Note que neste exemplo, envolvendo aritmética, apresentamos uma
+justificativa para cada passo da dedução de que as fórmulas $z$ e
+$2\times y + 4$ são equivalentes. Considera-se uma boa prática rotular
+cada passo de uma equação com a justificativa que permite concluir a
+próxima expressão da cadeia de igualdades. Adotaremos essa convenção
+durante a apresentação do conteúdo de álgebra booleana.
+
+\subsection{Leis da Álgebra Booleana}
+
+A álgebra boolena consiste de um conjunto de equações que descreve
+propriedades algébricas de proposições. Estas equações são normalmente
+chamadas de ``leis'', uma vez que estas são aceitas como verdadeiras a
+priori. Dizemos que uma proposição é uma lei se esta é sempre
+verdadeira, independente dos valores lógicos atribuídos às suas variáveis.
+
+As leis da álgebra boolena são análogas às leis da álgebra
+convencional. Existem leis que especificam que certos valores agem
+como elementos neutros, outras para dizer que certas operações são
+associativas e que algumas operações distribuem sobre outras. Na
+álgebra convencional, temos que a adição é associativa, isto é que
+para quaisquer valores numéricos $x$, $y$ e $z$ temos que $x + (y + z)
+= (x + y) + z$. A multiplicação, por sua vez, distribui com respeito a
+adição, isto é, para $x$, $y$ e $z$ temos que $x \times (y + z) = (x \times
+y) + (x \times z)$.  Leis similares existem para os conectivos da
+lógica proposicional. As próximas seções apresentarão estas regras.
+
+\subsection{Leis Envolvendo Constantes}
+
+As leis envolvendo constantes especificam como as constantes lógicas
+interagem com os conectivos $\land$ e $\lor$.
+
+\begin{table}[h]
+    \begin{tabular}{|cccl|}
+        \hline
+             $\alpha \land \bot$ & = & $\bot$ &
+             $\{\land-\text{null}\}$\\
+             $\alpha \lor \top$ & = & $\top$ &
+             $\{\lor-\text{null}\}$\\
+             $\alpha \land \top$ & = & $\alpha$ & $\{\land-\text{identidade}\}$\\
+             $\alpha \lor \bot$ & = & $\alpha$ & $\{\lor-\text{identidade}\}$\\
+        \hline
+    \end{tabular}
+    \centering
+\end{table}
+
+O seguinte exemplo mostra como estas leis podem ser utilizadas para
+demonstrar a equivalência de duas fórmulas.
+
+\begin{Example}
+As fórmulas $(A \lor \bot)\land(B \lor \top)$ e $A$ são
+equivalentes, o que pode ser demonstrado pela seguinte dedução
+algébrica:
+\[
+\begin{array}{lcl}
+(A \lor \bot)\land(B \lor \top) & = &\{\lor-\text{identidade}\} \\
+A \land (B\lor \top) & = & \{\lor-\text{null}\}\\
+A \land \top & = & \{\land-\text{null}\}\\
+A & &
+\end{array}
+\]
+\end{Example}
+
+A partir do exemplo anterior, podemos perceber a estrutura de uma
+demonstração de equivalência entre duas fórmulas. Como o objetivo é
+demonstrar uma igualdade, a dedução consiste de uma sequência de
+igualdades. A sequência inicia com o lado esquerdo da igualdade que
+desejamos deduzir e termina com o lado direito. Além disso, perceba
+que cada passo da dedução é justificado pelo nome da regra utilizada.
+
+
+\subsection{Leis Elementares dos Conectivos $\land$ e $\lor$}
+
+As leis seguintes descrevem que os conectivos $\land$ e $\lor$ são
+idempotentes, associativos e comutativos. Se $\alpha$ é uma fórmula e
+$\circ$ um conectivo binário, dizemos que $\circ$ é idempotente se
+$\alpha\circ \alpha = \alpha$. Por sua vez, dizemos que $\circ$ é
+associativo se, para fórmulas $\alpha,\beta$ e $\gamma$, temos que
+$\alpha \circ (\beta\circ \gamma) = (\alpha \circ \beta)\circ
+\gamma$. Finalmente, dizemos que $\circ$ é comutativo, se a seguinte
+igualdade é verdadeira, para fórmulas $\alpha$ e $\beta$: $\alpha
+\circ \beta = \beta \circ \alpha$.
+
+A tabela seguinte apresenta essas propriedades, em termos para os
+conectivos $\land$ e $\lor$.
+
+\begin{table}[h]
+    \begin{tabular}{|cccl|}
+         \hline
+             $\alpha \land \alpha$ & = & $\alpha$ &
+             $\{\land-\text{idempotente}\}$\\
+             $\alpha \lor \alpha$ & = & $\alpha$ &
+             $\{\lor-\text{idempotente}\}$\\
+             $\alpha \land \beta$ & = & $\beta \land \alpha$ &
+             $\{\land-\text{comutativo}\}$\\
+             $\alpha \lor \beta$ & = & $\beta \lor \alpha$ &
+             $\{\lor-\text{comutativo}\}$\\
+             $\alpha\land(\beta\land\gamma)$ & =&  $(\alpha \land
+             \beta)\land\gamma$ & $\{\land-\text{associativo}\}$\\
+             $\alpha\lor(\beta\lor\gamma)$ & =&  $(\alpha \lor
+             \beta)\lor\gamma$ & $\{\lor-\text{associativo}\}$\\
+         \hline
+    \end{tabular}
+     \centering
+\end{table}
+
+Os próximos exemplos mostram como utilizar essas regras para
+demonstrar duas equivalências.
+
+\begin{Example}
+As fórmulas $(\bot \land A)\lor B$ e $B$ são equivalentes, o que pode
+ser confirmado pela seguinte demonstração:
+\[
+\begin{array}{lcl}
+(\bot\land A)\lor B & = & \{\land-\text{comutativo}\}\\
+(A\land \bot)\lor B & = & \{\land-\text{null}\}\\
+\bot \lor B & = & \{\lor-\text{comutativo}\}\\
+B\lor \bot & = & \{\lor-\text{identidade}\}\\
+B
+\end{array}
+\]
+\end{Example}
+
+\begin{Example}
+
+\end{Example}
