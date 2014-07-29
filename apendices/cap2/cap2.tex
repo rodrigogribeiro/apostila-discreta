@@ -51,8 +51,8 @@
 				  
 				 \item
      			 \[\begin{array}{ll}    
-  				 \text{Jo\~ao vai ser multado.} & \text{Condicional (a menos que \ldots), Disjun\c{c}\~ao (ou), Nega\c{c}\~ao (n\~ao) } \\
-  				 \text{Jo\~ao diminui a velocidade.} & \\
+  				 \text{Jo\~ao vai ser multado.} & \text{Condicional (a menos que \ldots) }  \\
+  				 \text{Jo\~ao diminui a velocidade.} & \text{Disjun\c{c}\~ao (ou), Nega\c{c}\~ao (n\~ao)} \\
   				 \text{A rodovia tem radar.} & \\
   				 \end{array}
   				 \]
@@ -73,8 +73,8 @@
 				  
 				\item
 			    \[\begin{array}{ll}    
-				\text{Voc\^e \'e Brasileiro.} & \text{Condicional   (Se\ldots), Bicondicional + Nega\c{c}\~ao (a menos \ldots)} \\
-				\text{Voc\^e gosta de futebol.} & \\
+				\text{Voc\^e \'e Brasileiro.} & \text{Condicional   (Se\ldots)} \\
+				\text{Voc\^e gosta de futebol.} & \text{Bicondicional + Nega\c{c}\~ao (a menos \ldots)} \\
 				\text{Voc\^e tor\c{c}e para o Tabajara.} & \\
 				\text{Voc\^e tor\c{c}e para o \'Ibis.} & \\
 				\end{array}
@@ -82,8 +82,8 @@
 				
 				\item
 			    \[\begin{array}{ll}    
-				\text{A propina ser\'a paga.} & \text{Bicondicional (exatamente nas situa\c{c}\~oes em que \ldots)} \\
-				\text{O deputado vota como instru\'ido por Jo\~ao.} & \\
+				\text{A propina ser\'a paga.} & \text{Bicondicional (exatamente nas situa\c{c}\~oes} \\
+				\text{O deputado vota como instru\'ido por Jo\~ao.} & \text{ em que \ldots)} \\
 				\end{array}
 				\]
 	 
@@ -92,7 +92,7 @@
 	\end{enumerate}
 
 
-	\subsection{2.2.3 Exerc\'icios}
+\subsection{2.2.3 Exerc\'icios}
 	
 		\begin{enumerate}
 			\item
@@ -292,12 +292,12 @@
 			
 			
 			\item
-				\begin{enumerate}
-					\item $(A \lor B) \lor (C \lor D)$
-					\item $A \to B \to (A \land B)$
-					\item $\neg (A \lor B \land C)$
-					\item $\neg (A \land (B \lor C))$
-				\end{enumerate}
+			\begin{enumerate}
+				\item $(A \lor B) \lor (C \lor D)$
+				\item $A \to B \to (A \land B)$
+				\item $\neg (A \lor B \land C)$
+				\item $\neg (A \land (B \lor C))$
+			\end{enumerate}
 	
 	\end{enumerate}
 
@@ -541,3 +541,402 @@
 			
 			
 	\end{enumerate}
+	
+\subsection{2.5.5 Exerc\'icios}
+\begin{enumerate}
+	\item
+	\begin{enumerate}
+	\item $\{(P\land Q)\land R,\, S\land T\}\vdash\,Q\land S$
+	
+	\[
+      \infer[\andI]
+               {Q\land S}
+               {
+                   \infer[\andED]
+                            {Q}
+                            {
+                            \infer[\andEE]
+                            		{P\land Q}
+                            		{
+                            			\infer[\Id]
+                            				{(P\land Q)\land R}
+                            				{}
+                            		}
+                            }
+                    &  
+                   \infer[\andEE]
+                            {S}
+                            {
+	                            \infer[\Id]
+	                                   {S\land T}{}
+                            }
+               }
+ 	 \]
+ 	 
+ 	 
+ 	 \item $\{(P\land Q)\land R\}\,\vdash\,(P\land R)\lor Z$
+ 	 
+ 	 \[
+ 	 	\infer[\orIE]
+ 	 		{(P\land R)\lor Z}
+ 	 		{
+ 	 			\infer[\andI]
+ 	 				{P \land R}
+ 	 				{
+ 	 					\infer[\andEE]
+ 	 						{P}
+ 	 						{
+ 	 							\infer[\andEE]
+ 	 								{P\land Q}
+ 	 								{\infer[\Id]{(P\land Q)\land R}{}}
+ 	 						}
+ 	 					&
+ 	 					\infer[\andED]
+ 	 						{R}
+ 	 						{\infer[\Id]{(P\land Q)\land R}{}}
+ 	 				}
+ 	 		}
+ 	 \]
+ 	 
+ 	 \item  $\{Q\rightarrow (P\rightarrow R),\, \neg R,\, Q\,\} \vdash\,\neg P$
+		
+	\[
+		\infer[\Id]
+			{\neg P}
+			{
+				\infer[\impI^1]
+					{P \to \bot}
+					{
+						\infer[\impE]
+							{\bot}
+							{
+								\infer[\Id]
+									{R \to \bot}{}
+							&
+								\infer[\impE]
+									{R}
+									{
+										\infer[\impI]
+											{P \to R}
+											{
+												\infer[\Id]
+													{Q \to (P \to R)}
+													{}
+												&
+												\infer[\Id]
+													{Q}
+													{}
+											}
+										&
+										\infer[\Id]
+											{P^1}
+											{}
+									}
+							}
+					}
+			}	
+	\]
+	
+	\item $\{P\}\,\vdash\, Q\rightarrow(P\land Q)$
+	
+	\[
+		\infer[\impI^1]
+			{Q\rightarrow(P\land Q)}
+			{
+				\infer[\andI]
+					{P\land Q}
+					{
+						\infer[\Id]
+							{P}
+							{}
+						&
+						\infer[\Id]
+							{Q^1}
+							{}
+					}
+			}
+	\]
+	
+	\item $\{(P\rightarrow R)\land (Q\rightarrow R),\, P\land Q\}\,\vdash\, Q\land R$
+	
+	\[
+		\infer[\andI]
+			{Q\land R}
+			{
+				\infer[\andED]
+					{Q}
+					{
+						\infer[Id]
+							{P \land Q}
+							{}
+					}
+				&
+				\infer[\impE]
+					{R}
+					{
+						\infer[\andEE]
+							{P \to R}
+							{
+								\infer[Id]
+									{(P \to R)\land(Q \to R)}
+									{}
+							}
+						&
+						\infer[\andEE]
+							{P}
+							{
+								\infer[Id]
+									{P \land Q}
+									{}
+							}
+					}
+			}
+	\]
+	
+	\item $\{P\rightarrow Q, R\rightarrow S\}\vdash (P\lor R)\rightarrow (Q\lor S)$
+	
+	\[
+		\infer[\impI^1]
+			{(P \lor R) \to (Q \lor S)}
+			{
+				\infer[\orE]
+					{Q \lor S}
+					{
+						\infer[Id]
+							{P \lor R}
+							{} &
+						\infer[\orIE]
+							{Q \lor S }
+							{
+								\infer[\impE]
+									{Q}
+									{
+										\infer[Id]
+											{P \to Q}
+											{}
+										&
+										P^1
+									}
+							} &
+						\infer[\orID]
+							{Q \lor S }
+							{
+								\infer[\impE]
+									{S}
+									{
+										\infer[Id]
+											{R \to S}
+											{}
+										&
+										R^1
+									}
+							}
+					}
+			}
+	\]
+	
+	\item $\{Q\rightarrow R\}\vdash (P\rightarrow Q)\rightarrow(P\rightarrow Q)$ REVISAR
+	
+	\[
+		\infer[\impI^1]
+			{(P \to Q) \to (P \to Q)}
+			{
+				\infer[Id]
+					{P \to Q}
+					{\ldots}
+			}	
+	\]
+	
+	\item $\{(P\land Q)\lor(P\land R)\}\vdash P\land(Q \lor R)$ REVISAR
+	
+	\[
+		\infer[\andI]
+			{P \land (Q \lor R)}
+			{			
+				\infer[\orE^1]
+					{P}
+					{
+						\infer[Id]
+							{(P\land Q)\lor(P\land R)}
+							{}&
+						\infer[\andEE]
+							{P}
+							{(P \land Q)^1}&
+						\infer[\andEE]
+							{P}
+							{(P \land R)^1}
+					}	
+% P
+				&
+				\infer[\orE^2]
+					{(Q \lor R)}
+					{
+						\infer[Id]
+							{(P\land Q)\lor(P\land R)}
+							{}&
+						\infer[\orIE]
+							{(Q \lor R)}
+							{
+								\infer[\andED]
+									{Q}
+									{(P \land Q)^2}	
+							}&
+						\infer[\orID]
+							{(Q \lor R)}
+							{
+								\infer[\andED]
+									{R}
+									{(P \land R)^2}
+							}
+					}	
+			}	
+	\]
+	
+	\item $\{\neg(A \lor B)\}\vdash \neg A \land \neg B$
+	
+	\[
+		\infer[\andI]
+			{\neg A \land \neg B}
+			{
+			 \infer[\Id]
+			 	{\neg A}
+			 	{
+			 		\infer[\impI^1]
+			 			{A \to \bot}
+			 			{
+			 				\infer[\impE]
+			 					{\bot}
+			 					{
+			 						\infer[\Id]
+			 							{(A \lor B) \to \bot}
+			 							{\neg(A \lor B)}
+			 					&
+			 						\infer[\orIE]
+			 							{A \lor B}
+			 							{A^1}
+			 					}
+			 			}
+			 	}
+				&
+			 \infer[\Id]
+			 	{\neg B}
+			 	{
+			 		\infer[\impI^2]
+			 			{B \to \bot}
+			 			{
+			 				\infer[\Id]
+			 					{(A \lor B) \to \bot}
+			 					{\neg(A \lor B)}
+			 			&
+			 				\infer[\orID]
+			 					{A \lor B}
+			 					{B^2}
+			 			}
+			 	}
+			}
+	\]
+	
+	\item $\{\neg A \land \neg B\}\vdash \neg (A\lor B)$
+	
+	\[
+		\infer[\Id]
+			{\neg (A\lor B)}
+			{
+				\infer[\impI^1]
+					{(A \lor B) \to \bot}
+					{
+						\infer[\impE]
+							{\bot}
+							{
+								\infer[\Id]
+									{\neg(A \lor B)}
+									{\neg A \land \neg B}
+								&
+								(A \lor B)^1	
+							}
+					}
+			}
+	\]
+	
+	\item $\{\neg(A \land B)\}\vdash \neg A \lor \neg B$ REVISAR
+	\[
+		\infer[\orIE]
+			{\neg A \lor \neg B}
+			{
+				\infer[\Id]
+					{\neg A}
+					{
+					 \infer[\impE]
+					 	{\bot}
+					 	{
+					 	(A \land B) \to \bot
+					 	&
+					 	\infer[\andI]
+					 		{A \land B}
+					 		{
+					 			\infer[\Id]
+					 				{A}
+					 				{}
+					 		&
+					 		B
+					 		}
+					 	}	
+					}
+			}
+	\]
+	
+
+	\item $\{\neg A \lor \neg B\}\vdash \neg (A\land B)$
+	
+	\[
+		\infer[\Id]
+			{\neg (A \land B)}
+			{
+				\infer[\impI^1]
+					{(A \land B) \to \bot}	
+					{
+						\infer[\orE^2]
+							{\bot}
+							{
+								\neg A \lor \neg B
+								&
+									\infer[\impE]
+										{\bot}
+										{
+											\infer[\Id]
+												{A \to \bot}
+												{\neg A^2}
+										&
+											\infer[\andEE]
+												{A}
+												{(A \land B)^1}
+										}
+								&
+									\infer[\impE]
+										{\bot}
+										{
+											\infer[\Id]
+												{B \to \bot}
+												{\neg B^2}
+										&
+											\infer[\andED]
+												{B}
+												{(A \land B)^1}
+										}
+							}
+					}
+			}
+	\]
+	\end{enumerate}
+	
+	\item
+	\begin{enumerate}
+	
+		\item Em andamento
+	
+	
+	
+	
+	\end{enumerate}
+	
+\end{enumerate}
