@@ -3,7 +3,7 @@
 \subsection{1.1.3 Exerc\'icios}
 
 	\begin{enumerate}
-	  \item ->
+	  \item 
 	  
 	  \begin{enumerate}
 	    \item 
@@ -38,9 +38,38 @@
 	    \]
 	  \end{enumerate}
 	  
-	  \item -> em andamento
-	  \item -> em andamento
-	  \item -> em andamento
+	  \item  A defini\c{c}\~ao de concatena\c{c}\~ao de listas \'e uma fun\c{c}\~ao pois satisfaz os crit\'erios de totalidade e termina\c{c}\~ao, isso se dá devido ao fato de que, pelas regras $(1) \, e \, (2)$ definimos a sem\^antica recursivamente sobre a primeira lista cobrindo todas as possibilidades de constru\c{c}\~oes dos termos da sintaxe(sejam elas uma lista vazia ou uma lista n\~ao vazia), e tamb\'em porque a defini\c{c}\~ao e aplicada recursivamente sobre os subtermos da primeira lista e tendo como caso base a regra $(1)$\,.
+	  
+	  \item 
+	  \[
+	  \begin{array}{lcl}
+	  \textit{nsubtermos }:\evalExp\, (\tconst\, n)  & = & 1 \\
+	  \textit{nsubtermos }:\evalExp\, (\tplus\,e_1\,e_2) & = & (\textit{nsubtermos }: \eval\,e_1) + (\textit{nsubtermos }: \eval\,e_2) \\
+	  \textit{nsubtermos }:\evalExp\, (\ttimes\,e_1\,e_2) & = & (\textit{nsubtermos }: \eval\,e_1) + (\textit{nsubtermos }: \eval\,e_2) \\
+	  \end{array}
+	  \]
+	  
+	  Temos a definição de uma função que retorna a quantidade de subtermos de uma expressão arimética de linguagem $\TExp$. Isso porque pelo princípio da totalidade a definição abrange todo possível valor de entrada na função, seja ele $(\tconst\, n)$, $(\tplus\,e_1\,e_2)$, $(\ttimes\,e_1\,e_2)$ e pelo principio da terminação a cada chamada recursiva da função o número de subtermos diminui tendendo a chegar no caso base que teria como entrada uma constante do tipo $(\tconst\, n)$
+	  
+	  
+	  \item  
+	  \begin{enumerate}
+	  \item Caso a definição de concatenação de listas fosse apresentada somente com a seguinte regra: 
+	  	  \[
+	  	  \begin{array}{c}
+	  	  	(x :: xs) \text{ ++ }  ys  =  x :: (xs\text{ ++ } ys)
+	  	  \end{array}
+	  	  \] 
+	  não poderíamos chamá-la de função devido ao fato de que esta definição não segue o princípio da totalidade, uma vez que não há procedimento para o caso de lista vazia. 
+	 
+	 \item Tomando o caso dos números naturais como base, não poderíamos criar uma função semântica somente com a seguinte regra:
+	 	 \[
+	 	 \begin{array}{c}
+	 	 	\llbracket \suc\,\,n\rrbracket  =  \llbracket n \rrbracket + 1
+	 	\end{array}
+	 	\] 
+	 já que ela não segue o principio da terminação sendo que a cada chamada recursiva diminuiríamos uma unidade, no entanto sem um caso base as chamadas recursivas não teriam fim.
+	 \end{enumerate}
 	 
 	\end{enumerate}
 
@@ -48,8 +77,72 @@
 \subsection{1.2.3 Exerc\'icios}
 
 	\begin{enumerate}
-		\item em andamento
-		\item em andamento
-		\item em andamento
+		\item
+
+		\begin{lstlisting}
+		Fixpoint evalExp (e: Exp) : nat :=
+	     match e with
+	      | Const n => NatSem n
+	      | Plus (h)(t) => (evalExp h) + (evalExp t)
+	      | Times (h)(t)=> (evalExp h) * (evalExp t)
+	    end.
+	    \end{lstlisting}	
+		Note que para esta fun\c{c}\~ao funcionar, se faz necess\'ario a declara\c{c}\~ao das seguintes defini\c{c}\~oes antes do corpo da fun\c{c}\~ao em quest\~ao.
+	
+		\begin{lstlisting}
+		Inductive Nat : Set :=
+		  | Zero : Nat           
+		  | Succ : Nat -> Nat.
+		\end{lstlisting}
+		
+		\begin{lstlisting}
+		Inductive Exp : Set :=
+		  | Const : Nat -> Exp
+		  | Plus : Exp -> Exp -> Exp
+		  | Times : Exp -> Exp -> Exp .
+		\end{lstlisting}
+				
+		\begin{lstlisting}
+		Fixpoint NatSem (n : Nat) : nat :=
+			match n with
+			| Zero  => 0
+			| Suc n' => 1 + NatSem n'
+		end.
+		\end{lstlisting}		
+				
+				
+		\item 
+		\begin{lstlisting}
+		Inductive List (T : Set ) : Set :=
+	 	  | nil : List T
+		  | cons : T -> List T -> List T.
+		\end{lstlisting}
+		
+		\begin{lstlisting}
+		Definition tail {T} (l : List T) : List T :=
+		  match l with
+		  | nil => l
+		  | cons h t => t
+		  end.
+		\end{lstlisting}
+		
+		\item 
+		
+		\begin{lstlisting}
+		Inductive List (T : Set ) : Set :=
+		  | nil : List T
+		  | cons : T -> List T -> List T.
+		\end{lstlisting}
+		
+		
+		\begin{lstlisting}
+		Fixpoint last {T} (default : T) (l : List T) : T :=
+		  match l with
+		  | nil => default
+		  | cons h t => last t
+		  | cons t nil => t
+		  end.
+		\end{lstlisting}
+		
 	\end{enumerate}
 
