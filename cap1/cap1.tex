@@ -7,10 +7,10 @@ Para tornar mais interessante o nosso estudo de Lógica e colocar a teoria em um
 \section{Linguagens Formais}
 
 Uma \emph{linguagem formal\/} \'e um conjunto (possivelmente infinito) de sentenças, definidas sobre um dado \emph{alfabeto\/}, ou conjunto finito de símbolos. Cada palavra da linguagem é simplesmente uma sequência finita de símbolos do alfabeto. As sentenças de uma linguagem formal são também chamadas de \emph{termos\/}, ou \emph{fórmulas}, da linguagem.
-  
-A \emph{sintaxe\/} de uma linguagem formal é especificada por um conjunto finito de regras bem definidas, que determinam a estrutura de suas sentenças. Para compreender o significado dessas sentenças, é necessário definir também a \emph{semântica\/} da linguagem, que é usualmente especificada com base nas regras de definição da sintaxe da linguagem. 
 
-Nas seções a seguir apresentamos alguns exemplos de definição da sintaxe e semântica de algumas linguagens simples, com o objetivo de esclarecer melhor esses conceitos. 
+A \emph{sintaxe\/} de uma linguagem formal é especificada por um conjunto finito de regras bem definidas, que determinam a estrutura de suas sentenças. Para compreender o significado dessas sentenças, é necessário definir também a \emph{semântica\/} da linguagem, que é usualmente especificada com base nas regras de definição da sintaxe da linguagem.
+
+Nas seções a seguir apresentamos alguns exemplos de definição da sintaxe e semântica de algumas linguagens simples, com o objetivo de esclarecer melhor esses conceitos.
 
 \subsection{Sintaxe}\label{cap1:syn}
 
@@ -29,7 +29,7 @@ Uma linguagem finita pode ser especificada simplesmente pela enumera\c{c}\~ao de
   \]
 \end{Definition}
 
-Como o conjunto dos valores Booleanos \'e finito, sua defini\c{c}\~ao por meio de regras \'e imediata: basta enumerar uma regra que especifique a pertinência de cada um dos seus elementos. 
+Como o conjunto dos valores Booleanos \'e finito, sua defini\c{c}\~ao por meio de regras \'e imediata: basta enumerar uma regra que especifique a pertinência de cada um dos seus elementos.
 
 \begin{Definition}[\textbf{N\'umeros Naturais}]
 O conjunto $\Nat$, dos termos que representam n\'umeros naturais, pode ser definido pelas seguintes regras:
@@ -41,7 +41,7 @@ O conjunto $\Nat$, dos termos que representam n\'umeros naturais, pode ser defin
 \]
 \end{Definition}
 As regras acima constituem uma definição \emph{indutiva}, ou \emph{recursiva\/}, do conjunto $\Nat$, no sentido de que alguns elementos do conjunto $\Nat$ são definidos em termos de elementos do prórpio conjunto $\Nat$. A primeira regra especifica que o termo $\zero$ pertence ao conjunto $\Nat$. A segunda regra especifica como são construídos elementos de $\Nat$, a partir de elementos do próprio conjunto $\Nat$:  se $n$ \'e um termo pertencente ao conjunto $\Nat$, ent\~ao o termo $\suc\,n$ tamb\'em pertence a $N$. Desse modo, os termos do conjunto $\Nat$ são:
-\[ \{\zero,\,\suc\,\zero,\,\suc\,(\suc\,\zero),\, \suc\,(\suc\,(\suc\,\zero)),\,...\} \] 
+\[ \{\zero,\,\suc\,\zero,\,\suc\,(\suc\,\zero),\, \suc\,(\suc\,(\suc\,\zero)),\,...\} \]
 
 \begin{Definition}[\textbf{Listas}]
 O conjunto $\TList\, \TType$, dos termos que representam listas de elementos de um dado conjunto $\TType$, pode ser definido, indutivamente, pelas seguintes regras:
@@ -52,7 +52,7 @@ O conjunto $\TList\, \TType$, dos termos que representam listas de elementos de 
   \end{array}
   \]
 \end{Definition}
-A primeira regra especifica que o termo $[\,]$ pertence ao conjunto $\TList\,\TType$. O termo $[\,]$  denota a lista vazia, ou seja, que n\~ao possui nenhum elemento. A segunda regra especifica como formar termos que representam listas não vazias: dada uma lista $ts \in \TList\,\TType$ e um elemento $t \in\TType$, o termo $t :: ts$ representa a lista cujo primeiro elemento, ou \emph{cabeça} da lista, é $t$, e cujo restante, ou \emph{cauda} da lista, é a lista $ts$. 
+A primeira regra especifica que o termo $[\,]$ pertence ao conjunto $\TList\,\TType$. O termo $[\,]$  denota a lista vazia, ou seja, que n\~ao possui nenhum elemento. A segunda regra especifica como formar termos que representam listas não vazias: dada uma lista $ts \in \TList\,\TType$ e um elemento $t \in\TType$, o termo $t :: ts$ representa a lista cujo primeiro elemento, ou \emph{cabeça} da lista, é $t$, e cujo restante, ou \emph{cauda} da lista, é a lista $ts$.
 
 Note que listas são definidas de maneira independente do conjunto dos termos que constituem seus elementos -- dizemos que a definição de listas \'e \emph{polim\'orfica\/} em rela\c{c}\~ao ao conjunto de seus elementos. De acordo com a definição acima, temos, por exemplo, que as seguintes listas pertencem ao conjunto $\TList\,\Bool$:
 \begin{itemize}
@@ -75,7 +75,7 @@ Informalmente, as regras acima nos dizem que todo elemento de $\Nat$ constitui u
 \end{Definition}
 
 \begin{Example}
- Os exemplos a seguir ilustram termos da linguagem $\TExp$, mostrando a interpretação intuitiva de cada termo. Uma semântica para essa linguagem será definida formalmente na seção ~\ref{cap1:sem}. 
+ Os exemplos a seguir ilustram termos da linguagem $\TExp$, mostrando a interpretação intuitiva de cada termo. Uma semântica para essa linguagem será definida formalmente na seção ~\ref{cap1:sem}.
   \begin{itemize}
     \item $\tconst (\suc\, \zero)$ é um termo que representa n\'umero natural $1$.
     \item $\tplus\, (\tconst (\suc\, \zero))\, (\tconst (\suc \,\zero))$ é um termo que representa a express\~ao $1 + 1$.
@@ -85,7 +85,7 @@ Informalmente, as regras acima nos dizem que todo elemento de $\Nat$ constitui u
 As defini\c{c}\~oes anteriores especificam formalmente a sintaxe de quatro linguagens: $\Bool$, $\Nat$, $\TList\,\TType$ e $\TExp$.  Entretanto, o significado dos termos dessas linguagens apenas foi apresentado de maneira informal.  Na se\c{c}\~ao a seguir, mostramos como atribuir significado aos termos de uma linguagem formalmente.
 
 \subsection{Sem\^antica}\label{cap1:sem}
-A sintaxe de uma linguagem apenas define o conjunto de termos da linguagem, especificando a  estrutura desses termos, mas não atribui a eles qualquer significado. Para isso, é preciso também 
+A sintaxe de uma linguagem apenas define o conjunto de termos da linguagem, especificando a  estrutura desses termos, mas não atribui a eles qualquer significado. Para isso, é preciso também
 definir a \emph{semântica} da linguagem.
 
 A sem\^antica de uma linguagem $L$ pode ser definida na forma de uma função, cujo domínio é $L$ e cujo contra-domínio é alguma estrutura matemática $S$ apropriada.\footnote{Assumimos que o leitor tem familiaridade com os conceitos de dom\'inio e contra-dom\'inio de uma função, que serão, entretanto, revisados no cap\'itulo~\ref{}}.  Tal função é usualmente representada na forma $\llbracket\,\rrbracket\,:\,L \rightarrow S$. Essa maneira de definir semântica é ilustrada a seguir, por exemplos que provêm definições semânticas para as linguagens $\Bool$, $\Nat$, $\TExp$ e $\TList\,\TType$, cujas sintaxes foram definidas na se\c{c}\~ao~\ref{cap1:syn}.
@@ -99,7 +99,7 @@ Uma poss\'ivel sem\^antica para termos do conjunto $\Bool$ \'e dada pela fun\c{c
 \end{array}
 \]
 \end{Definition}
-Essa não é a \'unica poss\'ivel maneira de interpretar os termos de $\Bool$. 
+Essa não é a \'unica poss\'ivel maneira de interpretar os termos de $\Bool$.
 Outra poss\'ivel interpretação é dada pela função $\llbracket\,\rrbracket : \Bool \rightarrow \mathbb{Z}$, definida a seguir:
 \[
 \begin{array}{lcl}
@@ -111,7 +111,7 @@ Essa interpretação associa, ao termo $T$, o conjunto de todos números inteiro
 
 
 \begin{Definition}[\textbf{N\'umeros Naturais}]\label{def:sem:Nat}
-A linguagem $\Nat$ pode ser interpretada, de modo natural, sobre o conjunto dos números naturais $\mathbb{N}$: o número $0$ é associado ao termo $\zero$, e o número $k$ ao termo que contém $k$ ocorr\^encias da constante $\suc$. Essa semântica é especificada pela função $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$, a seguir. Note que essa função é definida recursivamente, sobre a estrutura da sintaxe de $\Nat$. 
+A linguagem $\Nat$ pode ser interpretada, de modo natural, sobre o conjunto dos números naturais $\mathbb{N}$: o número $0$ é associado ao termo $\zero$, e o número $k$ ao termo que contém $k$ ocorr\^encias da constante $\suc$. Essa semântica é especificada pela função $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$, a seguir. Note que essa função é definida recursivamente, sobre a estrutura da sintaxe de $\Nat$.
 \[
 \begin{array}{lcl}
 \llbracket \zero \rrbracket & = & 0\\
@@ -122,10 +122,10 @@ A linguagem $\Nat$ pode ser interpretada, de modo natural, sobre o conjunto dos 
 Para que uma definição recursiva determine uma função $f : D \rightarrow C$, essa definição deve satisfazer aos dois seguintes crit\'erios:
 \begin{enumerate}
 
-\item \emph{Totalidade\/}: Isso significa que a definição recursiva deve associar, a cada elemento do domínio $D$, algum elemento do contradomínio $C$.  Uma maneira de garantir totalidade de uma definição recursiva da semântica de uma linguagem $L$ é especificar uma equa\c{c}\~ao de definição para cada regra de construção de termos da sintaxe de $L$. 
+\item \emph{Totalidade\/}: Isso significa que a definição recursiva deve associar, a cada elemento do domínio $D$, algum elemento do contradomínio $C$.  Uma maneira de garantir totalidade de uma definição recursiva da semântica de uma linguagem $L$ é especificar uma equa\c{c}\~ao de definição para cada regra de construção de termos da sintaxe de $L$.
 
 
-\item \emph{Terminação\/}: Para garantir terminação, a definição recursiva deve incluir \emph{casos base\/}, ou seja, casos em que a definição é dada diretamente, e não em termos de si própria. Além disso, em todos os demais casos -- ditos \emph{recursivos\/}, ou \emph{indutivos\/} --  a definição é especificada em termos valores que se aproximam cada vez mais dos casos base. No caso da definição recursiva de uma semântica de uma linguagem $L$, a terminação pode ser garantida se a semântica de qualquer termo de $L$ é definida apenas em função da semântica de seus subtermos. 
+\item \emph{Terminação\/}: Para garantir terminação, a definição recursiva deve incluir \emph{casos base\/}, ou seja, casos em que a definição é dada diretamente, e não em termos de si própria. Além disso, em todos os demais casos -- ditos \emph{recursivos\/}, ou \emph{indutivos\/} --  a definição é especificada em termos valores que se aproximam cada vez mais dos casos base. No caso da definição recursiva de uma semântica de uma linguagem $L$, a terminação pode ser garantida se a semântica de qualquer termo de $L$ é definida apenas em função da semântica de seus subtermos.
 \end{enumerate}
 
 A definição \ref{def:sem:Nat} determina, de fato, a função semântica $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$: 1) satisfaz ao critério de totalidade, uma vez que inclui uma equação de definição da semântica para regra da sintaxe de $\Nat$; 2) satisfaz o critétio de terminação, pois inclui um caso base, que corresponde à definição do significado do termo $\zero$, e, no outro caso, define o significado de um termo com $k$ ocorrências da constante $\suc$,  em termos do significado do subtermo com $(k-1)$ ocorrências de $\suc$, ou seja, uma ocorrência a menos de $\suc$ do que no termo original.
@@ -152,14 +152,14 @@ A definição acima pode ser usada para calcular o n\'umero de elementos de uma 
 = &1 + (1 + \length\,\,(T :: [\,]))  &  & \{\text{pela equa\c{c}\~ao }(2)\}\\
 = &1 + (1 + (1 + \length\,\,[\,]))  &  & \{\text{pela equa\c{c}\~ao }(2)\}\\
 = &1 + (1 + (1 + 0))  &  & \{\text{pela equa\c{c}\~ao }(1)\}\\
-= &3                  &   & 
+= &3                  &   &
 \end{array}
 \]
 \end{Example}
 Cada passo do cálculo acima simplesmente reescreve a express\~ao, de acordo com as equa\c{c}\~oes de definição de $\length$. Por exemplo, a expressão $\length\,\,(T :: [\,])$  pode ser reescrita como $1 + \length\, [\,]$, de acordo com a equa\c{c}\~ao $(2)$.
 
 \begin{Definition}[\textbf{Concatena\c{c}\~ao de listas}]\label{def:concat:lists}
-A concatenação de duas listas $xs$ e $ys$, denotada como $xs\text{ ++ }ys$, resulta em uma nova lista, 
+A concatenação de duas listas $xs$ e $ys$, denotada como $xs\text{ ++ }ys$, resulta em uma nova lista,
 que consiste da segunda lista justaposta ao final da primeira. Por exemplo,  $(T :: F :: [\,])\,\text{++}\,(F :: F :: [\,])$ resulta na lista $(T :: F :: F :: F :: [\,])$. A operação de concatenação de listas pode ser definida, recursivamente, do seguinte modo:
  \[
   \begin{array}{lclr}
@@ -200,11 +200,11 @@ A função $\evalExp$ determina o valor da expressão aritmética representada p
 =  & (\evalExp\, (\tconst (\suc (\suc\,\zero))) + \eval\,  (\tconst (\suc\,\zero))) \times \evalExp\, (\tconst (\suc (\suc\, \zero))) \\
 =  & (\llbracket \suc (\suc\,\zero) \rrbracket + \llbracket  \suc\,\zero \rrbracket) \times \llbracket \suc (\suc\,\zero) \rrbracket \\
 =  & (2 + 1) \times 2 \\
-= & 6 
+= & 6
 \end{array}}
 \]
 
-Todas as defini\c{c}\~oes apresentadas nesta se\c{c}\~ao podem ser implementadas em uma linguagem de programação de uso geral. Em linguagens funcionais, a implementação seria praticamente uma transcrição das definições apresentadas. Neste texto, vamos utilizar o assistente de provas Coq para implementação das definições apresentadas. Mais adiante, vamos também utilizar Coq para provar propriedades das funções definidas. 
+Todas as defini\c{c}\~oes apresentadas nesta se\c{c}\~ao podem ser implementadas em uma linguagem de programação de uso geral. Em linguagens funcionais, a implementação seria praticamente uma transcrição das definições apresentadas. Neste texto, vamos utilizar o assistente de provas Coq para implementação das definições apresentadas. Mais adiante, vamos também utilizar Coq para provar propriedades das funções definidas.
 Na se\c{c}\~ao \ref{cap1:coq}, a seguir, você vai aprender a descrever, em Coq, a sintaxe e a semântica de linguagens, assim como definir outras funções sobre a termos de uma linguagem, com base na estrutura sint\'atica desses termos, tal como nos exemplos apresentados anteriormente.
 
 \subsection{Exerc\'icios}
@@ -212,19 +212,19 @@ Na se\c{c}\~ao \ref{cap1:coq}, a seguir, você vai aprender a descrever, em Coq,
 \begin{enumerate}
   \item Apresente a execu\c{c}\~ao passo a passo das seguintes express\~oes:
   \begin{enumerate}
-    \item $\llbracket \suc\, (\suc\, (suc\,\,zero))\rrbracket$ 
+    \item $\llbracket \suc\, (\suc\, (suc\,\,zero))\rrbracket$
     \item $\length\, (\zero :: \zero :: [\,])$
     \item $(\zero :: (\suc\,\, \zero) ::[\,])\text{ ++ }((\suc\,\,\zero) :: \zero :: [\,])$
   \end{enumerate}
   \item A operação de concatenação de duas listas foi definida recursivamente na Definição \ref{def:concat:lists}. Justifique que essa definição é uma fun\c{c}\~ao, mostrando que ela satisfaz  os critérios de totalidade e termina\c{c}\~ao.
   \item Dê uma defini\c{c}\~ao recursiva para a função $\textit{nsubtermos }: \TExp \rightarrow \mathbb{N}$ que, dada uma express\~ao aritm\'etica, representada como um termos de $\TExp$, retorna o número de subtermos dessa expressão. Justifique que sua definição é uma função, mostrando que ela satisfaz os critérios de totalidade e termina\c{c}\~ao.
-  \item O objetivo deste exerc\'icio \'e que você compreenda porque defini\c{c}\~oes recursivas que n\~ao atendem os crit\'erios de totalidade e termina\c{c}\~ao n\~ao podem ser consideradas fun\c{c}\~oes. 
-        Apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Por que essas definições n\~ao podem ser fun\c{c}\~oes?        
+  \item O objetivo deste exerc\'icio \'e que você compreenda porque defini\c{c}\~oes recursivas que n\~ao atendem os crit\'erios de totalidade e termina\c{c}\~ao n\~ao podem ser consideradas fun\c{c}\~oes.
+        Apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Por que essas definições n\~ao podem ser fun\c{c}\~oes?
 \end{enumerate}
 
 \section{Introdu\c{c}\~ao ao Assistente de Provas Coq}\label{cap1:coq}
 
-Um assistente de provas \'e uma ferramenta de software para auxílio no desenvolvimento de provas de teoremas, provas de propriedades de programas ou de circuitos integrados, etc. Essa ferramenta inclui uma linguagem de programa\c{c}\~ao, que possibilita descrever  algoritmos e provas matem\'aticas. Nesta seção, introduzimos alguns conceitos relacionados à construção de programas e provas em Coq, com o objetivo de que você possa utilizar essa ferramenta para a implementação de provas apresentadas ao longo deste texto. Para uma descrição detalhada sobre o ambiente de desenvolvimento de Coq (CoqIDE), ou sobre sua linguagem de programação (Gallina), consulte a documentação disponível na página web \url{coq.inria.fr}, ou a bibliografia sugerida no final deste capítulo. 
+Um assistente de provas \'e uma ferramenta de software para auxílio no desenvolvimento de provas de teoremas, provas de propriedades de programas ou de circuitos integrados, etc. Essa ferramenta inclui uma linguagem de programa\c{c}\~ao, que possibilita descrever  algoritmos e provas matem\'aticas. Nesta seção, introduzimos alguns conceitos relacionados à construção de programas e provas em Coq, com o objetivo de que você possa utilizar essa ferramenta para a implementação de provas apresentadas ao longo deste texto. Para uma descrição detalhada sobre o ambiente de desenvolvimento de Coq (CoqIDE), ou sobre sua linguagem de programação (Gallina), consulte a documentação disponível na página web \url{coq.inria.fr}, ou a bibliografia sugerida no final deste capítulo.
 
 \subsection{Representando Sintaxe em Coq}
 
@@ -244,7 +244,7 @@ Inductive Nat : Set :=
    | Zero : Nat
    | Suc  : Nat -> Nat.
 \end{lstlisting}
-O tipo \texttt{Nat} tem dois construtores. O primeiro, \texttt{Zero}, representa a constante $\zero\in \Nat$. O construtor \texttt{Suc} tem tipo \texttt{Nat -> Nat}, o que significa que  \texttt{Suc} é uma função, que recebe como par\^ametro um valor de tipo \texttt{Nat} e retorna um valor de tipo \texttt{Nat}. 
+O tipo \texttt{Nat} tem dois construtores. O primeiro, \texttt{Zero}, representa a constante $\zero\in \Nat$. O construtor \texttt{Suc} tem tipo \texttt{Nat -> Nat}, o que significa que  \texttt{Suc} é uma função, que recebe como par\^ametro um valor de tipo \texttt{Nat} e retorna um valor de tipo \texttt{Nat}.
 
 O tipo de \texttt{Suc} indica que \texttt{Nat} \'e um tipo de dado recursivo, isto \'e, ele \'e definido em termos de si pr\'oprio. Observe que qualquer valor de \texttt{Nat}, que seja formado pela constante \texttt{Suc}, possui como subtermo outro valor de tipo \texttt{Nat}. Por exemplo, o n\'umero $3$ corresponde ao seguinte elemento de $\Nat$: $\suc\,\,(\suc\,\,(\suc\,\,\zero))$ e à seguinte defini\c{c}\~ao em Coq:
 \begin{lstlisting}
@@ -252,12 +252,12 @@ Definition three : Nat := Suc (Suc (Suc Zero)).
 \end{lstlisting}
 A palavra chave \texttt{Definition} introduz uma defini\c{c}\~ao de função n\~ao recursiva, sobre tipos quaisquer. Neste trecho de c\'odigo, \texttt{three} representa a fun\c{c}\~ao constante que sempre retorna \texttt{Suc (Suc (Suc Zero))} como resultado.
 
-Uma função pode ser usada para definir outra função, tal como ilustra o exemplo a seguir, que define \texttt{five}, usando \texttt{three}: 
+Uma função pode ser usada para definir outra função, tal como ilustra o exemplo a seguir, que define \texttt{five}, usando \texttt{three}:
 \begin{lstlisting}
 Definition five : Nat := Suc (Suc three).
 \end{lstlisting}
 
-O conjunto de listas $\TList\,\TType$ pode ser definido, em Coq, como no exemplo a seguir: 
+O conjunto de listas $\TList\,\TType$ pode ser definido, em Coq, como no exemplo a seguir:
 \begin{lstlisting}
 Inductive List (T : Set) : Set :=
   | nil  : List T
@@ -281,9 +281,9 @@ Inductive Exp : Set :=
 
 Assim como para o caso de listas, definiremos uma notação mais conveniente para que se possa escrever valores do tipo \texttt{Exp}, utilizando os operadores \texttt{(:+)} e \texttt{(:*)}, em lugar dos construtores \texttt{Plus} e \texttt{Times}, respectivamente. Desse modo, as expressões \texttt{myExp'} e \texttt{myExp}, definidas a seguir, são idênticas, exceto que \texttt{myExp} usa a nova notação e \texttt{myExp'} usa os construtores originais.
 \begin{lstlisting}
-Definition myExp' : Exp := 
+Definition myExp' : Exp :=
       Plus (Const Zero) (Const (Suc Zero)).
-Definition myExp : Exp := 
+Definition myExp : Exp :=
       (Const Zero) :+ (Const (Suc Zero)).
 \end{lstlisting}
 
@@ -291,8 +291,8 @@ Definition myExp : Exp :=
 
 Conforme vimos na se\c{c}\~ao \ref{cap1:sem}, a sem\^antica de uma linguagem pode ser definida indutivamente, sobre a estrutura sint\'atica dos termos dessa linguagem. Além disso, para que essa defini\c{c}\~ao recursiva determine uma fun\c{c}\~ao semântica, ela deve satisfazer os crit\'erios de totalidade e termina\c{c}\~ao.
 
-Em Coq, toda fun\c{c}\~ao (recursiva ou n\~ao) deve satisfazer os crit\'erios de totalidade e termina\c{c}\~ao. Essas restri\c{c}\~oes s\~ao fundamentais para que Coq possa ser 
-utilizado como um verificador de provas. Se uma defini\c{c}\~ao n\~ao satisfaz  esses crit\'erios, é emitida uma mensagem de erro. 
+Em Coq, toda fun\c{c}\~ao (recursiva ou n\~ao) deve satisfazer os crit\'erios de totalidade e termina\c{c}\~ao. Essas restri\c{c}\~oes s\~ao fundamentais para que Coq possa ser
+utilizado como um verificador de provas. Se uma defini\c{c}\~ao n\~ao satisfaz  esses crit\'erios, é emitida uma mensagem de erro.
 
 Como primeiro exemplo, vamos escrever, em Coq, uma definição de semântica para o tipo
 \texttt{Bool}. Como vimos na sec\c{c}\~ao \ref{cap1:sem}, podemos definir a sem\^antica para o conjunto $\Bool$ como uma função $\llbracket\,\rrbracket : \Bool \rightarrow \mathbb{N}$, que associa a $T$ o valor $1$, e associa a $F$ o valor $0$.
@@ -312,9 +312,9 @@ sem\^antica é definida com base na sintaxe de valores do tipo \texttt{Bool}, é
 Para a fun\c{c}\~ao \texttt{BoolSem} a totalidade \'e facilmente obtida estabelecendo-se uma equa\c{c}\~ao para cada um dos valores do tipo \texttt{Bool}.
 
 O exemplo a seguir define a sem\^antica do tipo \texttt{Nat}. Como
-este tipo \'e recursivo, sua fun\c{c}\~ao sem\^antica é tamb\'em definia recursivamente.
+este tipo \'e recursivo, sua fun\c{c}\~ao sem\^antica é tamb\'em definida recursivamente.
 Em Coq, definimos fun\c{c}\~oes recursivas utilizando o comando \texttt{Fixpoint}.
- 
+
 \begin{lstlisting}
 Fixpoint NatSem (n : Nat) : nat :=
   match n with
@@ -323,11 +323,11 @@ Fixpoint NatSem (n : Nat) : nat :=
   end.
 \end{lstlisting}
 
-A função semântica \texttt{NatSem} tem como parâmetro um valor \texttt{n}, do tipo \texttt{Nat}. Conforme especificado pelo casamento de padrão usado na definição de \texttt{NatSem}, esse valor pode ser de um dos dois seguintes tipos: \texttt{Zero}, ou \texttt{Suc n'}, para algum valor \texttt{n'}, do tipo \texttt{Nat}. Uma variável usada em um casamento de padrão, tal como \texttt{n'}, no padrão \texttt{Suc n'}, casa com qualquer valor. Por exemplo, na avaliação da expressão \texttt{NatSem (Suc (Suc Zero))}, o argumento \texttt{(Suc (Suc Zero))} casa com o padrão \texttt{Suc n'}, sendo o valor \texttt{(Suc Zero)} associado à variável \texttt{n'}. Desse modo, na chamada recursiva, o argumento de \texttt{NatSem} será \texttt{(Suc Zero)}. 
+A função semântica \texttt{NatSem} tem como parâmetro um valor \texttt{n}, do tipo \texttt{Nat}. Conforme especificado pelo casamento de padrão usado na definição de \texttt{NatSem}, esse valor pode ser de um dos dois seguintes tipos: \texttt{Zero}, ou \texttt{Suc n'}, para algum valor \texttt{n'}, do tipo \texttt{Nat}. Uma variável usada em um casamento de padrão, tal como \texttt{n'}, no padrão \texttt{Suc n'}, casa com qualquer valor. Por exemplo, na avaliação da expressão \texttt{NatSem (Suc (Suc Zero))}, o argumento \texttt{(Suc (Suc Zero))} casa com o padrão \texttt{Suc n'}, sendo o valor \texttt{(Suc Zero)} associado à variável \texttt{n'}. Desse modo, na chamada recursiva, o argumento de \texttt{NatSem} será \texttt{(Suc Zero)}.
 
 Note que a definição recursiva de \texttt{NatSem} \'e total, pois todo valor de tipo \texttt{Nat}, ou \'e igual a \texttt{Zero}, ou é igual a \texttt{Suc n}, para algum \texttt{n} de tipo \texttt{Nat}. Além disso, a recursão sempre termina, pois, na chamada recursiva, o  n\'umero de constantes \texttt{Suc} presentes no termo passado como argumento é decrescido de 1, eventualmente reduzindo o termo ao caso base \texttt{Zero}.
 
-Os exemplos a seguir ilustram a implementação, em Coq, de funções definidas sobre listas. A função \texttt{length} recebe como argumento uma lista e retorna o número de elementos dessa lista. A função \texttt{app} recebe como argumentos duas listas e retorna a lista obtida concatenando-se a segunda lista depois da primeira. 
+Os exemplos a seguir ilustram a implementação, em Coq, de funções definidas sobre listas. A função \texttt{length} recebe como argumento uma lista e retorna o número de elementos dessa lista. A função \texttt{app} recebe como argumentos duas listas e retorna a lista obtida concatenando-se a segunda lista depois da primeira.
 
 \begin{lstlisting}
 Fixpoint length {T} (l : List T) : nat :=
@@ -343,7 +343,7 @@ Fixpoint app {T} (l l' : List T) : List T :=
   end.
 \end{lstlisting}
 
-Observe que a defini\c{c}\~ao de cada uma dessas fun\c{c}\~oes é uma simples 
+Observe que a defini\c{c}\~ao de cada uma dessas fun\c{c}\~oes é uma simples
 tradu\c{c}\~ao, para Coq, da definição apresentada na se\c{c}\~ao \ref{cap1:sem}.
 
 Como último exemplo, vamos definir a função \texttt{head}, que recebe como parâmetro uma lista e retorna a cabeça da lista. No caso em que a lista passada como argumento é vazia, a cabeça da lista não é definida. Para que a definição satisfaça o critério de totalidade, vamos definir a função \texttt{head} com um primeiro parâmetro adicional -- \texttt{default} -- que especifica o valor a ser retornado pela função no caso em que a lista passada como argumento é vazia. A definição da função \texttt{head}, em Coq, é apresentada a seguir.
@@ -361,9 +361,9 @@ Essa breve introdução a Coq ilustra como definir sintaxe e semântica de lingu
 \subsection{Exerc\'icios}
 
 \begin{enumerate}
-    \item Escreva, em Coq, uma definição da fun\c{c}\~ao \texttt{evalExp}, que calcula o valor de uma express\~ao aritm\'etica. Essa função tem como parâmetro um valor do tipo \texttt{Exp} e retorna como resultado um valor do tipo \texttt{nat}, o tipo correspondente a n\'umeros naturais, em Coq. 
-    \item Defina, em Coq, a função \texttt{tail}, que recebe como parâmetro uma lista, e retorna a cabeça dessa lista. Note que, se a lista passada como argumento for vazia, isto é \texttt{nil} (ou \texttt{[\,]}), a cauda é a própria lista vazia.
-        \item Defina, em Coq, a função \texttt{last}, que recebe como parâmetro uma lista, e retorna o último elemento da lista. Assim como no caso da função \texttt{head}, essa função não seria definida no caso em que a lista é vazia. Esse problema deve ser evitado tal como foi feito no caso da definição da função \texttt{head}, ou seja, incluindo na definição um parâmetro adicional, que especifica o valor a ser retornado pela função no caso em que a lista passada como argumento for vazia. 
+    \item Escreva, em Coq, uma definição da fun\c{c}\~ao \texttt{evalExp}, que calcula o valor de uma express\~ao aritm\'etica. Essa função tem como parâmetro um valor do tipo \texttt{Exp} e retorna como resultado um valor do tipo \texttt{nat}, o tipo correspondente a n\'umeros naturais, em Coq.
+    \item Defina, em Coq, a função \texttt{tail}, que recebe como parâmetro uma lista, e retorna a sua cauda. Note que, se a lista passada como argumento for vazia, isto é \texttt{nil} (ou \texttt{[\,]}), a cauda é a própria lista vazia.
+        \item Defina, em Coq, a função \texttt{last}, que recebe como parâmetro uma lista, e retorna o último elemento da lista. Assim como no caso da função \texttt{head}, essa função não seria definida no caso em que a lista é vazia. Esse problema deve ser evitado tal como foi feito no caso da definição da função \texttt{head}, ou seja, incluindo na definição um parâmetro adicional, que especifica o valor a ser retornado pela função no caso em que a lista passada como argumento for vazia.
 
 \end{enumerate}
 

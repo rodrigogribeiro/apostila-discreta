@@ -79,4 +79,19 @@ Fixpoint app {T} (l l' : List T) : List T :=
   match l with
     | []      => l'
     | t :: ts => t :: (app ts l')
-  end.
+  end
+.
+(* expressões aritméticas *)
+
+Inductive Exp : Set :=
+   | Const : Nat -> Exp
+   | Plus  : Exp -> Exp -> Exp
+   | Times : Exp -> Exp -> Exp.
+
+Notation "e ':+' e1" := (Plus e e1)(at level 50, left associativity).
+Notation "e ':*' e1" := (Times e e1)(at level 50, left associativity).
+
+Definition myExp' : Exp :=
+      Plus (Const Zero) (Const (Suc Zero)).
+Definition myExp : Exp :=
+      (Const Zero) :+ (Const (Suc Zero)).
