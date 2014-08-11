@@ -11,6 +11,7 @@
 \usepackage{color}
 \usepackage{algpseudocode,algorithm}
 \usepackage{multirow}
+\usepackage{etoolbox}
 \usepackage[portuguese]{babel}
 %\usepackage[latin1]{inputenc}
 
@@ -52,6 +53,17 @@
    \itshape}
   {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
 \makeatother
+
+% conditional inclusion definition
+
+\newbool{COQ}
+\boolfalse{COQ}
+%\booltrue{COQ}
+
+\newbool{ANSWERS}
+\boolfalse{ANSWERS}
+%\booltrue{ANSWERS}
+
 
 % Book's title and subtitle
 \title{\Huge \textbf{Matem\'atica Discreta para Computa\c{c}\~ao}}
@@ -117,8 +129,9 @@
 \input{cap3/cap3.tex}
 
 \appendix
-
+\ifbool{ANSWERS}{
 \input{apendices/solucoes}
+}{}
 \input{apendices/instalar/instalar.tex}
 
 \bibliographystyle{plain}

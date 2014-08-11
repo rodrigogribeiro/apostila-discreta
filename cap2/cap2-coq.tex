@@ -1,0 +1,285 @@
+\section{Lógica Proposicional no Assistente de Provas Coq}
+
+Até o presente momento, estudamos a lógica proposicional de um ponto
+de vista matemático. Nesta seção, utilizaremos o assistente de provas
+Coq para consolidar os conceitos estudados nesta ferramenta
+computacional.
+
+\subsection{Sintaxe da Lógica Proposicional em Coq}\label{proplogiccoqsyntax}
+
+Nesta seção descrevemos como representar a sintaxe de fórmulas da
+lógica proposicional em \texttt{Coq}. Para isso, utilizaremos um tipo de dados
+para representar fórmulas bem formadas da lógica. A
+estrutura deste tipo é apenas uma transcrição da definição do conjunto
+de fórmulas bem formadas.
+
+\begin{lstlisting}
+Inductive Formula : Set :=
+   | Falsum  : Formula
+   | Verum : Formula
+   | Var : nat -> Formula
+   | Not : Formula -> Formula
+   | And  : Formula -> Formula -> Formula
+   | Or    : Formula -> Formula -> Formula
+   | Implies : Formula -> Formula -> Formula
+   | Iff  : Formula -> Formula -> Formula.
+\end{lstlisting}
+O significado de cada um dos construtores deste tipo é direto. Os
+valores \texttt{Verum} e \texttt{Falsum} representam as constantes
+$\top$ e $\bot$, respectivamente.
+
+Variáveis são representadas pelo
+construtor \texttt{Var} que espera como parâmetro um
+número natural que representa a variável em questão. A representação de
+variáveis usando números naturais é uma prática comum na formalização de propriedades de
+linguagens de programação e outros formalismos baseados em lógica e,
+por isso, adotamos essa representação.
+
+Os demais construtores representam os conectivos da lógica
+proposicional: o construtor \texttt{Not} representa $(\neg)$;
+\texttt{And} denota $(\land)$; \texttt{Or} , o conectivo $(\lor)$; \texttt{Implies},
+$\to$ e \texttt{Iff}, $(\leftrightarrow)$. Note que não incluímos
+explicitamente uma maneira de expressar expressões entre
+parênteses. Isso se deve que utilizaremos a própria sintaxe de Coq
+para representar fórmulas e, com isso, utilizamos parênteses da
+linguagem de Coq para impor precedência entre subexpressões de uma
+dada fórmula. O próximo exemplo ilustrará esse conceito.
+
+\begin{Example}
+Vamos representar a fórmula $\neg A \to B$ utilizando o tipo de dados
+\texttt{Formula}. Utilizando a convenção de precedência entre os
+conectivos da lógica, temos que a fórmula $\neg A \to B$ deve ser
+interpretada como $(\neg A) \to B$, pois a negação possui precedência
+maior que a implicação lógica. Desta forma, a seguinte definição,
+representa esta fórmula em Coq:
+\begin{lstlisting}
+Definition exemplo1 : Formula :=
+              Implies (Not (Var 0)) (Var 1).
+\end{lstlisting}
+Note que representamos a variável $A$ pela fórmula \texttt{Var 0} e
+$B$ por \texttt{Var 1}.
+\end{Example}
+
+Evidentemente, escrever fórmulas utilizando o tipo de dados
+\texttt{Formula} é tedioso. Neste sentido, o código fonte que
+acompanha este material, define uma sintaxe alternativa para definir
+valores do tipo \texttt{Formula}. A sintaxe alternativa é descrita
+pela tabela a seguir:
+
+\begin{table}[h]
+  \begin{tabular}{|c|c|}
+     \hline
+         Sintaxe Convencional & Sintaxe Alternativa \\ \hline
+         \texttt{Var}                 & \texttt{\#} \\
+         \texttt{Not}                & \verb|:~| \\
+         \texttt{And}                & \texttt{\&}\\
+         \texttt{Or}                  & \texttt{|}\\
+         \texttt{Implies}          & \texttt{->>}\\
+         \texttt{Iff}                  & \texttt{<<->>}\\
+     \hline
+  \end{tabular}
+  \centering
+  \caption{Sintaxe alternativa para valores do tipo \texttt{Formula}.}
+\end{table}
+Utilizando a sintaxe alternativa, podemos escrever fórmulas de maneira
+similar a notação matemática, escrevendo conectivos de forma infixa. A
+seguir, apresentamos como a fórmula do exemplo anterior pode ser
+escrita usando a sintaxe alternativa.
+\begin{lstlisting}
+Definition exemplo1' : Formula := :~ (# 0) ->> (# 1).
+\end{lstlisting}
+A principal função de uma definição formal da sintaxe de uma
+linguagem é evitar a escrita de termos que não ``fazem sentido'', isto
+é, que não possuem uma semântica definida. Ao utilizarmos um tipo de
+dados Coq para representação da sintaxe de fórmulas, garantimos que
+somente fórmulas que obedecem as regras sintáticas da linguagem podem
+ser escritas. Isto é, utilizamos o verificador de tipos de Coq para
+garantir que somente termos sintaticamente corretos possam ser
+escritos. O próximo exemplo ilustra essa utilização de Coq.
+
+\begin{Example}
+Considere o termo $\neg (A \lor)$ que não é uma fórmula bem formada da
+lógica proposicional, já que o conectivo $(\lor)$ está aplicado apenas
+a um argumento. Este termo poderia ser escrito em Coq como:
+\begin{lstlisting}
+Definition exemplo2 : Formula := :~ ((# 0) |).
+\end{lstlisting}
+Porém, o compilador rejeita esta definição apresentando uma mensagem
+de erro.
+\end{Example}
+
+\subsection{Semântica da Lógica Proposicional em Coq}
+
+Nesta seção descreveremos como representar em Coq a semântica da
+lógica proposicional. Primeiramente, serão definidas funções para
+representar cada um dos conectivos da lógica proposicional e, em
+seguida, será apresentada uma maneira de se calcular tabela verdades
+para fórmulas.
+
+\subsubsection{Representando o significado dos conectivos}\label{conectivoscoq}
+
+De maneira simplista, conectivos da lógica podem ser vistos como
+funções cujo domínio são valores booleanos ou pares de tais valores e
+contra-domínio, um valor booleano. Por exemplo, o conectivo de negação
+possui como domínio e contra-domínio o conjunto de valores
+booleanos. Desta forma, podemos representá-lo como a seguinte
+definição em Coq:
+\begin{lstlisting}
+Definition negB (a : bool) : bool :=
+        if a then false else true.
+\end{lstlisting}
+No trecho de código anterior temos que a função que representa a
+negação (\texttt{negB}) recebe um parâmetro de nome \texttt{a} e
+retorna o valor lógico apropriado com base no valor de \texttt{a}.
+
+Todos os demais conectivos da lógica são binários, isto é, possuem
+dois parâmetros e, portanto, serão representados como funções que
+possuem dois argumentos e retornam um valor booleano. Abaixo,
+apresentamos a definição para a conjunção:
+\begin{lstlisting}
+Definition andB (a b : bool) : bool :=
+    match a, b with
+      | true , b' => b'
+      | false , _ => false
+    end.
+\end{lstlisting}
+A definição da função \texttt{andB} expressa diretamente o significado
+de $a \land b$, caso $a$ seja verdadeiro, o resultado é o valor de
+$b$, caso seja falso, o resultado também será falso. Abaixo,
+apresentamos as definições dos conectivos $\lor$, $\to$ e
+$\leftrightarrow$ que são análogas.
+\begin{lstlisting}
+Definition orB (a b : bool) : bool :=
+    match a , b with
+      | false, b' => b'
+      | true, _   => true
+    end.
+
+Definition implB(a b : bool) : bool :=
+    match a , b with
+      | true , false => false
+      | _ , _        => true
+    end.
+
+Definition iffB (a  b : bool) : bool :=
+    match a , b with
+      | false, false => true
+      | true , true  => true
+      | _ , _ => false
+    end.
+\end{lstlisting}
+Tendo definido o significado de cada um dos conectivos lógicos, basta
+definir uma função que atribui significado à sintaxe definida na seção
+\ref{proplogiccoqsyntax}.
+
+\subsubsection{Semântica de fórmulas}
+
+Para definirmos um algoritmo para cálculo de tabelas verdade para
+fórmulas da lógica em Coq, devemos primeiramente mostrar uma
+função que, dada uma fórmula e uma atribuição de valores às variáveis
+desta, calcula o valor booleano da fórmula para a atribuição em
+questão.
+
+Para isso, primeiramente, vamos definir um tipo para representar atribuições de
+valores booleanos a variáveis:
+\begin{lstlisting}
+Definition Assign : Set := list bool.
+\end{lstlisting}
+Representaremos atribuições por uma lista de valores booleanos. Como
+variáveis são representadas por números naturais, o valor lógico
+presente em uma atribuição para a variável $n$ estará na $n$-ésima
+posição desta lista. Além disso, utilizaremos a função
+\texttt{nth}\footnote{A função \texttt{nth} está definida na biblioteca \texttt{List}.}
+que, a partir de um número natural, uma lista e um valor padrão de
+mesmo tipo que os elementos da lista em questão, retorna o $n$-ésimo
+elemento desta lista ou o valor padrão, caso o índice passado seja
+inválido.
+
+A função que calcula o valor lógico de uma fórmula,
+\texttt{eval}, é apresentada a seguir:
+\begin{lstlisting}
+Fixpoint eval (a : Assign)(f : Formula) : bool :=
+    match f with
+      | Falsum => false
+      | Verum => true
+      | Var v => nth v a false
+      | Not f' => negB (eval a f')
+      | And l r => andB (eval a l) (eval a r)
+      | Or l r => orB (eval a l) (eval a r)
+      | Implies l r => implB (eval a l) (eval a r)
+      | Iff l r => iffB (eval a l) (eval a r)
+    end.
+\end{lstlisting}
+Exceto para o caso de variáveis, o significado de cada uma das
+equações é imediato. O resultado de avaliar as constantes \texttt{Falsum} e
+\texttt{Verum} é \texttt{false} e \texttt{true}, respectivamente. Para
+variáveis, utilizamos a função \texttt{nth} para obter o valor lógico
+associado a esta. Finalmente, para cada um dos conectivos, calculamos
+o resultado de avaliar suas subfórmulas e o valor lógico final é dado
+pelas funções semânticas dos conectivos definidas na seção
+\ref{conectivoscoq}. A seguir, apresentaremos um exemplo de como
+utilizar a função \texttt{eval} para calcular o valor de uma fórmula
+para uma certa atribuição.
+\begin{Example}
+Considere a tarefa de calcular o valor lógico da fórmula $\neg A \to (B
+\land C)$ quando $A$ possui o valor $T$, $B$ o valor $T$ e $C$ o valor
+$F$ utilizando a função \texttt{eval}.
+
+Primeiramente, vamos definir um valor do tipo \texttt{Assign} que
+representa a atribuição de valores para as variáveis desta fórmula.
+Como variáveis representam a posição de seus valores lógicos na
+atribuição, representaremos a variável $A$ pelo número $0$, $B$ por
+$1$ e $C$ por $2$. Logo, a atribuição pode ser definida pela seguinte
+lista de valores booleanos:
+\begin{lstlisting}
+Definition assignEx40 : Assign :=
+          true :: true :: false :: nil.
+\end{lstlisting}
+A fórmula em questão é definida da seguinte maneira, utilizando o tipo
+\texttt{Formula}:
+\begin{lstlisting}
+Definition formulaEx40 : Formula :=
+         Implies (Not (Var 0)) (And (Var 1) (Var 2)).
+\end{lstlisting}
+Finalmente, podemos solicitar que o interpretador de Coq execute a
+função \texttt{eval} sobre a fórmula anterior usando o seguinte
+comando:
+\begin{lstlisting}
+Eval compute in eval assignEx40 formulaEx40.
+\end{lstlisting}
+que exibirá \texttt{true : bool} como resultado desta execução.
+\end{Example}
+Evidentemente, enumerar manualmente todas as atribuições e utilizar a
+função \texttt{eval} para obter o valor lógico de uma fórmula é
+impraticável. Neste sentido, no código Coq para este capítulo é
+definida a função \texttt{truthTable}, que a partir de uma fórmula
+calcula a tabela verdade desta. Omitiremos sua definição por esta
+envolver conceitos de programação funcional que estão fora do escopo
+deste trabalho. O leitor interessado pode acessar sua implementação no
+código fonte (disponível on-line) que acompanha este material.
+
+Note que o interpretador de Coq demora um tempo considerável para
+calcular a tabela verdade de fórmulas simples. Isso se deve ao fato de
+que o interpretador de Coq não é muito eficiente na realização de
+computações (cálculos). Coq é uma ferramenta que foi construída com o
+intuito de verificar deduções lógicas.
+
+\subsection{Dedução Natural para Lógica Proposicional em Coq}
+
+
+
+\subsection{Álgebra Booleana para Lógica Proposicional em Coq}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+    \item Represente as seguintes fórmulas bem formadas da lógica
+      proposicional como valores do tipo \texttt{Formula}:
+   \begin{enumerate}
+       \item $\neg A \land B \to C$
+       \item $(A \to B) \land \neg (A \lor B \to C)$
+       \item $A \to B \to C \leftrightarrow \bot$
+       \item $A \land \neg A \to B$
+       \item $A \lor B \land C$
+   \end{enumerate}
+\end{enumerate}
