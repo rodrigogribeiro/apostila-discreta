@@ -1,1 +1,46 @@
 \chapter{L\'ogica de Predicados}
+
+\section{Motivação}
+
+No capítulo anterior, estudamos a lógica proposicional de um ponto de
+vista sintático e semântico e, além disso, utilizamos a dedução
+natural e álgebra Booleana para verificar consequências e
+equivalências lógicas.
+
+Apesar de possuir uma série de aplicações, a lógica proposicional possui
+alguns inconvenientes. A seguir apresentamos um exemplo destes
+inconvenientes.
+\begin{Example}
+Considere o seguinte argumento dedutivo:
+\begin{quote}
+Todo homem é mortal.\\ Sócrates é um homem. \\Logo, Sócrates é mortal.
+\end{quote}
+De acordo com nossa noção informal de dedução, este parece ser um
+argumento válido. Sendo assim, este pode ser representado como um
+sequente demonstrável utilizando dedução natural. Porém, ao
+representarmos estas sentenças como fórmulas da lógica, podemos
+perceber que nenhuma delas possui conectivos lógicos. Logo, todas
+estas podem ser consideradas proposições simples, conforme mostramos
+na tabela abaixo:
+
+\begin{table}[h]
+  \begin{tabular}{|l|c|}
+    \hline
+    Sentença & Fórmula \\ \hline
+    Todo homem é mortal & $A$ \\
+    Sócrates é um homem & $B$ \\
+    Sócrates é mortal & $C$ \\\hline
+  \end{tabular}
+  \centering
+\end{table}
+
+Utilizando a modelagem apresentada na tabela acima, o sequente
+\[
+\{A,B\}\,\vdash\,C
+\]
+representa o argumento dedutivo em questão. Mas, como o leitor já deve
+ter percebido, este não é provável utilizando o sistema de dedução
+natural apresentado neste texto.
+\end{Example}
+
+Na seção \ref{soundcompleteprop} apresentamos que
