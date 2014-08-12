@@ -1,8 +1,9 @@
 \chapter{Conceitos Preliminares}\label{cap1}
 
 Lógica é um \emph{sistema formal\/} para descrever e raciocinar sobre o mundo. Para isso, precisamos de uma \emph{linguagem formal\/} e de um conjunto de \emph{regras de inferência\/} ou regras de dedução, que possibilitem inferir {\emph conclusões\/}, a partir de um dado conjunto de \emph{hipóteses\/}, ou premissas. O objetivo deste primeiro capítulo é esclarecer o significado desses conceitos, que serão fundamentais ao longo de todo o texto.
-
+\ifbool{COQ}{
 Para tornar mais interessante o nosso estudo de Lógica e colocar a teoria em um contexto mais prático, vamos utilizar, ao longo do curso, o assitente de provas \textbf{Coq}.  Uma breve introdução ao \textbf{Coq} é também apresentada neste capítulo.
+}{}
 
 \section{Linguagens Formais}
 
@@ -204,8 +205,11 @@ A função $\evalExp$ determina o valor da expressão aritmética representada p
 \end{array}}
 \]
 
-Todas as defini\c{c}\~oes apresentadas nesta se\c{c}\~ao podem ser implementadas em uma linguagem de programação de uso geral. Em linguagens funcionais, a implementação seria praticamente uma transcrição das definições apresentadas. Neste texto, vamos utilizar o assistente de provas Coq para implementação das definições apresentadas. Mais adiante, vamos também utilizar Coq para provar propriedades das funções definidas.
+Todas as defini\c{c}\~oes apresentadas nesta se\c{c}\~ao podem ser implementadas em uma linguagem de programação de uso geral. Em linguagens funcionais, a implementação seria praticamente uma transcrição das definições apresentadas.
+\ifbool{COQ}{
+Neste texto, vamos utilizar o assistente de provas Coq para implementação das definições apresentadas. Mais adiante, vamos também utilizar Coq para provar propriedades das funções definidas.
 Na se\c{c}\~ao \ref{cap1:coq}, a seguir, você vai aprender a descrever, em Coq, a sintaxe e a semântica de linguagens, assim como definir outras funções sobre a termos de uma linguagem, com base na estrutura sint\'atica desses termos, tal como nos exemplos apresentados anteriormente.
+}{}
 
 \subsection{Exerc\'icios}
 
