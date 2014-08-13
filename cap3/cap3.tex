@@ -8,8 +8,7 @@ natural e álgebra Booleana para verificar consequências e
 equivalências lógicas.
 
 Apesar de possuir uma série de aplicações, a lógica proposicional possui
-alguns inconvenientes. A seguir apresentamos um exemplo destes
-inconvenientes.
+limitações. A seguir apresentamos um exemplo que ilustra este problema.
 \begin{Example}
 Considere o seguinte argumento dedutivo:
 \begin{quote}
@@ -17,11 +16,11 @@ Todo homem é mortal.\\ Sócrates é um homem. \\Logo, Sócrates é mortal.
 \end{quote}
 De acordo com nossa noção informal de dedução, este parece ser um
 argumento válido. Sendo assim, este pode ser representado como um
-sequente demonstrável utilizando dedução natural. Porém, ao
-representarmos estas sentenças como fórmulas da lógica, podemos
+sequente demonstrável utilizando dedução natural. Porém, quando tentamos
+representar estas sentenças como fórmulas da lógica, podemos
 perceber que nenhuma delas possui conectivos lógicos. Logo, todas
-estas podem ser consideradas proposições simples, conforme mostramos
-na tabela abaixo:
+podem ser consideradas proposições simples, conforme mostramos
+na tabela a seguir:
 
 \begin{table}[h]
   \begin{tabular}{|l|c|}
@@ -43,4 +42,46 @@ ter percebido, este não é provável utilizando o sistema de dedução
 natural apresentado neste texto.
 \end{Example}
 
-Na seção \ref{soundcompleteprop} apresentamos que
+Na seção \ref{soundcompleteprop} apresentamos que o sistema de dedução
+natural é completo para a lógica proposicional, desta forma, toda
+consequência lógica deve possuir um sequente provável
+correspondente. De acordo com uma noção intuitiva de dedução lógica, o
+argumento anterior é correto e portanto, deveríamos conseguir
+representá-lo como um sequente demonstrável, o que, conforme
+apresentado, não é possível.
+
+O problema na modelagem formal deste argumento é que a lógica proposicional não possui expressividade para
+representar sentenças que possuam as seguintes formas:
+\begin{itemize}
+  \item Todo $x$ possui a propriedade $p$.
+  \item Algum $x$ possui a propriedade $p$.
+\end{itemize}
+Tais sentenças possuem, implicitamente, um conjunto sobre o qual a
+frase em questão deve ser interpretada como verdadeira ou falsa. No
+caso do exemplo anterior, temos que a frase:
+\begin{center}
+Todo homem é mortal.
+\end{center}
+implicitamente se refere ao conjunto de todos os seres humanos. Esta
+mesma frase poderia ser re-escrita de maneira a tornar o conjunto  de
+seres humanos (que está ``implícito'') explícito como:
+\begin{center}
+Todo elemento do conjunto de seres humanos possui a propriedade ``mortal''.
+\end{center}
+Para representar sentenças como ``Todo homem é moral'', precisamos de
+estender a lógica proposicional de forma que sejamos capazes de
+expressar propriedades sobre elementos de um certo conjunto. O
+objetivo deste capítulo é estudarmos esta lógica, conhecida como
+lógica de predicados ou lógica de primeira ordem.
+
+\section{Introdução à lógica de predicados}
+
+\subsection{Predicados}
+
+\subsection{Quantificadores}
+
+\subsection{Formalizando sentenças}
+
+\section{Sintaxe da lógica de predicados}
+
+\section{Semântica da lógica de predicados}
