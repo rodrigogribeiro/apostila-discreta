@@ -1,5 +1,10 @@
 \chapter{L\'ogica de Predicados}
 
+\epigraph{``Observe a estrada e diga-me quem você vê'', disse o Rei.\\
+                 ``Eu vejo ninguém'', disse Alice.\\
+                 ``Mas que excelente visão você possui!'', exclamou o
+                 Rei. ``Ver Ninguém a tal distância! Eu nunca o vi!''}{Lewis Carroll, Alice no País dos Espelhos.}
+
 \section{Motivação}
 
 No capítulo anterior, estudamos a lógica proposicional de um ponto de
@@ -51,7 +56,7 @@ representá-lo como um sequente demonstrável, o que, conforme
 apresentado, não é possível.
 
 O problema na modelagem formal deste argumento é que a lógica proposicional não possui expressividade para
-representar sentenças que possuam as seguintes formas:
+representar sentenças que possuam alguma das seguintes formas:
 \begin{itemize}
   \item Todo $x$ possui a propriedade $p$.
   \item Algum $x$ possui a propriedade $p$.
@@ -68,7 +73,7 @@ seres humanos (que está ``implícito'') explícito como:
 \begin{center}
 Todo elemento do conjunto de seres humanos possui a propriedade ``mortal''.
 \end{center}
-Para representar sentenças como ``Todo homem é moral'', precisamos de
+Para representar sentenças como ``Todo homem é mortal'' precisamos de
 estender a lógica proposicional de forma que sejamos capazes de
 expressar propriedades sobre elementos de um certo conjunto. O
 objetivo deste capítulo é estudarmos esta lógica, conhecida como
@@ -76,11 +81,148 @@ lógica de predicados ou lógica de primeira ordem.
 
 \section{Introdução à lógica de predicados}
 
+Para representar argumentos dedutivos como o apresentado na seção
+anterior, devemos estender a lógica proposicional de maneira a sermos
+capazes de nos referir a elementos de um certo conjunto, denominado
+universo de discurso, e suas
+propriedades. Para isso, a linguagem da lógica proposicional será
+extendida com termos, que denotam elementos do universo de discurso;
+predicados, que representam propriedades destes elementos
+e quantificadores, que permite a especificação de que ``todos'' ou
+``algum'' elemento do conjunto possui uma certa propriedade
+especificada.
+
+As próximas subseções apresentam uma descrição informal dos conceitos
+de universo de discurso, predicados e quantificadores.
+
+\subsection{Universo de discurso}
+
+De maneira simples, qualquer conjunto não vazio pode ser considerado
+como um universo de discurso para interpretação de uma fórmula.
+O conjunto $\{\text{Sócrates}\}$ é um universo de discurso válido para o
+argumento dedutivo apresentado no início deste capítulo, assim como o
+conjunto $\{a\}$ ou o conjunto de todos os seres humanos,
+já que todos são conjuntos não vazios de elementos.
+
+Denominamos por \textit{constante}, um elemento qualquer do
+universo de discurso.
+
 \subsection{Predicados}
+
+Predicados descrevem propriedades que elementos do universo de
+discurso podem ou não possuir portanto, possuem valor verdadeiro ou
+falso. A seguir apresentamos alguns exemplos de predicados.
+
+\begin{Example}
+Vamos considerar o argumento dedutivo apresentado no início deste
+capítulo, repetido abaixo:
+
+\begin{table}[h]
+  \begin{tabular}{|l|c|}
+    \hline
+    Sentença & Fórmula \\ \hline
+    Todo homem é mortal & $A$ \\
+    Sócrates é um homem & $B$ \\
+    Sócrates é mortal & $C$ \\\hline
+  \end{tabular}
+  \centering
+\end{table}
+Note que nestas sentenças existe uma propriedade:
+\textit{mortal}. Logo, ao formalizarmos este argumento,
+\textit{mortal} será um predicado que descreverá a propriedade de
+``ser mortal'' dos elementos do universo de discurso sobre o qual esta
+fórmula está sendo interpretada.
+
+Como outros exemplos de predicados, considere  $x > 10$ que é um exemplo de um predicado e seu
+valor lógico depende do valor da variável $x$. Note que, além de
+possuir a variável $x$, o predicado $x > 10$ também envolve uma
+constante: $10$. Evidentemente,
+predicados podem envolver diversas variáveis como $x > y$ ou
+apenas constantes, como em $10 < 4$.
+\end{Example}
+
+Usualmente representamos predicados de maneira concisa como em $F(x)$,
+em que $F$ é o símbolo que representa uma certa
+propriedade. Considerando a propriedade \textit{mortal}, esta poderia
+ser representada pelo predicado $M(x)$, que pode ser lido como ``$x$ é
+mortal''. Predicados podem ter uma quantidade $n \geq 0$ de
+parâmetros. Quando um predicado possui nenhum parâmetro, dizemos que
+este é uma variável proposicional.
 
 \subsection{Quantificadores}
 
+Existem dois quantificadores na lógica de predicados: o quantificador universal,
+representado pelo símbolo $\forall$, e o quantificador existencial,
+representado pelo símbolo $\exists$.
+
+Na lógica de predicados utilizamos variáveis para representar objetos
+arbitrários do universo de discurso em questão. Por exemplos, se
+desejamos especificar uma propriedade da álgebra, uma variável (por
+exemplo, $x$) representa um número qualquer. Se a propriedade se
+refere a geometria, variáveis podem representar objetos geométricos,
+como pontos, triângulos, etc.
+
+Se $P(x)$ é uma fórmula qualquer da lógica de predicados,
+representamos a sentença ``todo $x$ possui a propriedade $P$'', por
+$\forall x.P(x)$. De maneira similar, representamos a sentença ``algum
+$x$ possui a propriedade $P$'' por $\exists x.P(x)$.
+
+Dizemos que a fórmula $\forall x.P(x)$ é considerada verdadeira se para todo
+elemento do universo de discurso em questão a propriedade $P$ é
+verdadeira. Por sua vez, a fórmula $\exists x.P(x)$ é considerada
+verdadeira se pelo menos um elemento do universo de discurso torna a
+propriedade $P$ verdadeira. A seguir apresentamos alguns exemplos.
+
+\begin{Example}
+Considere o seguinte universo de discurso $U = \{\text{Zeus,Sócrates}\}$,
+que a constante Zeus representa um deus da mitologia grega e Sócrates
+o conhecido filósofo. Além disso, considere o predicado $M(x)$ que é
+verdadeiro se ``$x$ é um mortal''. Desta forma, temos que a fórmula
+$\forall x. M(x)$ é falsa em $U$, já que nem todo elemento deste
+conjunto torna o predicado $M$ verdadeiro\footnote{O elemento Zeus torna
+este predicado falso, já que, este representa o deus grego, que é
+imortal.}.
+
+Porém, se considerarmos o universo de discurso $F = \{\text{Sócrates, Platão}\}$, temos que
+a fórmula $\forall x. M(x)$ é verdadeira, visto que todos os elementos
+de $F$ satisfazem a propriedade $M$. Em ambos os conjuntos $U$ e $F$ a
+fórmula $\exists x. M(x)$ é verdadeira, visto que há pelo menos um
+elemento nestes conjuntos que representa um mortal.
+\end{Example}
+
+\begin{Example}
+Neste exemplo vamos considerar a tarefa de interpretar a validade de
+algumas fórmulas envolvendo o predicado $>$ sobre
+números. Estas fórmulas são: $\forall x. x > 0$ e $\forall x. \exists
+y. x > y$.
+
+Inicialmente, vamos considerar como universo de discurso o
+conjunto dos números naturais. A primeira fórmula é \textit{falsa}
+pois, temos que o número $0 \in \mathbb{N}$ não é maior que $0$.
+
+A segunda fórmula também é falsa pois esta especifica que para qualquer número
+natural $x$, existe $y$ tal que $x > y$, o que não é verdadeiro para
+$x = 0$. Porém, ao considerarmos o conjunto dos números inteiros,
+$\mathbb{Z}$, temos que a primeira fórmula é falsa (porquê?) e a
+segunda verdadeira, visto que no conjunto dos números inteiros, para
+qualquer $x$ existe um número menor que $x$.
+
+Considerando qualquer conjunto numérico a seguinte propriedade é
+falsa: $\exists y. \forall x. y > x$, já que esta especifica que
+existe algum valor $y$ que é maior que qualquer outro valor $x$.
+\end{Example}
+
 \subsection{Formalizando sentenças}
+
+Para a formalização de sentenças utilizando a lógica de predicados
+devemos, além de especificar, utilizando predicados, quais
+propriedades relevantes deverão ser consideradas.
+
+\begin{Example}
+Nos próximos
+exemplos, vamos considerar sentenças envolvendo o predicado $C(x,y)$,
+que denota ``$x$ conhece $y$''.
+\end{Example}
 
 \section{Sintaxe da lógica de predicados}
 
