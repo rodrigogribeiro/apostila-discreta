@@ -105,7 +105,25 @@ conjunto $\{a\}$ ou o conjunto de todos os seres humanos,
 já que todos são conjuntos não vazios de elementos.
 
 Denominamos por \textit{constante}, um elemento qualquer do
-universo de discurso.
+universo de discurso. A lógica de predicados também permite a
+definição de símbolos funcionais (funções), que podem ser utilizados
+para representar elementos do universo de discurso sem a necessidade
+de nomeá-lo. O próximo exemplo ilustra a utilização de símbolos
+funcionais e constantes.
+
+\begin{Example}
+Considere como universo de discurso o conjunto $H$ de todas os seres
+humanos, as constantes \textit{Hermengarda} e \textit{Eudésio} e a
+função \textit{mãe}, que a partir de uma constante $h$ que representa um
+ser humano retorna a constante que denota a mãe de $h$. Se
+considerarmos que \textit{Hermengarda} é mãe de \textit{Eudésio}, temos que ao
+aplicarmos a função \textit{mãe} a constante \textit{Eudésio} o
+resultado será \textit{Hermengarda}.
+
+Note que podemos nos referir ao mesmo elemento usando uma constante
+(como, por exemplo, \textit{Hermengarda}) ou utilizando símbolos
+funcionais (como, por exemplo, \textit{mãe(Eudésio)}.
+\end{Example}
 
 \subsection{Predicados}
 
@@ -215,15 +233,144 @@ existe algum valor $y$ que é maior que qualquer outro valor $x$.
 \subsection{Formalizando sentenças}
 
 Para a formalização de sentenças utilizando a lógica de predicados
-devemos, além de especificar, utilizando predicados, quais
-propriedades relevantes deverão ser consideradas.
+devemos especificar o universo de discurso, a interpretação de
+predicados e dos símbolos funcionais que podem ser utilizados. Os
+próximos exemplos ilustram a utilização destes conceitos na
+formalização de sentenças na língua portuguesa.
 
 \begin{Example}
 Nos próximos
 exemplos, vamos considerar sentenças envolvendo o predicado $C(x,y)$,
-que denota ``$x$ conhece $y$''.
+que denota ``$x$ conhece $y$'', o predicado $G(x,y)$ que representa
+``$x$ gosta de $y$'',  a função \textit{mãe} que possui significado
+óbvio. O universo de discurso considerado será, novamente, o conjunto
+de todos os seres humanos.
+\begin{itemize}
+  \item A sentença ``Todo mundo gosta de alguém'' pode ser
+    representada como: $\forall x. \exists y. G(x,y)$.
+  \item A sentença ``Astobaldo não gosta de sua mãe'' pode ser
+    representada como $\neg
+    G(\text{Astobaldo},\textit{mãe}(\text{Astobaldo}))$.
+  \item A sentença ``Ninguém gosta de todo mundo'' pode ser
+    formalizada como $\neg \exists x. \forall y. G(x,y)$. Note que
+    esta sentença é equivalente a ``Não existe alguém que goste de
+    todo  mundo''.
+  \item A sentença ``Todos gostam da mãe de Carlos'' pode ser
+    representada como $\forall x. G(x, \text{\textit{mãe}(Carlos))}$.
+  \item A sentença ``Todos que conhecem Clementino, não gostam da mãe
+    dele'' pode ser representada como $\forall
+    x. C(x,\text{Clementino}) \to \neg G(x, \textit{mãe}(\text{Clementino}))$.
+\end{itemize}
 \end{Example}
 
+\section{Exercícios}
+
+\begin{enumerate}
+  \item Considere como universo de discurso o conjunto de todos os
+    seres humanos, e que \textit{Holmes} e \textit{Moriarty} são
+    constantes. Além disso, considere o predicado $C(x,y)$ que denota
+    ``$x$ pode capturar $y$''. Com base no apresentado, represente as
+    seguintes sentenças como fórmulas da lógica de predicados.
+    \begin{enumerate}
+      \item Holmes pode capturar qualquer um que pode capturar Moriarty.
+      \item Holmes pode capturar alguém que Moriarty pode capturar.
+      \item Se alguém pode capturar Moriarty, então Holmes também
+        pode.
+      \item Ninguém pode capturar Holmes, a menos que possa capturar
+        Moriarty.
+      \item Qualquer um que pode capturar Holmes pode capturar todos
+        que Holmes pode capturar.
+    \end{enumerate}
+    \item Expresse as seguintes frases utilizando l\'ogica de predicados.
+	      Para isso, crie predicados, fun\c{c}\~oes e constantes do dom\'inio
+	      de interpreta\c{c}\~ao que julgar adequados.
+	\begin{enumerate}
+		\item Quem faz exerc\'icios tem melhor qualidade de vida.
+		\item Alunos n\~ao gostam de fazer provas.
+		\item Nem tudo que reluz \'e ouro.
+		\item Quem conhece Godofredo o adora.
+		\item N\~ao conhe\c{c}o quem n\~ao odeie as brincadeiras de Eud\'esio.
+		\item Ningu\'em visita Hermengarda, a menos que ela esteja af\^onica.
+	\end{enumerate}
+    \item Considerando como universo de discurso o conjunto de alunos
+      e professores de uma universidade e os seguintes predicados:
+
+      \begin{table}[h]
+           \begin{tabular}{|c|l|}
+             \hline
+             $A(x,y)$ & $x$ admira $y$\\
+             $S(x,y)$ & $x$ estava presente em $y$\\
+             $P(x)$    & $x$ é um professor\\
+             $E(x)$    & $x$ é um estudante \\
+             $L(x)$    &  $x$ é uma aula \\ \hline
+           \end{tabular}
+           \centering
+      \end{table}
+
+      e a constante \textit{Maria}, represente as seguintes sentenças
+      como fórmulas da lógica de predicados.
+      \begin{enumerate}
+          \item Maria admira todo professor.
+           \item Algum professor admira Maria.
+           \item Maria admira a si própria.
+           \item Nenhum estudante estava presente em todas as aulas.
+           \item Nenhuma aula teve a presença de todos os estudantes.
+           \item Nenhuma aula teve a presença de qualquer estudante.
+      \end{enumerate}
+\end{enumerate}
+
 \section{Sintaxe da lógica de predicados}
+
+A seção anterior teve como objetivo mostrar como codificar sentenças
+como fórmulas da lógica de predicados e introduziu, de maneira
+informal, a sintaxe e como fórmulas
+são interpretadas em um determinado universo de
+discurso. Nesta seção vamos definir de maneira precisa a sintaxe da
+lógica de predicados, para na próxima seção definirmos a semântica de
+fórmulas bem formadas nesta lógica.
+
+Ao observarmos com atenção os exemplos de fórmulas, podemos perceber
+que estas são compostas de componentes de dois tipos: valores que
+representam elementos do universo de discurso e componentes
+lógicos. Damos o nome de \textit{termos} aos componentes da sintaxe da
+lógica de predicados que representam elementos do universo de
+discurso.
+
+\subsection{Termos}
+
+O conjunto $\mathcal{T}$ de termos da lógica de predicados é formado
+por variáveis, constantes e funções aplicadas a ambos. A seguir
+apresentamos a definição formal do conjunto $\mathcal{T}$.
+
+\begin{Definition}[Conjunto de Termos da Lógica de Predicados]\label{termdef}
+O conjunto $\mathcal{T}$ de termos da lógica de predicados é definido
+recursivamente como:
+\begin{itemize}
+  \item Seja $\mathcal{V}$ o conjunto de todas as variáveis da lógica
+    de predicados. Então $\mathcal{V} \subseteq \mathcal{T}$, isto é,
+    toda variável é um termo.
+  \item Seja $\mathcal{C}$ o conjunto de todas as constantes da lógica
+    de predicados. Então, $\mathcal{C}\subseteq\mathcal{T}$, isto é,
+    toda constante é um termo.
+  \item Seja $\mathcal{F}$ o conjunto de todos os símbolos funcionais
+    da lógica de predicados. Considere que $f\in\mathcal{F}$ é uma
+    função de aridade\footnote{Denomina-se por aridade o número de
+      parâmetros de uma função.} $n$, $n\geq 1$, e que $t_1,...,t_n \in
+    \mathcal{T}$. Então, $f(t_1,...,t_n)\in\mathcal{T}$, isto é, toda
+    função de aridade $n$ aplicada a $n$ termos é também um termo.
+\end{itemize}
+Todos os elementos de $\mathcal{T}$ podem ser construídos pelas regras anteriores.
+\end{Definition}
+A seguir apresentamos alguns exemplos de termos e como estes são
+construídos utilizando a definição \ref{termdef}.
+\begin{Example}
+Suponha que $a,b$ e $c$ sejam constantes de algum universo de
+discurso, $f$ e $g$ duas funções de aridade 1 e 2, respectivamente. As
+expressões seguintes são termos da lógica de predicados:
+\begin{itemize}
+  \item $g(a,b)$
+  \item $f(g(f(a),c))$
+\end{itemize}
+\end{Example}
 
 \section{Semântica da lógica de predicados}
