@@ -367,10 +367,283 @@ construídos utilizando a definição \ref{termdef}.
 Suponha que $a,b$ e $c$ sejam constantes de algum universo de
 discurso, $f$ e $g$ duas funções de aridade 1 e 2, respectivamente. As
 expressões seguintes são termos da lógica de predicados:
-\begin{itemize}
+\begin{enumerate}
   \item $g(a,b)$
   \item $f(g(f(a),c))$
-\end{itemize}
+\end{enumerate}
+
+A fórmula 1) pode ser construída da seguinte maneira: primeiramente,
+$a$ e $b$, por serem constantes, são termos. Finalmente, $g(a,b)$ é um
+termo pois a função $g$, de aridade $2$, está aplicada a dois termos.
+Por sua vez, a fórmula 2) é bem formada, pois tanto $a$ quanto $c$ são
+termos (já que ambos são constantes). Sendo assim, $f(a)$ é um termo,
+já que a função $f$, de aridade 1, está aplicada a um termo. De
+maneira similar, temos que $g(f(a),c)$ é um termo pois, a função $g$
+(de aridade 2) está aplicada a $f(a)$ e $c$. Finalmente,
+$f(g(f(a),c))$ é um termo pois, a função $f$, de aridade 1, está
+aplicada a $g(f(a),c)$.
+
+As seguintes expressões não podem ser consideradas termos já que não
+respeitam a aridade das funções $f$ e $g$: $f(a,c)$, $g(f(a))$.
 \end{Example}
 
+\subsection{Fórmulas}
+
+A partir da definição de termos, podemos definir o conjunto de
+fórmulas bem formadas da lógica de predicados,
+$\mathbb{F}$.
+
+\begin{Definition}[Fórmulas bem formadas]
+O conjunto de fórmulas bem formadas da lógica de predicados,
+$\mathbb{F}$, pode ser definido recursivamente da seguinte maneira:
+\begin{enumerate}
+  \item Seja $p$ um predicado de aridade $n \geq 0$ e
+    $t_1,...,t_n\in\mathcal{T}$ termos. Então,
+    $p(t_1,...,t_n)\in\mathbb{F}$, isto é, $p(t_1,...,t_n)$ é uma
+    fórmula (tais fórmulas são usualmente denominadas de fórmulas atômicas).
+  \item $\bot,\top \in \mathbb{F}$.
+  \item Sejam $\alpha, \beta \in \mathbb{F}$ fórmulas
+    quaisquer. Então:
+    \begin{enumerate}
+      \item $\neg \alpha \in \mathbb{F}$.
+      \item $\alpha \circ \beta \in \mathbb{F}$, em que
+        $\circ\in\{\lor,\land,\to,\leftrightarrow\}$.
+      \item Se $x \in \mathcal{V}$ (isto é, $x$ é uma variável),
+        então: $\forall x. \alpha \in \mathbb{F}$ e $\exists x. \alpha
+        \in \mathbb{F}$.
+      \item $(\alpha)\in\mathbb{F}$.
+    \end{enumerate}
+    Toda fórmula bem formada da lógica de predicados pode ser
+    construída utilizando as regras anteriores.
+\end{enumerate}
+\end{Definition}
+
+A seguir apresentamos alguns exemplos de fórmulas bem formadas.
+\begin{Example}
+Primeiramente, considere os seguintes exemplos de fórmulas atômicas:
+\begin{enumerate}
+  \item $f$ --- um predicado de aridade 0 (isto é, uma variável
+    proposicional).
+  \item pai(Adão,Abel) --- um predicado de aridade 2 (pai) e duas
+    constantes: Adão e Abel. Esta fórmula poderia representar a
+    sentença ``Adão é pai de Abel''.
+  \item casados(João,irmã(Maria)) --- um predicado de aridade 2
+    (casados), aplicado a constante João e ao termo irmã(Maria), em
+    que irmã é uma função. Esta fórmula poderia representar a sentença
+    ``João é casado com a irmã de Maria''.
+\end{enumerate}
+A seguir apresentamos alguns exemplos de fórmulas não atômicas.
+\begin{enumerate}
+  \item pai(Adão,Abel) $\land$ pai(Adão,Caim). Esta fórmula representa
+    a sentença ``Adão é pai de Abel e Caim''.
+  \item $\exists x. $tia($x$,Joaquim). Esta fórmula representa a
+    sentença ``Joaquim tem uma tia''.
+  \item $\forall x. $gosta($x$,mãe($x$)) Esta fórmula representa a
+    sentença ``Todos gostam de sua respectiva mãe''.
+\end{enumerate}
+\end{Example}
+
+Assim como na lógica proposicional, utilizaremos precedências entre
+conectivos e quantificadores na lógica de predicados para evitar
+o uso excessivo de parênteses. Para os conectivos, utilizaremos as
+mesmas regras de precedência da lógica proposicional e consideraremos
+que quantificadores possuem a mesma precedência que o conectivo
+$\neg$.
+
+\subsection{Variáveis Livres e Ligadas}
+
+Antes de apresentarmos os conceitos de variável livre e ligada,
+devemos definir de maneira precisa o escopo de um quantificador em uma
+fórmula.
+\begin{Definition}[Escopo de quantificadores]
+Seja $x\in\mathcal{V}$ uma variável e $\alpha \in\mathbb{F}$ uma
+fórmula. Dizemos que o escopo da variável $x$ em $\forall x. F$ é a
+fórmula $F$. De maneira similar, o escopo de $x$ em $\exists x. F$ é
+também a fórmula $F$.
+\end{Definition}
+Dizemos que uma variável é livre em uma certa fórmula se esta não está
+no escopo de nenhum quantificador. Uma variável que não é livre é dita
+ser ligada. O próximo exemplo ilustra estes conceitos.
+\begin{Example}\label{freeboundexample}
+  Considere a seguinte equação envolvendo símbolos da aritmética sobre
+  números naturais:
+  \[
+  x = 5y
+  \]
+  Esta equação não pode ser considerada verdadeira ou falsa, uma vez
+  que o seu valor lógico depende dos valores atribuídos às variáveis
+  $x$ e $y$. Note que, tanto $x$ quanto $y$, são variáveis que ocorrem
+  livres na fórmula anterior. Considere a seguinte variação da fórmula
+  anterior:
+ \[
+ \exists y. x = 5y
+ \]
+ Note que o valor lógico da fórmula acima depende apenas do valor de
+ $x$ e não de $y$. Esta fórmula pode ser descrita na língua portuguesa
+ sem mencionarmos a variável $y$ como ``$x$ é um múltiplo de 5''. O
+ fato do valor lógico desta fórmula não depender da variável $y$ é uma
+ consequência desta ser uma variável ligada.
+\end{Example}
+De maneira simples, podemos determinar se uma variável $x$ é livre ou
+ligada em uma fórmula utilizando a função $fv$, que calcula o
+conjunto de variáveis livres de uma dada fórmula. Esta
+é definida a seguir.
+\begin{Definition}[Variáveis livres]
+Seja $t\in\mathcal{T}$ um termo qualquer. O conjunto de variáveis
+livres em $t$, $fv_{\mathcal{T}}(t)$, é definido recursivamente como:
+\[
+fv_{\mathcal{T}}(t)=\left\{
+                             \begin{array}{ll}
+                               \{x\} & \text{se }t = x, \text{ para
+                                 algum }x \in \mathcal{V},\text{ isto é,
+                               se }t\text{ é uma variável}. \\
+                               \emptyset & \text{se }t = c, \text{
+                                 para algum } c\in\mathcal{C}, \text{
+                                 isto é, se }t\text{ é uma constante}.\\
+                               \bigcup_{i = 1}^n fv_{\mathcal{T}}(t_i)
+                               & \text{se }t = f(t_1,...,t_n), \text{
+                                 em que }t_1,...,t_n\in\mathcal{T},
+                               \text{ e }f\text{ possui aridade }n.
+                             \end{array}
+                          \right .
+\]
+Dada uma fórmula $\alpha\in\mathbb{F}$, o conjunto de variáveis livres
+de $\alpha$, $fv(\alpha)$, é definido recursivamente como:
+\[
+fv(\alpha)=\left\{
+                     \begin{array}{ll}
+                       \bigcup_{i = 1}^n fv_{\mathcal{T}}(t_i) & \text{se
+                       }t = p(t_1,...,t_n) \text{ em que }p \text{
+                         possui aridade }n\geq 0.\\
+                       \emptyset &  \text{se }\alpha = \top \text{ ou
+                       }\alpha = \bot\\
+                       fv(\beta) & \text{se }\alpha = \neg \beta\\
+                       fv(\beta)\cup fv(\gamma) & \text{se }\alpha =
+                       \beta\circ\gamma,
+                       \circ\in\{\lor,\land,\to,\leftrightarrow\}.\\
+                       fv(\beta) - \{x\} & \text{se }\alpha = \forall
+                       x.\beta \text{ ou } \alpha = \exists x.\beta.
+                     \end{array}
+                  \right .
+\]
+Uma fórmula $\alpha\in\mathbb{F}$ em que $fv(\alpha) = \emptyset$ é
+dita ser \emph{fechada}. Caso contrário, \emph{aberta}.
+\end{Definition}
+O leitor deve ter notado que não apresentamos uma função para o
+cálculo de variáveis ligadas de uma fórmula. Esta é deixada como
+exercício (veja o exercício \ref{boundex} da seção \ref{exsyntaxpred}).
+
+\subsection{Substituição}
+
+Conforme discutido no exemplo \ref{freeboundexample}, fórmulas que
+possuem variáveis livres só podem possuir significado se estas
+forem substituídas por ``valores concretos'', isto é, termos
+cujo significado não depende de nenhum valor externo à definição da
+fórmula em questão.
+
+De maneira mais formal, para atribuir significado a fórmulas com
+variáveis livres, estas precisam ser substituídas por termos que não
+possuem este tipo de variável. A operação de substituir uma variável
+por um termo qualquer é denominada \textit{substituição}.
+
+\begin{Definition}[Substituição]
+Sejam $x\in\mathcal{V}$ e $t,s\in\mathcal{T}$ uma variável e termos,
+respectivamente. Denotamos por $[x\mapsto s]\,t$ o termo obtido pela
+substituição de toda ocorrência livre de $x$ em $t$ por $s$. Mais
+formalmente (considere que $y\in\mathcal{V}$, $c\in\mathcal{C}$ e que
+$x \equiv y$ é verdadeiro se $x$ for igual a variável $y$):
+\begin{equation*}
+\begin{array}{lclc}
+\lbrack x\mapsto s\rbrack \, y & = & \left\{
+                                         \begin{array}{ll}
+                                           s & \text{se } x \equiv y\\
+                                           y & \text{caso contrário}.
+                                         \end{array}
+                                     \right . & (1)\\
+\lbrack x\mapsto s\rbrack\,c & = & c & (2)\\
+\lbrack x\mapsto s\rbrack\,f(t_1,...,t_n) & = & f(\lbrack x\mapsto s\rbrack\,t_1,...,
+\lbrack x\mapsto s\rbrack\,t_n)  & (3) \\
+\end{array}
+\end{equation*}
+Utilizando a definição de substituição para termos, podemos definir a
+substituição para fórmulas quaisquer (em que $\alpha,\beta
+\in\mathbb{F}, \circ\in\{\lor,\land,\to,\leftrightarrow\}$):
+\[
+\begin{array}{lclc}
+\lbrack x \mapsto s\rbrack p(t_1,...,t_n) & = & p(\lbrack x \mapsto
+s\rbrack\,t_1,...,\lbrack x \mapsto s\rbrack\,t_n)  & (4)\\
+\lbrack x \mapsto s\rbrack \top & = & \top  & (5)\\
+\lbrack x \mapsto s\rbrack \bot & = & \bot & (6) \\
+\lbrack x \mapsto s\rbrack (\neg \alpha) & = & \neg (\lbrack x \mapsto
+s\rbrack\,\alpha) & (7) \\
+\lbrack x \mapsto s\rbrack (\alpha \circ \beta) & = & (\lbrack x
+\mapsto s\rbrack\alpha) \circ (\lbrack x \mapsto s\rbrack \beta) & (8)\\
+\lbrack x \mapsto s\rbrack (\forall y. \alpha) & = & \left\{
+                                                                                       \begin{array}{ll}
+                                                                                         \forall
+                                                                                         y. \lbrack
+                                                                                         x
+                                                                                         \mapsto
+                                                                                         s\rbrack
+                                                                                         \alpha
+                                                                                         &
+                                                                                         \text{se
+                                                                                         }x\not\equiv
+                                                                                         y
+                                                                                         \\
+                                                                                         \forall
+                                                                                         y. \alpha
+                                                                                         &
+                                                                                         \text{se
+                                                                                         }x
+                                                                                         \equiv y
+                                                                                        \end{array}
+                                                                                   \right. &
+                                                                                   (9)\\
+\lbrack x \mapsto s\rbrack (\exists y. \alpha) & = & \left\{
+                                                                                       \begin{array}{ll}
+                                                                                         \exists
+                                                                                         y. \lbrack
+                                                                                         x
+                                                                                         \mapsto
+                                                                                         s\rbrack
+                                                                                         \alpha
+                                                                                         &
+                                                                                         \text{se
+                                                                                         }x\not\equiv
+                                                                                         y
+                                                                                         \\
+                                                                                         \exists
+                                                                                         y. \alpha
+                                                                                         &
+                                                                                         \text{se
+                                                                                         }x
+                                                                                         \equiv y
+                                                                                        \end{array}
+                                                                                   \right. & (10)
+\end{array}
+\]
+Note que as equações que definem a substituição para fórmulas com
+quantificadores proíbem que a substituição seja realizada sobre
+variáveis ligadas.
+\end{Definition}
+O seguinte ilustra a operação de substituição sobre termos e fórmulas.
+\begin{Example}
+Seja $x \in \mathcal{V}$ uma variável e $f(a)$ um termo ($a$ é uma
+constante). Temos que o resultado de aplicar a substituição $\lbrack x \mapsto
+f(a)\rbrack$ ao termo $g(a,h(x,a))$ é $g(a,h(f(a),a))$. O resultado de
+aplicar esta mesma substituição à fórmula $\forall y. g(y,x)$ é
+$\forall y. g(y,f(a))$. De maneira similar, a aplicação da
+substituição $\lbrack x \mapsto g(a,a) \rbrack$ à fórmula $\exists
+x. f(x)$ produz o termo $\exists x. f(x)$, já que este não possui
+variáveis livres.
+\end{Example}
+
+\section{Exercícios} \label{exsyntaxpred}
+
+\begin{enumerate}
+  \item Apresente a definição recursiva para uma função que calcula o
+    conjunto de variáveis ligadas de uma fórmula da lógica de
+    predicados. \label{boundex}
+\end{enumerate}
 \section{Semântica da lógica de predicados}
