@@ -79,7 +79,7 @@ expressar propriedades sobre elementos de um certo conjunto. O
 objetivo deste capítulo é estudarmos esta lógica, conhecida como
 lógica de predicados ou lógica de primeira ordem.
 
-\section{Introdução à lógica de predicados}
+\section{Introdução à lógica de predicados}\label{intropredlogic}
 
 Para representar argumentos dedutivos como o apresentado na seção
 anterior, devemos estender a lógica proposicional de maneira a sermos
@@ -393,7 +393,7 @@ A partir da definição de termos, podemos definir o conjunto de
 fórmulas bem formadas da lógica de predicados,
 $\mathbb{F}$.
 
-\begin{Definition}[Fórmulas bem formadas]
+\begin{Definition}[Fórmulas bem formadas]\label{predsyntaxdef}
 O conjunto de fórmulas bem formadas da lógica de predicados,
 $\mathbb{F}$, pode ser definido recursivamente da seguinte maneira:
 \begin{enumerate}
@@ -488,7 +488,7 @@ De maneira simples, podemos determinar se uma variável $x$ é livre ou
 ligada em uma fórmula utilizando a função $fv$, que calcula o
 conjunto de variáveis livres de uma dada fórmula. Esta
 é definida a seguir.
-\begin{Definition}[Variáveis livres]
+\begin{Definition}[Variáveis livres]\label{freevars}
 Seja $t\in\mathcal{T}$ um termo qualquer. O conjunto de variáveis
 livres em $t$, $fv_{\mathcal{T}}(t)$, é definido recursivamente como:
 \[
@@ -645,5 +645,209 @@ variáveis livres.
   \item Apresente a definição recursiva para uma função que calcula o
     conjunto de variáveis ligadas de uma fórmula da lógica de
     predicados. \label{boundex}
+  \item Para cada um dos termos da lógica de predicados a seguir, use
+    a definição de fórmulas bem formadas (definição
+    \ref{predsyntaxdef}) para justificar o porquê estes podem ser
+    considerados fórmulas bem formadas. Considere que os símbolos $f,
+    g$ são funções de aridade 1 e 2, respectivamente, que $a,b$ são
+    constantes e $p, q$ são predicados de aridade 1 e 2
+    respectivamente.
+    \begin{enumerate}
+      \item $f(a)$
+      \item $\forall x. q(f(a),x)$
+      \item $\exists y. p(y) \land \forall x. q(f(a),g(x,b))$.
+    \end{enumerate}
+    \item Obtenha o conjunto de variáveis livres para cada uma das
+      fórmulas seguintes utilizando a definição
+      \ref{freevars}. Considere que $a$ e $b$ são constantes.
+    \begin{enumerate}
+		\item $\forall x. (p(x,z)\rightarrow q(y)) \land
+                  s(a,x)$
+                \item $\exists y. p(y,z) \land \forall
+                  x. q(f(a),g(x,b))$.
+                \item $\exists y. p(y) \land \forall x. q(f(a),g(x,b))$.
+    \end{enumerate}
 \end{enumerate}
+
 \section{Semântica da lógica de predicados}
+
+Na lógica proposicional, para ser possível determinar o valor lógico
+de uma fórmula basta uma interpretação para as variáveis nela
+contidas. Isso é feito atribuindo, às variável da fórmula, todas as
+possíveis combinações de verdadeiro ($T$) ou falso ($F$). Porém, como
+apresentado informalmente na seção \ref{intropredlogic}, para
+interpretarmos fórmulas da lógica de predicados, devemos possuir um
+universo de discurso (que dá significado às constantes) e conjuntos de
+relações e funções que atribuem significado aos símbolos predicativos
+e funcionais, respectivamente.Isto é, para definirmos o significado de
+fórmulas da lógica de predicados, necessitamos de uma
+\textit{estrutura}, conceito este apresentado na definição seguinte.
+
+\begin{Definition}[Estrutura]
+Uma estrutura é uma tripla $I = (U,R,F)$, em que:
+\begin{itemize}
+  \item $U$ é um conjunto não vazio tal que para cada constante $a \in
+    \mathcal{T}$, temos que $a^I\in U$, em que $a^I$ é a denotação de
+    $a$ em $U$.
+  \item $R$ é um conjunto de relações, em que, para cada símbolo
+    predicativo $p$ de aridade $n \geq 1$, existe uma relação $n$-ária
+    $p^I \subseteq U^n$.
+  \item $F$ é um conjunto de funções, em que, para cada símbolo
+    funcional $f$, de aridade $n\geq 1$, existe uma função $f^I :
+    U^n\to U \in F$.
+\end{itemize}
+\end{Definition}
+
+A definição de uma função para atribuição significado a fórmulas da
+lógica de predicados é apresentada a seguir. Primeiramente,
+apresentamos a definição da semântica de um termo. Como termos denotam
+elementos do universo de discurso, a função semântica para termos
+deverá produzir como resultado um elemento do conjunto $U$,
+considerando uma estrutura $I=(U,R,F)$.
+
+\begin{Definition}[Semântica de termos]
+Seja $I=(U,R,F)$ uma estrutura. Definimos a função $\varepsilon : \mathcal{T}
+\to U$, que define a semântica de um termo $t$ como um elemento $u\in
+U$, recursivamente como:
+\[
+\begin{array}{lcllc}
+\varepsilon(a) & = & a^I, & \text{em que }a^I\in U & (1)\\
+\varepsilon(f(t_1,...,t_n)) & = &
+f^I(\varepsilon(t_1),...,\varepsilon(t_n)) & \text{em que }f^I\in
+F\text{ e } t_1,...,t_n \in \mathcal{T} & (2)
+\end{array}
+\]
+\end{Definition}
+Note que apesar de variáveis serem consideradas termos, não
+apresentamos a semântica destas, uma vez que termos possuem somente
+variáveis livres e, como já citado anteriormente, apresentaremos a
+semântica apenas de fórmulas fechadas. Isto não constitui uma
+limitação, uma vez que, substituições podem ser utilizadas para
+eliminar variáveis livres de fórmulas.
+
+Antes de apresentarmos a função semântica de fórmulas da lógica de
+predicados, vamos considerar um exemplo para ilustrar a semântica de
+termos desta lógica.
+
+\begin{Example}
+Suponha um universo de discurso em que objetos sejam países e cidades,
+dentre as quais citamos \textit{Rio de Janeiro, Berlim, Nova York,
+  Tóquio,} entre outras. Desejamos formalizar as seguintes funções e
+constantes envolvendo países e cidades:
+\begin{itemize}
+   \item \textit{capital}: função de aridade 1 que associa a cada país
+     sua respectiva capital. Representaremos, na lógica de predicados,
+     a  função \textit{capital} pelo símbolo funcional $cap$. Logo,
+     $cap^I = \textit{capital}$.
+   \item Representarmos as constantes \textit{Rio de Janeiro, Berlim, Nova York,
+  Tóquio} por $RJ, BL, NY$ e $TK$, respectivamente. Além disso,
+   consideraremos que a constante Brasil é representada pelo termo
+   $BR$ e Alemanha por $GE$.
+\end{itemize}
+Considere, agora, a tarefa de interpretrar o significado do termo
+$cap(GE)$. Utilizando a definição da semântica de termos, temos:
+\[
+\begin{array}{lcl}
+\varepsilon(cap(GE)) & = &\\
+cap^I(\varepsilon(GE)) & = & \{\text{pela eq. (2) de }\varepsilon.\}\\
+cap^I(GE^I) & = & \{\text{pela eq. (1) de }\varepsilon.\}\\
+cap^I(\textit{Alemanha}) & = & \{\text{pela semântica da constante }GE\}\\
+\textit{capital}(\textit{Alemanha}) & = & \{\text{pela semântica do
+  símbolo funcional }cap.\}\\
+\textit{Berlim} & & \{\text{pela semântica da função da função \textit{capital}}\}.
+\end{array}
+\]
+Logo, o termo $cap(GE)$ denota o mesmo elemento (a cidade de Berlim)
+que a constante $BL$.
+\end{Example}
+A seguir, é apresentada a semântica para fórmulas da lógica de
+predicados.
+\begin{Definition}[Semântica de Fórmulas]\label{predlogicformulasem}
+Seja $I=(U,R,F)$ uma estrutura. Definimos a função $\llbracket\_\rrbracket :
+\mathbb{F}\to \{T,F\}$, que associa a cada fórmula fechada da lógica de
+predicados o seu respetivo valor lógico, recursivamente como (em que
+$t_1,...,t_n$ representam termos, $u$ uma constante qualquer, $\alpha$,
+$\beta$ fórmulas quaisquer e $\circ\in\{\lor,\land,\to,\leftrightarrow\}$):
+\[
+\begin{array}{lclc}
+\llbracket \bot \rrbracket & = & F & (1)\\
+\llbracket \top \rrbracket & = & T & (2)\\
+\llbracket p(t_1,...,t_n) \rrbracket & = & (\varepsilon(t_1),...,\varepsilon(t_n))
+\in p^I & (3)\\
+\llbracket \neg \alpha \rrbracket & = & \neg \llbracket \alpha
+\rrbracket & (4) \\
+\llbracket \alpha \circ \beta \rrbracket & = & \llbracket \alpha
+\rrbracket \circ \llbracket \beta \rrbracket & (5)\\
+\llbracket \forall x. \alpha \rrbracket & = & \bigwedge\limits_{u\in
+  U}\llbracket [x \mapsto u] \alpha \rrbracket & (6)\\
+\llbracket \exists x. \alpha \rrbracket & = & \bigvee\limits_{u\in
+  U}\llbracket [x \mapsto u] \alpha \rrbracket & (7)\\
+\end{array}
+\]
+A notação $[x\mapsto u]\alpha$ denota a fórmula $\alpha$ em que toda
+ocorrência da variável livre $x$ é substituída pela constante $u$.
+\end{Definition}
+O próximo exemplo ilustra a utilização das funções semânticas para
+lógica de predicados.
+\begin{Example}
+Considere a seguinte estrutura $I=(U,R,F)$, em que:
+\begin{itemize}
+  \item $U = \{2,3,4\}$, em que cada um dos números $x \in U$, será
+    representado pela constante $x$.
+  \item O conjunto $R$ é formado pelos seguintes conjuntos:
+  \begin{itemize}
+    \item $par = \{2,4\}$, que será representado pelo símbolo
+      predicativo $p$, de aridade 1.
+    \item $\textit{ímpar} = \{3\}$, que será representado pelo símbolo
+      predicativo $i$, de aridade 1.
+    \item $M = \{(2,3),(2,4),(3,4)\}$, que será representado pelo
+      símbolo predicativo $m$, de aridade 2.
+  \end{itemize}
+  \item O conjunto $F$ é vazio, isto é, não existem funções nesta estrutura.
+\end{itemize}
+Tendo apresentado o significado dos símbolos não funcionais em termos
+da estrutura $I$, considere a tarefa de calcular o valor lógico da
+seguinte fórmula $\forall x. p(x) \lor i(x)$. O cálculo de cada uma destas, utilizando a definição
+\ref{predlogicformulasem}, é mostrada passo-a-passo a seguir.
+\[
+\begin{array}{lcl}
+\forall x . p(x) \lor i(x) & = &\\
+(\llbracket p(2)\lor i(2) \rrbracket) \land (\llbracket p(3)\lor i(3)
+\rrbracket) \land (\llbracket p(4)\lor i(4) \rrbracket) & = &
+\{\text{pela eq.} (6)\}\\
+(\llbracket p(2) \rrbracket \lor \llbracket i(2) \rrbracket) \land
+(\llbracket p(3) \rrbracket \lor \llbracket i(3)
+\rrbracket) \land (\llbracket p(4) \rrbracket \lor \llbracket i(4) \rrbracket) & = &
+\{\text{pela eq.} (5)\}\\
+\begin{array}{lc}
+(\varepsilon(2) \in \textit{par} \lor \varepsilon(2) \in
+\textit{ímpar}) & \land \\
+(\varepsilon(3) \in \textit{par} \lor \varepsilon(3) \in
+\textit{ímpar}) & \land \\
+(\varepsilon(4) \in \textit{par} \lor \varepsilon(4) \in
+\textit{ímpar}) \end{array} & = & \{\text{pela eq. }(3)\} \\
+T \land T \land T & = & \{\text{pela def. de }\varepsilon \text{ e }
+\textit{par, ímpar}.\} \\
+T
+\end{array}
+\]
+Logo, de acordo com a definição \ref{predlogicformulasem}, a fórmula
+$\forall x. p(x) \lor i(x)$ é verdadeira para a estrutura $I$.
+\end{Example}
+Com base na semântica de fórmulas, podemos classificá-las de maneira
+similar ao que fazemos com a lógica proposicional. A próxima definição
+formaliza estes conceitos.
+\begin{Definition}[Classificação de fórmulas]
+Seja $\alpha$ uma fórmula bem formada da lógica de predicados. Dizemos
+que $\alpha$ é satisfazível se existe uma estrutura $I$ tal que
+$\llbracket \alpha \rrbracket = T$. De maneira similar, dizemos que
+$\alpha$ é falseável se existe uma estrutura tal que $\llbracket \alpha
+\rrbracket = F$. Uma fórmula $\alpha$ é dita ser uma tautologia\footnote{Também
+chamada por alguns autores de fórmulas válidas} se esta é verdadeira
+para toda estrutura $I$. Uma fórmula $\alpha$ é uma contradição se não
+existe uma estrutura que a satisfaça. Finalmente, $\alpha$ é uma
+contingência se esta for satisfazível e falseável.
+\end{Definition}
+
+
+\section{Dedução natural para lógica de predicados}
