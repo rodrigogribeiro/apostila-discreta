@@ -542,7 +542,7 @@
 			
 	\end{enumerate}
 	
-\subsection{2.5.5 Exerc\'icios}
+\subsection{2.5.7 Exerc\'icios}
 \begin{enumerate}
 	\item
 	\begin{enumerate}
@@ -734,64 +734,78 @@
 					}
 			}
 	\]
-	
-	\item $\{Q\rightarrow R\}\vdash (P\rightarrow Q)\rightarrow(P\rightarrow Q)$ REVISAR
-	
+	\item $\{Q\rightarrow R\}\vdash (P\rightarrow Q)\rightarrow(P\rightarrow R)$
 	\[
 		\infer[\impI^1]
-			{(P \to Q) \to (P \to Q)}
+			{(P \to Q) \to (P \to R)}
 			{
-				\infer[Id]
+				\infer[\impI^2]
 					{P \to Q}
-					{\ldots}
+					{
+						\infer[\impE]
+						{Q}
+						{
+							\infer[\Id]
+								{Q \to R}
+								{}
+							&
+							\infer[\impE]
+								{Q}
+								{
+									\infer[\Id^1]
+										{P \to Q}
+										{}
+									&
+									\infer[\Id^2]
+										{P}
+										{}
+								}
+						}
+					}
 			}	
 	\]
 	
-	\item $\{(P\land Q)\lor(P\land R)\}\vdash P\land(Q \lor R)$ REVISAR
-	
+	\item $\{(P\land Q)\lor(P\land R)\}\vdash P\land(Q \lor R)$ 
 	\[
-		\infer[\andI]
-			{P \land (Q \lor R)}
-			{			
-				\infer[\orE^1]
-					{P}
-					{
-						\infer[Id]
-							{(P\land Q)\lor(P\land R)}
-							{}&
-						\infer[\andEE]
-							{P}
-							{(P \land Q)^1}&
-						\infer[\andEE]
-							{P}
-							{(P \land R)^1}
-					}	
-% P
-				&
-				\infer[\orE^2]
-					{(Q \lor R)}
-					{
-						\infer[Id]
-							{(P\land Q)\lor(P\land R)}
-							{}&
-						\infer[\orIE]
-							{(Q \lor R)}
-							{
-								\infer[\andED]
-									{Q}
-									{(P \land Q)^2}	
-							}&
-						\infer[\orID]
-							{(Q \lor R)}
-							{
-								\infer[\andED]
-									{R}
-									{(P \land R)^2}
-							}
-					}	
-			}	
-	\]
-	
+     	\infer[\orE^1]
+              {P \land (Q \lor R)}
+              {
+                (P\land Q)\lor(P\land R) 
+                &
+                \infer[\andI]
+                         {P\land (Q \lor R)}
+                         {
+                           \infer[\andEE]
+                                    {P}
+                                    {P \land Q^1}
+                            &
+                            \infer[\orIE]
+                                     {Q \lor R}
+                                     {
+                                         \infer[\andED]
+                                                  {Q}
+                                                  {P \land Q^1}
+                                     } 
+                         }
+                 &
+                \infer[\andI]
+                         {P \land (Q \lor R)}
+                         {
+                           \infer[\andED]
+                                    {P}
+                                    {P \land R^1}
+                            &
+                            \infer[\orIE]
+                                     {Q \lor R}
+                                     {
+                                         \infer[\andED]
+                                                  {R}
+                                                  {P \land R^1}
+                                     }
+                         }
+              }
+     \]
+
 	\item $\{\neg(A \lor B)\}\vdash \neg A \land \neg B$
 	
 	\[
@@ -858,32 +872,52 @@
 			}
 	\]
 	
-	\item $\{\neg(A \land B)\}\vdash \neg A \lor \neg B$ REVISAR
+	\item $\{\neg(A \land B)\}\vdash \neg A \lor \neg B$ 
+	\paragraph*{Obs.:}Note que n\~ao \'e poss\'ivel resolver este exerc\'icio sem o uso da t\'ecnica de Redu\c{c}\~ao do Absurdo.
 	\[
-		\infer[\orIE]
+		\infer[\raa^1]
 			{\neg A \lor \neg B}
 			{
-				\infer[\Id]
-					{\neg A}
+				\infer[\impE]
+					{\bot}
 					{
-					 \infer[\impE]
-					 	{\bot}
+					\infer[\Id]
+						{\neg(A \land B)}
+						{}
+					 &	
+					 \infer[\andI]
+					 	{A \land B}
 					 	{
-					 	(A \land B) \to \bot
-					 	&
-					 	\infer[\andI]
-					 		{A \land B}
-					 		{
-					 			\infer[\Id]
-					 				{A}
-					 				{}
+					 		\infer[\raa^2]
+					 			{A}
+					 			{
+					 				\infer[\impE]
+					 					{\bot}
+					 					{
+					 						\neg(\neg A \lor \neg B)^1
+					 						&
+					 						\infer[\orIE]
+					 							{\neg A \lor \neg B}
+					 							{
+					 							 \neg A^2
+					 							}
+					 					}
+					 			}
 					 		&
-					 		B
-					 		}
-					 	}	
+					 		\infer[\raa^3]
+					 			{B}
+					 			{
+					 				\infer[\impE]
+					 					{\bot}
+					 					{			 						\neg(\neg A \lor \neg B)^1
+											&   						\infer[\orIE]						{\neg A \lor \neg B}												 										 																		 {\neg B^3}	
+						 			}
+					 			}	
+					 	}
 					}
 			}
 	\]
+	
 	
 
 	\item $\{\neg A \lor \neg B\}\vdash \neg (A\land B)$
@@ -931,12 +965,383 @@
 	
 	\item
 	\begin{enumerate}
-	
+		\item $\{A \to B\}\vdash \neg A \lor B$
+			\[
+				\infer[\raa^1]
+					{\neg A \lor B}
+					{
+						\infer[\impE]
+							{\bot}
+							{
+								\infer[\andED]
+									{\neg B}
+									{A \land \neg B^1}
+								&
+								\infer[\impE]
+									{B}
+									{
+										\infer[\Id]
+											{A \to B}
+											{}
+										&
+										\infer[\andEE]
+											{A}
+											{A \land \neg B^1}
+									}	
+							}	
+					}		
+			\]
+		\item $\vdash (\neg B \to \neg A)\to (A \to B)$
+			\[
+				\infer[\impE^1]
+					{(\neg B \to \neg A)\to (A \to B)}
+					{
+						\infer[\impE^2]
+							{A \to B}
+							{
+								\infer[\raa^3]
+									{B}
+									{
+										\infer[\impE]
+											{\bot}
+											{
+												\infer[\Id]
+													{A \to \bot}
+													{
+														\infer[\impE]
+															{\neg A}
+															{
+																(\neg B \to \neg A)^1
+																&
+																\neg B^3	
+															}
+													}
+												&
+												A^2
+											}
+									}
+							}
+					}
+			\]
+		
 		\item Em andamento
-	
-	
-	
-	
+		\item Em andamento
+
 	\end{enumerate}
 	
 \end{enumerate}
+
+\subsection{2.6.6 Exerc\'icios}
+
+\begin{enumerate}
+	\item
+	\begin{enumerate}
+		
+			\item $(A\lor B)\land B\equiv B$
+			\[
+				\begin{array}{lcl}
+					(A \lor B)\land B & = & \{\lor-\text{identidade}\} \\
+					(A \lor B) \land (B \lor F) & = & \{\lor-\text{comutativo}\}\\
+					(B \lor A) \land (B \lor F) & = & \{\lor-\text{distribui}-\land\}\\
+					B \lor (A \land F) & = & \{\lor-\text{null}\}\\
+					B \lor F & = & \{\lor-\text{identidade}\}\\
+					B & &	
+				\end{array}
+			\]
+			\item $(\neg A\land B)\lor (A\land\neg B)\equiv (A\lor B)\land \neg (A\land B)$
+			\[
+				\begin{array}{lcl}
+					(\neg A\land B)\lor (A\land\neg B) & = & \{\lor-\text{distribui}-\land\}\\
+					((\neg A \land B)\lor A) \land ((\neg A \land B) \lor \neg B) & = & \{\lor-\text{distribui}-\land\}\\
+					((\neg A \lor A)\land(B \lor A)) \land ((\neg A \lor \neg B) \land (B \lor \neg B)) & = & \{\text{complemento}-\lor\}\\
+					\top \land (B \lor A) \land (\neg A \lor \neg B) \land \top & = & \{\text{DeMorgan}-\land\}\\
+					(B \lor A) \land \neg(A \land B) & = & \{\lor-\text{comutativo}\}\\
+					(A \lor B) \land \neg(A \land B) & &
+					
+				\end{array}
+			\]
+			
+			\item $((A\rightarrow B)\rightarrow A)\rightarrow A\equiv T$
+			\[
+				\begin{array}{lcl}
+					((A \to B) \to A) \to A & = & \{\text{implica\c{c}\~ao}\}\\
+					\neg((A \to B) \to A) \lor A & = & \{\text{implica\c{c}\~ao}\}\\
+					\neg(\neg(A \to B) \lor A) \lor A & = & \{\text{implica\c{c}\~ao}\}\\
+					\neg(\neg(\neg A \lor B)\lor A)\lor A & = & \{\text{DeMorgan}-\lor\}\\
+					\neg((A \land \neg B) \lor A) \lor A & = & \{\lor-\text{distribui}-\land\}\\
+					\neg((A \lor A) \land (\neg B \lor A)) \lor A & = &\{\lor-\text{idempotente}\}\\
+					\neg(A \land (\neg B \lor A)) \lor A & = & \{\text{DeMorgan}-\land\}\\
+					(\neg A \lor \neg(\neg B \lor A))\lor A & = & \{\text{DeMorgan}-\lor\} \\
+					\neg A \lor (B \land \neg A) \lor A & = &\{\lor-\text{comutativo}\}\\
+					(B \land \neg A) \lor A \lor \neg A & = & \{\text{complemento}-\lor\} \\
+					(B \land \neg A) \lor \top & = & \{\lor-\text{null}\}\\
+					\top
+				\end{array}
+			\]	
+	
+	\end{enumerate}
+	
+	\item $\{\neg,\land\}$
+	\begin{enumerate}
+		\item A constante $\bot$ pode ser representada como $\alpha\land\neg\alpha$, pela regra $\{\text{complemento}-\land\}$
+		
+		\item O conectivo de disjunção pode ser representado por $\neg$ e $\land$ da seguinte maneira, em que $\alpha$ e $\beta$ s\~ao f\'ormulas quaisquer:
+			\[
+				\begin{array}{lc}
+					\alpha \lor \beta & = \\
+					\neg \neg \alpha \lor \neg \neg \beta & = \\
+					\neg(\neg \alpha \land \neg \beta) & = \\
+				\end{array}
+			\]
+		\item O conectivo de implicação pode ser representado da seguinte maneira, em que $\alpha$ e $\beta$ s\~ao f\'ormulas quaisquer:
+			\[
+				\begin{array}{lc}
+					\alpha \to \beta & = \\
+					\neg\alpha \lor \beta & = \\
+				\end{array}
+			\]
+		Como deduzimos anteriormente que $A \lor B \equiv \neg(\neg A \land \neg B)$, e considerando $A = \neg\alpha$ e $B = \beta$, temos:
+		\[
+			\begin{array}{lc}
+				\neg(\neg(\neg\alpha) \land \neg \beta) & = \\
+				\neg( \alpha \land \neg\beta)
+			\end{array}
+		\]
+		\item Já o conectivo do bicondicional pode ser representado como demonstrado a seguir, em que $\alpha$ e $\beta$ s\~ao f\'ormulas quaisquer:
+		\[
+			\begin{array}{lc}
+				\alpha \leftrightarrow \beta & = \\
+				(\alpha \to \beta) \land (\beta \to \alpha) & = \\
+				(\neg \alpha \lor \beta) \land ( \neg\beta \lor \alpha) & = \\
+			\end{array}
+		\]
+		Pela defini\c{c}\~ao anterior do conectivo $\lor$, temos:
+		\[
+			\begin{array}{lc}
+				(\neg(\neg (\neg\alpha) \land \neg\beta)) \land (\neg(\neg (\neg\beta) \land \neg\alpha)) & = \\
+				(\neg(\alpha \land \neg\beta)) \land (\neg(\beta \land \neg\alpha))
+			\end{array}
+		\]
+	\end{enumerate}	
+	
+	\item $\{\neg,\to\}$
+		\begin{enumerate}
+			\item A constante $\bot$ pode ser representada da seguinte forma:
+				\[
+					\begin{array}{lcl}
+						\alpha \to \alpha & \equiv & \top \, \{\text{nega\c{c}\~ao}-\top\}\\
+						\neg(\alpha \to \alpha)  & \equiv & \bot \\
+						\neg(\alpha \to \alpha)  & & \\
+					\end{array}
+				\]
+			\item O conectivo $\lor$ \'e representado usando a lei da \{implica\c{c}\~ao\}:
+				\[
+					\begin{array}{lcl}
+						\alpha \to \beta & \equiv & \neg \alpha \lor \beta \\
+						\neg \alpha \to \beta & \equiv & \neg \neg \alpha \lor \beta\\
+						\neg \alpha \to \beta & \equiv & \alpha \lor \beta \\
+						\neg \alpha \to \beta  &  & \\
+					\end{array}
+				\]
+			\item Com o conectivo $\lor$ definido, podemos ent\~ao us\'a-lo para construir a f\'ormula equivalente ao conectivo $\land$:
+				\[
+					\begin{array}{lcl}
+						\neg \alpha \to \beta & \equiv & \alpha \lor \beta \\
+						\neg(\neg \alpha \to \beta) & \equiv & \neg \alpha \land \neg \beta \\
+						\neg(\neg \neg \alpha \to \neg \beta) & \equiv & \alpha \land \beta \\
+						\neg( \alpha \to \neg \beta) & & \\
+					\end{array}
+				\]
+			\item Enfim, constru\'imos o \'ultimo conectivo usando a lei do bicondicional:
+			\[
+				\begin{array}{lcl}
+					\alpha \leftrightarrow \beta & \equiv & \{\text{bicondicional}\} \\
+					(\alpha \to \beta) \land (\beta \to \alpha) & \equiv & \{\text{pela letra c) deste exerc\'icio}\}\\
+					\neg[(\alpha \to \beta) \to \neg(\beta \to \alpha) ] & & \\
+				\end{array}
+			\]
+			 
+		\end{enumerate}
+	\item em andamento
+	\item
+		\begin{enumerate}
+			\item 
+			\[\begin{array}{|c|c|c|}
+				\hline
+				\alpha & \beta & \alpha\downarrow\beta  \\ \hline
+				T & T & F  \\
+				T & F & T  \\
+				F & T & T  \\
+				F & F & T  \\
+				\hline
+			\end{array}
+			\]
+			\item em andamento
+		\end{enumerate}
+
+\end{enumerate}
+
+\subsection{2.7.3 Exerc\'icios}
+	\begin{enumerate}
+		\item
+			\begin{enumerate}
+				\item $(A\land B)\lor C\rightarrow A\land(B\lor C)$
+					\[
+						\begin{array}{lcl}
+						\text{Forma Conjuntiva} & & \\
+						&&\\
+						(A\land B)\lor C\rightarrow A\land(B\lor C) & \equiv & \text{passo 2}\\
+						
+						\neg ((A \land B)\lor C) \lor (A \land (B \lor C))& \equiv & \text{passo 3}\\
+						
+						
+						(\neg (A \land B) \land \neg C) \lor (A \land (B \lor C)) & \equiv & \ldots \\
+						
+						
+						((\neg A \lor \neg B) \land \neg C) \lor (A \land (B \lor C)) & \equiv & \text{passo 5}\\
+						
+						((\neg A \lor \neg B) \land \neg C) \lor A) \land (((\neg A \lor \neg B) \land \neg C) \lor (B \lor C)) & \equiv & \ldots \\
+						
+						((\neg A \lor \neg B) \lor A) \land (\neg C \lor A) \land ((\neg A \lor \neg B) \lor (B \lor C)) \land (\neg C \lor (B \lor C)) & \equiv & \\
+						
+						(\neg B \lor (\neg A \lor A)) \land (\neg C \lor A) \land ((\neg A \lor (\neg B \lor B) \lor C) \land (\neg C \lor C)\lor B) & \equiv &  \\
+						
+						\neg B \land (\neg C \lor A) \land (\neg A \lor C) \land B & \equiv &  \\
+						
+						(\neg C \lor A) \land (\neg A \lor C) \land (\neg B \land B) & \equiv &  \\
+						
+						(\neg C \lor A) \land (\neg A \lor C) &  & \\
+						
+						& & \\
+						
+						%----------------------------------------------------
+						
+						\text{Forma Disjuntiva} & & \\
+						& & \\
+						
+						
+						(A\land B)\lor C\rightarrow A\land(B\lor C) & \equiv & \text{passo 2}\\
+												
+						\neg ((A \land B)\lor C) \lor (A \land (B \lor C))& \equiv & \text{passo 3}\\
+						
+						
+						(\neg (A \land B) \land \neg C) \lor (A \land (B \lor C)) & \equiv & \ldots \\
+						
+						
+						((\neg A \lor \neg B) \land \neg C) \lor (A \land (B \lor C)) & \equiv & \text{passo 5}\\
+						
+						((\neg A \land \neg C) \lor (\neg B \land \neg C))\lor ((A \land B) \lor (A \land C)) & \equiv & \\
+						
+						(\neg A \land \neg C) \lor (\neg B \land \neg C)\lor (A \land B) \lor (A \land C) &  & \\
+
+						\end{array}
+					\]
+				
+				\item $A\land\neg (\neg A\lor \neg B)$
+					\[
+						\begin{array}{lcl}
+							\text{Forma Conjuntiva} &  & \\
+							& & \\
+							A\land \neg (\neg A \lor \neg B) & \equiv & \text{passo 3} \\
+							A \land (\neg \neg A \land B) & \equiv & \text{passo 4} \\
+							A \land (A \land B) &  & \\
+						\end{array}
+					\]
+				
+				
+				\item $A\land B\rightarrow\neg A$
+						\[
+							\begin{array}{lcl}
+								\text{Forma Disjuntiva} & & \\
+								& & \\
+								A\land B\rightarrow\neg A & \equiv & \text{passo 2}\\
+								\neg(A \land B) \lor \neg A & \equiv & \text{passo 5} \\
+								(\neg A \lor B) \lor \neg A
+							\end{array}
+						\]
+				
+				\item $(A\rightarrow B)\rightarrow[(A\lor C)\rightarrow (B\lor C)]$ 
+					\[
+						\begin{array}{lcl}
+							\text{Forma Conjuntiva} &  & \\
+							& & \\
+							(A\rightarrow B)\rightarrow[(A\lor C)\rightarrow (B\lor C)] & \equiv & \\
+							
+							(A\rightarrow B)\rightarrow[\neg(A\lor C)\lor (B\lor C)] & \equiv & \\
+							
+							
+							\neg(A\rightarrow B)\lor[\neg(A\lor C)\lor (B\lor C)] & \equiv & \\
+							
+							\neg(\neg A\lor B)\lor[\neg(A\lor C)\lor (B\lor C)] & \equiv & \\
+							
+							(\neg \neg A \land \neg B) \lor [(\neg A \land \neg C) \lor (B \lor C)] & \equiv & \\
+							
+							(A \land \neg B) \lor [(\neg A \land \neg C) \lor (B \lor C)] & \equiv & \\
+							
+							(A \land \neg B) \lor [(\neg A \lor (B \lor C)) \land (\neg C \lor (B \lor C))] & \equiv & \\
+							(A \land \neg B) \lor [(\neg A \lor (B \lor C)) \land B] & \equiv & \\
+							A \lor [( \neg A \lor (B \lor C)) \land B] \land  \neg B \lor [(\neg A \lor (B \lor C)) \land B] & \equiv & \\
+							
+						    [(A \lor( \neg A \lor (B \lor C))) \land (A \lor B)] \land [(\neg B \lor (\neg A \lor (B \lor C))) \land (\neg B \lor B)] & \equiv & \\
+								
+							[(A \lor \neg A \lor B \lor C) \land (A \lor B)] \land [(\neg B \lor \neg A \lor B \lor C) \land (\neg B \lor B)] & \equiv & \\
+							
+							[( B \lor C) \land (A \lor B)] \land [ \neg A  \lor C] & \equiv & \\
+
+						\end{array}
+					\]
+				
+				
+				\item $A\rightarrow(B\rightarrow A)$ 
+					\[
+						\begin{array}{lcl}
+							
+							A\rightarrow(B\rightarrow A) & \equiv & \text{passo 2} \\
+							A \to (\neg B \lor A) & \equiv & \text{passo 2}\\
+							\neg A \lor (\neg B \lor A) & \equiv & \\
+							\neg B \lor (\neg A \lor A) & \equiv & \\
+							\neg B & & \\
+							
+						\end{array}
+					\]
+				\item $(A\land B)\leftrightarrow(\neg B\lor \neg A)$
+					\[
+						\begin{array}{lcl}
+							\text{Forma Conjuntiva} & & \\
+							& & \\
+							(A\land B)\leftrightarrow(\neg B\lor \neg A) &\equiv & \\
+							((A \land B) \to (\neg B \lor \neg A)) \land ((\neg B \lor \neg A) \to (A \land B)) & \equiv& \\
+							(\neg (A \land B) \lor (\neg B \lor \neg A)) \land (\neg (\neg B \lor \neg A) \lor (A \land B)) &\equiv & \\
+							((\neg A \lor \neg B) \lor (\neg B \lor \neg A)) \land ((\neg \neg B \land \neg \neg A) \lor (A \land B)) & \equiv& \\
+							((\neg A \lor \neg B) \lor (\neg B \lor \neg A)) \land ((B \land A) \lor (A \land B)) & \equiv& \\
+							((\neg A \lor \neg B) \lor (\neg B \lor \neg A)) \land ((B \lor (A \land B)) \land (A \lor (A \land B))) &\equiv & \\
+							((\neg A \lor \neg B) \lor (\neg B \lor \neg A)) \land 
+							((B \lor A) \land (B \lor B) \land (A \lor A) \land (A \lor B)) &\equiv & \\
+							((\neg A \lor \neg B) \lor (\neg B \lor \neg A)) \land 
+							((B \lor A) \land B  \land A \land (A \lor B)) &\equiv & \\
+							(\neg A \lor \neg B) \land ((A \lor B) \land B  \land A) & \equiv & \\
+							& & \\
+							\text{Forma Disjuntiva} & & \\
+							& & \\
+							(A\land B)\leftrightarrow(\neg B\lor \neg A) &\equiv & \\
+							((A \land B) \to (\neg B \lor \neg A)) \land ((\neg B \lor \neg A) \to (A \land B)) & \equiv& \\
+							(\neg (A \land B) \lor (\neg B \lor \neg A)) \land (\neg (\neg B \lor \neg A) \lor (A \land B)) &\equiv & \\
+							((\neg A \lor \neg B) \lor (\neg B \lor \neg A)) \land ((\neg \neg B \land \neg \neg A) \lor (A \land B)) & \equiv& \\
+							((\neg A \lor \neg B) \lor (\neg B \lor \neg A)) \land ((B \land A) \lor (A \land B)) & \equiv& \\
+							((\neg A \lor \neg B) \land ((B \land A) \lor (A \land B))) \lor ((\neg B \lor \neg A) \land ((B \land A) \lor (A \land B))) & & \\
+							((\neg A \lor \neg B) \land (A \land B)) \lor ((\neg B \lor \neg A) \land (A \land B)) & & \\
+							(((\neg A \land (A \land B)) \lor (\neg B \land (A \land B))) \lor (((\neg B \land (A \land B)) \lor (\neg A \land (A \land B))) & & \\
+							(B \lor A) \lor (A \lor B) & & \\
+						
+							
+						\end{array}
+					\]
+			\end{enumerate}
+		
+	\end{enumerate}
+
+
+
+
+
+
