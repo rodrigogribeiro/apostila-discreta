@@ -2390,10 +2390,17 @@ a forma normal disjuntiva, passo a passo.
 \input{cap2/cap2-coq}
 }{}
 
-\section{Considerações Metamatemáticas}\label{soundcompleteprop}
+\section{Considerações Meta-matemáticas}\label{soundcompleteprop}
 
-A metamatemática consiste em utilizar técnicas matemáticas para o
-estudo da própria matemática. Neste capítulo, apresentamos a sintaxe,
+
+
+A meta-matemática consiste em utilizar técnicas matemáticas para o
+estudo da própria matemática. Nesta seção apresentaremos alguns
+conceitos importantes relativos à lógica proposicional, sem demonstrá-los.
+
+\subsection{Corretude e Completude}
+
+Neste capítulo, apresentamos a sintaxe,
 semântica e um sistema de provas para a lógica proposicional: a dedução
 natural, que nos permite demonstrar consequências lógicas.
 
@@ -2435,6 +2442,47 @@ $\models\,\alpha$.
 Infelizmente, não possuímos as ferramentas necessárias para demonstrar
 esses resultados. Para provar estes teoremas precisamos utilizar
 indução matemática, que será abordada posteriormente.
+
+\subsection{Decidibilidade}
+
+Dizemos que um conjunto é \emph{decidível}, se existe um algoritmo que
+determina se um certo valor é ou não um elemento deste conjunto. Para
+apresentar este conceito para a lógica proposicional, devemos,
+primeiramente, caracterizar o conjunto de fórmulas desta lógica em
+termos do conceito de \emph{teoria}, que é apresentado a seguir.
+
+\begin{Definition}[Teoria]
+Dada uma linguagem $\mathcal{L}$ e uma noção de validade semântica
+sobre fórmulas de $\mathcal{L}$, denominada $\models$, a \emph{teoria}
+$\langle \mathcal{L}, \models\rangle$ é o conjunto de fórmulas válidas
+de $\mathcal{L}$, isto é.
+\[
+\langle\mathcal{L},\models\rangle = \{\alpha\,|\,\models\alpha\}
+\]
+\end{Definition}
+Para o caso da lógica proposicional, temos que $\mathcal{L}$ é o
+conjunto de fórmulas bem formadas desta lógica e o conceito de
+validade corresponde à consequência lógica.
+
+\begin{Definition}[Decidibilidade]
+Seja $T$ um conjunto qualquer. Dizemos que um subconjunto $S \subseteq
+T$ é decidível se existe um algoritmo, que a partir de um elemento de $f : T \to \mathcal{B}$, em que
+$\mathcal{B}$ é o conjunto de valores booleanos (introduzido no
+capítulo \ref{cap1}), que determina se um elemento $t\in T$ pertence
+ou não ao conjunto $S$ e que termina para todas as possíveis entradas.
+\end{Definition}
+
+\begin{Theorem}[Decidibilidade da lógica proposicional]
+A teoria $\langle \mathcal{F},\models\rangle$, em que $\mathcal{F}$ é
+o conjunto de fórmulas bem formadas da lógica proposicional e
+$\models$ a relação de consequência lógica, é decidível.
+\end{Theorem}
+\begin{proof}
+Para mostrar que a teoria $\langle \mathcal{F},\models\rangle$ que, a
+partir de uma fórmula $\alpha\in\mathcal{F}$, decida se
+$\models\alpha$ (isto é, se $\alpha$ é uma tautologia). Para isso,
+basta construir a tabela verdade de $\alpha$.
+\end{proof}
 
 \section{Notas Bibliográficas}
 
