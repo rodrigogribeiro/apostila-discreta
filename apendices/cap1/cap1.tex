@@ -10,9 +10,10 @@
 	    \[
 	    \begin{array}{ll}
 	    & \llbracket \suc (\suc (\suc \zero)) \rrbracket\\
-	    = & \llbracket \suc (\suc (1)) \rrbracket \\
-	    = & \llbracket \suc (2) \rrbracket \\
-	    = & \llbracket 3 \rrbracket \\
+	    = & 1 + \llbracket \suc (\suc (zero)) \rrbracket \\
+	    = & 1 + 1 + \llbracket \suc (zero) \rrbracket \\
+	    = & 1 + 1 + 1 + \llbracket zero \rrbracket \\
+            = & 3
 	    \end{array}
 	    \]
 
@@ -21,8 +22,8 @@
 	    \begin{array}{llcl}
 	    & \length\,(\zero ::\zero :: [\,])& & \\
 	    = &1 + \length \,(\zero :: [\,]) & & \{\text{pela equa\c{c}\~ao }(2)\}\\
-	    = &2 + \length \,[\,] & & \{\text{pela equa\c{c}\~ao }(2)\}\\
-	    = &2 + 0 & & \{\text{pela equa\c{c}\~ao }(1)\}\\
+	    = & 1 + (1 + \length \,[\,])  & & \{\text{pela equa\c{c}\~ao }(2)\}\\
+	    = &1 + (1 + 0) & & \{\text{pela equa\c{c}\~ao }(1)\}\\
 	    = &2
 	    \end{array}
 	    \]
@@ -43,9 +44,11 @@
 	  \item
 	  \[
 	  \begin{array}{lcl}
-	  \textit{nsubtermos }:\evalExp\, (\tconst\, n)  & = & 1 \\
-	  \textit{nsubtermos }:\evalExp\, (\tplus\,e_1\,e_2) & = & (\textit{nsubtermos }: \eval\,e_1) + (\textit{nsubtermos }: \eval\,e_2) \\
-	  \textit{nsubtermos }:\evalExp\, (\ttimes\,e_1\,e_2) & = & (\textit{nsubtermos }: \eval\,e_1) + (\textit{nsubtermos }: \eval\,e_2) \\
+	  \textit{nsubtermos } (\tconst\, n)  & = & 1 \\
+	  \textit{nsubtermos } (\tplus\,e_1\,e_2) & = & 1 +
+          (\textit{nsubtermos }\,e_1) + (\textit{nsubtermos }\,e_2) \\
+	  \textit{nsubtermos }(\ttimes\,e_1\,e_2) & = & 1
+          + (\textit{nsubtermos }\,e_1) + (\textit{nsubtermos }\,e_2) \\
 	  \end{array}
 	  \]
 
@@ -65,10 +68,12 @@
 	 \item Tomando o caso dos números naturais como base, não poderíamos criar uma função semântica somente com a seguinte regra:
 	 	 \[
 	 	 \begin{array}{c}
-	 	 	\llbracket \suc\,\,n\rrbracket  =  \llbracket n \rrbracket + 1
+	 	 	\llbracket \suc\,\,n\rrbracket  =  \llbracket \suc\,n \rrbracket + 1
 	 	\end{array}
 	 	\]
-	 já que ela não segue o principio da terminação sendo que a cada chamada recursiva diminuiríamos uma unidade, no entanto sem um caso base as chamadas recursivas não teriam fim.
+	 já que ela não segue o principio da terminação sendo que a
+         cada chamada recursiva é feita sobre um termo que não é menor
+         que o parâmetro original de entrada.
 	 \end{enumerate}
 
 	\end{enumerate}

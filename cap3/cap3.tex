@@ -849,5 +849,422 @@ existe uma estrutura que a satisfaça. Finalmente, $\alpha$ é uma
 contingência se esta for satisfazível e falseável.
 \end{Definition}
 
+\section{Exercícios}
+
+\begin{enumerate}
+
+   \item Para cada uma das f\'ormulas a seguir, indique se ela \'e verdadeira ou falsa,
+         quando o universo de discurso \'e cada um dos seguintes conjuntos: $\mathbb{N}$: conjunto
+         dos n\'umeros naturais, $\mathbb{Z}$: conjunto dos n\'umeros inteiros e $\mathbb{R}$ conjunto
+         dos n\'umeros reais. Considere que os símbolos matemáticos
+         possuem o significado usual.
+         \begin{center}
+         \begin{tabular}{|l|c|c|c|}
+             \hline
+             F\'ormula & $\mathbb{N}$ & $\mathbb{Z}$ & $\mathbb{R}$ \\ \hline
+             $\exists x. x^2 = 2$ & & &\\ \hline
+             $\forall x. \exists y. x^2 = y$ & & & \\ \hline
+             $\forall x. x\neq 0 \rightarrow \exists y. xy = 1$ & & & \\ \hline
+             $\exists x. \exists y. (x + 2y^2 = 2) \land (2x + 4y = 5)$ & & & \\
+             \hline
+         \end{tabular}
+         \end{center}
+\end{enumerate}
 
 \section{Dedução natural para lógica de predicados}
+
+As regras para dedução natural para lógica proposicional podem ser
+estendidas para lidar com os quantificadores da lógica de predicados.
+Apenas quatro regras adicionais são necessárias para lidar com a
+lógica de predicados, a saber: regras para introdução e eliminação dos
+quantificadores universal e existencial.
+
+Uma maneira de compreender as regras para ambos os quantificadores é
+vê-los como generalizações dos conectivos de conjunção (para o
+quantificador universal) e disjunção (para o quantificador
+existencial). As próximas subseções utilizarão essa analogia para
+apresentar as regras de introdução e eliminação destes
+quantificadores.
+
+\subsection{Regras para o quantificador universal}
+
+Conforme apresentado na definição \ref{predlogicformulasem}, o
+quantificador universal pode ser entendido como uma conjunção de
+fórmulas, em que a variável ligada a este quantificador é substituída
+por cada um dos elementos do universo de discurso em questão. Mais
+formalmente:
+
+\[\forall x. P(x) \equiv \bigwedge\limits_{u\in U}[x\mapsto u]P(x)\]
+
+Nas subseções seguintes, utilizaremos esta analogia para
+apresentarmos, informalmente, as regras de introdução e eliminação
+deste quantificador.
+
+
+\subsubsection{Introdução do quantificador universal $\forallI$}
+
+Se pensarmos que o quantificador universal é uma generalização da
+conjunção, podemos conjecturar que a regra de introdução deste
+quantificador deve ser similar a
+
+\[
+\infer[\forall_{I1}] {\forall x.P(x)}
+                           {\bigwedge\limits_{u\in U}[x\mapsto u] P(x)}
+\]
+Isto é, para concluirmos que $\forall x.P(x)$ é provável basta
+demonstrar $[x\mapsto u]P(x)$, em que $u$ representa cada um dos
+elementos pertencentes ao universo de discurso sobre o qual esta
+fórmula deve ser interpretada. Esta analogia é válida (e útil) se o
+universo de discurso é finito e possui poucos elementos. Caso
+contrário, essa abordagem para provar $\forall x. P(x)$ é
+impraticável.
+
+Propriedades que envolvem ``todos'' os possíveis valores de um
+universo de discurso são comuns na matemática e, portanto, deve haver
+uma maneira mais simples de demonstrar afirmativas da forma $\forall
+x.P(x)$. A idéia utilizada para provar fórmulas que utilizam o
+quantificador universal pode ser expressa de maneira intuitiva da
+seguinte forma: Se uma certa propriedade $P$ é verdadeira para um
+objeto \emph{arbitrário} do universo de discurso, então esta deve ser
+verdadeira para todo elemento deste conjunto. Porém, esta explicação
+deixa a seguinte pergunta: Quando podemos considerar que um certo
+objeto é ou não ``arbitrário''? Há uma resposta simples para isso,
+baseada em um critério sintático sobre sequentes. Dizemos que um valor
+$x$ é arbitrário se este não pertence ao conjunto de variáveis livres
+do sequente a ser demonstrado. Logo, podemos concluir que
+$\Gamma \vdash \forall x. P(x)$ se conseguirmos demonstrar $P(x)$, em
+que $x$ é um valor arbitrário, isto é $x\not\in\,fv(\Gamma)$ e $fv(\Gamma)$ é definido como:
+\[fv(\Gamma) = \bigcup_{\alpha\in\Gamma}fv(\alpha)\]
+
+Abaixo apresentamos a regra de introdução do quantificador universal.
+
+\[
+\infer[\forallI]{\forall x. P(x)}
+                      {P(x) & x \not\in fv(\Gamma)}
+\]
+Assim como fizemos para lógica proposicional, vamos omitir
+completamente o conjunto de hipóteses $\Gamma$ e também a demonstração
+de que $x\not\in fv(\Gamma)$, pois, normalmente a última demonstração
+é imediata a partir das hipóteses de um dado sequente. Visando
+ilustrar essa convenção, o seguinte exemplo ilustra a utilização da
+regra $\forallI$.
+\begin{Example}
+Considere a tarefa de demonstrar o sequente:
+$\vdash \forall x. E(x) \to E(x) \lor \neg E(x)$. Como este utiliza o
+quantificador universal, iniciaremos a demonstração utilizando a regra
+$\forallI$. Ao aplicarmos esta regra, devemos demonstrar que $E(x) \to
+E(x) \lor \neg E(x)$, para um valor $x$ arbitrário. Uma vez que o
+conjunto de hipóteses deste sequente é vazio, a variável livre $x$ em
+$E(x) \to E(x) \lor \neg E(x)$ pode ser considerada arbitrária, já que
+esta não ocorre livre nas hipóteses.
+
+A prova deste sequente é apresentada abaixo:
+
+\[
+\infer[\forallI]{\forall
+x. E(x) \to E(x) \lor \neg E(x)}
+        {
+          \infer[\impI^1]{E(x) \to E(x) \lor \neg E(x)}
+                             {
+                               \infer[\orIE]{E(x) \lor \neg E(x)}
+                                         {
+                                           \infer[\Id]{E(x)^1}{}}
+                             }}
+\]
+\end{Example}
+
+\subsubsection{Eliminação do quantificador universal $\forallE$}
+
+A regra de eliminação do quantificador universal permite-nos concluir,
+a partir de $\forall x. P(x)$, que $[x\mapsto a]P(x)$, em que $a$ é uma
+constante ou uma variável livre na conclusão da regra $\forallE$.
+
+\[
+\infer[\forallE]{[x\mapsto a]P(x)}
+                      {\forall x. P(x)}
+\]
+A regra $\forallE$ é uma generalização das regras para eliminação da
+conjunção, uma vez que, ao utilizarmos esta regra estamos concluindo
+um dos possivelmente infinitos componentes da conjunção
+$\bigwedge_{u\in U}[x\mapsto u]\,P(x)$.
+\begin{Example}
+Consider a tarefa de demonstrar o seguinte sequente $\{F(a),\forall
+x. F(x) \to G(x)\} \vdash G(a)$. Para demonstrar esse sequente,
+utilizaremos a eliminação da implicação, para concluir $G(a)$ a partir
+de $F(a)$ e $F(a) \to G(a)$. Esta última pode ser deduzida utilizando
+a regra $\forallE$ sobre a hipótese $\forall x. F(x) \to G(x)$,
+conforme apresentado abaixo:
+\[
+\infer[\impE]{G(a)}
+        {\infer[\Id]{F(a)}{} &
+         \infer[\forallE]{F(a) \to G(a)} {
+           \infer[\Id]{\forall x. F(x)\to G(x)}{}
+                  }}
+\]
+\end{Example}
+
+\subsubsection{Restrições sobre as regras do quantificador universal}
+
+O objetivo desta seção é apresentar exemplos que mostrem a necessidade
+das restrições sobre a aplicabilidade das regras de introdução e
+eliminação do quantificador universal.
+
+Primeiramente, vamos considerar a restrição $x \not\in fv(\Gamma)$
+sobre a regra $\forallI$. Esta é realmente necessária? Ao
+invés de tentarmos apresentar um argumento formal (o que foge ao
+escopo deste texto), apresentaremos um exemplo que, ao não utilizarmos
+essa restrição, produziremos um argumento incorreto.
+\begin{Example}
+Considere a seguinte fórmula da lógica de predicados:
+$0= 0 \to \forall x. (x = 0)$
+que evidentemente não é uma tautologia\footnote{A menos que o universo de
+discurso em questão possua apenas a constante $0$.} e a seguinte
+``demonstração'' (incorreta):
+\[
+\infer[\forallE]{0 = 0 \to \forall x . x = 0}
+         {
+           \infer[\forallI]{\forall x. x = 0 \to \forall x. x = 0}
+                     {
+                       \infer[\impI^1]{x = 0 \to \forall x. x = 0}
+                                {
+                                  \infer[\forallI]{\forall x. x = 0}
+                                           {
+                                             \infer[\Id]{x = 0^1}{}
+                                           }
+                                }
+                     }
+         }
+\]
+Note que a aplicação da regra $\forallI$ sobre a hipótese $x= 0$ é
+ilegal, uma vez que a variável $x$ ocorre livre nas hipóteses.
+\end{Example}
+
+A restrição imposta sobre a regra $\forallE$ é que o valor que
+substitui a variável ligada ao quantificador eliminado deve ocorrer
+livre na conclusão. O próximo exemplo ilustra que, ao ignorar essa
+restrição, podemos deduzir fórmulas que não são consequências lógicas
+das hipóteses do sequente em questão.
+\begin{Example}
+Considere a tarefa de demonstrar o seguinte sequente: \[\vdash \forall
+x.\neg\forall y. x = y \to \neg \forall y. y = y\]. A ``demonstração'' (incorreta)
+deste é apresentada abaixo:
+\[
+\infer[\impI^1]{(\forall x.\neg\forall y. x = y) \to \neg \forall y . y
+= y}
+        {
+          \infer[\forallE]{\neg \forall y. y = y}
+                   {
+                     \infer[\Id]{\forall x.\neg\forall y. x = y^1}{}
+                   }
+        }
+\]
+Note que a aplicação da regra $\forallE$ logo no início da dedução
+está incorreto, já que a variável eliminada ($x$) foi substituída por
+$y$, que ocorre ligada na conclusão, alterando a semântica da
+fórmula em questão.
+\end{Example}
+
+\subsection{Regras para o quantificador existencial}
+
+Conforme apresentado na definição \ref{predlogicformulasem}, o
+quantificador existencial pode ser entendido como uma disjunção de
+fórmulas, em que a variável ligada a este quantificador é substituída
+por cada um dos elementos do universo de discurso em questão. Mais
+formalmente:
+
+\[\exists x. P(x) \equiv \bigvee\limits_{u\in U}[x\mapsto u]P(x)\]
+
+Nas subseções seguintes, utilizaremos esta analogia para
+apresentarmos, informalmente, as regras de introdução e eliminação
+deste quantificador.
+
+\subsubsection{Introdução do quantificador existencial $\existsI$}
+
+De maneira intuitiva, podemos concluir que $\exists x. P(x)$ se for
+possível provar que a propriedade $P$ é verdadeira para algum valor
+$a$. Mais formalmente:
+\[
+\infer[\existsI]{\exists x. P(x)}
+         {
+           [x\mapsto a]P(x)
+         }
+\]
+Note que, para demonstrar que $\exists x. P(x)$ basta mostrar que
+\emph{existe} um valor $a$ que torna a propriedade $P$
+verdadeira. Desta forma, podemos entender a regra $\existsI$ como uma
+generalização das regras de introdução da disjunção, já que para
+provar $\bigvee_{u\in U}  [x\mapsto u]P(x)$
+
+Caso o valor $a$ seja uma variável, esta deve ocorrer livre em
+$[x\mapsto a]P(x)$. A seguir apresentamos um exemplo que ilustra a
+utilização desta regra.
+\begin{Example}
+Considere a tarefa de demonstrar o sequente $\{\forall x. P(x)\}
+\vdash \exists x. P(x)$. Iniciamos a demonstração utilizando a regra
+$\existsI$, logo, devemos mostrar que $[x\mapsto b]P(x)$, para algum
+valor $b$. A partir da hipótese $\forall x .P(x)$, podemos concluir
+$[x\mapsto b]P(x)$ utilizando $\forallE$. Esta dedução é apresentada a
+seguir.
+\[
+\infer[\existsI]{\exists x. P(x)}
+        {
+          \infer[\forallE]{P(b)}
+                   {
+                     \infer[\Id]{\forall x. P(x)}{}
+                   }
+        }
+\]
+\end{Example}
+
+\subsubsection{Eliminação do quantificador existencial $\existsE$}
+
+A regra para eliminação do quantificador existencial $\existsE$
+generaliza para um universo possivelmente infinito a regra de
+eliminação da disjunção. Intuitivamente,  a regra $\orE$ especifica
+que se $A\lor B$ é provável e que $C$ pode ser deduzido a partir de
+$A$ e que $C$ pode ser deduzido a partir de $B$, então podemos
+concluir $C$ a partir destes fatos. Mais formalmente:
+
+\[
+\infer[\orE]{\Gamma \vdash C}
+         {\Gamma \vdash A \lor B & \Gamma \cup \{A\}\vdash C & \Gamma
+           \cup \{B\} \vdash C}
+\]
+
+Evidentemente, podemos estender essa regra para disjunções envolvendo
+$3$ termos de maneira quase que imediata:
+\[
+\infer[\orE_3]{\Gamma \vdash D}
+         {\Gamma \vdash A \lor B \lor C & \Gamma\cup\{A\}\vdash D &
+           \Gamma \cup \{B\}\vdash D & \Gamma\cup\{C\}\vdash D}
+\]
+Note que ao generalizarmos a regra de eliminação para 3 elementos,
+adicionamos uma nova premissa: $\Gamma \cup \{C\}\vdash D$ para que
+seja possível deduzir $D$. Desta forma, para concluir uma fórmula
+$\alpha$ a partir de uma disjunção de $n$ fórmulas, devemos provar
+$\alpha$ a partir da suposição de cada uma da subfórmulas que formam a
+disjunção em questão. Como $\exists x. P(x)$ pode ser considerada uma
+disjunção envolvendo um número possivelmente infinito de componentes,
+isso nos leva a seguinte questão: como provar uma conclusão $\alpha$ a
+partir de um número possivelmente infinito de componentes que devem
+ser supostos para concluir esta fórmula $\alpha$?
+
+A solução para este problema é adotar uma estratégia similar ao que
+foi feito para a regra $\forallI$: utilizar um valor arbitrário. Para
+deduzir uma fórmula $\alpha$ a partir de $\exists x. P(x)$, utilizando
+a regra $\existsE$, devemos supor $[x\mapsto y]P(x)$, em que $y$ é um
+valor arbitrário ($y\not\in fv(\Gamma)$). Esta regra é apresentada a
+seguir.
+\[
+\infer[\existsE]{\Gamma\vdash\alpha}
+        {\exists x. P(x) & \Gamma \cup \{[x\mapsto y] P (x)\}\vdash
+          \alpha & y \not\in fv(\Gamma)}
+\]
+A seguir apresentamos um exemplo desta regra.
+\begin{Example}
+Considere a tarefa de demonstrar o sequente
+\[
+\{\exists x. P(x), \forall x. P(x) \to Q(x) \} \vdash \exists y. Q(y)
+\]
+A dedução é iniciada utilizando a regra $\existsE$. Ao utilizar esta
+regra, podemos introduzir a hipótese $P(k)$\footnote{Note que $P(k)$ é
+equivalente a $[x\mapsto k]P(x)$.} que possibilita utilizar a
+introdução da implicação para finalizar a demonstração. Esta é
+apresentada abaixo:
+\[
+                     \infer[(\exists\,E)^{1}]
+                           {\exists y. Q(y)}
+                           {\infer[\Id]{\exists x. P(x)}{} &
+                             \infer[(\exists\,I)]
+                                   {\exists y. Q(y)}
+                                   {
+                                     \infer[(\rightarrow\,E)]
+                                           {Q(k)}
+                                           {
+                                             \infer[(\forall\,E)]
+                                                   {P(k)\rightarrow Q(k)}
+                                                   {\forall x. P(x)\rightarrow Q(x)}
+                                             &
+                                                   \infer[\Id]{P(k)^1}{}
+                                           }
+                                   }
+                           }
+\]
+\end{Example}
+Note que a única restrição aplicável à regra $\existsE$ é a mesma que
+se aplica a regra $\forallI$: a variável ``arbitrária'' não deve
+ocorrer livre no conjunto de hipóteses.
+
+\section{Exercícios}
+
+\begin{enumerate}
+	\item Prove os seguintes sequentes usando dedu\c{c}\~ao natural:
+	\begin{enumerate}
+		\item $\{\forall x. (p(x)\rightarrow q(x))\}\vdash(\forall x.\neg q(x))\rightarrow(\forall x.\neg p(x))$
+		\item $\{\forall x. (p(x)\rightarrow \neg q(x))\}\vdash\neg (\exists x. (p(x)\land q(x)))$
+		\item $\{\forall x.(a(x)\rightarrow (b(x)\lor c(x))),\forall x.\neg b(x)\}\vdash(\forall x. a(x))\rightarrow
+		       (\forall x. c(x))$
+		\item $\{\exists x. (p(x)\land q(x)), \forall x. (p(x)\rightarrow r(x))\}\vdash\exists x.(r(x)\land q(x))$
+		\item $\{\forall x. p(a,x,x), \forall x.\forall
+                  y.\forall z. p(x,y,z)\rightarrow
+                  p(f(x),y,f(z))\}\vdash p(f(a),a,f(a))$
+           \item $\{\forall x. p(x) \rightarrow q(x)\} \vdash \forall x. p(x) \rightarrow \forall x. q(x)$
+           \item $\{\exists x. \neg p(x) \}\vdash \neg \forall x. p(x)$
+           \item $\{\forall x. a(x)\rightarrow b(x) \lor c(x), \forall x. \neg b(x)\}\vdash \forall x. a(x)\rightarrow\forall x.b(x)\lor c(x)$
+	\end{enumerate}
+\end{enumerate}
+
+\section{Equivalências algébricas para lógica de predicados}
+
+Assim como na dedução natural, todas as leis algébricas já vistas para
+lógica proposicional continuam válidas para lógica de predicados. O
+que faremos é apenas incluir novas leis para a manipulação adequada
+dos quantificadores universal e existencial.
+
+As leis algébricas para manipulação dos quantificadores são
+apresentadas abaixo:
+
+\[
+\begin{array}{|cccl|}
+\hline
+\neg \forall x. P(x) & \equiv & \exists x. \neg P(x) &
+\{\neg-\forall\}\\
+\neg \exists x. P(x) & \equiv & \forall x. \neg P(x) &
+\{\neg-\exists\}\\
+\forall x. P(x) \land Q(x) & \equiv & \forall x. P(x) \land \forall
+x. Q(x) & \{\land-\forall\} \\
+\exists x. P(x) \lor Q(x) & \equiv & \exists x. P(x) \lor \exists
+x. Q(x) & \{\lor-\exists\} \\ \hline
+\end{array}
+\]
+As primeiras duas leis expressam a relação dos quantificadores com a
+negação lógica. O leitor atento deve ter percebido que estas regras
+são uma generalização das leis de DeMorgan para lógica proposicional.
+O segundo grupo de regras expressa como os quantificadores universal e
+existencial distribuem sobre a conjunção e disjunção, respectivamente.
+
+\begin{Example}
+As fórmulas $\forall x. F(x) \land \neg G(x)$ e $\forall x. F(x) \land
+\neg \exists x. G(x)$ são equivalentes, conforme a dedução a seguir:
+\[
+      \begin{array}{lcl}
+          \forall x.(f(x)\land\neg g(x)) & = & \\
+	 \forall x.f(x)\land\forall x.\neg g(x) & = &\{\land-\forall\}\\
+         \forall x.f(x)\land\neg\exists x.g(x) &  & \{\neg-\forall\}
+      \end{array}
+\]
+\end{Example}
+
+\section{Exercícios}
+
+\begin{enumerate}
+         \item Prove as seguintes equival\^encias utilizando regras alg\'ebricas para l\'ogica de predicados.
+         \begin{enumerate}
+            \item $\forall x. p(x) \rightarrow \neg q(x) \equiv \neg \exists x. p(x) \land q(x)$
+            \item $\neg \forall x.\exists y. r(x,y)\land \neg p(x,y)\equiv\exists x.\forall y.r(x,y)\rightarrow p(x,y)$
+         \end{enumerate}
+\end{enumerate}
+
+\section{Considerações meta-matemáticas}
+
+\section{Notas Bibliográficas}
