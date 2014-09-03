@@ -1266,4 +1266,53 @@ As fórmulas $\forall x. F(x) \land \neg G(x)$ e $\forall x. F(x) \land
 
 \section{Considerações meta-matemáticas}
 
+Nesta seção consideraremos, sem demonstração, algumas propriedades
+meta-matemáticas da lógica de predicados, a saber: corretude,
+completude e decidibilidade. Assim como na lógica proposicional, a
+dedução natural para lógica de predicados é um sistema formal correto
+e completo. Porém, a teoria associada a noção de satisfazibilidade da
+lógica de predicados não é decidível.
+
+\subsection{Correção e Completude}
+
+Nesta seção enunciaremos teoremas que afirmam que o sistema de dedução
+natural para lógica de predicados é correto e completo com respeito a
+noção de consequência lógica.
+
+\begin{Theorem}[Correção da dedução natural]
+Seja $\alpha$ uma fórmula bem formada qualquer da lógica
+de predicados. Se $\vdash\,\alpha$, então $\models\,\alpha$.
+\end{Theorem}
+
+\begin{Theorem}[Completude da dedução natural]
+Seja $\alpha$ uma fórmula bem formada qualquer da lógica
+de predicados. Se $\models\,\alpha$, então $\vdash\,\alpha$.
+\end{Theorem}
+
+A prova da correção da dedução natural para lógica de predicados
+possui uma estrutura similar à demonstração para lógica
+proposicional. Basta utilizar indução sobre a estrutura das derivações
+de provas. Porém, a demonstração da propriedade de completude exige
+técnicas que vão além do objetivo deste texto.
+
+\subsection{Decidibilidade}
+
+Conforme apresentamos no capítulo \ref{cap2}, a teoria associada a
+linguagem da lógica proposicional é decidível, isto é, existe um
+algoritmo que responde ``sim'' sempre que a fórmula em questão for
+válida (tautologia) e ``não'', caso contrário.
+
+Na seção anterior, apresentamos que a lógica de predicados possui as
+propriedades de correção e completude, como a lógica
+proposicional. Desta forma, podemos perguntar se a lógica de predicados  também
+possui uma teoria decidível associada. Normalmente, para a lógica de
+predicados, considera-se a teoria que envolve o conjunto de fórmulas
+bem formadas desta lógica e a noção de satisfazibilidade como conceito
+de validade. Infelizmente, o problema de determinar se uma fórmula
+\emph{arbitrária} da lógica de predicados é satisfazível é
+indecidível, isto é, não existe um algoritmo capaz de apresentar uma
+resposta correta para toda fórmula bem formada desta lógica. A
+demonstração deste resultado pode ser encontrada em livros que abordam
+teoria de computabilidade e está fora do escopo deste texto.
+
 \section{Notas Bibliográficas}
