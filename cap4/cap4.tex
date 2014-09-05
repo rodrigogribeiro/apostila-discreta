@@ -1,7 +1,98 @@
 \chapter{Demonstração de Teoremas}\label{cap4}
 
 \epigraph{A matemática não é uma ciência dedutiva --- isto é um
-  cliche. Quando você tenta provar um teorema, você não apenas lista
+  clichê. Quando você tenta provar um teorema, você não apenas lista
   as hipóteses, e começa a dedução. O que normalmente fazemos é fazer
   uso de experimentação e tentativa e erro.}{Paul Richard Halmos,
   Matemático.}
+
+\section{Motivação}
+
+Nos capítulos \ref{cap2} e \ref{cap3} foram apresentadas as lógicas
+proposicional e de predicados. Para cada uma destas lógicas, estudamos
+sua sintaxe, semântica e como verificar consequências lógicas
+utilizando dedução natural. Neste capítulo, apresentaremos uma
+importante aplicação de tudo que foi visto até o presente momento:
+usar estas lógicas para demonstrar teoremas matemáticos.
+
+Mas qual a importância do uso de demonstrações em computação? A única
+tecnologia conhecida para garantir a ausência de erros em programas de
+computador é provando que este não possui este tipos de
+erros. Evidentemente, isso requer a modelagem de programas em algum
+formalismo matemático adequado para esta tarefa, o que está fora do
+escopo deste texto. Porém, técnicas elementares de demonstração de
+teoremas são a ``base'' para a formalização e verificação de sistemas
+computacionais. Logo, é importante que todo estudante de computação
+possua um conhecimento elementar sobre este assunto.
+
+\section{Introdução}
+
+Damos o nome de \emph{teorema} a uma sentença matemática que é
+verdadeira e pode ser verificada como tal. Teoremas são compostos por
+um conjunto (possivelmente vazio) de sentenças, denominadas hipóteses
+(ou premissas), que são assumidas como verdadeiras \emph{a priori} e
+uma conclusão.
+ Normalmente, teoremas
+são expressos utilizando variáveis possivelmente livres. Damos o nome
+de \emph{instância} de um teorema a uma particular atribuição de
+valores às variáveis de um teorema.  A \emph{prova} ou
+\emph{demonstração} de um teorema consiste de uma verificação que
+mostra que o teorema em questão é verdadeiro, para todas as possíveis
+instâncias deste. Note que se um teorema só pode ser considerado como
+válido se este o for para todas suas instâncias, uma forma de mostrar
+que um teorema não é válido é apresentando uma instância que torna o
+enunciado do ``teorema''\footnote{Note que uma sentença só pode ser
+  considerada um teorema se esta for verdadeira. Afirmar que um
+  teorema é falso é apenas um abuso de linguagem utilizado para
+  facilitar a exposição deste conceito.} falso. Damos o nome de \emph{contra-exemplo} a
+uma instância que torna uma sentença falsa.
+
+A seguir apresentamos um exemplo que ilustra os conceitos apresentados
+no parágrafo anterior.
+
+\begin{Example}
+Considere a seguinte sentença matemática:
+\begin{center}
+\textit{Sejam $x,y$ dois números reais tais que $x > 3$ e $y < 2$. Então, $x^2
+- 2y > 5$}.
+\end{center}
+Esta sentença é um teorema e sua prova será apresentada em um exemplo
+posterior. Como esta é um teorema, ela deverá ser composta por um
+conjunto de hipóteses e uma conclusão. Note que o enunciado deste
+teorema assume que $x,y\in\mathbb{R}$ e que $x > 3$ e $y < 2$. Logo,
+estas são as suas hipóteses. A conclusão deste teorema é que
+a desigualdade $x^2 - 2y > 5$ deve ser verdadeira. Possíveis
+instâncias desse teorema são $x = 4$ e $y = 0$ que tornam a
+desigualdade $16 - 2.0 > 5$ verdadeira. Evidentemente, caso $x = 3$ e
+$y = 2$ (violando, assim, as hipóteses $x > 3$ e $y < 2$) temos que a
+conclusão é falsa pois, $9 - 4 = 5 \not> 5$.
+
+Agora, como exemplo de uma sentença inválida, considere:
+\begin{center}
+\textit{Sejam $x,y$ dois números reais tais que $x > 3$. Então, $x^2
+- 2y > 5$.}
+\end{center}
+Esta sentença não pode ser considerada um teorema por este possuir um
+contra-exemplo. Seja $x= 4$ e $y = 6$. Temos que $x = 4 > 3$, mas
+$16 - 12 \not > 5$, o que torna falsa a sentença em questão.
+
+É importante ter em mente que para demonstrar um teorema devemos
+construir uma prova (dedução) de que este é correto para todas as suas
+instâncias. Se quisermos mostrar que uma sentença é falsa, basta
+apresentar um contra-exemplo.
+\end{Example}
+
+Você deve ter percebido que
+teoremas possuem a mesma estrutura de sequentes da dedução
+natural. Na verdade, todos os sequentes que demonstramos em capítulos
+anteriores, são teoremas! Neste capítulo, utilizaremos a dedução
+natural para demonstrar a validade de sentenças quaisquer da
+matemática. Porém, ao invés de utilizarmos uma notação hierárquica (em
+forma de uma árvore), como fizemos com a dedução natural, utilizaremos
+uma notação \textit{estruturada}, no sentido que organizaremos
+demonstrações em blocos, similares à blocos de comandos presentes na
+maioria das linguagens existentes (como C/C++, Java, Python,
+etc.).
+
+Para facilitar a tarefa de construir demonstração corretas e similares
+as encontradas em textos de matemática, devemos seguir os seguintes passos.
