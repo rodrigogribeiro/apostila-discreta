@@ -1572,7 +1572,7 @@ implicações $A\to C$ e $B\to C$. Esta dedução é apresentada abaixo:
 \end{Example}
 \begin{Example}
 Vamos considerar um dedução utilizando $\orE$ um pouco mais complexa:
-provar o sequente $\{(A \land B) \lor (A \land C)\}\vdash b \lor C$.
+provar o sequente $\{(A \land B) \lor (A \land C)\}\vdash B \lor C$.
 
 Para demonstrar o sequente anterior, utilizaremos a regra $\orE$ sobre
 a hipótese $(A \land B)\lor (A \land C)$ e utilizaremos as hipóteses
@@ -2404,7 +2404,7 @@ semântica e um sistema de provas para a lógica proposicional: a dedução
 natural, que nos permite demonstrar consequências lógicas.
 
 Apesar da dedução natural possuir uma semântica intuitiva, não apresentamos como este
-se relacionam com a semântica da lógica proposicional. A relação de um certo sistema de
+se relaciona com a semântica da lógica proposicional. A relação de um certo sistema de
 provas para um formalismo e a semântica deste é dada por propriedades
 conhecidas como correção e completude. Essas propriedades expressam o
 relacionamento de um sistema de provas com o conceito de validade
@@ -2461,14 +2461,14 @@ de $\mathcal{L}$, isto é.
 \end{Definition}
 Para o caso da lógica proposicional, temos que $\mathcal{L}$ é o
 conjunto de fórmulas bem formadas desta lógica e o conceito de
-validade corresponde à consequência lógica.
+validade corresponde à consequência lógica (tautologia).
 
 \begin{Definition}[Decidibilidade]
 Seja $T$ um conjunto qualquer. Dizemos que um subconjunto $S \subseteq
-T$ é decidível se existe um algoritmo, que a partir de um elemento de $f : T \to \mathcal{B}$, em que
-$\mathcal{B}$ é o conjunto de valores booleanos (introduzido no
-capítulo \ref{cap1}), que determina se um elemento $t\in T$ pertence
-ou não ao conjunto $S$ e que termina para todas as possíveis entradas.
+T$ é decidível se existe um algoritmo $f : T \to \mathcal{B}$, que
+partir de um elemento $t\in T$, determina se este pertence ou não ao
+conjunto $S$\footnote{Lembre-se que $\mathcal{B}$ é o conjunto de valores booleanos (introduzido no
+capítulo \ref{cap1}).} e termina para todas as possíveis entradas.
 \end{Definition}
 
 \begin{Theorem}[Decidibilidade da lógica proposicional]
@@ -2477,10 +2477,12 @@ o conjunto de fórmulas bem formadas da lógica proposicional e
 $\models$ a relação de consequência lógica, é decidível.
 \end{Theorem}
 \begin{proof}
-Para mostrar que a teoria $\langle \mathcal{F},\models\rangle$ que, a
-partir de uma fórmula $\alpha\in\mathcal{F}$, decida se
-$\models\alpha$ (isto é, se $\alpha$ é uma tautologia). Para isso,
-basta construir a tabela verdade de $\alpha$.
+Para mostrar que a teoria $\langle \mathcal{F},\models\rangle$ é
+decidível devemos apenas apresentar um algoritmo que, a partir de uma
+fórmula $\alpha\in\mathcal{F}$ determina se $\models \alpha$ é
+verdadeiro ou não (isto é, se $\alpha$ é ou não uma tautologia). O
+algoritmo que soluciona esse problema consiste em construir a tabela
+verdade de $\alpha$ e verificar se todas as linhas desta são iguais a $T$.
 \end{proof}
 
 \section{Notas Bibliográficas}

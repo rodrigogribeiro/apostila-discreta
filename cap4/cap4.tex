@@ -17,19 +17,19 @@ usar estas lógicas para demonstrar teoremas matemáticos.
 
 Mas qual a importância do uso de demonstrações em computação? A única
 tecnologia conhecida para garantir a ausência de erros em programas de
-computador é provando que este não possui este tipos de
+computador é provando que este não possui
 erros. Evidentemente, isso requer a modelagem de programas em algum
 formalismo matemático adequado para esta tarefa, o que está fora do
 escopo deste texto. Porém, técnicas elementares de demonstração de
 teoremas são a ``base'' para a formalização e verificação de sistemas
 computacionais. Logo, é importante que todo estudante de computação
-possua um conhecimento elementar sobre este assunto.
+saiba construir e entender demonstrações formais.
 
 \section{Introdução}
 
 Damos o nome de \emph{teorema} a uma sentença matemática que é
 verdadeira e pode ser verificada como tal. Teoremas são compostos por
-um conjunto (possivelmente vazio) de sentenças, denominadas hipóteses
+um conjunto, possivelmente vazio, de sentenças, denominadas hipóteses
 (ou premissas), que são assumidas como verdadeiras \emph{a priori} e
 uma conclusão.
  Normalmente, teoremas
@@ -38,14 +38,14 @@ de \emph{instância} de um teorema a uma particular atribuição de
 valores às variáveis de um teorema.  A \emph{prova} ou
 \emph{demonstração} de um teorema consiste de uma verificação que
 mostra que o teorema em questão é verdadeiro, para todas as possíveis
-instâncias deste. Note que se um teorema só pode ser considerado como
-válido se este o for para todas suas instâncias, uma forma de mostrar
-que um teorema não é válido é apresentando uma instância que torna o
-enunciado do ``teorema''\footnote{Note que uma sentença só pode ser
+instâncias deste. Note que um teorema só pode ser considerado como
+válido se este o for para todas suas instâncias. Para mostrar que um
+``teorema''\footnote{Note que uma sentença só pode ser
   considerada um teorema se esta for verdadeira. Afirmar que um
   teorema é falso é apenas um abuso de linguagem utilizado para
-  facilitar a exposição deste conceito.} falso. Damos o nome de \emph{contra-exemplo} a
-uma instância que torna uma sentença falsa.
+  facilitar a exposição deste conceito.} é inválido basta apresentar
+uma instância que torna o enunciado deste falso. Damos o nome de
+\emph{contra-exemplo} a uma instância que torna uma sentença falsa.
 
 A seguir apresentamos um exemplo que ilustra os conceitos apresentados
 no parágrafo anterior.
@@ -61,8 +61,8 @@ posterior. Como esta é um teorema, ela deverá ser composta por um
 conjunto de hipóteses e uma conclusão. Note que o enunciado deste
 teorema assume que $x,y\in\mathbb{R}$ e que $x > 3$ e $y < 2$. Logo,
 estas são as suas hipóteses. A conclusão deste teorema é que
-a desigualdade $x^2 - 2y > 5$ deve ser verdadeira. Possíveis
-instâncias desse teorema são $x = 4$ e $y = 0$ que tornam a
+a desigualdade $x^2 - 2y > 5$ deve ser verdadeira. Como um exemplo de
+uma possível instância desse teorema são $x = 4$ e $y = 0$ que tornam a
 desigualdade $16 - 2.0 > 5$ verdadeira. Evidentemente, caso $x = 3$ e
 $y = 2$ (violando, assim, as hipóteses $x > 3$ e $y < 2$) temos que a
 conclusão é falsa pois, $9 - 4 = 5 \not> 5$.
@@ -95,4 +95,11 @@ maioria das linguagens existentes (como C/C++, Java, Python,
 etc.).
 
 Para facilitar a tarefa de construir demonstração corretas e similares
-as encontradas em textos de matemática, devemos seguir os seguintes passos.
+as encontradas em textos de matemática, vamos dividir a tarefa de
+provar um teorema em duas partes, relacionadas: 1) construção de um
+rascunho e 2) elaboração de um texto, a partir do rascunho\footnote{A
+  técnica que adotaremos neste texto para construção de demonstrações
+  é a apresentada no livro de Daniel Velleman \cite{Velleman06}.}.
+
+O rascunho é utilizado para realizar as demonstrações. Normalmente
+este é dividido em duas colunas que
