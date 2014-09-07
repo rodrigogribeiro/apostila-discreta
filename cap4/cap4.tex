@@ -72,7 +72,7 @@ Agora, como exemplo de uma sentença inválida, considere:
 \textit{Sejam $x,y$ dois números reais tais que $x > 3$. Então, $x^2
 - 2y > 5$.}
 \end{center}
-Esta sentença não pode ser considerada um teorema por este possuir um
+Esta sentença não pode ser considerada um teorema por possuir um
 contra-exemplo. Seja $x= 4$ e $y = 6$. Temos que $x = 4 > 3$, mas
 $16 - 12 \not > 5$, o que torna falsa a sentença em questão.
 
@@ -92,14 +92,96 @@ forma de uma árvore), como fizemos com a dedução natural, utilizaremos
 uma notação \textit{estruturada}, no sentido que organizaremos
 demonstrações em blocos, similares à blocos de comandos presentes na
 maioria das linguagens existentes (como C/C++, Java, Python,
-etc.).
+etc.), visando facilitar a construção e o entendimento de provas.
 
-Para facilitar a tarefa de construir demonstração corretas e similares
-as encontradas em textos de matemática, vamos dividir a tarefa de
-provar um teorema em duas partes, relacionadas: 1) construção de um
-rascunho e 2) elaboração de um texto, a partir do rascunho\footnote{A
+\section{Técnicas de Demonstração de Teoremas}
+
+Nesta seção apresentaremos as técnicas para demonstração de teoremas,
+que essencialmente, são as regras já vistas em nosso estudo de dedução natural.
+Visando facilitar a tarefa de construir demonstração corretas e similares
+às encontradas em textos de matemática, dividiremos a tarefa de
+provar um teorema em duas partes relacionadas: 1) construção de um
+rascunho e 2) elaboração de um texto, a partir deste rascunho\footnote{A
   técnica que adotaremos neste texto para construção de demonstrações
   é a apresentada no livro de Daniel Velleman \cite{Velleman06}.}.
 
-O rascunho é utilizado para realizar as demonstrações. Normalmente
-este é dividido em duas colunas que
+O rascunho é utilizado para realizar as deduções que formam a
+demonstração de um teorema. Normalmente este é dividido em duas
+colunas: a coluna de hipóteses e a de conclusão. Na coluna de hipóteses
+encontram-se todas as hipóteses e suposições feitas durante a
+demonstração e a coluna de conclusão registra qual fórmula devemos
+deduzir a partir das hipóteses, para estabelecer que o teorema em
+questão é realmente verdadeiro.
+
+Mas, como construir um rascunho para um dado teorema? Como produzir um
+texto a partir deste rascunho? Ambas estas perguntas são respondidas
+considerando o que \cite{Velleman06} chama de \emph{estratégia de
+  prova}. Uma estratégia de prova consiste de modelos para construção de
+rascunho e de textos que são aplicáveis a um certo tipo de hipótese ou
+conclusão. Veremos que a escolha de qual estratégia de prova será
+utilizada depende de quais conectivos / quantificadores a fórmula em
+questão possui.
+
+Denominamos de \emph{estratégia para utilização de
+hipóteses}, técnicas que permite-nos deduzir novas fórmulas a partir de
+hipóteses. Estas estratégias correspondem às regras de eliminação de
+quantificadores e conectivos da dedução natural. Por sua vez,
+denominamos de \emph{estratégia para demonstrar uma conclusão}
+técnicas que nos permitem deduzir uma fórmula com um certo conectivo /
+quantificador. Usualmente, estas técnicas permitem transformar o
+problema de demonstrar uma fórmula $\alpha$ em problemas mais
+simples. Estratégias para demonstrar conclusões correspondem às regras
+de introdução de conectivos / quantificadores da dedução natural.
+
+Os modelos de rascunho presentes em uma estratégia de demonstração
+dividem-se em duas partes, a primeira mostra um esquema de rascunho
+antes de usar a estratégia e a segunda mostra o rascunho
+resultante. Já o modelo de texto, usualmente apresenta ``buracos''  a
+serem preenchidos com o texto de alguma sub-demonstração a ser
+realizada. Partes a serem preenchidas com sub-demonstrações são
+indicadas usando colchetes ('[' e ']'). As próximas seções apresentam
+cada uma das técnicas para os conectivos e quantificadores e exemplos
+que ilustram o uso destas estratégias.
+
+\subsection{Estratégias para Implicação $(\to)$}
+
+A primeira estratégia de demonstração que veremos é provavelmente a
+que será  mais utilizada. Esta permite demonstrar implicações lógicas
+e é equivalente à regra de introdução da implicação da dedução
+natural.
+
+\begin{ProofStrategy}[Para provar uma conclusão da forma
+  $\alpha\to\beta$]
+Suponha que $\alpha$ é verdadeiro e então prove $\beta$.
+\begin{flushleft}
+ \textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\alpha\to \beta$\\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\beta$\\
+$\alpha$                                              & \\
+\end{tabular}
+\end{flushleft}
+\begin{flushleft}
+\textbf{Texto:}\\
+\textit{Suponha que $\alpha$}.\\
+\verb|    |[\textit{Prova de $\beta$}]\\
+\textit{Portanto, se $\alpha$ então $\beta$}.
+\end{flushleft}
+\end{ProofStrategy}
+
+O exemplo a seguir utiliza esta estratégia para construção de um
+teorema simples.
+
+\begin{Example}
+\end{Example}
