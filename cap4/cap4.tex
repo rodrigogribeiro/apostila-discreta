@@ -139,7 +139,19 @@ antes de usar a estratégia e a segunda mostra o rascunho
 resultante. Já o modelo de texto, usualmente apresenta ``buracos''  a
 serem preenchidos com o texto de alguma sub-demonstração a ser
 realizada. Partes a serem preenchidas com sub-demonstrações são
-indicadas usando colchetes ('[' e ']'). As próximas seções apresentam
+indicadas usando colchetes ('[' e ']').
+
+A demonstração de um teorema deve seguir os seguintes passos:
+\begin{enumerate}
+  \item Identifique as hipóteses e conclusão de um teorema e
+    expresse-os como fórmulas da lógica.
+  \item A partir da representação do teorema como um conjunto de
+    fórmulas da lógica, construa o rascunho que demonstra o teorema
+    em questão.
+  \item A partir do rascunho produzido, elabore o texto final da demonstração.
+\end{enumerate}
+
+As próximas seções apresentam
 cada uma das técnicas para os conectivos e quantificadores e exemplos
 que ilustram o uso destas estratégias.
 
@@ -151,7 +163,7 @@ e é equivalente à regra de introdução da implicação da dedução
 natural.
 
 \begin{ProofStrategy}[Para provar uma conclusão da forma
-  $\alpha\to\beta$]
+  $\alpha\to\beta$]\label{imp1}
 Suponha que $\alpha$ é verdadeiro e então prove $\beta$.
 \begin{flushleft}
  \textbf{Rascunho}.\\
@@ -179,9 +191,80 @@ $\alpha$                                              & \\
 \textit{Portanto, se $\alpha$ então $\beta$}.
 \end{flushleft}
 \end{ProofStrategy}
-
 O exemplo a seguir utiliza esta estratégia para construção de um
 teorema simples.
-
 \begin{Example}
+Considere a tarefa de demonstrar o seguinte teorema:
+\begin{flushleft}
+Suponha que  $a,b\in\mathbb{R}$. Se $0 < a < b$ então $a^2 < b^2$.
+\end{flushleft}
+Seguindo os passos descritos anteriormente, primeiro devemos
+representar as hipóteses e a conclusão deste teorema como fórmulas da
+lógica.
+O teorema em questão possui como hipóteses que $a,b\in\mathbb{R}$ e a sua
+conclusão é a fórmula:
+\[
+0 < a < b \to a^2 < b^2
+\]
+A partir da representação das hipóteses e da conclusão como fórmulas
+da lógica, devemos proceder com a elaboração do rascunho.
+Inicialmente, o rascunho possui a seguinte forma:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b\in\mathbb{R}$ & $0 < a < b \to a^2 < b^2$\\
+\end{tabular}
+\end{flushleft}
+Uma vez que a conclusão é uma implicação, podemos utilizar a
+estratégia de provas \ref{imp1}. Abaixo é apresentado o rascunho após
+a utilização desta estratégia:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b\in\mathbb{R}$ & $ a^2 < b^2$\\
+$0 < a < b$ & \\
+\end{tabular}
+\end{flushleft}
+Evidentemente, se $0 < a < b$ então $a > 0$, $a < b$, $b > 0$. Como
+tanto $a$ quanto $b$ são maiores que zero, podemos multiplicar ambos
+os lados de $a < b$ por cada um destes valores. Multiplicando por $a$,
+obtemos $a^2 < ab$, e ao multiplicarmos por $b$, obtemos $ab < b^2$.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b\in\mathbb{R}$ & $ a^2 < b^2$\\
+$0 < a < b$ & \\
+$a^2 < ab$  & \\
+$ab < b^2$ &\\
+\end{tabular}
+\end{flushleft}
+Uma vez que $a^2 < ab$ e $ab < b^2$, temos que $a^2 < b^2$, como
+queríamos demonstrar.
+
+Como conseguimos deduzir a conclusão a partir das hipóteses,
+utilizando o rascunho, devemos proceder para a elaboração do texto
+final da prova. De acordo com o modelo de texto descrito na estratégia
+de prova \ref{imp1}, o texto deve possuir a seguinte estrutura
+inicial:
+\begin{flushleft}
+Suponha que $0< a < b$.\\
+\verb|  |[Prova de $a^2 < b^2$]\\
+Portanto, se $0 < a < b$ então $a^2 < b^2$.
+\end{flushleft}
+Para finalizar o texto, basta preencher o ``buraco'' com o texto da
+dedução de $a^2 < b^2$.  O resultado final é apresentado a seguir.
+\begin{flushleft}
+Suponha que $0< a < b$.\\
+\verb|  |Como $0< a < b$, temos que $a,b > 0$ e $a < b$.\\
+\verb|  |Como $a > 0$ e $a < b$, temos que $a^2 < ab$.\\
+\verb|  |Como $b > 0$ e $a < b$, temos que $ab < b^2$.\\
+\verb|  |Como $a^2 < ab$ e $ab < b^2$, temos que $a^2 < b^2$.\\
+Portanto, se $0 < a < b$ então $a^2 < b^2$.
+\end{flushleft}
 \end{Example}
+Note que a estrutura da demonstração é indicada utilizando indentação,
+de maneira similar a blocos de comandos em linguagens de
+programação. Apesar de não ser uma padrão em textos sobre matemática,
+há evidências que a utilização de indentação em provas ajuda no
+entendimento \cite{Lamport12} e, por isso, este será o padrão adotado
+neste texto.
