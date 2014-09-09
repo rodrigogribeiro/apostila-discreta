@@ -158,9 +158,9 @@ que ilustram o uso destas estratégias.
 \subsection{Estratégias para Implicação $(\to)$}
 
 A primeira estratégia de demonstração que veremos é provavelmente a
-que será  mais utilizada. Esta permite demonstrar implicações lógicas
+que será mais utilizada. Esta permite demonstrar implicações lógicas
 e é equivalente à regra de introdução da implicação da dedução
-natural.
+natural e é conhecida como prova direta.
 
 \begin{ProofStrategy}[Para provar uma conclusão da forma
   $\alpha\to\beta$]\label{imp1}
@@ -247,6 +247,7 @@ final da prova. De acordo com o modelo de texto descrito na estratégia
 de prova \ref{imp1}, o texto deve possuir a seguinte estrutura
 inicial:
 \begin{flushleft}
+Suponha que $a,b\in\mathbb{R}$.
 Suponha que $0< a < b$.\\
 \verb|  |[Prova de $a^2 < b^2$]\\
 Portanto, se $0 < a < b$ então $a^2 < b^2$.
@@ -254,6 +255,7 @@ Portanto, se $0 < a < b$ então $a^2 < b^2$.
 Para finalizar o texto, basta preencher o ``buraco'' com o texto da
 dedução de $a^2 < b^2$.  O resultado final é apresentado a seguir.
 \begin{flushleft}
+Suponha que $a,b\in\mathbb{R}$.
 Suponha que $0< a < b$.\\
 \verb|  |Como $0< a < b$, temos que $a,b > 0$ e $a < b$.\\
 \verb|  |Como $a > 0$ e $a < b$, temos que $a^2 < ab$.\\
@@ -266,5 +268,399 @@ Note que a estrutura da demonstração é indicada utilizando indentação,
 de maneira similar a blocos de comandos em linguagens de
 programação. Apesar de não ser uma padrão em textos sobre matemática,
 há evidências que a utilização de indentação em provas ajuda no
-entendimento \cite{Lamport12} e, por isso, este será o padrão adotado
+entendimento\footnote{Uma argumentação detalhada a favor do uso de
+  provas estruturadas é apresentada em \cite{Lamport12}.} e, por isso, este será o padrão adotado
 neste texto.
+
+Outra maneira de demonstrar uma implicação é a utilização da seguinte
+equivalência lógica: $\alpha\to \beta \equiv \neg\beta\to\neg\alpha$,
+que é facilmente demonstrável utilizando álgebra booleana.
+Demonstrações de implicações baseadas nesta estratégia são comumente
+denominadas de provas pela contrapositiva.
+A próxima estratégia de prova é baseada nesta equivalência.
+
+\begin{ProofStrategy}[Para provar uma conclusão da forma
+  $\alpha\to\beta$]\label{imp2}
+Suponha que $\beta$ é falso e prove  que $\alpha$ é falso.
+\begin{flushleft}
+ \textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\alpha\to \beta$\\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\neg\alpha$\\
+$\neg\beta$                                              & \\
+\end{tabular}
+\end{flushleft}
+\begin{flushleft}
+\textbf{Texto:}\\
+\textit{Suponha que $\beta$ é falso}.\\
+\verb|    |[\textit{Prova de $\neg \alpha$}]\\
+\textit{Portanto, se $\alpha$ então $\beta$}.
+\end{flushleft}
+\end{ProofStrategy}
+
+O próximo exemplo ilustra o uso da estratégia de prova \ref{imp2} para
+demonstrar um teorema simples.
+
+\begin{Example}
+Considere a tarefa de demonstrar o seguinte teorema:
+\begin{flushleft}
+Suponha que $a,b$ e $c$ são números reais tais que $a > b$. Se $ac
+\leq bc$ então $c\leq 0$.
+\end{flushleft}
+Para demonstrar este teorema, primeiramente, devemos representar suas
+hipóteses e conclusão como fórmulas da lógica. Evidentemente, as
+hipóteses deste teorema são que $a,b,c\in\mathbb{R}$ e a sua conclusão
+é representada pela seguinte fórmula:
+\[
+ac\leq bc \to c \leq 0
+\]
+A partir da representação das hipóteses e conclusão devemos proceder
+para a construção do rascunho.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b,c\in\mathbb{R}$ & $ ac\leq bc \to c \leq 0$\\
+$a > b$ & \\
+\end{tabular}
+\end{flushleft}
+Como a conclusão deste teorema é formada por uma implicação,
+utilizaremos a estratégia de prova \ref{imp2} para demonstrá-la. O
+resultado de se usar esta técnica de prova é apresentado no rascunho a
+seguir.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b,c\in\mathbb{R}$ & $ \neg (ac\leq bc)$\\
+$a > b$ & \\
+$\neg (c\leq 0)$ &
+\end{tabular}
+\end{flushleft}
+É óbvio que $\neg (ac \leq bc) \equiv ac > bc$ e que $\neg (c \leq 0)
+\equiv c > 0$.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b,c\in\mathbb{R}$ & $ac > bc$\\
+$a > b$ & \\
+$c < 0$ &
+\end{tabular}
+\end{flushleft}
+Mas como $c > 0$, podemos multiplicar ambos os lados de $a > b$
+obtendo $ac > bc$, o que conclui a demonstração deste teorema.
+
+Após a conclusão do rascunho, devemos proceder com a elaboração do
+texto desta demonstração. De acordo com a estratégia \ref{imp2}, temos
+a seguinte estrutura inicial:
+\begin{flushleft}
+Sejam $a,b,c \in \mathbb{R}$ tais que $a > b$.\\
+Suponha que $c > 0$.\\
+\verb|   |[Prova de $ac > bc$].\\
+Portanto, se $ac \leq bc$ então $c \leq 0$.
+\end{flushleft}
+Que é imediatamente encerrada com a dedução de que $ac > bc$, a partir
+das hipóteses $a > b$ e $c > 0$, conforme
+apresentado a seguir.
+\begin{flushleft}
+Sejam $a,b,c \in \mathbb{R}$ tais que $a > b$.\\
+Suponha que $c > 0$.\\
+\verb|   |Como  $a > b$ e $c > 0$ temos que $ac > bc$.\\
+Portanto, se $ac \leq bc$ então $c \leq 0$.
+\end{flushleft}
+\end{Example}
+
+Note que este teorema pode ser provado usando a estratégia de prova
+\ref{imp1}. Isso mostra que, muitas vezes, há mais de uma possível
+estratégia aplicável a demonstração de um certo teorema. Porém,
+certamente, uma das possibilidades resultará em uma prova mais
+simples, como o caso do exemplo anterior. Apesar de demonstrável
+usando uma prova direta, o uso de contrapositiva permitiu uma prova
+quase que imediata.
+
+As próximas seções deste capítulo apresentarão técnicas e exemplos de
+utilização destas para demonstração de teoremas envolvendo outros
+conectivos / quantificadores.
+
+\subsection{Estratégias para Negação ($\neg$) e Implicação ($\to$)}
+
+Para provar que uma dada conclusão é falsa (isto é, provar $\neg
+\alpha$), devemos proceder de maneira similar ao que era feito na
+dedução natural: tratar a negação como uma implicação (lembre-se $\neg
+\alpha \equiv \alpha\to\bot$) e demonstrar uma contradição. Esta idéia
+é formalizada pela próxima estratégia de prova.
+
+\begin{ProofStrategy}[Para provar uma conclusão da forma $\neg\alpha$]\label{neg1}
+Suponha que $\alpha$ é verdadeiro e obtenha uma contradição.
+\begin{flushleft}
+ \textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\neg \alpha$\\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\bot$\\
+$\alpha$                                              & \\
+\end{tabular}
+\end{flushleft}
+\begin{flushleft}
+\textbf{Texto:}\\
+\textit{Suponha que $\alpha$ é verdadeiro}.\\
+\verb|    |[\textit{Prova de $\bot$}]\\
+\textit{Portanto, $\alpha$ é falso.}
+\end{flushleft}
+\end{ProofStrategy}
+\begin{Example}\label{exneg}
+Considere o seguinte teorema:
+\begin{flushleft}
+Se $x^2+y = 13$ e $y \neq 4$ então $x \neq 3$.
+\end{flushleft}
+Note que este teorema não possui hipóteses e sua conclusão é uma
+fórmula que possui o conectivo de implicação, conforme apresentado a
+seguir:
+\[
+x^2 + y = 13 \land y \neq 4 \to x \neq 3
+\]
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+     & $x^2 + y = 13 \land y \neq 4 \to x \neq 3$\\
+\end{tabular}
+\end{flushleft}
+Utilizando a estratégia de prova direta, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+    $x^2 + y = 13$ & $x \neq 3$\\
+   $y \neq 4$ & \\
+\end{tabular}
+\end{flushleft}
+Como a conclusão é uma negação ($x \neq 3 \equiv \neg (x = 3)$),
+podemos utilizar a estratégia de prova \ref{neg1} obtendo:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+    $x^2 + y = 13$ & $\bot$\\
+   $y \neq 4$ & \\
+   $x = 3$ &
+\end{tabular}
+\end{flushleft}
+Porém, ao substituir $x = 3$ em $x^2 + y = 13$ obtemos $y = 4$, o que
+contradiz a suposição de que $y \neg 4$, o que conclui a demonstração
+do teorema.
+
+Agora, a partir do rascunho, basta construir o texto utilizando os
+modelos para as estratégias de prova utilizadas. Primeiramente, usando
+o modelo de texto para prova direta, obtemos:
+\begin{flushleft}
+Suponha que $x^2 + y = 13$ e que $y \neq 4$.\\
+\verb|  |[Prova de $x\neq 3$]\\
+Portanto, se $x^2 + y = 13$ e $y \neq 4$ então $x \neq 3$.
+\end{flushleft}
+Na sequência, utilizamos o modelo para negação:
+\begin{flushleft}
+Suponha que $x^2 + y = 13$ e que $y \neq 4$.\\
+\verb|  |Suponha que $x = 3$.\\
+\verb|    |[Prova de $\bot$]\\
+\verb|  |Logo, $x\neq 3$.\\
+Portanto, se $x^2 + y = 13$ e $y \neq 4$ então $x \neq 3$.
+\end{flushleft}
+Finalmente, encerramos a demonstração apresentando a contradição
+obtida a partir das hipóteses.
+\begin{flushleft}
+Suponha que $x^2 + y = 13$ e que $y \neq 4$.\\
+\verb|  |Suponha que $x = 3$.\\
+\verb|    |Como $x^2 + y = 13$ e $y\neq 4$, temos que $y = 4$.\\
+\verb|    |Como $y \neq 4$ e $y = 4$, temos uma contradição.\\
+\verb|  |Logo, $x\neq 3$.\\
+Portanto, se $x^2 + y = 13$ e $y \neq 4$ então $x \neq 3$.
+\end{flushleft}
+\end{Example}
+Sentenças negativas são, usualmente, de mais difícil que
+positivas. Isto motiva uma técnica para demonstração que é bem útil e
+vale-se de equivalências algébricas da lógica.
+\begin{ProofStrategy}[Para provar uma conclusão da forma $\neg
+  \alpha$]\label{neg2}
+Tente reexpressá-la como uma fórmula sem negação utilizando
+equivalências da álgebra booleana e então utilize outras estratégias de prova.
+\end{ProofStrategy}
+Como um exemplo desta estratégia, considere a seguinte variação do
+exemplo \ref{exneg}.
+\begin{Example}
+\begin{flushleft}
+Sejam $x,y\in\mathbb{N}$. Se $x^2 + y = 13$ então  não é verdade que $x \neq 3$ e $y = 4$.
+\end{flushleft}
+É fácil perceber que este teorema é composto apenas por uma conclusão
+e que esta é representada pela seguinte fórmula:
+\[
+x^2 + y = 13 \to \neg (x \neq 3 \land y = 4)
+\]
+O rascunho para este teorema possui a seguinte configuração inicial:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ $x,y\in\mathbb{N}$ & $x^2 + y = 13 \to \neg (x \neq 3 \land y = 4)$
+\end{tabular}
+\end{flushleft}
+Como a conclusão é uma implicação, podemos iniciar a demonstração
+usando a técnica de prova direta.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$x,y\in\mathbb{N}$ & $\neg (x \neq 3 \land y = 4)$\\
+ $x^2 + y = 13$ & \\
+\end{tabular}
+\end{flushleft}
+Note que a conclusão possui uma negação. Logo, podemos então tentar a
+estratégia de prova \ref{neg2} e usar álgebra booleana para mudar a
+forma da conclusão. Note que $\neg (x \neq 3 \land y = 4)$ é
+equivalente a $y = 4 \to x = 3$, conforme a dedução seguinte:
+\[
+\begin{array}{lcl}
+\neg(x \neq 3 \land y = 4) & \equiv &\\
+x = 3 \lor y \neq 4 & \equiv & \\
+y \neq 4 \lor x = 3 & \equiv & \\
+y = 4 \to x = 3 & &
+\end{array}
+\]
+Usando esta equivalência, temos que o rascunho pode ser alterado para:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$x,y\in\mathbb{N}$ & $y = 4 \to x = 3$\\
+ $x^2 + y = 13$ & \\
+\end{tabular}
+\end{flushleft}
+Logo, podemos utilizar novamente uma estratégia de prova direta,
+obtendo:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$x,y\in\mathbb{N}$ & $x = 3$\\
+ $x^2 + y = 13$ & \\
+$y = 4$ & \\
+\end{tabular}
+\end{flushleft}
+
+O que é evidentemente verdadeiro. A seguir, apresentamos a construção
+passo-a-passo do texto desta demonstração.
+\begin{flushleft}
+Suponha que $x^2 + y = 13$ e que $y = 4$.\\
+\verb|  |Como $y = 4$ e $x^2 + y = 13$, temos que $x = 3$.
+Portanto, se $x^2 + y = 13$ então não é verdade que $x \neq 3$ e $y = 4$.
+\end{flushleft}
+Note que, a manipulação algébrica que transformou a negação em uma
+implicação não é sequer citada no texto da demonstração. Manipulações
+algébricas sobre fórmulas da lógica devem apenas fazer parte do
+rascunho, nunca da demonstração final de um teorema.
+\end{Example}
+
+Até o presente momento foram apresentadas apenas estratégias para
+demonstrar teoremas que possuem um certo conectivo. Um ponto chave na
+demonstração de teoremas é a utilização adequada de hipóteses. As
+próximas estratégias a serem apresentadas mostram como utilizar
+hipóteses e por isso, são chamadas de estratégias para uso de
+hipóteses.
+
+\begin{HypothesisStrategy}[Para usar uma hipótese da forma
+  $\neg\alpha$] Caso possível, reexpresse $\neg\alpha$ utilizando
+  regras da álgebra booleana de maneira que a negação seja removida
+  desta fórmula.
+\end{HypothesisStrategy}
+
+\begin{HypothesisStrategy}[Para usar uma hipótese da forma $\alpha \to
+  \beta$] \label{imphyp1}
+Caso seja possível deduzir  $\alpha$ ou $\neg \beta$, então
+  podemos utilizar $\alpha\to\beta$ para deduzir $\beta$ ou
+  $\neg\alpha$. Note que esta estratégia é equivalente a utilizar a
+  regra $\impE$ ou o seguinte sequente da dedução natural $\{\alpha\to\beta,\neg\beta\}\vdash\alpha$.
+\end{HypothesisStrategy}
+
+\begin{Example}
+\begin{flushleft}
+Suponha que $P \to Q \to R$. Então, $\neg R \to (P \to \neg Q)$.
+\end{flushleft}
+Como este teorema envolve fórmulas da lógica diretamente, podemos
+proceder para a construção do rascunho.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$P \to Q \to R$ & $\neg R \to (P \to \neg Q)$\\
+\end{tabular}
+\end{flushleft}
+Como desejamos concluir uma implicação, vamos iniciar esta
+demonstração usando a técnica de prova direta.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$P \to Q \to R$ & $ P \to \neg Q$\\
+$\neg R$ & \\
+\end{tabular}
+\end{flushleft}
+Novamente, usando prova direta temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$P \to Q \to R$ & $ \neg Q$\\
+$\neg R$ & \\
+$P$ & \\
+\end{tabular}
+\end{flushleft}
+Como possuímos $P$ e $P\to Q\to R$, podemos utilizar a estratégia de
+uso de hipóteses \ref{imphyp1} para concluir $Q\to R$.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$P \to Q \to R$ & $ \neg Q$\\
+$\neg R$ & \\
+$P$ & \\
+$Q\to R$ &
+\end{tabular}
+\end{flushleft}
+Como $Q\to R$ e  $\neg R$ são verdadeiras, temos que $\neg Q$ também o
+é, terminando assim, a dedução.
+A seguir apresentamos o texto desta demonstração.
+\begin{flushleft}
+Suponha que $P\to Q \to R$.\\
+\verb|  |Suponha que $\neg R$.\\
+\verb|    |Suponha que $P$.\\
+\verb|      |Como $P \to Q \to R$ e $P$, temos que $Q\to R$.\\
+\verb|      |Como $Q\to R$ e $\neg R$, temos que $\neg Q$.\\
+\verb|    |Logo, $P\to \neg Q$.\\
+\verb|  |Assim, $\neg R\to (P \to \neg Q)$.\\
+Portanto, $\neg R \to (P \to \neg Q)$.
+\end{flushleft}
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Prove os seguintes teoremas.
+  \begin{enumerate}
+      \item Suponha $a,b\in\mathbb{R}$. Se $a < b < 0$ então $a^2 >
+        b^2$.
+      \item Suponha $a,b\in\mathbb{R}$. Se $0 < a < b$ então
+        $\frac{1}{b}<\frac{1}{a}$.
+     \item Suponha $a,b,c,d\in\mathbb{R}$, $0 < a < b$ e $d > 0$. Se
+       $ac \geq bd$ então $c > d$.
+     \item Suponha que $a,b\in\mathbb{R}$. Se $a^2b = 2a + b$, então
+       se $b\neq 0$ então $a \neq 0$.
+  \end{enumerate}
+\end{enumerate}
