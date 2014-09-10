@@ -563,7 +563,7 @@ O que é evidentemente verdadeiro. A seguir, apresentamos a construção
 passo-a-passo do texto desta demonstração.
 \begin{flushleft}
 Suponha que $x^2 + y = 13$ e que $y = 4$.\\
-\verb|  |Como $y = 4$ e $x^2 + y = 13$, temos que $x = 3$.
+\verb|  |Como $y = 4$ e $x^2 + y = 13$, temos que $x = 3$.\\
 Portanto, se $x^2 + y = 13$ então não é verdade que $x \neq 3$ e $y = 4$.
 \end{flushleft}
 Note que, a manipulação algébrica que transformou a negação em uma
@@ -664,3 +664,400 @@ Portanto, $\neg R \to (P \to \neg Q)$.
        se $b\neq 0$ então $a \neq 0$.
   \end{enumerate}
 \end{enumerate}
+
+\subsection{Estratégias para Quantificadores ($\forall$), ($\exists$)}
+
+Estratégias de prova para conclusões envolvendo quantificadores são
+análogas às regras de introdução destes apresentadas nos capítulos
+\ref{cap2} e \ref{cap3}.
+
+\begin{ProofStrategy}[Para provar uma conclusão da forma $\forall
+  x. P(x)$]\label{quant1}
+Suponha que $x$ é um valor arbitrário\footnote{Lembre-se: um valor $x$
+é arbitrário se este não pertence ao conjunto de variáveis livres das
+hipóteses do teorema em questão.} e prove $P(x)$.
+\begin{flushleft}
+ \textbf{Rascunho}.\\
+\verb| |\\
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\forall x. P(x)$\\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $P(x)$\\
+$x$\text{ arbitrário}                           & \\
+\end{tabular}
+\end{flushleft}
+\begin{flushleft}
+\textbf{Texto:}\\
+\textit{Suponha que $x$ é arbitrário}.\\
+\verb|    |[\textit{Prova de $P(x)$}]\\
+\textit{Portanto, $\forall x.P(x)$}.
+\end{flushleft}
+\end{ProofStrategy}
+\begin{ProofStrategy}[Para provar uma conclusão da forma $\exists
+  x. P(x)$]\label{quant2}
+Tente encontrar o valor de $x$ que torna $P(x)$ verdadeiro e então
+prove esta fórmula.
+\begin{flushleft}
+ \textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\exists x. P(x)$\\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $P(x)$\\
+$x =$[valor escolhido por você.]           & \\
+\end{tabular}
+\end{flushleft}
+\begin{flushleft}
+\textbf{Texto:}\\
+\textit{Seja $x =$}[valor escolhido por você].\\
+\verb|    |[\textit{Prova de $P(x)$}]\\
+\textit{Portanto, $\exists x.P(x)$}.
+\end{flushleft}
+\end{ProofStrategy}
+A seguir, apresentamos um exemplo que ilustra a utilização destas duas
+estratégias de prova.
+\begin{Example}
+Considere o seguinte teorema:
+\begin{flushleft}
+   Para todo $x\in\mathbb{R}$, se $x > 0$ então existe um $y\in\mathbb{R}$ tal que
+   $y(y + 1) = x$.
+\end{flushleft}
+Este teorema é formado apenas pela conclusão, expressa simbolicamente
+a seguir:
+\[
+\forall x. x\in\mathbb{R} \to x > 0 \to \exists y . y\in\mathbb{R}
+\land y (y + 1) = x
+\]
+A partir da representação deste teorema, podemos iniciar a construção
+de seu rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ & $\forall x. x\in\mathbb{R} \to x > 0 \to \exists y . y\in\mathbb{R}
+\land y (y + 1) = x$\\
+\end{tabular}
+\end{flushleft}
+Como a conclusão é uma fórmula envolvendo o quantificador universal,
+podemos utilizar a estratégia de prova \ref{quant1}, obtendo:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ $x$ arbitrário & $ x\in\mathbb{R} \to x > 0 \to \exists y . y\in\mathbb{R}
+\land y (y + 1) = x$\\
+\end{tabular}
+\end{flushleft}
+Utilizando a estratégia de prova direta (duas vezes) obtemos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ $x$ arbitrário & $\exists y . y\in\mathbb{R}
+\land y (y + 1) = x$\\
+$x\in\mathbb{R}$ & \\
+$x > 0$ & \\
+\end{tabular}
+\end{flushleft}
+Agora, temos que mostrar que existe um valor $y \in\mathbb{R}$ tal que
+$y(y+1) = x$. Mas qual seria este valor? Olhando com um pouco de
+atenção a equação $y(y+1) = x$, podemos perceber que esta é uma
+equação de $2^o$ grau sobre a variável $y$. Resolvendo-a obtemos:
+\[
+\begin{array}{lcl}
+\Delta & = & 1 -4.1.x \\
+y' & = & \frac{-1 + \sqrt{1 + 4x}}{2}\\
+y'' & = & \frac{-1 - \sqrt{1 + 4x}}{2}
+\end{array}
+\]
+Desta forma, temos que tanto $\frac{-1 + \sqrt{1 + 4x}}{2}$ quanto
+$\frac{-1 - \sqrt{1 - 4x}}{2}$ são possíveis valores para $y$ que
+tornam a equação $y(y+1) = x$ verdadeira, conforme demonstrado a
+seguir:
+\[
+\begin{array}{lcl}
+y(y+1) & = &\{\text{por }y = \frac{-1 + \sqrt{1 + 4x}}{2}\}\\
+\frac{-1 + \sqrt{1 + 4x}}{2}\left(\frac{-1 + \sqrt{1 + 4x}}{2} +
+  1\right) & = &\\
+\frac{-1 + \sqrt{1 + 4x}}{2}\left(\frac{-1 + \sqrt{1 + 4x} + 2}{2}
+\right) & = \\
+\frac{(-1 + \sqrt{1 + 4x})}{2}\frac{(1 + \sqrt{1 + 4x})}{2} & =\\
+\frac{1 + 4x - 1}{4} & =\\
+\frac{4x}{4} & = \\
+x
+\end{array}
+\]
+Logo, para $y = \frac{-1 + \sqrt{1 + 4x}}{2}$, temos que $y(y+1) = x$,
+o que conclui a demonstração deste teorema. Abaixo, apresentamos
+passo-a-passo a construção do texto a partir do
+rascunho. Primeiramente, o texto para o uso da técnica de provas para
+o quantificador universal:
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|  |[Prova de $x\in\mathbb{R}\to x > 0 \to \exists
+y.y\in\mathbb{R}\land y(y + 1) = x$]\\
+Como $x$ é arbitrário temos que se $x > 0$ então existe y tal que
+$y(y+1) = x$.
+\end{flushleft}
+Na sequência, o texto é alterado para refletir o uso da técnica de
+prova direta.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|  |Suponha que $x \in \mathbb{R}$ e $x> 0$.\\
+\verb|     |[Prova de $\exists y.y\in\mathbb{R}\land y(y + 1) = x$]\\
+\verb|  |Logo, se $x \in \mathbb{R}$ e $x> 0$ então existe y tal que
+$y(y+1) = x$\\
+Como $x$ é arbitrário temos que se $x > 0$ então existe y tal que
+$y(y+1) = x$.
+\end{flushleft}
+Agora, resta demonstrar o quantificador existencial da conclusão:
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|  |Suponha que $x \in \mathbb{R}$ e $x> 0$.\\
+\verb|     |Seja $y = \frac{-1 + \sqrt{1 + 4x}}{2}$
+\verb|        |[Prova de que $y(y+1) = x$]
+\verb|     |Logo, existe $y$ tal que $y(y+1) = x$.
+\verb|  |Logo, se $x \in \mathbb{R}$ e $x> 0$ então existe y tal que
+$y(y+1) = x$\\
+Como $x$ é arbitrário temos que se $x > 0$ então existe y tal que
+$y(y+1) = x$.
+\end{flushleft}
+Para encerrarmos a demonstração, basta utilizar o desenvolvimento
+algébrico apresentado anteriormente.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|  |Suponha que $x \in \mathbb{R}$ e $x> 0$.\\
+\verb|     |Seja $y = \frac{-1 + \sqrt{1 + 4x}}{2}$\\
+\[
+\begin{array}{llcl}
+\,\,\,\,\,& y(y+1) & = &\{\text{por }y = \frac{-1 + \sqrt{1 + 4x}}{2}\}\\
+ &\frac{-1 + \sqrt{1 + 4x}}{2}\left(\frac{-1 + \sqrt{1 + 4x}}{2} +
+  1\right) & = &\\
+& \frac{-1 + \sqrt{1 + 4x}}{2}\left(\frac{-1 + \sqrt{1 + 4x} + 2}{2}
+\right) & = \\
+& \frac{(-1 + \sqrt{1 + 4x})}{2}\frac{(1 + \sqrt{1 + 4x})}{2} & =\\
+& \frac{1 + 4x - 1}{4} & =\\
+& \frac{4x}{4} & = \\
+& x
+\end{array}
+\]
+
+\verb|     |Logo, existe $y$ tal que $y(y+1) = x$.\\
+\verb|  |Logo, se $x \in \mathbb{R}$ e $x> 0$ então existe y tal que
+$y(y+1) = x$\\
+Como $x$ é arbitrário temos que se $x > 0$ então existe y tal que
+$y(y+1) = x$.
+\end{flushleft}
+\end{Example}
+
+Note que no texto final da demonstração de um teorema envolvendo o
+quantificador existencial não há explicação sobre como o valor
+utilizado para provar $\exists y. y (y + 1) = x$ foi encontrado. Isto
+é uma prática padrão em matemática, já que a única coisa que estamos
+interessados é em mostrar que um certo valor existe e não em como
+obtê-lo.
+
+As próximas estratégias de utilização de hipóteses mostram como
+hipóteses envolvendo os quantificadores existencial e universal podem
+ser utilizadas. O leitor verá que estas são exatamente as regras para
+eliminação para estes quantificadores.
+
+\begin{HypothesisStrategy}[Para utilizar uma hipótese da forma
+  $\forall x. P(x)$]
+Basta adicionar como hipótese $[x\mapsto a]P(x)$, em que $a$ é um
+valor qualquer do universo de discurso. Note que esta estratégia é exatamente a regra de
+eliminação do quantificador universal.
+\begin{flushleft}
+ \textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\beta$\\
+$\forall x. P(x)$ & \\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\beta$\\
+$\forall x. P(x)$ & \\
+$[x\mapsto a]P(x)$ & \\
+\end{tabular}
+\end{flushleft}
+\end{HypothesisStrategy}
+
+\begin{HypothesisStrategy}[Para utilizar uma hipótese da forma
+  $\exists x. P(x)$]
+Basta adicionar como hipótese $[x\mapsto x_0]P(x)$, em que $x_0$ é um
+valor arbitrário. Note que esta estratégia é exatamente a regra de
+eliminação do quantificador existencial.
+\begin{flushleft}
+ \textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\beta$\\
+$\exists x. P(x)$ & \\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\beta$\\
+$\forall x. P(x)$ & \\
+$[x\mapsto x_0]P(x)$ & \\
+$x_0$ é arbitrário & \\
+\end{tabular}
+\end{flushleft}
+\end{HypothesisStrategy}
+
+Antes de apresentarmos um exemplo destas estratégias, daremos uma definição formal do
+conceito de divisibilidade de dois números inteiros.
+
+\begin{Definition}[Divisibilidade]\label{divdef}
+Sejam $a,b\in\mathbb{Z}$. Dizemos que $a$ divide $b$, $a\,|\,b$, se
+$\exists k. k\in\mathbb{Z}\land ka = b$.
+\end{Definition}
+\begin{Example}
+Considere o seguinte teorema:
+\begin{flushleft}
+Para todo $a, b, c\in\mathbb{Z}$, se $a\,|\,b$ e $b\,|\,c$ então $a\,|\,c$.
+\end{flushleft}
+que pode ser representado pela seguinte fórmula da lógica:
+\[
+\forall a b c. a,b,c\in\mathbb{Z} \to a\,|\,b \land b\,|\,c \to a
+\,|\, c
+\]
+A configuração inicial do rascunho deste teorema é:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+& $\forall a\, b \,c. a,b,c\in\mathbb{Z} \to a\,|\,b \land b\,|\,c \to a
+\,|\, c$
+\end{tabular}
+\end{flushleft}
+Como a conclusão envolve um quantificador universal, utilizaremos a
+estratégia de prova para este quantificador.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b,c$ são arbitrários& $a,b,c\in\mathbb{Z} \to a\,|\,b \land b\,|\,c \to a
+\,|\, c$
+\end{tabular}
+\end{flushleft}
+Utilizando a estratégia de prova direta (duas vezes), temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b,c$ são arbitrários& $ a\,|\, c$\\
+$a,b,c\in\mathbb{Z}$ & \\
+$a\,|\,b$ & \\
+$b\,|\,c$ & \\
+\end{tabular}
+\end{flushleft}
+Para continuar esta demonstração, devemos utilizar a definição
+\ref{divdef}, obtendo a seguinte configuração do rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b,c$ são arbitrários& $\exists k. k\in\mathbb{Z}\land ka = c$\\
+$a,b,c\in\mathbb{Z}$ & \\
+$\exists k_1. k_1\in\mathbb{Z}\land k_1a = b$ & \\
+$\exists k_2. k_2\in\mathbb{Z}\land k_2b = c$ & \\
+\end{tabular}
+\end{flushleft}
+Utilizando a estratégia para utilização de hipóteses envolvendo o
+quantificadores existenciais, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$a,b,c$ são arbitrários& $\exists k. k\in\mathbb{Z}\land ka = c$\\
+$a,b,c\in\mathbb{Z}$ & \\
+$\exists k_1. k_1\in\mathbb{Z}\land k_1a = b$ & \\
+$\exists k_2. k_2\in\mathbb{Z}\land k_2b = c$ & \\
+$k_1a = b$ & \\
+$k_2b = c$ & \\
+\end{tabular}
+\end{flushleft}
+A partir das hipóteses $k_1a = b$ e $k_2b = c$, temos que $c =
+k_1k_2a$. Logo, temos que o valor de $k$ que torna a igualdade $ka =
+c$ é $k = k_1k_2$.
+
+Novamente, apresentaremos passo-a-passo a construção do texto para o
+rascunho apresentado.
+\begin{flushleft}
+Suponha $a,b$ e $c$ arbitrários.\\
+\verb|  |[Prova de $a,b,c\in\mathbb{Z} \to a\,|\,b \land b\,|\,c \to a
+\,|\, c$]\\
+Como $a,b$ e $c$ são arbitrários, temos que para todo $a,b$ e $c$ se
+$a\,|\,b$ e $b\,|\,c$ então $a\,|\,c$.
+\end{flushleft}
+Agora, utilizando a estratégia de prova direta, temos a seguinte
+versão parcial do texto:
+\begin{flushleft}
+Suponha $a,b$ e $c$ arbitrários.\\
+\verb|  |Suponha que $a,b,c\in\mathbb{Z}$, $ a\,|\,b$ e $b\,|\,c$.\\
+\verb|     |[Prova de $ a\,|\, c$]\\
+\verb|  |Logo, se $a,b,c\in\mathbb{Z}$, $ a\,|\,b$ e $b\,|\,c$ então $a\,|\,c$.\\
+Como $a,b$ e $c$ são arbitrários, temos que para todo $a,b$ e $c$ se
+$a\,|\,b$ e $b\,|\,c$ então $a\,|\,c$.
+\end{flushleft}
+Utilizando a definição de divisibilidade, temos que a demonstração de
+$a\,|\,c$ envolve o uso da estratégia do quantificador existencial:
+\begin{flushleft}
+Suponha $a,b$ e $c$ arbitrários.\\
+\verb|  |Suponha que $a,b,c\in\mathbb{Z}$, $ a\,|\,b$ e $b\,|\,c$.\\
+\verb|     |Seja $k=k_1k_2$.\\
+\verb|       |Como $a\,|\,b$, temos que existe $k_1$ tal que $k_1a =
+b$.\\
+\verb|       |Como $b\,|\,c$, temos que existe $k_2$ tal que $k_2b =
+c$.\\
+\verb|       |Assim, temos que $k_1k_2a = c$.\\
+\verb|     |Logo, $a\,|\,c$.\\
+\verb|  |Logo, se $a,b,c\in\mathbb{Z}$, $ a\,|\,b$ e $b\,|\,c$ então $a\,|\,c$.\\
+Como $a,b$ e $c$ são arbitrários, temos que para todo $a,b$ e $c$ se
+$a\,|\,b$ e $b\,|\,c$ então $a\,|\,c$.
+\end{flushleft}
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Prove os seguintes teoremas:
+   \begin{enumerate}
+     \item Suponha que $x\in\mathbb{R}$. Se $x\neq 1$ então existe $y$
+       tal que $\frac{y+1}{y-2}= x$.
+     \item Suponha que $x\in\mathbb{R}$. Se $\frac{y+1}{y-2}= x$ então
+       $x\neq 1$.
+     \item Suponha que $x\in\mathbb{R}$. Se $x > 2$ então existe $y$
+       tal que $y + \frac{1}{y} = x$.
+     \item Suponha que $a,b,c\in\mathbb{Z}$. Se $a\,|\,b$ e $a\,|\,c$ e
+       $a\,|\,(b+c)$.
+     \item Suponha que $a,b,c\in\mathbb{Z}$. Se $ac\,|\,bc$ e $c\neq
+       0$ então $a\,|\,b$.
+   \end{enumerate}
+\end{enumerate}
+
+\subsection{Estratégias para Conjunção ($\land$) e Bicondicional ($\leftrightarrow$)}
