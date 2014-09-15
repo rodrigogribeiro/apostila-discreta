@@ -1060,4 +1060,656 @@ $a\,|\,b$ e $b\,|\,c$ então $a\,|\,c$.
    \end{enumerate}
 \end{enumerate}
 
-\subsection{Estratégias para Conjunção ($\land$) e Bicondicional ($\leftrightarrow$)}
+\subsection{Estratégias para Conjunção ($\land$) e Bicondicional
+  ($\leftrightarrow$)}
+
+As estratégias de prova para a conjunção e o bicondicional refletem
+diretamente o significado destes conectivos.
+
+\begin{ProofStrategy}[Para provar uma conclusão da forma
+  $\alpha\land\beta$] Prove $\alpha$ e $\beta$ separadamente.
+\begin{flushleft}
+ \textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\alpha\land\beta$\\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\alpha$\\
+                                                            & $\beta$\\
+\end{tabular}
+\end{flushleft}
+\end{ProofStrategy}
+Uma conclusão da forma $\alpha\land \beta$ deve ser considerada como
+``duas'' conclusões\footnote{Note que isso é um abuso de linguagem, já
+  que a conclusão de um teorema é única.}:
+$\alpha$ e $\beta$. De maneira similar, tratamos hipóteses envolvendo
+conjunções
+\begin{HypothesisStrategy}[Para usar uma hipótese da forma
+  $\alpha\land\beta$]
+Considere-a como duas hipóteses separadas: $\alpha$ e $\beta$.
+\end{HypothesisStrategy}
+Agora que vimos como manipular conjunções em provas, você já deve ser
+capaz de deduzir como serão as estratégias para manipulação de
+bicondicionais, uma vez que $\alpha\leftrightarrow\beta\equiv(\alpha\to\beta)\land(\beta\to\alpha)$.
+\begin{ProofStrategy}[Para provar uma conclusão da forma
+  $\alpha\leftrightarrow\beta$]
+Prove $\alpha\to\beta$ e $\beta\to\alpha$ separadamente.
+\begin{flushleft}
+\textbf{Texto:}\\
+$(\to)$: [Prova de $\alpha\to\beta$].\\
+$(\leftarrow)$: [Prova de $\beta\to\alpha$].
+\end{flushleft}
+\end{ProofStrategy}
+Note que ao contrário da estratégia de provas para a conjunção,
+apresentamos um modelo de texto para o bicondicional. Isto se deve ao
+fato de que provas envolvendo este conectivo usualmente ``sinalizam''
+qual lado da implicação está sendo demonstrado utilizando setas
+apropriadas.
+
+A manipulação de hipóteses envolvendo bicondicionais é imediata.
+\begin{HypothesisStrategy}[Para usar uma hipótese da forma
+  $\alpha\leftrightarrow\beta$]
+Trate-a como duas hipóteses distintas: $\alpha\to\beta$ e
+$\beta\to\alpha$.
+\end{HypothesisStrategy}
+
+\begin{Example}
+Considere o seguinte teorema:
+\begin{flushleft}
+Suponha $n\in\mathbb{Z}$. Então, $n$ é par se e somente se $n^2$ é par.
+\end{flushleft}
+Este teorema possui como hipóteses o fato de que $n\in\mathbb{Z}$ e
+conclusão $n$ é par se e somente se $n^2$ é par, que é representada
+pela seguinte fórmula:
+\begin{center}
+$n$ é par $\leftrightarrow$ $n^2$ é par.
+\end{center}
+o que nos conduz a seguinte configuração inicial do rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $n$ é par $\leftrightarrow$ $n^2$ é par
+\end{tabular}
+\end{flushleft}
+Utilizando a estratégia de provas para o conectivo bicondicional,
+obtemos o seguinte rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $n$ é par $\to$ $n^2$ é par\\
+ & $n^2$ é par $\to$ $n$ é par
+\end{tabular}
+\end{flushleft}
+ Para facilitar a construção da demonstração, vamos dividir o rascunho
+ em duas provas distintas, uma para cada uma das
+ implicações. Primeiramente, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $n$ é par $\to$ $n^2$ é par\\
+\end{tabular}
+\end{flushleft}
+Utilizando a estratégia de prova direta, obtemos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $n^2$ é par\\
+$n$ é par  & \\
+\end{tabular}
+\end{flushleft}
+Evidentemente, podemos representar o fato de que um número $x$ é par
+por $\exists y. x = 2y$. Usando esta representação:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $\exists k . n^2 = 2k$ \\
+$\exists m. n = 2m$  & \\
+\end{tabular}
+\end{flushleft}
+Usando a estratégia de hipóteses para o quantificador existencial,
+obtemos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $\exists k . n^2 = 2k$ \\
+$\exists m. n = 2m$  & \\
+$n = 2m$ &
+\end{tabular}
+\end{flushleft}
+Agora, resta encontrar um valor de $k$ que torne a igualdade $n^2 =
+2k$ verdadeira. Note que possuímos como hipótese que $n = 2m$. Logo,
+temos que $n^2 = 4m^2$ e desta forma, temos que $k = 2m^2$, uma vez
+que $n^2 = 2k$ e $n^2 = 4m^2$.
+
+Para a segunda implicação, ao invés de utilizarmos a técnica de prova
+direta, usaremos demonstração pela contrapositiva. Inicialmente, temos
+a seguinte configuração do rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $n^2$ é par $\to$ $n$ é par\\
+\end{tabular}
+\end{flushleft}
+Ao usarmos a técnica de prova pela contrapositiva, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $\neg(n^2\text{ é par })$\\
+$\neg(n\text{ é par})$ & \\
+\end{tabular}
+\end{flushleft}
+Evidentemente, como $n\in\mathbb{Z}$, se $n$ não é par, temos que este
+deve ser ímpar. Logo:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $n^2\text{ é ímpar }$\\
+$n\text{ é ímpar}$ & \\
+\end{tabular}
+\end{flushleft}
+Representamos o fato de que $x$ é um número ímpar por $\exists y. x = 2y + 1$:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $\exists k. n^2 = 2k + 1$\\
+$\exists m. n = 2m + 1$ & \\
+\end{tabular}
+\end{flushleft}
+Usando a hipótese existencial, obtemos que $n = 2m + 1$.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$n\in\mathbb{Z}$ & $\exists k. n^2 = 2k + 1$\\
+$\exists m. n = 2m + 1$ & \\
+$n = 2m + 1$ &
+\end{tabular}
+\end{flushleft}
+Se $n = 2m + 1$, temos que $n^2 = 4m^2 + 4m + 1$. Para terminar a
+demonstração, devemos encontrar um valor $k$ tal que $n^2 = 2k +
+1$. Usando o fato de que $n^2 = 4m^2 + 4m + 1$ chega-se a conclusão de
+que $k = 2m^2 + 2m$\footnote{Note que não apresentamos a demonstração
+  da igualdade anterior e desta propositalmente, visto que estas serão
+apresentadas no texto final desta prova.}.
+
+Agora resta construirmos o texto a partir deste rascunho. Como já
+feito em outros exemplos, faremos a construção deste passo a
+passo. Primeiramente, utilizamos a estratégia de prova para o
+conectivo bicondicional.
+\begin{flushleft}
+Suponha $n\in\mathbb{Z}$.\\
+\verb|  |($\to$): [Prova de $n$ é par $\to$ $n^2$ é par]\\
+\verb|  |($\to$): [Prova de $n^2$ é par $\to$ $n$ é par]\\
+Portanto, se $n\in\mathbb{Z}$ então $n$ é par sse $n^2$ é par.
+\end{flushleft}
+Provando a primeira implicação por prova direta, obtemos a seguinte
+versão parcial do texto:
+\begin{flushleft}
+Suponha $n\in\mathbb{Z}$.\\
+\verb|  |($\to$): Suponha $n$ é par.\\
+\verb|    |[Prova de $n^2$ é par].\\
+\verb|  |Logo, se $n$ é par, $n^2$ é par.\\
+\verb|  |($\to$): [Prova de $n^2$ é par $\to$ $n$ é par]\\
+Portanto, se $n\in\mathbb{Z}$ então $n$ é par sse $n^2$ é par.
+\end{flushleft}
+Para completar a primeira parte da demonstração, basta provar que
+$n^2$ é par usando a estratégia de prova para quantificadores
+existenciais.
+\begin{flushleft}
+Suponha $n\in\mathbb{Z}$.\\
+\verb|  |($\to$): Suponha $n$ é par.\\
+\verb|    |Como $n$ é par, temos que $n = 2m$.\\
+\verb|    |Seja $k = 2m^2$. Temos:\\
+\[
+\begin{array}{lc}
+2k & = \\
+2.2m^2 & = \\
+4m^2 & = \\
+(2m)^2 & = \\
+n^2
+\end{array}
+\]
+\verb|    |Logo, $n^2$ é par.\\
+\verb|  |Logo, se $n$ é par, $n^2$ é par.\\
+\verb|  |($\to$): [Prova de $n^2$ é par $\to$ $n$ é par]\\
+Portanto, se $n\in\mathbb{Z}$ então $n$ é par sse $n^2$ é par.
+\end{flushleft}
+Para a segunda implicação, utilizaremos a estratégia da
+contrapositiva, seguida da estratégia para o quantificador existencial.
+\begin{flushleft}
+Suponha $n\in\mathbb{Z}$.\\
+\verb|  |($\to$): Suponha $n$ é par.\\
+\verb|    |Como $n$ é par, temos que $n = 2m$.\\
+\verb|    |Seja $k = 2m^2$. Temos:\\
+\[
+\begin{array}{lc}
+2k & = \\
+2.2m^2 & = \\
+4m^2 & = \\
+(2m)^2 & = \\
+n^2
+\end{array}
+\]
+\verb|    |Logo, $n^2$ é par.\\
+\verb|  |Logo, se $n$ é par, $n^2$ é par.\\
+\verb|  |($\to$): Suponha que $n$ é ímpar.\\
+\verb|    |Como $n$ é ímpar, temos que $n = 2m + 1$.\\
+\verb|    |Seja $k = 2m^2 + 2m$. Temos:\\
+\[
+\begin{array}{lc}
+2k+1 & = \\
+2(2m^2 + 2m) + 1 & = \\
+4m^2 + 4m + 1 & = \\
+(2m + 1)^2 & = \\
+n^2
+\end{array}
+\]
+\verb|    |Logo, $n^2$ é ímpar.\\
+\verb|  |Logo, se $n^2$ é par, $n$ é par.\\
+Portanto, se $n\in\mathbb{Z}$ então $n$ é par se e somente se $n^2$ é par.
+\end{flushleft}
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Prove os seguintes teoremas:
+    \begin{enumerate}
+      \item Suponha $x,y\in\mathbb{Z}$ ímpares. Então $xy$ é um número
+        ímpar.
+      \item Suponha $n\in\mathbb{Z}$. Então $n^3$ é par se e somente
+        se $n$ é par.
+      \item Suponha $a,b\in\mathbb{Z}$ arbitrários. Então, existe
+        $c\in\mathbb{Z}$ tal que $a\,|\,c$ e $b\,|\,c$.
+      \item Para todo $n\in\mathbb{Z}$, $15\,|\,n$ se e somente se
+        $3\,|\,n$ e $5\,|\,n$.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Estratégias para Disjunção ($\lor$)}
+
+Suponha que você possua uma hipótese da forma $\alpha\lor\beta$. Como
+utilizar esta hipótese para deduzir uma conclusão $\gamma$? Na dedução
+natural, a regra de eliminação da disjunção fornece uma forma de como
+utilizar $\alpha\lor\beta$ para deduzir $\gamma$: primeiramente,
+supomos que $\alpha$ é verdade e deduzimos $\gamma$ e na sequência
+deduzimos $\gamma$ a partir de $\beta$.
+
+A utilização da eliminação da disjunção é comumente denominada de
+``prova por análise de casos'' pois, considera-se cada uma das
+possibilidades de $\alpha\lor\beta$ ser verdadeiro para construção da
+demonstração. A seguir, apresentamos a estratégia de uso de hipóteses
+que resume esta idéia.
+
+\begin{HypothesisStrategy}[Para usar uma hipótese da forma
+  $\alpha\lor\beta$]
+Divida sua prova em casos. No primeiro caso, assuma que $\alpha$ é
+verdadeiro e deduza a conclusão $\gamma$. No segundo caso, assuma que
+$\beta$ é verdadeiro e deduza a conclusão $\gamma$.
+\begin{flushleft}
+\textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\alpha_1,\alpha_2,...,\alpha_n$ & $\gamma$\\
+$\alpha\lor\beta$ & \\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+Caso 1: & \\
+$\alpha_1,\alpha_2,...,\alpha_n$ & $\gamma$\\
+$\alpha$ & \\
+Caso 2: & \\
+$\alpha_1,\alpha_2,...,\alpha_n$ & $\gamma$\\
+$\beta$ & \\
+\end{tabular}
+\end{flushleft}
+\begin{flushleft}
+\textbf{Texto:}\\
+\textit{Caso 1: $\alpha$ é verdadeiro.}.\\
+\verb|    |[\textit{Prova de $\gamma$}]\\
+\textit{Caso 2: $\beta$ é verdadeiro.}.\\
+\verb|    |[\textit{Prova de $\gamma$}]\\
+Como os casos cobrem todas as possibilidades, temos que $\gamma$.
+\end{flushleft}
+\end{HypothesisStrategy}
+
+A seguir apresentamos um exemplo de uso desta estratégia de prova.
+\begin{Example}
+Considere a tarefa de demonstrar o seguinte teorema:
+\begin{flushleft}
+Suponha que $x\in\mathbb{R}$ é arbitrário. Então se $|x - 3| > 3$
+então $x^2 > 6x$.
+\end{flushleft}
+Neste exemplo, possuímos como hipótese que $x\in\mathbb{R}$ e a
+conclusão é representada pela seguinte fórmula:
+\[
+|x - 3| > 3 \to x^2 > 6x
+\]
+Logo, a versão inicial do rascunho possui a seguinte forma:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$x\in\mathbb{R}$ & $|x - 3| > 3 \to x^2 > 6x$\\
+\end{tabular}
+\end{flushleft}
+Como a conclusão possui uma implicação, iniciamos a dedução utilizando
+a técnica de prova direta, o que nos leva a:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$x\in\mathbb{R}$ & $x^2 > 6x$\\
+$|x - 3| > 3$ &
+\end{tabular}
+\end{flushleft}
+Note que para usarmos a hipótese $|x- 3| > 3$ devemos saber se $x - 3
+\geq 0$ ou se $x - 3 < 0$. Logo, devemos considerar uma divisão da
+prova em casos, usando a estratégia apresentada anteriormente.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+Caso 1: & \\
+$x\in\mathbb{R}$ & $x^2 > 6x$\\
+$|x - 3| > 3$ & \\
+$x - 3 \geq 0$ & \\
+Caso 2: & \\
+$x\in\mathbb{R}$ & $x^2 > 6x$\\
+$|x - 3| > 3$ & \\
+$x - 3 < 0$ & \\
+\end{tabular}
+\end{flushleft}
+Se $x- 3 \geq 0$, temos que $|x - 3| = x - 3$. Assim, temos que $|x -
+3| > 3 \equiv x - 3 > 3 \equiv x > 6$. Logo, $x^2 > 6x$.
+
+Por sua vez, se $x - 3 < 0$, temos que $|x - 3| = 3 - x$. Assim, temos
+que $|x - 3| > 3 \equiv 3 - x > 3 \equiv -x > 3 - 3 \equiv - x > 0
+\equiv x < 0$. Logo,  $x^2 > 6x$.
+
+Como terminamos a dedução da conclusão a partir das hipóteses, vamos
+proceder para a construção passo a passo do texto. Inicialmente,
+utilizamos a estratégia de prova direta.
+\begin{flushleft}
+Suponha $x\in\mathbb{R}$.\\
+\verb| |Suponha que $|x-3| > 3$.\\
+\verb|    |[Prova $x^2 > 6x$.]\\
+\verb| |Logo, se $|x-3| > 3$ então $x^2 > 6x$.\\
+Logo, se $x\in\mathbb{R}$ então se $|x - 3| > 3$ então $x^2 > 6x$.
+\end{flushleft}
+Dividindo a prova em casos, temos que:
+\begin{flushleft}
+Suponha $x\in\mathbb{R}$.\\
+\verb| |Suponha que $|x-3| > 3$.\\
+\verb|    |Caso 1: $x - 3 \geq 0$.\\
+\verb|       | [Prova de $x^2 > 6x$]\\
+\verb|    |Caso 2: $x - 3 < 0$.\\
+\verb|       | [Prova de $x^2 > 6x$]\\
+\verb|    |Como os casos cobrem todas as possibilidades, temos que
+$x^2 > 6x$.\\
+\verb| |Logo, se $|x-3| > 3$ então $x^2 > 6x$.
+Logo, se $x\in\mathbb{R}$ então se $|x - 3| > 3$ então $x^2 > 6x$.
+\end{flushleft}
+Finalmente, concluímos o texto apresentando a dedução de $x^2 > 6x$ em
+cada caso.
+\begin{flushleft}
+Suponha $x\in\mathbb{R}$.\\
+\verb| |Suponha que $|x-3| > 3$.\\
+\verb|    |Caso 1: $x - 3 \geq 0$.\\
+\verb|       |Como $x - 3 \geq 0$, temos que $|x - 3| = x - 3$.\\
+\verb|       |Como $|x - 3| = x - 3$ e $|x - 3| > 3$, temos que $x >
+6$.\\
+\verb|       |Como $x > 6$, temos que $x^2 > 6x$.\\
+\verb|    |Caso 2: $x - 3 < 0$.\\
+\verb|       |Como $x - 3 < 0$, temos que $|x - 3| = 3 -x$.\\
+\verb|       |Como $|x - 3| > 3$ e $|x - 3| = 3 - x$, temos que $x <
+0$.\\
+\verb|       |Como $x < 0$, temos que $x^2 > 6x$.\\
+\verb|    |Como os casos cobrem todas as possibilidades, temos que
+$x^2 > 6x$.\\
+\verb| |Logo, se $|x-3| > 3$ então $x^2 > 6x$.\\
+Logo, se $x\in\mathbb{R}$ então se $|x - 3| > 3$ então $x^2 > 6x$.
+\end{flushleft}
+\end{Example}
+
+Para demonstrar uma conclusão que é uma disjunção, devemos proceder de
+maneira similar às regras de introdução deste conectivo, conforme
+apresentado na estratégia seguinte.
+
+\begin{ProofStrategy}[Para provar uma conclusão da forma
+  $\alpha\lor\beta$]
+Prove $\alpha$ ou prove $\beta$.
+\end{ProofStrategy}
+
+O próximo exemplo ilustra esta estratégia.
+
+\begin{Example}
+Considere a tarefa de provar o seguinte teorema:
+\begin{flushleft}
+Para todo $x\in\mathbb{Z}$, o resto da divisão de $x^2$ por $4$ é $0$
+ou $1$.
+\end{flushleft}
+O teorema considerado pode ser representado pela seguinte fórmula, que
+corresponde a sua conclusão:
+\[
+\forall x. x \in\mathbb{Z} \to x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1
+\]
+Assim, temos a seguinte versão inicial do rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+  & $\forall x. x \in\mathbb{Z} \to x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1$\\
+\end{tabular}
+\end{flushleft}
+Como a conclusão envolve uma fórmula que utiliza o quantificador
+universal e uma implicação, iniciamos a introdução utilizando as
+estratégias para estes símbolos da lógica.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ $x$ arbitrário & $x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1$\\
+$x\in\mathbb{Z}$ & \\
+\end{tabular}
+\end{flushleft}
+Neste ponto, surge a seguinte questão: Como continuar com esta prova?
+Visto que as hipóteses não acrescentam nenhuma idéia de como
+concluí-la, vamos montar uma tabela com alguns valores simples para
+tentar perceber se existe alguma estrutura ``oculta''.
+\begin{table}
+\begin{tabular}{cccc}
+$x$ & $x^2$ & $x^2 \div 4$ & $x^2 \text{ mod } 4$ \\
+\hline
+1 & 1 & 0 & 1 \\
+2 & 4 & 1 & 0 \\
+3 & 9 & 2 & 1 \\
+4 & 16 & 4 & 0 \\
+5 & 25 & 6 & 1 \\
+\end{tabular}
+\centering
+\end{table}
+Aparentemente, temos que o resto é zero sempre que $x$ é par e um caso
+$x$ é ímpar. Logo, dividiremos a prova em casos. No primeiro caso,
+consideraremos que $x$ é par e no segundo que $x$ é ímpar.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+Caso 1: & \\
+$x$ é par & $x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1$\\
+ $x$ arbitrário & \\
+$x\in\mathbb{Z}$ & \\
+Caso 2: & \\
+$x$ é ímpar & $x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1$\\
+ $x$ arbitrário & \\
+$x\in\mathbb{Z}$ & \\
+\end{tabular}
+\end{flushleft}
+Utilizando as definições de $x$ é par e $x$ é ímpar, temos que:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+Caso 1: & \\
+$x$ é par & $x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1$\\
+ $x$ arbitrário & \\
+$x\in\mathbb{Z}$ & \\
+$\exists k_1. x= 2k_1$ & \\
+Caso 2: & \\
+$x$ é ímpar & $x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1$\\
+ $x$ arbitrário & \\
+$x\in\mathbb{Z}$ & \\
+$\exists k_2. x= 2k_2 + 1$ & \\
+\end{tabular}
+\end{flushleft}
+Se $x$ é par, existe $k_1$ tal que $x = 2k_1$. Assim, temos que $x^2 =
+(2k_1)^2 = 4k_1^2$, que é divisível por 4 (resto igual a zero). Então,
+neste caso, optamos por demonstrar o lado esquerdo de $x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1$, o que corresponde a regra de introdução da disjunção à
+esquerda.
+
+Caso $x$ seja ímpar, existe $k_2$ tal que $x = 2k_2 + 1$. Assim, temos
+que $x^2 = (2k_2 + 1)^2 = (2k_2)^2 + 2(2k_2) + 1 = 4k_2^2 + 4k_2 + 1 =
+4(k^2 + k) + 1$, que dividido por 4 deixa um resto igual a um.
+Então,
+neste caso, optamos por demonstrar o lado direito de $x^2 \text{ mod } 4 = 0 \lor x^2 \text{
+  mod } 4 = 1$, o que corresponde a regra de introdução da disjunção à
+direita.
+
+A construção do texto desta demonstração é apresentado a seguir.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|   |[Prova de $x\in\mathbb{Z}\to x^2\text{ mod }4 = 0 \lor
+x^2\text{ mod }4 = 1$].\\
+Como $x$ é arbitrário, temos que para todo $x\in\mathbb{Z}$ o resto da divisão de $x^2$ por $4$ é $0$
+ou $1$.
+\end{flushleft}
+Utilizando o texto para demonstrações de implicações, temos:
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|   |Suponha que $x\in\mathbb{Z}$.\\
+\verb|      |[Prova de $x^2\text{ mod }4 = 0 \lor
+x^2\text{ mod }4 = 1$].\\
+\verb|   |Logo, se $x\in\mathbb{Z}$ temos que  $x^2\text{ mod }4 = 0 \lor
+x^2\text{ mod }4 = 1$.\\
+Como $x$ é arbitrário, temos que para todo $x\in\mathbb{Z}$ o resto da divisão de $x^2$ por $4$ é $0$
+ou $1$.
+\end{flushleft}
+Neste ponto, consideramos os casos de que todo $x\in\mathbb{Z}$ é par
+ou ímpar.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|   |Suponha que $x\in\mathbb{Z}$.\\
+\verb|      |Caso 1: $x$ é par.\\
+\verb|         |[Prova de $x^2\text{ mod }4 = 0 \lor
+x^2\text{ mod }4 = 1$].\\
+\verb|      |Caso 2: $x$ é ímpar.\\
+\verb|         |[Prova de $x^2\text{ mod }4 = 0 \lor
+x^2\text{ mod }4 = 1$].\\
+\verb|   |Logo, se $x\in\mathbb{Z}$ temos que  $x^2\text{ mod }4 = 0 \lor
+x^2\text{ mod }4 = 1$.\\
+Como $x$ é arbitrário, temos que para todo $x\in\mathbb{Z}$ o resto da divisão de $x^2$ por $4$ é $0$
+ou $1$.
+\end{flushleft}
+
+Agora, para o caso de $x$ ser par, provamos que $x^2\text{ mod }4 = 0$
+e para o caso de ser ímpar, provamos que $x^2\text{ mod }4 = 1$.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|   |Suponha que $x\in\mathbb{Z}$.\\
+\verb|      |Caso 1: $x$ é par.\\
+\verb|         |[Prova de $x^2\text{ mod }4 = 0$].\\
+\verb|      |Caso 2: $x$ é ímpar.\\
+\verb|         |[Prova de $x^2\text{ mod }4 = 1$].\\
+\verb|   |Logo, se $x\in\mathbb{Z}$ temos que  $x^2\text{ mod }4 = 0 \lor
+x^2\text{ mod }4 = 1$.\\
+Como $x$ é arbitrário, temos que para todo $x\in\mathbb{Z}$ o resto da divisão de $x^2$ por $4$ é $0$
+ou $1$.
+\end{flushleft}
+Finalmente, concluímos a prova utilizando a hipótese existencial de
+que $x$ é par ou ímpar em cada caso.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|   |Suponha que $x\in\mathbb{Z}$.\\
+\verb|      |Caso 1: $x$ é par.\\
+\verb|         |Como $x$ é par, existe $k_1$ tal que $x = 2k_1$.\\
+\verb|         |Como $x = 2k_1$, temos que $x^2 = (2k_1)^2 = 4k_1^2$.\\
+\verb|         |Como $x^2 = 4k_1^2$, temos que $x^2\text{ mod }4 =
+0$.\\
+\verb|      |Logo, $x^2\text{ mod }4 = 0$ ou $x^2\text{ mod }4 = 1$\\
+\verb|      |Caso 2: $x$ é ímpar.\\
+\verb|         |Como $x$ é ímpar, existe $k_2$ tal que $x = 2k_2+1$.\\
+\verb|         |Como $x = 2k_2 + 1$, temos que $x^2 = (2k_2 + 1)^2 =
+4k_2^2 + 4k_2 + 1$.\\
+\verb|         |Como $x^2 = 4k_2^2 + 4k_2 + 1$, temos que $x^2\text{ mod }4 =
+1$.\\
+\verb|      |Logo, $x^2\text{ mod }4 = 0$ ou $x^2\text{ mod }4 = 1$\\
+\verb|   |Logo, se $x\in\mathbb{Z}$ temos que  $x^2\text{ mod }4 = 0 \lor
+x^2\text{ mod }4 = 1$.\\
+Como $x$ é arbitrário, temos que para todo $x\in\mathbb{Z}$ o resto da divisão de $x^2$ por $4$ é $0$
+ou $1$.
+\end{flushleft}
+\end{Example}
+Ainda resta uma última técnica pode ser utilizada para manipular hipóteses ou
+conclusões da forma $\alpha\lor\beta$. Esta técnica é baseada nas
+seguintes equivalências: $\alpha\lor\beta \equiv \neg \alpha \to \beta
+\equiv \neg \beta \to \alpha$\footnote{Demonstre essas equivalências!}.
+\begin{ProofStrategy}[Para provar uma conclusão da forma
+  $\alpha\lor\beta$]
+Se $\alpha$ é verdadeiro, é evidente que $\alpha\lor\beta$ é
+verdadeiro. Logo, podemos supor que $\alpha$ é falso e demonstrar que
+$\beta$ é verdadeiro para concluir $\alpha\lor\beta$.
+\begin{flushleft}
+\textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\alpha_1,\alpha_2,...,\alpha_n$ & $\alpha\lor\beta$\\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\alpha_1,\alpha_2,...,\alpha_n$ & $\beta$\\
+$\neg \alpha$ & \\
+\end{tabular}
+\end{flushleft}
+\begin{flushleft}
+\textbf{Texto:}\\
+\textit{Se $\alpha$ é verdadeiro, então $\alpha\lor\beta$ é
+  verdadeiro. Então, suponha que $\neg\alpha$.}\\
+\verb|   |[Prova de $\beta$].\\
+\textit{Logo, temos que $\alpha\lor\beta$.}
+\end{flushleft}
+\end{ProofStrategy}
+
+\begin{HypothesisStrategy}[Para utilizar uma hipótese da forma
+  $\alpha\lor\beta$]
+Considere-a equivalente a $\neg\alpha\to \beta$ ou a $\neg\beta\to\alpha$.
+\end{HypothesisStrategy}
+
+\begin{Example}
+Considere demonstrar o seguinte teorema simples:
+\begin{flushleft}
+\end{flushleft}
+\end{Example}
