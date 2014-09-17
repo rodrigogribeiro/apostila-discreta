@@ -1276,8 +1276,7 @@ Suponha $n\in\mathbb{Z}$.\\
 (2m)^2 & = \\
 n^2
 \end{array}
-\]
-\verb|    |Logo, $n^2$ é par.\\
+\]\verb|    |Logo, $n^2$ é par.\\
 \verb|  |Logo, se $n$ é par, $n^2$ é par.\\
 \verb|  |($\to$): [Prova de $n^2$ é par $\to$ $n$ é par]\\
 Portanto, se $n\in\mathbb{Z}$ então $n$ é par sse $n^2$ é par.
@@ -1702,14 +1701,321 @@ $\neg \alpha$ & \\
 \textit{Logo, temos que $\alpha\lor\beta$.}
 \end{flushleft}
 \end{ProofStrategy}
+\begin{Example}
+Considere demonstrar o seguinte teorema simples:
+\begin{flushleft}
+  Para todo $x\in\mathbb{R}$, se $x^2 \geq x$ então $x \leq 0$ ou
+  $x\geq 1$.
+\end{flushleft}
+Seguindo os passos já apresentados para demonstração de teoremas,
+temos que o teorema acima é representado pela seguinte fórmula:
+\[
+\forall x. x \in \mathbb{R} \to x^2 \geq x \to x \leq 0 \lor x \geq 1
+\]
+A configuração inicial do rascunho é:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ & $\forall x. x \in \mathbb{R} \to x^2 \geq x \to x \leq 0 \lor x \geq 1$
+\end{tabular}
+\end{flushleft}
+Devido a composição desta fórmula, iniciaremos a demonstração deste
+teorema utilizando as técnicas para o quantificador universal e
+implicação (prova direta). Com isso, obtemos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ $x$ arbitrário & \\ $x \leq 0 \lor x \geq 1$\\
+$x \in \mathbb{R} $ & \\
+$x^2 \geq x$ &
+\end{tabular}
+\end{flushleft}
+Agora, utilizaremos a estratégia de considerar que $\alpha\lor\beta$ é
+equivalente a $\neg \alpha \to \beta$:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ $x$ arbitrário & $x \geq 1$\\
+$x \in \mathbb{R} $ & \\
+$x^2 \geq x$ &\\
+$x > 0$
+\end{tabular}
+\end{flushleft}
+É óbvio que $\neg (x\leq 0)\equiv x > 0$. Como $x > 0$ e $x^2 \geq x$,
+dividindo ambos os lados da última desigualdade por $x$, obtemos
+$x\geq 1$, conforme requerido. O texto é construído passo a passo
+utilizando os modelos para cada uma das estratégias
+utilizadas. Inicialmente, o texto para o quantificador universal e
+provas diretas.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|  |Suponha $x\in\mathbb{R}$.\\
+\verb|     |Suponha $x^2 \geq x$.\\
+\verb|       |[Prova de $x \leq 0 \lor x \geq 1$].\\
+\verb|     |Logo, se $x^2\geq x$ então $x \leq 0 \lor x \geq 1$.\\
+\verb|  |Logo, se $x\in\mathbb{R}$, então se $x^2\geq x$ então $x \leq 0 \lor x \geq 1$.\\
+Como $x$ é arbitrário, temos que para todo $x\in\mathbb{R}$, se $x^2 \geq x$ então $x \leq 0$ ou
+  $x\geq 1$.
+\end{flushleft}
+Agora, utilizando o modelo de texto para disjunção, temos:
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|  |Suponha $x\in\mathbb{R}$.\\
+\verb|     |Suponha $x^2 \geq x$.\\
+\verb|       |Se $x\leq 0$, temos que $x \leq 0$ ou $x \geq 1$. Então,
+suponha $x >0$.
+\verb|          |[Prova de $x \geq 1$].\\
+\verb|       |Logo, $x \leq 0$ ou $x \geq 1$.\\
+\verb|     |Logo, se $x^2\geq x$ então $x \leq 0 \lor x \geq 1$.\\
+\verb|  |Logo, se $x\in\mathbb{R}$, então se $x^2\geq x$ então $x \leq 0 \lor x \geq 1$.\\
+Como $x$ é arbitrário, temos que para todo $x\in\mathbb{R}$, se $x^2 \geq x$ então $x \leq 0$ ou
+  $x\geq 1$.
+\end{flushleft}
+Finalmente, encerramos o texto desta demonstração utilizando a dedução
+de $x\geq 1$ a partir de $x^2 \geq x$ e $x > 0$.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|  |Suponha $x\in\mathbb{R}$.\\
+\verb|     |Suponha $x^2 \geq x$.\\
+\verb|       |Se $x\leq 0$, temos que $x \leq 0$ ou $x \geq 1$. Então,
+suponha $x >0$.
+\verb|          |Como $x^2 \geq x$ e $x > 0$, temos que $x \geq 1$.\\
+\verb|       |Logo, $x \leq 0$ ou $x \geq 1$.\\
+\verb|     |Logo, se $x^2 \geq x$ então $x \leq 0 \lor x \geq 1$.\\
+\verb|  |Logo, se $x\in\mathbb{R}$, então se $x^2\geq x$ então $x \leq 0 \lor x \geq 1$.\\
+Como $x$ é arbitrário, temos que para todo $x\in\mathbb{R}$, se $x^2 \geq x$ então $x \leq 0$ ou
+  $x\geq 1$.
+\end{flushleft}
+\end{Example}
+
+A próxima estratégia de uso de hipóteses mostra como podemos usar uma
+disjunção como uma implicação.
 
 \begin{HypothesisStrategy}[Para utilizar uma hipótese da forma
   $\alpha\lor\beta$]
 Considere-a equivalente a $\neg\alpha\to \beta$ ou a $\neg\beta\to\alpha$.
 \end{HypothesisStrategy}
 
-\begin{Example}
-Considere demonstrar o seguinte teorema simples:
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+\item Prove os seguintes teoremas:
+\begin{enumerate}
+    \item Suponha $x,y\in\mathbb{R}$ e que $x\neq 0$. Então, $y +
+      \frac{1}{x} = 1 +\frac{y}{x}$ se e somente se $x = 1$ ou $y =
+      1$.
+    \item Para todo $x\in\mathbb{Z}$, $x^2 + x$ é par.
+    \item Para todo $a,b\in\mathbb{R}$, $|a|\leq b$ se e somente se $-b
+      \leq a \leq b$.
+    \item Para todo $x\in\mathbb{R}$, $|2x - 6| > x$ se e somente se
+      $|x - 4| > 2$.
+\end{enumerate}
+\end{enumerate}
+
+
+\subsection{Existência e Unicidade}
+
+Em matemática é comum a especificação de propriedades similares a
+``existe um único elemento $x$ que possui uma propriedade $P$''.
+Considerando um certo universo de discurso $U$, dizemos que existe um
+único elemento de $U$ que satisfaz uma propriedade $P$ usando a seguinte
+fórmula:
+\[
+\exists x. P(x) \land \neg \exists y. P(y) \land y \neq x.
+\]
+Que essencialmente especifica que não existe um elemento diferente de
+$x$ que satisfaça $P$. Normalmente, matemáticos expressam esta fórmula
+como um novo quantificador (representado por $\exists !$). Utilizando
+este quantificador, a fórmula anterior pode ser representada de
+maneira mais concisa como $\exists ! x.P(x)$.
+
+Porém, a fórmula
+
+\[\exists x. P(x) \land \neg \exists y. P(y) \land y \neq x.\]
+
+não é a única maneira de representarmos $\exists ! x. P(x)$. Se
+utilizarmos um pouco de álgebra booleana podemos eliminar a negação da
+fórmula anterior, conforme apresentado a seguir:
+
+\[
+\begin{array}{lc}
+\exists x. P(x) \land \neg \exists y. P(y) \land y \neq x & \equiv \\
+\exists x. P(x) \land \forall y. \neg (P(y)\land y \neq x) & \equiv \\
+\exists x. P(x) \land \forall y. \neg P(y) \lor \neg y \neq x &
+\equiv\\
+\exists x .P(x) \land \forall y. P(y) \to x = y &
+\end{array}
+\]
+Note que esta versão possui a vantagem de não envolver negação, o que
+usualmente facilita as demonstrações. Outra fórmula equivalente a
+$\exists ! x. P(x)$ é:
+
+\[
+\exists x. P(x) \land \forall y.\forall z. P(y)\land P(z) \to y = z
+\]
+
+Note que a última fórmula apresentada é bastante similar a $\exists x
+.P(x) \land \forall y. P(y) \to x = y$. A diferença é a introdução da
+nova variável quantificada $z$. Acredito que o leitor deva estar se
+perguntando, ``mas porquê introduzir uma nova variável?''. O ponto é
+que na fórmula
+\[
+\exists x. P(x) \land \forall y.\forall z. P(y)\land P(z) \to y = z
+\]
+a variável $x$ não aparece livre em $\forall y.\forall z. P(y)\land
+P(z) \to y = z$, o que nos permite dividir a tarefa de demonstrar
+$\exists x. P(x) \land \forall y.\forall z. P(y)\land P(z) \to y = z$
+nas demonstrações:
+\begin{itemize}
+  \item $\exists x. P(x)$
+  \item $\forall y.\forall z. P(y)\land P(z) \to y = z$
+\end{itemize}
+o que não pode ser feito com a fórmula
+\[
+\exists x .P(x) \land \forall y. P(y) \to x = y
+\]
+já que o $x$ aparece livre em $\forall y. P(y) \to x = y$.
+
+A utilização destas equivalências é o que determinará as estratégias
+de prova para este quantificador.
+
+\subsection{Estratégias para Existências e Unicidade}
+
+Conforme discutido na seção anterior, existem diversas maneiras de se
+representar o quantificador $\exists ! x. P(x)$ e estas determinam as
+estratégias de demonstração e uso de hipóteses para este tipo de
+fórmula. Estas estratégias são apresentadas a seguir.
+
+\begin{ProofStrategy}[Para provar uma conclusão da forma $\exists
+  !x. P(x)$.]
+Prove $\exists x. P(x)$ e $\forall y.\forall z. P(x) \land P(z) \to y
+= z$. A primeira parte da prova mostra que existe um valor $x$ tal que
+$P(x)$ e a segunda mostra que este valor é único.
+
+A construção do rascunho será omitida, visto que este utilizará
+estratégias de prova adequadas para cada uma das partes desta
+demonstração. Normalmente,  adicionamos um
+rótulo no texto correspondente a cada uma das partes da prova. O rótulo ``Existência'' é utilizado para
+a demonstração de $\exists x. P(x)$ e ``Unicidade'' é utilizado para
+$\forall y.\forall z. P(x) \land P(z) \to y = z$. Isto é formalizado
+pelo seguinte modelo de texto.
 \begin{flushleft}
+\textbf{Texto}:\\
+\verb| |\\
+Existência: [Prova de $\exists x.P(x)$]\\
+Unicidade: [Prova de $\forall y.\forall z. P(x) \land P(z) \to y = z$]\\
+\end{flushleft}
+\end{ProofStrategy}
+
+Outra possível estratégia de prova é baseada em outra equivalência
+para $\exists ! x. P(x)$, conforme apresentado a seguir.
+
+\begin{ProofStrategy}[Para provar uma conclusão da forma $\exists
+  !x. P(x)$.]
+Prove $\exists x.P(x) \land \forall y. P(y) \to x = y$ utilizando
+outras estratégias de demonstração.
+\end{ProofStrategy}
+
+\begin{Example}
+Considere a tarefa de demonstrar o seguinte teorema
+\begin{flushleft}
+Para todo $x\in\mathbb{R}$ se $x \neq 2$ então existe um único $y$ tal
+que $\frac{2y}{y+ 1} = x$.
+\end{flushleft}
+Este teorema é representado pela seguinte conclusão:
+\[
+\forall x. x\in\mathbb{R} \to x \neq 2 \to \exists ! y . \frac{2y}{y +
+1} = x
+\]
+o que nos leva ao seguinte rascunho inicial
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ & $\forall x. x\in\mathbb{R} \to x \neq 2 \to \exists ! y . \frac{2y}{y +
+1} = x
+$
+\end{tabular}
+\end{flushleft}
+que utilizando estratégias de prova já conhecidas nos leva a seguinte
+situação do rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$x$ arbitrário &  $\exists ! y . \frac{2y}{y +
+1} = x$ \\
+$x\in\mathbb{R}$ & \\
+$x\neq 2$ & \\
+\end{tabular}
+\end{flushleft}
+Para concluir a demonstração, utilizaremos a seguinte equivalência:
+\[
+\exists ! x. P(x) \equiv \exists x.P(x) \land \forall y. P(y) \to x = y
+\]
+o que nos leva ao seguinte rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$x$ arbitrário &  $\exists y . \frac{2y}{y +
+1} = x \land \forall z. \frac{2z}{z+1} = x \to z = y$ \\
+$x\in\mathbb{R}$ & \\
+$x\neq 2$ & \\
+\end{tabular}
+\end{flushleft}
+Agora, temos que encontrar um valor de $y$ que permita provar que
+$\exists y. \frac{2y}{y+1} = x$. Encontraremos o valor apropriado para
+$y$ resolvendo a equação $\frac{2y}{y+1} = x$ para $y$, conforme
+apresentado a seguir:
+\[
+\begin{array}{lclc}
+\frac{2y}{y + 1} & = & x & \Rightarrow\\
+x(y + 1) & = & 2y & \Rightarrow\\
+xy + x - 2y & = & 0 & \Rightarrow \\
+y(x - 2) & = & -x & \Rightarrow \\
+y = \frac{x}{2 - x}
+\end{array}
+\]
+Utilizando o valor de $y = \frac{x}{2 - x}$ concluímos a demonstração
+sem maiores problemas. Abaixo apresentamos a versão final do texto
+desta prova.
+\begin{flushleft}
+Suponha $x$ arbitrário.\\
+\verb|  |Suponha $x\in\mathbb{R}$.\\
+\verb|    | Suponha $x\neq 2$.\\
+\verb|        |Seja $y = \frac{x}{2 - x}$. Temos:\\
+\[
+\begin{array}{lc}
+\frac{2y}{y+1} & =\\
+\frac{2\frac{x}{2 - x}}{\frac{x}{2 - x} + 1} & = \\
+\frac{\frac{2x}{2- x}}{\frac{x + 2 - x}{2 - x}} & = \\
+\frac{2x}{2 - x}\times\frac{2 - x}{2} & = \\
+\frac{2x}{2} & = \\
+x
+\end{array}
+\]
+\verb|        |Logo, existe $y$ tal que $\frac{2y}{2- y} = x$.\\
+\verb|        |Suponha $z$ arbitrário.\\
+\verb|           |Suponha que $\frac{2z}{z + 1} = x$.\\
+\verb|              |Como $\frac{2z}{z + 1} = x$, temos:\\
+\[
+\begin{array}{lclc}
+\frac{2z}{z + 1} & = & x & \Rightarrow\\
+x(z + 1) & = & 2z & \Rightarrow\\
+xz + x - 2z & = & 0 & \Rightarrow \\
+z(x - 2) & = & -x & \Rightarrow \\
+z = \frac{x}{2 - x}
+\end{array}
+\]
+\verb|              |Logo, $z = y$.\\
+\verb|           |Logo, se $\frac{2z}{z + 1} = x$ então $z = y$.\\
+\verb|        |Como $z$ é arbitrário, temos que para todo $z$, se $\frac{2z}{z + 1} = x$ então $z = y$.\\
+Como $x$ é arbitrário, temos que se $x\neq 2$ então existe um único
+$y$ tal que $\frac{2y}{y+1} = x$.
 \end{flushleft}
 \end{Example}
+
+\subsection{Estratégia de prova por absurdo}
+
+Agora, apresentaremos uma estratégia de prova que é aplicável a
+qualquer conclusão. Esta é equivalente a regra \emph{reductio ad
+  absurdum} da dedução natural.
