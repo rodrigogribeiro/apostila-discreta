@@ -1,7 +1,6 @@
 \chapter{Teoria de Conjuntos}\label{cap5}
 
-\epigraph{Ninguém deveria nos expulsar do paraíso que Cantor criou
-  para nós.}{David Hilbert, Matemático Alemão sobre a Teoria de
+\epigraph{Ninguém deveria nos expulsar do paraíso que Cantor criou.}{David Hilbert, Matemático Alemão sobre a Teoria de
   Conjuntos criada por Georg Cantor.}
 
 \section{Motivação}
@@ -22,4 +21,175 @@ de dados relacionais é baseada em operações básicas sobre conjuntos.
 O objetivo deste capítulo é apresentar a teoria de conjuntos e como
 esta pode ser utilizada para descrever propriedades de objetos matemáticos.
 
-\section{Conjuntos, Informalmente}
+\section{Descrevendo Conjuntos}
+
+Não apresentaremos uma definição formal do que é um conjunto. Isto se
+deve ao fato de que  a teoria de conjuntos foi concebida com o intuito
+de ser a fundamentação teórica de toda a matemática. Isto é, em
+princípio, todos os objetos matemáticos são definidos em termos de
+conjuntos.
+
+Conjuntos nada mais são que uma coleção de objetos denominados
+\emph{elementos}. Porém, existem algumas restrições para considerarmos
+uma coleção de objetos um conjunto. A primeira diz respeito a
+\emph{ordem}. Em um conjunto a ordem dos elementos é irrelevante. A
+segunda é sobre a \emph{multiplicidade}. Esta especifica que em um
+conjunto qualquer há somente uma ocorrência de um certo valor, isto é,
+não é permitido que um elemento apareça mais de uma vez em um mesmo
+conjunto.
+
+Adotaremos, como convenção, que conjuntos
+serão sempre representados por letras maiúsculas e elementos por
+letras minúsculas.
+
+Existem diversas maneiras para se descrever conjuntos. Apresentaremos,
+de maneira suscinta três maneiras: enumeração, \emph{set
+  comprehension}\footnote{Infelizmente, não conheço uma tradução para
+  este termo. Por isso, mantive o nome original.} e por recursão.
+
+
+\subsection{Enumeração}
+
+Definimos um conjunto por enumeração simplesmente listando seus
+elementos. Este é um método conveniente para conjuntos finitos que
+possuam poucos elementos.
+
+O exemplo a seguir mostra alguns conjuntos
+definidos por enumeração.
+
+\begin{Example}
+Abaixo apresentamos alguns conjuntos definidos por enumeração:
+\[
+\begin{array}{lcl}
+   V & = & \{a,e,i,o,u\} \\
+   P & = & \{\text{arara, pelicano, pardal}\}\\
+   X & = & \{2,4,6,8\} \\
+   J & = & \{\}\\
+  L & = & \{1, \{1\}\} \\
+\end{array}
+\]
+\end{Example}
+
+Uma vez que elementos podem ocorrer uma única vez em um conjunto,
+podemos dizer que a operação de determinar se um elemento está ou não
+em um conjunto possui um valor lógico (isto é, verdadeiro ou
+falso). Se $A$ é um conjunto e $x$ um elemento, representamos por $x
+\in A$ o fato de $x$ ser um elemento do conjunto $A$. Representamos que $x$ não
+é um elemento de $A$ por $x \not\in A$. Note que a seguinte
+equivalência é verdadeira: $x\not\in A \equiv \neg (x \in A)$.
+
+\begin{Example}
+Considere os seguintes conjunto $V = \{a,e,i,o,u\}$.
+Temos que $a\in V$ e que $g \not\in V$.
+\end{Example}
+
+Evidentemente podemos definir conjuntos que possuem um número qualquer
+de elementos. Denominamos por \textit{cardinalidade} o número de
+elementos de um certo conjunto e representamos a cardinalidade de um
+conjunto $A$ por $|A|$.
+
+\begin{Example}
+Considere os conjuntos:
+
+\[
+\begin{array}{lcl}
+   V & = & \{a,e,i,o,u\} \\
+   P & = & \{\text{arara, pelicano, pardal}\}\\
+   X & = & \{2,4,6,8\} \\
+   J & = & \{\}\\
+  L & = & \{1, \{1\}\} \\
+\end{array}
+\]
+
+
+A cardinalidade de cada um deles é:
+
+\[
+\begin{array}{lcl}
+   |V| & = & 5 \\
+   |P| & = & 3\\
+   |X| & = & 4 \\
+   |J| & = & 0\\
+  |L| & = &2 \\
+\end{array}
+\]
+\end{Example}
+
+Note que o conjunto $J$ não possui elementos e, portanto, é denominado
+\emph{conjunto vazio}. O conjunto vazio é usualmente representado pelo
+símbolo $\emptyset$.
+
+\subsection{Set Comprehension}
+
+A notação de set comprehension permite-nos especificar um conjunto em
+termos de uma propriedade que descreve quais são os elementos deste
+conjunto. De maneira simples, temos que um set comprehension é
+representado da seguinte maneira:
+\[\{x\,|\,p(x)\}\]
+em que $x$ é uma variável  (ou uma expressão) e $p(x)$ é uma fórmula
+da lógica de predicados. Esta maneira de descrever conjuntos é útil
+para descrever conjuntos com muitos elementos ou infinitos.
+
+\begin{Example}
+Considere a tarefa de representar os conjuntos de todos os números naturais
+pares e de todos os números naturais múltiplos de 3. Poderíamos
+representar estes conjuntos da seguinte maneira:
+\[
+\begin{array}{lcr}
+P & = &\{0,2,4,6,...\}\\
+T & = & \{0,3,6,9,...\}\\
+\end{array}
+\]
+Apesar da estrutura parecer óbvia, o uso de ``...'' deve ser evitado
+por este permitir ambiguidades na interpretação de um conjunto. Sem
+saber que o conjunto $T$ representa os números naturais múltiplos de
+3, como saber se $173$ pertence ou não a este conjunto?
+
+Para evitar este tipo de ambiguidades, podemos utilizar set
+comprehensions para definir conjuntos infinitos de maneira precisa. Os
+conjuntos anteriores podem ser representados da seguinte maneira:
+\[
+\begin{array}{lcr}
+P & = &\{x\,|\,x\in\mathbb{N}\land \exists y. y\in \mathbb{N}\land x =
+2y\}\\
+T & = & \{x\,|\,x\in\mathbb{N}\land \exists y. y\in\mathbb{N}\land x =
+3y\}\\
+\end{array}
+\]
+Note que como utilizarmos uma fórmula da lógica de predicados para
+descrever elementos de um conjunto não há margem para interpretações
+ambíguas. Pode-se, a partir da fórmula, determinar facilmente se um
+elemento pertence ou não a um conjunto.
+\end{Example}
+
+Devemos sempre especificar qual o conjunto de ``origem'' dos elementos
+para os quais estamos definindo um conjunto utilizando set comprehension.
+A não especificação do conjunto de origem permite a formulação de
+paradoxos, como o conhecido paradoxo de Russell, descoberto por
+Bertrand Russell no início do século XX.
+
+\subsubsection{O Paradoxo de Russell}
+
+Antes de apresentar o paradoxo de Russell formalmente, é útil
+analisá-lo em um contexto mais simples, mas equivalente.
+
+\begin{Example}
+Considere o seguinte problema:
+
+\begin{quote}
+``Considere uma cidade em que existe apenas um barbeiro e que este faz a
+barba de todos que não fazem a própria barba. O barbeiro faz sua
+própria barba?''
+\end{quote}
+
+Após refletir uma pouco sobre esta sentença, percebemos que esta é um
+paradoxo, pois:
+\begin{itemize}
+  \item Se o barbeiro não faz a própria barba, ele deveria fazê-la, já
+    que ele faz a barba apenas de quem não faz a própria barba.
+  \item Porém se ele faz a própria barba, pela definição, ele não
+    deveria fazê-la.
+\end{itemize}
+
+Ou seja, a sentença sobre o barbeiro desta cidade é um paradoxo.
+\end{Example}
