@@ -1982,35 +1982,35 @@ desta prova.
 Suponha $x$ arbitrário.\\
 \verb|  |Suponha $x\in\mathbb{R}$.\\
 \verb|    | Suponha $x\neq 2$.\\
-\verb|        |Seja $y = \frac{x}{2 - x}$. Temos:\\
+\verb|        |Seja $y = \dfrac{x}{2 - x}$. Temos:\\
 \[
 \begin{array}{lc}
-\frac{2y}{y+1} & =\\
-\frac{2\frac{x}{2 - x}}{\frac{x}{2 - x} + 1} & = \\
-\frac{\frac{2x}{2- x}}{\frac{x + 2 - x}{2 - x}} & = \\
-\frac{2x}{2 - x}\times\frac{2 - x}{2} & = \\
-\frac{2x}{2} & = \\
+\dfrac{2y}{y+1} & =\\
+\dfrac{2\dfrac{x}{2 - x}}{\dfrac{x}{2 - x} + 1} & = \\
+\dfrac{\dfrac{2x}{2- x}}{\dfrac{x + 2 - x}{2 - x}} & = \\
+\dfrac{2x}{2 - x}\times\dfrac{2 - x}{2} & = \\
+\dfrac{2x}{2} & = \\
 x
 \end{array}
 \]
-\verb|        |Logo, existe $y$ tal que $\frac{2y}{2- y} = x$.\\
+\verb|        |Logo, existe $y$ tal que $\dfrac{2y}{2- y} = x$.\\
 \verb|        |Suponha $z$ arbitrário.\\
-\verb|           |Suponha que $\frac{2z}{z + 1} = x$.\\
-\verb|              |Como $\frac{2z}{z + 1} = x$, temos:\\
+\verb|           |Suponha que $\dfrac{2z}{z + 1} = x$.\\
+\verb|              |Como $\dfrac{2z}{z + 1} = x$, temos:\\
 \[
 \begin{array}{lclc}
-\frac{2z}{z + 1} & = & x & \Rightarrow\\
+\dfrac{2z}{z + 1} & = & x & \Rightarrow\\
 x(z + 1) & = & 2z & \Rightarrow\\
 xz + x - 2z & = & 0 & \Rightarrow \\
 z(x - 2) & = & -x & \Rightarrow \\
-z = \frac{x}{2 - x}
+z = \dfrac{x}{2 - x}
 \end{array}
 \]
 \verb|              |Logo, $z = y$.\\
-\verb|           |Logo, se $\frac{2z}{z + 1} = x$ então $z = y$.\\
-\verb|        |Como $z$ é arbitrário, temos que para todo $z$, se $\frac{2z}{z + 1} = x$ então $z = y$.\\
+\verb|           |Logo, se $\dfrac{2z}{z + 1} = x$ então $z = y$.\\
+\verb|        |Como $z$ é arbitrário, temos que para todo $z$, se $\dfrac{2z}{z + 1} = x$ então $z = y$.\\
 Como $x$ é arbitrário, temos que se $x\neq 2$ então existe um único
-$y$ tal que $\frac{2y}{y+1} = x$.
+$y$ tal que $\dfrac{2y}{y+1} = x$.
 \end{flushleft}
 \end{Example}
 
@@ -2019,3 +2019,137 @@ $y$ tal que $\frac{2y}{y+1} = x$.
 Agora, apresentaremos uma estratégia de prova que é aplicável a
 qualquer conclusão. Esta é equivalente a regra \emph{reductio ad
   absurdum} da dedução natural.
+
+\begin{ProofStrategy}[Para provar uma conclusão $\alpha$ qualquer.]
+Suponha $\neg \alpha$ e tente deduzir uma contradição. A partir desta
+contradição pode-se concluir que $\alpha$ é verdadeiro.
+\begin{flushleft}
+\textbf{Rascunho}.\\
+\verb| |\\
+
+\textit{Rascunho antes de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\alpha$\\
+\end{tabular}
+
+\textit{Rascunho depois de usar a estratégia}.
+\verb| |\\
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$\gamma_1,\gamma_2,...,\gamma_n$ & $\bot$\\
+$\neg \alpha$ & \\
+\end{tabular}
+\end{flushleft}
+\begin{flushleft}
+\textbf{Texto:}\\
+\textit{Suponha que $\neg\alpha$.}\\
+\verb|   |[Prova de $\bot$].\\
+\textit{Logo, temos que $\alpha$.}
+\end{flushleft}
+\end{ProofStrategy}
+
+\begin{Example}
+Neste exemplo, vamos demonstrar um dos mais conhecidos resultados da
+matemática: a infinitude do conjunto de números primos.
+
+Para essa demonstração utilizaremos um resultado, sem demonstração, de
+que todo número $n >1$ ou é primo ou é um produto de números primos\footnote{este resultado será demonstrado quando estudarmos indução matemática.}.
+
+O enunciado do teorema é apresentado a seguir:
+
+\begin{flushleft}
+Existem infinitos números primos.
+\end{flushleft}
+Note que este teorema envolve uma negação, uma vez que, ``infinito''
+pode ser entendido como ``não finito''.
+Porém, como podemos dizer que um conjunto é finito? Especificamos que um
+conjunto é finito dizendo que este possui $n$ elementos, em que
+$n\in\mathbb{N}$. Logo, temos a seguinte versão inicial do rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+ & $\neg\exists n. \{p_1,...,p_n\}$ são todos primos.
+\end{tabular}
+\end{flushleft}
+Como a conclusão envolve uma negação, podemos iniciar a dedução
+utilizando a estratégia de demonstração por absurdo. Mas, como
+garantir que existem ``finitos'' números primos? A idéia é ``listar''
+todos os $n$ números primos e especificar que não existe outro número
+primo que não pertença a listagem de primos citada. Isto é
+especificado na seguinte versão do rascunho.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$p_1,...,p_n$ são primos & $\bot$ \\
+$\neg \exists q. q$ é primo $\land q\not\in\{p_1,...,p_n\}$ &\\
+\end{tabular}
+\end{flushleft}
+Como obter uma contradição a partir destas hipóteses? Note que a
+hipótese:
+\begin{flushleft}
+$\neg \exists q. q$ é primo $\land q\not\in\{p_1,...,p_n\}$
+\end{flushleft}
+pode ser utilizada para construir uma contradição se mostrarmos um
+número $q$ que é primo e que $q\not\in\{p_1,...,p_n\}$. Considere o
+número $x = p_1\times p_2 \times ... \times p_n$ um número formado
+pelo produto de todos os $n$ números primos. Evidentemente, $x$ é
+divisível por cada um dos números deste conjunto. Seja $q = x +
+1$. Evidentemente, temos que $q > 1$ e, portanto, temos que $q$ deve
+ser um número primo ou um produto de primos. Se $q$ é primo, temos que
+$\{p_1,...,p_n\}$ não é o conjunto contendo todos os primos pois
+$q\not\in\{p_1,...,p_n\}$. Se $q$ é um produto de primos, temos que
+$q$ deve ser divisível por algum dos primos em $\{p_1,...,p_n\}$. Mas,
+como $q = p_1\times p_2 \times ... \times p_n + 1$, temos que $q$ não
+é divisível por nenhum dos números em $\{p_1,...,p_n\}$. Desta forma,
+temos que $q$ deve ser primo e, como $q\not\in\{p_1,...,p_n\}$, temos
+que $\{p_1,...,p_n\}$ não pode ser o conjunto de todos os números primos.
+Como ambos os casos cobrem todas as possibilidades,
+temos que $q$ não é divisível por nenhum $p_i$, $1\leq
+i \leq n$. Logo, $q$ é divisível por 1 e por si próprio. Logo, $q$ é
+primo, contrariando a hipótese de que todos os primos estão listados
+no conjunto $\{p_1,...,p_n\}$. Assim, podemos concluir que existem
+infinitos números primos. A seguir, construímos o texto para esta
+demonstração.
+
+Inicialmente, começamos o texto utilizando o modelo de texto para
+demonstrações por absurdo.
+\begin{flushleft}
+Suponha que existam finitos números primos.\\
+\verb|   |[Prova de $\bot$]\\
+Logo, temos que existem infinitos números primos.
+\end{flushleft}
+
+E  mostramos como deduzir $\bot$, a partir das informações disponíveis
+no contexto.
+
+\begin{flushleft}
+Suponha que existam finitos números primos.\\
+\verb|   |Sejam $p_1,...,p_n$ o conjunto de todos os números primos,
+$n\in\mathbb{N}$.\\
+\verb|   |Seja $q = p_1\times p_2 \times ... \times p_n +1$ e $q\not\in\{p_1,...,p_n\}$.\\
+\verb|   |Evidentemente, $q > 1$.\\
+\verb|   |Considere os casos:\\
+\verb|      |$q$ é primo: \\
+\verb|        |Logo,  $\{p_1,...,p_n\}$ não é o conjunto de todos os primos.\\
+\verb|      |$q$ é produto de primos:\\
+\verb|        |Mas, $q$ não é divisível por nenhum $\{p_1,...,p_n\}$. Logo, $q$ é primo.\\
+\verb|   |Logo, $q$ é divisível por $1$ e por si próprio.\\
+\verb|   |Mas, $q\not\in\{p_1,...,p_n\}$, o que é uma contradição,
+pois $\{p_1,...,p_n\}$ é o conjunto de todos os primos.\\
+Logo, temos que existem infinitos números primos.
+\end{flushleft}
+\end{Example}
+
+\section{Notas Bibliográficas}
+
+Neste capítulo descrevemos técnicas para demonstração de teoremas que,
+basicamente, são adaptações das regras da dedução natural já apresentadas em capítulos
+anteriores.
+
+Este capítulo é uma adaptação do capítulo 3 do livro
+\cite{Velleman06}. Ao contrário de \cite{Velleman06}, não utilizamos nenhum
+exemplo envolvendo teoria de conjuntos. Isto é proposital, pois a
+apresentaremos a teoria de conjunto no próximo capítulo junto com
+diversos exercícios sobre demonstração de teoremas.
