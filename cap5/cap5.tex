@@ -19,9 +19,10 @@ define operações sobre conjuntos. Por sua vez, toda a teoria de bancos
 de dados relacionais é baseada em operações básicas sobre conjuntos.
 
 O objetivo deste capítulo é apresentar a teoria de conjuntos e como
-esta pode ser utilizada para descrever propriedades de objetos matemáticos.
+esta pode ser utilizada para descrever propriedades de objetos
+matemáticos.
 
-\section{Descrevendo Conjuntos}
+\section{Introdução aos Conjuntos}
 
 Não apresentaremos uma definição formal do que é um conjunto. Isto se
 deve ao fato de que  a teoria de conjuntos foi concebida com o intuito
@@ -38,15 +39,32 @@ conjunto qualquer há somente uma ocorrência de um certo valor, isto é,
 não é permitido que um elemento apareça mais de uma vez em um mesmo
 conjunto.
 
+Uma vez que elementos podem ocorrer uma única vez em um conjunto,
+podemos dizer que a operação de determinar se um elemento está ou não
+em um conjunto possui um valor lógico (isto é, verdadeiro ou
+falso). Se $A$ é um conjunto e $x$ um elemento, representamos por $x
+\in A$ o fato de $x$ ser um elemento do conjunto $A$. Representamos que $x$ não
+é um elemento de $A$ por $x \not\in A$. Note que a seguinte
+equivalência é verdadeira: $x\not\in A \equiv \neg (x \in A)$.
+
+Denominamos por \emph{cardinalidade} ou tamanho o número de elementos
+de um conjunto. Se $A$ é um conjunto, representamos por $|A|$ o número
+de elementos de $A$.
+
+Existe um único conjunto $A$ tal que $|A| = 0$. Este é conhecido como
+conjunto vazio e é representado como $\{\}$ ou $\emptyset$.
+
 Adotaremos, como convenção, que conjuntos
 serão sempre representados por letras maiúsculas e elementos por
 letras minúsculas.
+
+
+\section{Descrevendo Conjuntos}
 
 Existem diversas maneiras para se descrever conjuntos. Apresentaremos,
 de maneira suscinta três maneiras: enumeração, \emph{set
   comprehension}\footnote{Infelizmente, não conheço uma tradução para
   este termo. Por isso, mantive o nome original.} e por recursão.
-
 
 \subsection{Enumeração}
 
@@ -68,40 +86,6 @@ Abaixo apresentamos alguns conjuntos definidos por enumeração:
   L & = & \{1, \{1\}\} \\
 \end{array}
 \]
-\end{Example}
-
-Uma vez que elementos podem ocorrer uma única vez em um conjunto,
-podemos dizer que a operação de determinar se um elemento está ou não
-em um conjunto possui um valor lógico (isto é, verdadeiro ou
-falso). Se $A$ é um conjunto e $x$ um elemento, representamos por $x
-\in A$ o fato de $x$ ser um elemento do conjunto $A$. Representamos que $x$ não
-é um elemento de $A$ por $x \not\in A$. Note que a seguinte
-equivalência é verdadeira: $x\not\in A \equiv \neg (x \in A)$.
-
-\begin{Example}
-Considere os seguintes conjunto $V = \{a,e,i,o,u\}$.
-Temos que $a\in V$ e que $g \not\in V$.
-\end{Example}
-
-Evidentemente podemos definir conjuntos que possuem um número qualquer
-de elementos. Denominamos por \textit{cardinalidade} o número de
-elementos de um certo conjunto e representamos a cardinalidade de um
-conjunto $A$ por $|A|$.
-
-\begin{Example}
-Considere os conjuntos:
-
-\[
-\begin{array}{lcl}
-   V & = & \{a,e,i,o,u\} \\
-   P & = & \{\text{arara, pelicano, pardal}\}\\
-   X & = & \{2,4,6,8\} \\
-   J & = & \{\}\\
-  L & = & \{1, \{1\}\} \\
-\end{array}
-\]
-
-
 A cardinalidade de cada um deles é:
 
 \[
@@ -115,20 +99,27 @@ A cardinalidade de cada um deles é:
 \]
 \end{Example}
 
-Note que o conjunto $J$ não possui elementos e, portanto, é denominado
-\emph{conjunto vazio}. O conjunto vazio é usualmente representado pelo
-símbolo $\emptyset$.
-
 \subsection{Set Comprehension}
 
-A notação de set comprehension permite-nos especificar um conjunto em
-termos de uma propriedade que descreve quais são os elementos deste
-conjunto. De maneira simples, temos que um set comprehension é
+A notação de set comprehension\footnote{Manteremos o nome sem tradução
+    por não conhecer um termo em língua portuguesa para este tipo de
+    notação matemática.} permite-nos especificar um conjunto em
+termos de uma propriedade que descreve quais são os elementos deste.
+De maneira simples, temos que um set comprehension é
 representado da seguinte maneira:
-\[\{x\,|\,p(x)\}\]
-em que $x$ é uma variável  (ou uma expressão) e $p(x)$ é uma fórmula
+\[\{x  \in X\,|\,p(x)\}\]
+em que $x$ é uma variável  (ou uma expressão), $X$ um conjunto e $p(x)$ é uma fórmula
 da lógica de predicados. Esta maneira de descrever conjuntos é útil
 para descrever conjuntos com muitos elementos ou infinitos.
+
+Podemos caracterizar a pertinência a um conjunto definido usando set
+comprehension utilizando a seguinte equivalência:
+
+\[y\in\{x\in X \,|\, p(x)\} \equiv y\in X \land p(y)\]
+
+O leitor atento deve ter percebido que a equivalência anterior nada
+mais é que a aplicação da substituição $[x\mapsto y]$ a fórmula
+especificada no set comprehension.
 
 \begin{Example}
 Considere a tarefa de representar os conjuntos de todos os números naturais
@@ -150,19 +141,20 @@ comprehensions para definir conjuntos infinitos de maneira precisa. Os
 conjuntos anteriores podem ser representados da seguinte maneira:
 \[
 \begin{array}{lcr}
-P & = &\{x\,|\,x\in\mathbb{N}\land \exists y. y\in \mathbb{N}\land x =
+P & = &\{x\in\mathbb{N}\,|\,\exists y. y\in \mathbb{N}\land x =
 2y\}\\
-T & = & \{x\,|\,x\in\mathbb{N}\land \exists y. y\in\mathbb{N}\land x =
+T & = & \{x\in\mathbb{N}\,|\ \exists y. y\in\mathbb{N}\land x =
 3y\}\\
 \end{array}
 \]
 Note que como utilizarmos uma fórmula da lógica de predicados para
 descrever elementos de um conjunto não há margem para interpretações
-ambíguas. Pode-se, a partir da fórmula, determinar facilmente se um
-elemento pertence ou não a um conjunto.
+ambíguas.
 \end{Example}
 
-Devemos sempre especificar qual o conjunto de ``origem'' dos elementos
+Devemos sempre especificar qual o conjunto de
+``origem''\footnote{Considera-se como conjunto ``origem'' do set
+  comprehension $\{x\in X\,|\,p(x)\}$ o conjunto $X$.} dos elementos
 para os quais estamos definindo um conjunto utilizando set comprehension.
 A não especificação do conjunto de origem permite a formulação de
 paradoxos, como o conhecido paradoxo de Russell, descoberto por
@@ -171,7 +163,7 @@ Bertrand Russell no início do século XX.
 \subsubsection{O Paradoxo de Russell}
 
 Antes de apresentar o paradoxo de Russell formalmente, é útil
-analisá-lo em um contexto mais simples, mas equivalente.
+analisá-lo em um contexto mais simples, porém, equivalente.
 
 \begin{Example}
 Considere o seguinte problema:
@@ -193,3 +185,21 @@ paradoxo, pois:
 
 Ou seja, a sentença sobre o barbeiro desta cidade é um paradoxo.
 \end{Example}
+
+Russell percebeu que a definição usando set comprehension poderia
+gerar um paradoxo similar ao apresentado no exemplo
+anterior. A demonstração deste paradoxo é apresentada a seguir.
+
+Seja $\mathcal{S}$ o conjunto de todos os conjuntos que não
+são elementos de si próprios, isto é:
+\[\mathcal{S} =\{X\,|\,X\not\in X\}\]
+Evidentemente, temos que $\mathcal{S} \in \mathcal{S}$ ou $\mathcal{S}
+\not\in \mathcal{S}$. Considere os seguintes casos:
+\begin{itemize}
+  \item Caso $\mathcal{S} \in \mathcal{S}$: Se $\mathcal{S} \in
+    \mathcal{S}$, pela definição de $\mathcal{S}$, temos que
+    $\mathcal{S} \not\in \mathcal{S}$, o que constitui uma contradição.
+  \item Caso $\mathcal{S} \not\in \mathcal{S}$: Logo, pela definição
+    de $\mathcal{S}$, temos que $\mathcal{S} \in \mathcal{S}$, o que
+    constitui uma contradição.
+\end{itemize}
