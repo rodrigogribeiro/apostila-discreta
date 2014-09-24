@@ -8,4 +8,4 @@
 *.pdf
 *.bbl
 *.blg
-*DS_Store
+.DS_Store
