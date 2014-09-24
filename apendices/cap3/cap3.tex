@@ -61,12 +61,331 @@
 		
 		\item
 		\begin{enumerate}
-			\item
-			\item
-			\item
-			\item
-			\item
-			\item
+			\item $\forall x.A(\text{Maria}, P(x))$
+			\item $\exists x.A(P(x), \text{Maria})$
+			\item $A(\text{Maria}, \text{Maria})$
+			\item $\neg \exists x.\forall y.S(E(x), L(y))$
+			\item $\neg \exists x.\forall y.S(E(y), L(x))$
+			\item $\neg \exists x.\exists y.S(E(y), L(x))$
 		\end{enumerate}
 	\end{enumerate}
 
+\subsection{3.5 Exerc\'icios}
+
+	\begin{enumerate}
+		\item 
+		\[
+		fv(\alpha)=\left\{
+           \begin{array}{ll}
+             fv(\beta) & \text{se }\alpha = \neg \beta\\
+             fv(\beta)\cup fv(\gamma) & \text{se }\alpha = \beta\circ\gamma,
+             \circ\in\{\lor,\land,\to,\leftrightarrow\}.\\
+             fv(\beta) \cup \{x\} & \text{se }\alpha = \forall x.\beta \text{ ou } \alpha = \exists x.\beta,\text{ e } \beta = \forall x.\delta \text{ ou } \beta = \exists x.\delta\\
+             \{x\} & \text{se }\alpha = \forall x.\beta \text{ ou } \alpha = \exists x.\beta.\\
+             \emptyset &  \text{se }\alpha = \top \text{ ou }\alpha = \bot\\
+             \emptyset & \text{se } \alpha = x, \text{ para algum }x \in \mathcal{V},\text{ isto é, se }\alpha\text{ é uma variável}. \\
+             \emptyset & \text{se } \alpha = c, \text{ para algum } c\in\mathcal{C}, \text{ isto é, se }\alpha\text{ é uma constante}.\\
+           \end{array}
+        \right .
+		\]
+		\item
+		\begin{enumerate}
+			\item
+			 Pela regra 1 da defini\c{c}\~ao 26, seja $f$ um predicado de aridade 1 e $a\in\mathcal{T}$ termos, podemos afirmar que $p(a)\in\mathbb{F}$, isto é, $p(a)$ é uma fórmula bem formada. Como temos que a \'e uma constante e pela defini\c{c}\~ao de Conjunto de Termos, toda constante \'e um Termo, então $p(a)\in\mathbb{F}$.
+			\item
+			Pela regra 3 da defini\c{c}\~ao 26, se $x \in \mathcal{V}$, então: $\forall x. \alpha \in \mathbb{F}$. Sendo $\alpha \equiv q(f(a),x)$, temos que provar que $\{q(f(a), x)\}$ \'e uma f\'ormula bem formada da l\'ogica. A regra 1 afirma que um predicado de aridade $n \geq 0$ e $t_1,...,t_n\in\mathcal{T}$ termos $\in \mathbb{F}$. Assumindo $t_1 \equiv f(a)$ e $t_1 \equiv x$ podemos concluir que $\forall x. q(f(a),x)\in \mathcal{F}$, pois provamos f(a) no exerc\'icio anterior e pela defini\c{c}\~ao de Conjunto de Termos, toda vari\'avel \'e um Termo, sendo assim x também o \'e.
+			\item
+			Pela regra 3 da defini\c{c}\~ao 26, temos $\alpha \circ \beta \in \mathbb{F}$, em que $\circ\in\{\lor,\land,\to,\leftrightarrow\}$. Considerando que $\alpha \equiv \exists y. p(y)$ e $ \beta \equiv \forall x. q(f(a),g(x,b))$ temos que provar ambos separadamente. Sendo y uma vari\'avel, conclu\'imos $\exists y. p(y) \in \mathbb{F}$. Para $\forall x. q(f(a),g(x,b))$ precisamos provar que $q(f(a),g(x,b)) \in \mathbb{F}$. Pela regra 1, como $f$ \'e um predicado de aridade 1 e $q$ e $g$ sendo ambos predicados de aridade 2 com $a$, $b$ e $y$ variav\'eis do conjunto $\mathcal{V}$, ent\~ao $\exists y. p(y) \land \forall x. q(f(a),g(x,b)) \in \mathbb{F} $.
+		\end{enumerate}
+		\item
+		\begin{enumerate}
+			\item $\forall x. (p(x,z)\rightarrow q(y)) \land s(a,x)$
+				\[
+				   \begin{array}{lcl}
+				   	  fv(\forall x. (p(x,z)\rightarrow q(y)) \land s(a,x)) & = & \\
+				   	  fv((p(x,z)\rightarrow q(y)) \land s(a,x)) - \{x\}& = & \\
+				   	  \{fv((p(x,z)\rightarrow q(y))) \cup fv(s(a,x))\} - \{x\}& = & \\
+				   	  \{fv((p(x,z))\cup fv(q(y))) \cup (fv_{\mathcal{T}}(a) \cup fv_{\mathcal{T}}(x))\} - \{x\}& = & \\
+				   	  \{fv_{\mathcal{T}}(x) \cup fv_{\mathcal{T}}(z)\cup fv_{\mathcal{T}}(y)) \cup (fv_{\mathcal{T}}(a) \cup fv_{\mathcal{T}}(x))\} - \{x\}& = & \\
+				   	  \{x \cup z\cup y \cup a \cup x\} - \{x\}& = & \\
+				   	  \{ z\cup y \cup a \}& = & \\
+				   	  \{ z, y, a \}& = & \\
+				   \end{array}
+				\]
+			\item $\exists y. p(y,z) \land \forall x. q(f(a),g(x,b))$.
+			\[
+			  \begin{array}{lcl}
+				   	  fv(\exists y. p(y,z) \land \forall x. q(f(a),g(x,b))) & = & \\
+					  fv(\exists y. p(y,z)) \cup fv(\forall x. q(f(a),g(x,b))) & = & \\
+					  \{fv(p(y,z)) - \{y\}\} \cup \{fv(q(f(a),g(x,b)) - \{x\}\} & = & \\
+					  \{(fv_{\mathcal{T}}(y) \cup fv_{\mathcal{T}}(z)) - \{y\}\} \cup \{(fv_{\mathcal{T}}(f(a))\cup fv_{\mathcal{T}}(g(x,b))) - \{x\}\} & = & \\
+					  \{(y \cup z) - \{y\}\} \cup \{(fv_{\mathcal{T}}(a)\cup fv_{\mathcal{T}}(x) \cup fv_{\mathcal{T}}(b)) - \{x\}\} & = & \\
+					  \{z\} \cup \{(a \cup x \cup b) - \{x\}\} & = & \\
+					  \{z\} \cup \{ a \cup b \} & = & \\
+					  \{z, a, b \} & = & \\
+			  \end{array}
+			\]
+			\item $\exists y. p(y) \land \forall x. q(f(a),g(x,b))$.
+			\[
+			  \begin{array}{lcl}
+				   	  fv(\exists y. p(y) \land \forall x. q(f(a),g(x,b))) & = & \\
+					  fv(\exists y. p(y)) \cup fv(\forall x. q(f(a),g(x,b))) & = & \\
+					  \{fv(p(y)) - \{y\}\} \cup \{fv(q(f(a),g(x,b)) - \{x\}\} & = & \\
+					  \{(fv_{\mathcal{T}}(y)) - \{y\}\} \cup \{(fv_{\mathcal{T}}(f(a))\cup fv_{\mathcal{T}}(g(x,b))) - \{x\}\} & = & \\
+					  \{(y) - \{y\}\} \cup \{(fv_{\mathcal{T}}(a)\cup fv_{\mathcal{T}}(x) \cup fv_{\mathcal{T}}(b)) - \{x\}\} & = & \\
+					  \{( a \cup x \cup b) - \{x\}\} & = & \\
+					   \{ a \cup b \} & = & \\
+					  \{ a, b \} & = & \\
+			  \end{array}
+			\]
+		\end{enumerate}
+	\end{enumerate}
+	
+\subsection{3.7 Exerc\'icios}
+
+	\begin{enumerate}
+		\item
+		\begin{center}
+	    \begin{tabular}{|l|c|c|c|}
+	        \hline
+	        F\'ormula & $\mathbb{N}$ & $\mathbb{Z}$ & $\mathbb{R}$ \\ \hline
+	        $\exists x. x^2 = 2$ & F & F & V\\ \hline
+	        $\forall x. \exists y. x^2 = y$ & V & V & V \\ \hline
+	        $\forall x. x\neq 0 \rightarrow \exists y. xy = 1$ & F & F & V \\ \hline
+	        $\exists x. \exists y. (x + 2y^2 = 2) \land (2x + 4y = 5)$ & F & F & V \\
+	        \hline
+	    \end{tabular}
+	    \end{center} 
+	\end{enumerate}
+	
+\subsection{3.9 Exerc\'icios}
+
+	\begin{enumerate}
+		\item 
+		\begin{enumerate}
+			\item $\{\forall x. (P(x)\rightarrow Q(x))\}\vdash(\forall x.\neg Q(x))\rightarrow(\forall x.\neg P(x))$
+	           \[
+	           \infer[\impI^1]
+	                   {(\forall x.\neg Q(x))\to(\forall x.\neg P(x))}
+	                   {
+	                   \infer[\{\forall_I\}]
+	                       {(\forall x.\neg P(x))}
+	                       {
+	                         \infer[\impI^2]
+                               {\neg P(x)}
+                               {
+                                 \infer[\impE]
+                                          {\bot}
+                                          {
+                                            \infer[\{\forall_E\}]
+                                                 {\neg Q(x)}                                                      
+                                                 {\forall x. \neg Q(x)^1}
+                                             &
+                                             \infer[\impE]
+                                                 {Q(x)}
+                                                  {                                     
+                                                    \infer[\{\forall_E\}]
+                                                          {P(x) \to Q(x)}
+                                                          {\forall x. P(x) \to Q(x)}
+                                                    &
+                                                    P(x)^2
+                                                  }
+                                          }
+                               }
+	                       }
+	                }
+	           \]
+			\item $\{\forall x. (P(x)\rightarrow \neg Q(x))\}\vdash\neg (\exists x. (P(x)\land Q(x)))$
+	            \[
+	            \infer[\impI]
+	                 {\neg (\exists x. (P(x)\land Q(x)))}
+	                 {
+	                   \infer[\{\exists_E\}^1]
+	                            {\bot}
+	                            {
+	                              \exists x.(P(x)\land Q(x))
+	                              &
+	                              \infer[\impE]
+	                                    {\bot}
+	                                    {
+	                                      \infer[\andED]
+	                                              {Q(x)}
+	                                              {P(x) \land Q(x)^1}
+	                                      &
+	                                      \infer[\impE]
+	                                          {\neg Q(x)}
+	                                          {
+	                                            \infer[\andEE]
+                                                  {P(x)}
+                                                  {P(x) \land Q(x)^1}
+	                                            &
+	                                            \infer[\{\forall_E\}]
+	                                              {P(x) \to \neg Q(x)}
+	                                              {\forall x. P(x) \to \neg Q(x)}
+	                                          }
+	                                    }
+	                            }
+	                 }
+	            \]
+			\item $\{\forall x.(A(x)\rightarrow (B(x)\lor C(x))),\forall x.\neg B(x)\}\vdash(\forall x. A(x))\rightarrow (\forall x. C(x))$
+                    \[
+                    \infer[\impI^1]
+	                    {(\forall x. A(x))\rightarrow (\forall x. C(x))}
+	                    {
+	                      \infer[\{\forall_I\}]
+		                        {\forall x. C(x)}
+		                        {
+		                          \infer[\orE^2]
+	                                 {C(x)}
+	                                 {
+	                                   \infer[\impE]
+	                                        {B(x) \lor C(x)}
+	                                        {
+	                                           \infer[\{\forall_E\}]
+	                                             {A(x)}
+	                                             {\forall x. A(x)^1}
+	                                           &
+	                                           \infer[\{\forall_E\}]
+	                                             {A(x)\to B(x) \lor C(x)}
+	                                             {\forall x. A(x) \to B(x) \lor C(x)}
+	                                         }
+	                                         &
+	                                         \infer[\{CTR\}]
+	                                           {C(x)}
+	                                           {
+	                                             \infer[\impE]
+	                                                     {\bot}
+	                                                     {
+	                                                       B(x)^2
+	                                                       &
+	                                                       \infer[\{\forall_E\}]
+	                                                         {\neg B(x)}
+	                                                         {\forall x. \neg B(x)}
+	                                                     }
+	                                           }
+	                                         &
+	                                   		 C(x)^2
+	                                 }
+		                        }
+	                    }
+                    \]
+			\item $\{\exists x.(P(x)\land Q(x)), \forall x. (P(x)\rightarrow R(x))\}\vdash\exists x.(R(x)\land Q(x))$
+	               \[
+	               \infer[\{\exists_E\}^1]
+	                    {\exists x. R(x) \land Q(x)}
+	                    {
+	                      \exists x. P(x) \land Q(x)
+	                      &
+	                      \infer[\{\exists_I\}]
+	                           {\exists x. R(x) \land Q(x)}
+	                           {
+	                             \infer[\andI]
+	                                  {R(x) \land Q(x)}
+	                                  {
+	                                   \infer[\impE]
+		                                     {R(x)}
+		                                     {
+		                                       \infer[\{\forall_E\}]
+		                                              {P(x)\to R(x)}
+		                                              {\forall x. P(x) \to R(x)}
+		                                        &
+		                                        \infer[\andEE]
+		                                                {P(x)}
+		                                                {P(x) \land Q(x)^1}
+		                                      }
+	                                    &
+	                                    \infer[\andED]
+			                                  {Q(x)}
+			                                  {P(x) \land Q(x)^1}
+	                                  }
+	                           }
+	                    }
+	               \]
+			\item $\{\forall x. P(a,x,x), \forall x.\forall y.\forall z. P(x,y,z)\rightarrow P(f(x),y,f(z))\}\vdash P(f(a),a,f(a))$
+               \[
+               \infer[\impE]
+                    {P(f(a),a,f(a))}
+                    {
+                      \infer[\{\forall_E\}]
+                               {P(a,a,a)}
+                               {\forall x. P(a,x,x)}
+                      &
+                      \infer[\{\forall_E\}]
+                                {P(a,a,a) \to P(f(a),a,f(a))}
+                                {\forall x.\forall y.\forall z. P(x,y,z) \to P(f(x),y,f(z))}
+                    }
+               \]
+			\item $\{\forall x. P(x) \to Q(x)\} \vdash \forall x. P(x) \to \forall x. Q(x)$
+				\[
+				\infer[\impI^1]
+					{\forall x. P(x) \to \forall x. Q(x)}
+					{
+						\infer[\{\forall_I\}]
+							{\forall x . Q(x)}
+							{
+								\infer[\impE]
+									{Q(x)}
+									{
+										\infer[\{\forall_E\}]
+											{P(x) \to Q(x)}
+											{\forall x. P(x) \to Q(x)}
+										&
+										\infer[\{\forall_E\}]
+											{P(x)}
+											{\forall x. P(x)^1}
+									}
+							}
+					}
+				\]
+			\item $\{\exists x. \neg P(x)\} \vdash \neg \forall x. P(x)$
+				\[
+					\infer[\{\exists_E\}^1]
+						{\neg \forall x. P(x)}
+						{
+							\exists x. \neg P(x)
+							&
+							\infer[\impI^2]
+								{\neg \forall x. p(x)}
+								{
+									\infer[\impE]
+										{\bot}
+										{
+											\neg P(x)^1
+											&
+											\infer[\{\forall_E\}]
+												{P(x)}
+												{\forall x. P(x)^2}
+										}
+								}
+						}
+				\]
+		\end{enumerate}
+	\end{enumerate}
+	
+\subsection{3.11 Exerc\'icios}
+	
+		\begin{enumerate}
+			\item 
+			\begin{enumerate}
+				\item
+				\[
+				   \begin{array}{lcl}
+				   	  \forall x. P(x) \to \neg Q(x) & = & \\
+				   	  \neg \exists x. \neg(P(x) \to \neg Q(x)) & = & \{\neg-\exists\} \\
+				   	  \neg \exists x. \neg(\neg P(x) \lor \neg Q(x)) & = & \{\text{implica\c{c}\~ao}\} \\
+				   	  \neg \exists x. P(x) \land Q(x) & = & \\
+				   \end{array}
+				\]
+				\item
+				\[
+				   \begin{array}{lcl}
+				   	  \neg \forall x.\exists y.R(x, y) \land \neg P(x, y) & = & \\
+				   	  \exists x. \neg(\exists y. R(x, y) \land \neg P(x, y)) & = & \{\neg-\forall\} \\
+				   	  \exists x. \forall y.\neg(R (x, y) \land \neg P(x, y)) & = & \{\neg-\exists\}\\
+				   	  \exists x. \forall y. \neg R(x, y) \lor P (x, y) & = & \\
+				   	  \exists x. \forall y. R(x, y) \to P(x, y) & = & \{\text{implica\c{c}\~ao}\} \\
+				   \end{array}
+				\]
+			\end{enumerate}
+		\end{enumerate}
+	
