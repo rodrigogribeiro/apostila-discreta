@@ -457,9 +457,9 @@ devemos definir de maneira precisa o escopo de um quantificador em uma
 fórmula.
 \begin{Definition}[Escopo de quantificadores]
 Seja $x\in\mathcal{V}$ uma variável e $\alpha \in\mathbb{F}$ uma
-fórmula. Dizemos que o escopo da variável $x$ em $\forall x. F$ é a
-fórmula $F$. De maneira similar, o escopo de $x$ em $\exists x. F$ é
-também a fórmula $F$.
+fórmula. Dizemos que o escopo da variável $x$ em $\forall x. \alpha$ é a
+fórmula $\alpha$. De maneira similar, o escopo de $x$ em $\exists x. \alpha$ é
+também a fórmula $\alpha$.
 \end{Definition}
 Dizemos que uma variável é livre em uma certa fórmula se esta não está
 no escopo de nenhum quantificador. Uma variável que não é livre é dita
@@ -988,7 +988,7 @@ conjunção, uma vez que, ao utilizarmos esta regra estamos concluindo
 um dos possivelmente infinitos componentes da conjunção
 $\bigwedge_{u\in U}[x\mapsto u]\,P(x)$.
 \begin{Example}
-Consider a tarefa de demonstrar o seguinte sequente $\{F(a),\forall
+Considere a tarefa de demonstrar o seguinte sequente $\{F(a),\forall
 x. F(x) \to G(x)\} \vdash G(a)$. Para demonstrar esse sequente,
 utilizaremos a eliminação da implicação, para concluir $G(a)$ a partir
 de $F(a)$ e $F(a) \to G(a)$. Esta última pode ser deduzida utilizando
