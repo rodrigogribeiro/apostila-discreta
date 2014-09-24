@@ -97,6 +97,28 @@ A cardinalidade de cada um deles é:
   |L| & = &2 \\
 \end{array}
 \]
+Note que as seguintes proposições sobre pertinência nestes conjuntos
+são verdadeiras:
+\[
+\begin{array}{l}
+a \in V \\
+\text{arara} \in P \\
+2 \in X\\
+\{1\} \in L\\
+1 \in L\\
+\end{array}
+\]
+Por sua vez, as seguintes proposições são falsas considerando os
+conjuntos anteriores:
+\[
+\begin{array}{l}
+p \in V \\
+\text{vaca}\in P \\
+7 \in X \\
+2 \in L \\
+\{1,\{1\}\} \in \{1,\{1\}\}
+\end{array}
+\]
 \end{Example}
 
 \subsection{Set Comprehension}
@@ -112,6 +134,8 @@ em que $x$ é uma variável  (ou uma expressão), $X$ um conjunto e $p(x)$ é um
 da lógica de predicados. Esta maneira de descrever conjuntos é útil
 para descrever conjuntos com muitos elementos ou infinitos.
 
+É importante notar que ocorrências da variável $x$ em $p(x)$ no set
+comprehension $\{x\in X\,|\,p(x)\}$ são consideradas ligadas por
 Podemos caracterizar a pertinência a um conjunto definido usando set
 comprehension utilizando a seguinte equivalência:
 
@@ -147,6 +171,16 @@ T & = & \{x\in\mathbb{N}\,|\ \exists y. y\in\mathbb{N}\land x =
 3y\}\\
 \end{array}
 \]
+
+Podemos representar os fatos de que $a \in P$ e $b \in T$ como as
+seguintes fórmulas:
+\[
+\begin{array}{l}
+a \in \mathbb{N} \land \exists y. y\in\mathbb{N} \land a = 2y\\
+b \in \mathbb{N} \land \exists y. y\in\mathbb{N} \land b = 3y\\
+\end{array}
+\]
+
 Note que como utilizarmos uma fórmula da lógica de predicados para
 descrever elementos de um conjunto não há margem para interpretações
 ambíguas.
@@ -203,3 +237,238 @@ Evidentemente, temos que $\mathcal{S} \in \mathcal{S}$ ou $\mathcal{S}
     de $\mathcal{S}$, temos que $\mathcal{S} \in \mathcal{S}$, o que
     constitui uma contradição.
 \end{itemize}
+Como ambos os casos cobrem todas as possibilidades, temos que
+$\mathcal{S}\in\mathcal{S}$ não pode ser uma proposição lógica, já que
+esta não pode ser determinada como verdadeira ou falsa.
+
+\subsection{Conjuntos Definidos Recursivamente}
+
+Conjuntos definidos por recursão são muito utilizados em computação
+para a definição de estruturas de dados e algoritmos. Nesta seção,
+veremos como definir conjuntos recursivamente.
+
+Assim como toda definição recursiva, conjuntos
+indutivos\footnote{Conjuntos definidos recursivamente são também conhecidos
+  como conjuntos indutivos.} devem possuir casos base e passos
+recursivos. Porém, apenas estes elementos são suficientes para
+caracterizar uma definição de um conjunto. Adicionalmente, devemos
+possuir uma regra, denominada \emph{regra de
+  fechamento}\footnote{Normalmente, estas regras são denominadas como
+  \emph{extremal rule}, em textos sobre teoria de conjuntos.} que
+especifica que todos os elementos do conjunto definido são formados a
+partir do(s) caso(s) base e de um número finito de usos do(s)
+passo(s) recursivo(s).
+
+Resumindo, para definir um conjunto recursivamente devemos especificar
+três partes: casos base, passos recursivos e regra de fechamento:
+\begin{itemize}
+  \item Casos base consistem de afirmativas simples, como $1\in S$.
+   \item Passos recursivos consistem de afirmativas envolvendo
+     implicações e quantificadores universais, como \[\forall x. x\in
+     S \to x + 1 \in S\]
+   \item Regras de fechamento especificam que todo elemento do
+     conjunto pode ser obtido a partir de um número finito de
+     utilização das regras anteriores.
+\end{itemize}
+
+A seguir apresentaremos algumas definições de conjuntos definidos
+recursivamente.
+
+\begin{Example}
+Como um primeiro exemplo de definição de um conjunto recursivo, vamos
+considerar o conjunto dos números naturais,
+$\mathbb{N}$. O leitor deve lembrar da definição do conjunto
+$\mathcal{N}$ do capítulo \ref{cap1} em que apresentamos a sintaxe de
+termos que representam números naturais utilizando a operação de
+sucessor e uma constante para representar o número $0$.
+
+Utilizaremos a
+mesma idéia para a definição recursiva de $\mathbb{N}$:
+\begin{itemize}
+  \item Caso base: $0\in\mathbb{N}$.
+  \item Passo recursivo: $\forall n. n\in\mathbb{N}\to n + 1 \in
+    \mathbb{N}$
+  \item Regra de fechamento: Todo $n\in\mathbb{N}$ pode se obtido por
+    um número finito de aplicações das regras anteriores.
+\end{itemize}
+\end{Example}
+
+\begin{Example}
+Considere  $P=\{x\in\mathbb{N}\,|\,\exists
+y.y\in\mathbb{N}\land x = 2y\}$, que obviamente representa o conjunto
+de todos os números naturais pares. Podemos definí-lo recursivamente
+se percebermos que este é formado por um caso base ($0\in P$) e que se
+$n\in P$ então $n + 2\in P$, o que é definido formalmente a seguir:
+\begin{itemize}
+  \item Caso base: $0\in P$
+  \item Passo recursivo: $\forall n. n\in P \to n + 2 \in P$
+  \item Regra de fechamento: Todo $n\in P$ pode ser obtido por um
+    número finito de aplicações de regras anteriores.
+\end{itemize}
+\end{Example}
+
+A seguir apresentamos uma exemplo de definição maior: a
+definição recursiva do conjunto dos números inteiros.
+
+\begin{Example}
+O conjunto dos números naturais possui uma definição direta porquê
+este é infinito em apenas ``uma direção'', o que não acontece com o
+conjunto $\mathbb{Z}$, que possui infinitos elementos positivos e negativos.
+Então como definir este conjunto recursivamente?
+
+Uma primeira tentativa seria algo similar a dizer que $0\in\mathbb{Z}$
+e que se $n \in \mathbb{Z}$ então $n + 1$ e $n - 1$ também pertencem a
+$\mathbb{Z}$. Mais formalmente:
+\begin{itemize}
+  \item Caso base: $0\in\mathbb{Z}$.
+  \item Passo recursivo: $\forall x. x\in\mathbb{Z} \to x+1 \in
+    \mathbb{Z} \land x - 1 \in\mathbb{Z}$
+\end{itemize}
+
+Apesar de correta, a definição anterior possui um inconveniente:
+existe mais de uma maneira de deduzirmos que um certo número pertence
+ou não a $Z$. Como exemplo, considere a seguinte derivação, de que
+$-2\in\mathbb{Z}$:
+
+\[
+\infer[\andED]{-2\in\mathbb{Z}}
+                    {
+                      \infer[\impE]{0\in\mathbb{Z}\land -2
+                        \in\mathbb{Z}}
+                               {
+                                 \infer[\forallE]{-1\in\mathbb{Z} \to
+                                   0 \in\mathbb{Z} \land -2
+                                   \in\mathbb{Z}}
+                                   {\infer[\Id]{\forall n.n\in\mathbb{Z}\to n + 1
+                                     \in\mathbb{Z}\land n - 1 \in
+                                     \mathbb{Z}}{}}
+                                    &
+                                 \infer[\andED]{-1\in\mathbb{Z}}
+                                           {
+                                             \infer[\impE]{1\in\mathbb{Z}\land
+                                             1\in\mathbb{Z}}
+                                               {
+                                                 \infer[\Id]{0\in\mathbb{Z}}{}
+                                                 &
+                                                 \infer[\forallE]{0\in\mathbb{Z}\to
+                                                 1 \in\mathbb{Z}\land
+                                                 -1\in\mathbb{Z}}{
+                                                 \infer[\Id]{\forall
+                                               n. n\in\mathbb{Z}\to n
+                                               + 1 \in \mathbb{Z}\land
+                                             n - 1 \in\mathbb{Z}}{}}
+                                               }
+                                           }
+                               }
+                    }
+\]
+Veja que da mesma maneira que concluímos que $-2\in\mathbb{Z}$,
+poderíamos ter utilizado a regra de $\andEE$ para concluir que
+$0\in\mathbb{Z}$. Isto mostra que existe mais de uma maneira de
+deduzir que $0\in\mathbb{Z}$: uma é utilizando o caso base do conjunto
+$\mathbb{Z}$ e outra é utilizando uma combinação de passo recursivo e
+do caso base.
+
+Em termos matemáticos, a definição anterior não é problemática. Porém,
+definições que geram ``elementos repetidos'' são inconvenientes
+computacionalmente pois, esta repetição pode denotar desperdício de
+tempo de CPU ou de memória (para armazenar as repetições). Desta
+forma, devemos sempre especificar conjuntos recursivos de maneira que
+haja uma única maneira de representar qualquer elemento deste conjunto.
+
+Uma definição equivalente que não possui o inconveniente de gerar
+elementos repetidos é baseada na seguinte observação:
+se $n\in\mathbb{Z}$ então tanto $n + 1$ quanto $-(n + 1)$
+pertencem a $\mathbb{Z}$. Estes critérios serão utilizados na
+definição recursiva de $\mathbb{Z}$, apresentada a seguir:
+\begin{itemize}
+  \item Caso base: $0\in\mathbb{Z}$.
+  \item Caso recursivo: $\forall n. n\in\mathbb{Z}\land n\geq 0 \to (n
+    + 1) \in \mathbb{Z} \land -(n + 1) \in\mathbb{Z}$
+  \item Regra de fechamento: Todo $n\in\mathbb{Z}$ pode ser gerado por
+    um número finito de aplicações das regras anteriores.
+\end{itemize}
+É útil que o leitor tente verificar que a derivação de
+$-2\in\mathbb{Z}$, utilizando esta última definição não possui o
+inconveniente de gerar elementos repetidos.
+\end{Example}
+
+As formas apresentadas de descrever conjuntos não são equivalentes
+entre si. Evidentemente, não podemos utilizar enumeração para
+representar conjuntos infinitos. Porém, mesmo as técnicas de set
+comprehension e recursividade não são equivalentes. Como exemplo,
+considere o seguinte conjunto:
+\[\{x\in\mathbb{R}\,|\,0 \leq x \leq 1\}\]
+Não é possível construir uma definição recursiva para este conjunto,
+uma vez que, dado um número real $x$ não é possível determinar de
+maneira única qual seria o ``sucessor''\footnote{Este uso da palavra
+  sucessor é um abuso de linguagem.} de $x$ na reta real.
+
+Outra maneira de descrever conjuntos é definindo-os utilizando
+operações sobre conjuntos existentes. Este é o assunto da próxima
+seção.
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Apresente uma definição recursiva do conjunto de números naturais
+    ímpares.
+  \item Apresente uma definição recursiva do conjunto de números
+    inteiros múltiplos de 5.
+  \item Uma sequência é um palíndromo se esta pode ser lida da mesma
+    maneira da esquerda para direita quanto da direita para
+    esquerda. Apresente uma definição recursiva do conjunto
+    $\mathbb{P}$, que consiste de todos os palíndromos de bits
+  (formados apenas pelos bits 0 e 1).
+\end{enumerate}
+
+\section{Operações Sobre Conjuntos}
+
+Existem diversas operações que podem ser aplicadas a conjuntos. Seja
+para criar outros conjuntos ou mesmo para compará-los. As próximas
+subseções apresentam estas propriedades.
+
+\subsection{Subconjuntos e Igualdade de Conjuntos}
+
+Existem diversas relações entre conjuntos que são determinadas pelos
+elementos que estes compartilham. Uma destas operações é a de
+\emph{continência}. A expressão $A\subseteq B$, que  pode ser lida
+como ``$A$ está contido em $B$'', é verdadeira se todo elemento de $A$
+é também elemento de $B$. Esta idéia é definida formalmente a seguir:
+\begin{Definition}[Continência]
+Sejam $A$ e $B$ dois conjuntos quaisquer. Dizemos que $A \subseteq B$
+se e somente se
+\[\forall x. x\in A \to x \in B\]
+\end{Definition}
+
+Por sua vez, dizemos que dois conjuntos são iguais se estes possuem
+exatamente os mesmos elementos. A seguinte definição formaliza este
+conceito.
+
+\begin{Definition}[Igualdade]
+Sejam $A$ e $B$ dois conjuntos quaisquer. Dizemos que $A = B$ se e
+somente se:
+\[
+\forall x. x\in A \leftrightarrow x \in B
+\]
+\end{Definition}
+Utilizando álgebra para lógica de predicados e a definição de $A
+\subseteq B$, podemos obter uma definição alternativa da igualdade de
+conjuntos. Esta é demonstrada a seguir:
+\[
+\begin{array}{lc}
+A = B & \equiv \\
+\forall x. x \in A \leftrightarrow x \in B & \equiv\\
+\forall x. (x\in A \to x \in B) \land (x \in B \to x \in A) & \equiv\\
+(\forall x. x\in A \to x \in B) \land (\forall x . x\in B \to x \in A)
+& \equiv\\
+A\subseteq B\land B \subseteq A
+\end{array}
+\]
+Logo, podemos concluir que $A = B$ é equivalente a $A \subseteq B
+\land B\subseteq A$.
+
+A definição da igualdade de conjuntos implica que  para dois conjuntos
+serem considerados diferentes, um deles deve possuir pelo menos um
+elemento que o outro não possui. Note que se $A \neq B$ e $A\subseteq
+B$, podemos dizer que existe $y$ pertencente a $B$ tal que $y\not\in A$.
