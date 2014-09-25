@@ -766,7 +766,7 @@ predicados.
 Seja $I=(U,R,F)$ uma estrutura. Definimos a função $\llbracket\_\rrbracket :
 \mathbb{F}\to \{T,F\}$, que associa a cada fórmula fechada da lógica de
 predicados o seu respetivo valor lógico, recursivamente como (em que
-$t_1,...,t_n$ representam termos, $u$ uma constante qualquer, $\alpha$,
+$t_1,...,t_n$ representam termos, $c\in\mathcal{C}$ uma constante qualquer, $\alpha$,
 $\beta$ fórmulas quaisquer e $\circ\in\{\lor,\land,\to,\leftrightarrow\}$):
 \[
 \begin{array}{lclc}
@@ -779,9 +779,9 @@ $\beta$ fórmulas quaisquer e $\circ\in\{\lor,\land,\to,\leftrightarrow\}$):
 \llbracket \alpha \circ \beta \rrbracket & = & \llbracket \alpha
 \rrbracket \circ \llbracket \beta \rrbracket & (5)\\
 \llbracket \forall x. \alpha \rrbracket & = & \bigwedge\limits_{u\in
-  U}\llbracket [x \mapsto u] \alpha \rrbracket & (6)\\
+  \mathcal{C}}\llbracket [x \mapsto u] \alpha \rrbracket & (6)\\
 \llbracket \exists x. \alpha \rrbracket & = & \bigvee\limits_{u\in
-  U}\llbracket [x \mapsto u] \alpha \rrbracket & (7)\\
+  \mathcal{C}}\llbracket [x \mapsto u] \alpha \rrbracket & (7)\\
 \end{array}
 \]
 A notação $[x\mapsto u]\alpha$ denota a fórmula $\alpha$ em que toda
