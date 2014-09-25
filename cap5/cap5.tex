@@ -471,4 +471,51 @@ Logo, podemos concluir que $A = B$ é equivalente a $A \subseteq B
 A definição da igualdade de conjuntos implica que  para dois conjuntos
 serem considerados diferentes, um deles deve possuir pelo menos um
 elemento que o outro não possui. Note que se $A \neq B$ e $A\subseteq
-B$, podemos dizer que existe $y$ pertencente a $B$ tal que $y\not\in A$.
+B$, podemos dizer que existe $y$ pertencente a $B$ tal que $y\not\in
+A$. Esta noção é definida formalmente a seguir.
+
+\begin{Definition}[Subconjunto Próprio]
+Sejam $A$ e $B$ dois conjuntos quaisquer. Dizemos que $A$ é um
+subconjunto próprio de $B$, $A\subset B$, se e somente se $A\subseteq
+B$ e $A \neq B$.
+\end{Definition}
+
+\subsection{União, Interseção e Diferença de Conjuntos}
+
+Nesta seção descreveremos formalmente operações que já devem ser
+conhecidas pelo leitor.
+\begin{itemize}
+  \item A união de dois conjuntos $A$ e $B$, $A\cup B$, é o conjunto
+    que contém todos os elementos que estão em $A$ ou em $B$ (ou
+    ambos). Todo elemento de $A\cup B$ deve pertencer a $A$ ou $B$ ou
+    ambos.
+  \item A interseção de dois conjuntos $A$ e $B$, $A\cap B$, é o
+    conjunto que contém todos os elementos que estão em $A$ e em $B$.
+  \item A diferença de dois conjuntos $A$ e $B$, $A - B$, é o conjunto
+    de todos os elementos que estão em $A$, mas não estão em $B$.
+\end{itemize}
+
+A seguir, definimos estas operações de maneira precisa.
+
+\begin{Definition}[União, interseção e diferença]
+Sejam $A$ e $B$ dois conjuntos quaisquer. Então:
+\begin{itemize}
+  \item $A\cup B = \{x \,|\, x\in A \lor x \in B\}$
+  \item $A\cap B = \{x \,|\, x\in A \land x \in B\}$
+  \item $A - B = \{x \,|\, x\in A \land x \not\in B\}$
+\end{itemize}
+\end{Definition}
+
+\begin{Example}
+Sejam $A =\{1,2,3\}$, $B = \{3,4,5\}$ e $C = \{4,5,6\}$. Então:
+\[
+\begin{array}{lcl}
+  A \cup B & = & \{1,2,3,4,5\} \\
+ A \cap B & = & \{3\} \\
+ A - B & = & \{1,2\} \\
+ A \cup C & = & \{1,2,3,4,5,6\}\\
+ A\cap C & = & \emptyset \\
+ A - C & = & \{1,2,3\}\\
+\end{array}
+\]
+\end{Example}
