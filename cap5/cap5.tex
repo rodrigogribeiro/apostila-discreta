@@ -186,13 +186,17 @@ descrever elementos de um conjunto não há margem para interpretações
 ambíguas.
 \end{Example}
 
-Devemos sempre especificar qual o conjunto de
-``origem''\footnote{Considera-se como conjunto ``origem'' do set
-  comprehension $\{x\in X\,|\,p(x)\}$ o conjunto $X$.} dos elementos
-para os quais estamos definindo um conjunto utilizando set comprehension.
-A não especificação do conjunto de origem permite a formulação de
-paradoxos, como o conhecido paradoxo de Russell, descoberto por
-Bertrand Russell no início do século XX.
+O mecanismo de set comprehension é bastante expressivo. Inclusive
+devemos ter alguns cuidados para evitar a definição de paradoxos, como
+o descrito na próxima seção.
+
+% Devemos sempre especificar qual o conjunto de
+% ``origem''\footnote{Considera-se como conjunto ``origem'' do set
+%   comprehension $\{x\in X\,|\,p(x)\}$ o conjunto $X$.} dos elementos
+% para os quais estamos definindo um conjunto utilizando set comprehension.
+% A não especificação do conjunto de origem permite a formulação de
+% paradoxos, como o conhecido paradoxo de Russell, descoberto por
+% Bertrand Russell no início do século XX.
 
 \subsubsection{O Paradoxo de Russell}
 
@@ -346,7 +350,7 @@ $-2\in\mathbb{Z}$:
                                  \infer[\andED]{-1\in\mathbb{Z}}
                                            {
                                              \infer[\impE]{1\in\mathbb{Z}\land
-                                             1\in\mathbb{Z}}
+                                             -1\in\mathbb{Z}}
                                                {
                                                  \infer[\Id]{0\in\mathbb{Z}}{}
                                                  &
@@ -480,10 +484,11 @@ subconjunto próprio de $B$, $A\subset B$, se e somente se $A\subseteq
 B$ e $A \neq B$.
 \end{Definition}
 
-\subsection{União, Interseção e Diferença de Conjuntos}
+\subsection{União, Interseção, Complemento e Diferença de Conjuntos}
 
-Nesta seção descreveremos formalmente operações que já devem ser
-conhecidas pelo leitor.
+Nesta seção descreveremos formalmente operações sobre conjuntos que já devem ser
+conhecidas pelo leitor. Para todas as operações, considere que os
+conjuntos $A$ e $B$ são subconjuntos de um conjunto universo $\mathcal{U}$.
 \begin{itemize}
   \item A união de dois conjuntos $A$ e $B$, $A\cup B$, é o conjunto
     que contém todos os elementos que estão em $A$ ou em $B$ (ou
@@ -491,6 +496,9 @@ conhecidas pelo leitor.
     ambos.
   \item A interseção de dois conjuntos $A$ e $B$, $A\cap B$, é o
     conjunto que contém todos os elementos que estão em $A$ e em $B$.
+  \item O complemento de um conjunto $A$, $\overline{A}$, é o conjunto
+    de todos elementos que pertencem ao conjunto universo
+    $\mathcal{U}$ e não pertencem a $A$.
   \item A diferença de dois conjuntos $A$ e $B$, $A - B$, é o conjunto
     de todos os elementos que estão em $A$, mas não estão em $B$.
 \end{itemize}
@@ -502,12 +510,14 @@ Sejam $A$ e $B$ dois conjuntos quaisquer. Então:
 \begin{itemize}
   \item $A\cup B = \{x \,|\, x\in A \lor x \in B\}$
   \item $A\cap B = \{x \,|\, x\in A \land x \in B\}$
+  \item $\overline{A} = \{x\,|\,x\in\mathcal{U}\land x\not\in A\}$
   \item $A - B = \{x \,|\, x\in A \land x \not\in B\}$
 \end{itemize}
+Note que $\overline{A} = \mathcal{U} - A$.
 \end{Definition}
 
 \begin{Example}
-Sejam $A =\{1,2,3\}$, $B = \{3,4,5\}$ e $C = \{4,5,6\}$. Então:
+Sejam $A =\{1,2,3\}$, $B = \{3,4,5\}$, $C = \{4,5,6\}$ e $\mathcal{U} =\{1,2,3,4,5,6,7\}$. Então:
 \[
 \begin{array}{lcl}
   A \cup B & = & \{1,2,3,4,5\} \\
@@ -516,6 +526,49 @@ Sejam $A =\{1,2,3\}$, $B = \{3,4,5\}$ e $C = \{4,5,6\}$. Então:
  A \cup C & = & \{1,2,3,4,5,6\}\\
  A\cap C & = & \emptyset \\
  A - C & = & \{1,2,3\}\\
+\overline{A} & = & \{2,3,4,5,6,7\}\\
 \end{array}
 \]
 \end{Example}
+
+\subsection{Famílias de Conjuntos}
+
+Damos o nome de família conjuntos que possuem como elementos outros
+conjuntos contidos em um universo $\mathcal{U}$. Um exemplo de família
+é o chamado conjunto potência ou conjunto das partes de um conjunto,
+definido a seguir.
+
+\begin{Definition}[Conjunto Potência]
+Seja $A$ um conjunto qualquer. Denomina-se conjunto potência ou
+conjunto das partes o conjunto de todos os subconjuntos de
+$A$. Representamos este conjunto por $\mathcal{P}(A)$. Mais
+formalmente, o conjunto potência é definido como:
+\[
+\mathcal{P}(A) = \{X\,|\, X \subseteq A\}
+\]
+\end{Definition}
+
+\begin{Example}
+Sejam $A = \{1,2\}$ e $B = \emptyset$. Temos que $\mathcal{P}(A) =
+\{\emptyset,\{1\},\{2\},\{1,2\}\}$ e $\mathcal{P}(B) =
+\{\emptyset\}$.
+\end{Example}
+Note que se $|A| = n$, para algum $n\in\mathbb{N}$, então
+$|\mathcal{P}(A)| = 2^n$.
+
+As operações de união e interseção de conjuntos se estendem
+naturalmente para famílias de conjuntos. A definição destas operações
+é apresentada a seguir.
+
+\begin{Definition}[União e Interseção de Famílias] Seja $\mathcal{F}$
+  uma família não vazia de conjuntos. A união e interseção da família
+  $\mathcal{F}$ são definidas como:
+\[
+\begin{array}{lcl}
+  \bigcup\mathcal{F} & = & \{x\,|\,\exists A. A \in\mathcal{F}\land x
+  \in A\} \\
+  \bigcap\mathcal{F} & = & \{x\,|\,\forall A. A \in\mathcal{F}\to x
+  \in A\} \\
+\end{array}
+\]
+\end{Definition}
