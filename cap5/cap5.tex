@@ -186,6 +186,24 @@ descrever elementos de um conjunto não há margem para interpretações
 ambíguas.
 \end{Example}
 
+\begin{Example}
+Considere o tarefa de definir o conjunto de todos os números naturais
+que são quadrados perfeitos. Mais formalmente:
+\[\{n^2\,|\,n\in\mathbb{N}\}\]
+Note que se $y\in \{n^2\,|\,n\in\mathbb{N}\}$ deveríamos ser capazes
+de deduzir que $y$ é um quadrado perfeito. A questão é que o conjunto
+\[\{n^2\,|\,n\in\mathbb{N}\}\]
+é equivalente a
+\[\{x\,|\,\exists n. n\in\mathbb{N} \land x = n^2\}\]
+que, permite-nos deduzir que $y$ é um quadrado perfeito.
+\end{Example}
+
+De maneira geral, se um conjunto é definido usando set comprehension
+em que os elementos são especificados em termos de uma expressão ao
+invés de uma simples variável, esta pode ser convertida em uma
+definição equivalente em que os elementos são especificados somente
+usando variáveis, como no exemplo anterior.
+
 O mecanismo de set comprehension é bastante expressivo. Inclusive
 devemos ter alguns cuidados para evitar a definição de paradoxos, como
 o descrito na próxima seção.
@@ -513,7 +531,8 @@ Sejam $A$ e $B$ dois conjuntos quaisquer. Então:
   \item $\overline{A} = \{x\,|\,x\in\mathcal{U}\land x\not\in A\}$
   \item $A - B = \{x \,|\, x\in A \land x \not\in B\}$
 \end{itemize}
-Note que $\overline{A} = \mathcal{U} - A$.
+Note que $\overline{A} = \mathcal{U} - A$. Dizemos que $A$ e $B$ são
+\emph{disjuntos} se $A\cap B = \emptyset$
 \end{Definition}
 
 \begin{Example}
@@ -572,3 +591,88 @@ naturalmente para famílias de conjuntos. A definição destas operações
 \end{array}
 \]
 \end{Definition}
+
+\begin{Example}
+Seja $\mathcal{F}=\{\{1,2,3\},\{2,3,4\},\{3,4,5\}\}$ uma família de
+conjuntos. Temos que:
+\[
+\begin{array}{lclcl}
+\bigcap\mathcal{F} & = & \{1,2,3\}\cap\{2,3,4\}\cap\{3,4,5\} & = &
+\{3\}\\
+\bigcup\mathcal{F} & = & \{1,2,3\}\cup\{2,3,4\}\cup\{3,4,5\} & = & \{1,2,3,4,5\}\\
+\end{array}
+\]
+\end{Example}
+
+Finalmente, uma notação alternativa para famílias de conjuntos são as
+chamadas \emph{famílias indexadas}, que são definidas em termos de um
+conjunto de índices.
+
+\begin{Definition}[Famílias Indexadas]
+Seja $I$ um conjunto não vazio, denominado conjunto de
+índices. Denominamos por família indexada o conjunto
+\[\mathcal{F}=\{A_i\,|\,i\in I\}\]
+em que cada $A_i$ é definido em termos dos elementos do conjunto de
+índices. A união e interseção de famílias indexadas é formalizada
+como:
+\[
+\begin{array}{lcl}
+\bigcup_{i\in I} A_i & = & \{x\,|\,\exists i. i\in I \land x\in
+A_i\}\\
+\bigcap_{i\in I} A_i & = & \{x\,|\,\forall i. i\in I \to x\in A_i\}\\
+\end{array}
+\]
+\end{Definition}
+
+\begin{Example}
+Considere o seguinte conjunto de índices $I = \{1,2,3\}$ e a família
+indexada $\mathcal{F}=\{A_i\,|\,i\in I\}$, em que
+$A_i=\{i,i+1,i+2\}$. Temos:
+\[
+\begin{array}{lclcl}
+\mathcal{F} & = & \{A_1,A_2,A_3\} & = &
+\{\{1,2,3\},\{2,3,4\},\{3,4,5\}\}\\
+\bigcup_{i\in\{1,2,3\}} & = & \{1,2,3,4,5\} \\
+\bigcap_{i\in\{1,2,3\}} & = & \{3\} \\
+\end{array}
+\]
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+	\item Represente as seguintes f\'ormulas expressas utilizando a linguagem da teoria de conjuntos
+	      utilizando f\'ormulas da l\'ogica de predicados. Voc\^e poder\'a utilizar apenas
+	      os seguintes s\'imbolos em suas respostas: $\in,\not\in,=,\neq,\land,\lor,\rightarrow,\leftrightarrow,\forall,\exists$.
+	      Observe que n\~ao \'e permitido utilizar $\neg$, logo, voc\^e dever\'a utilizar equival\^encias alg\'ebricas para eliminar
+	      as ocorr\^encias de $\neg$.
+	\begin{enumerate}
+		\item $\mathcal{F}\subseteq\mathcal{P}(A)$
+		\item $A\subseteq\{2n\, |\, n\in\mathbb{N}\}$
+		\item $\{n^2 + n + 1\,|\, n\in\mathbb{N}\}\subseteq\{2n + 1\,|\,n\in\mathbb{N}\}$
+		\item $\mathcal{P}(\bigcup_{i\in I}A_i)\not\subseteq \bigcup_{i\in I}\mathcal{P}(A_i)$
+		\item $x\in\bigcup\mathcal{F} - \mathcal{G}$
+		\item $\{x\in B\,|\,x\not\in C\}\in\mathcal{P}(A)$
+		\item $x\in\bigcap_{i\in I}(A_i\bigcup B_i)$
+		\item $x\in (\bigcap_{i\in I} A_i)\cup(\bigcap_{i \in I} B_i)$
+	\end{enumerate}
+	\item Seja $I=\{2,3,4,5\}$ e para cada $i\in I$ considere que $A_i=\{i , i+1, i -1, 2i\}$.
+	\begin{enumerate}
+		\item Liste os elementos de $\mathcal{F} = \{A_i\,|\,i\in I\}$.
+		\item Calcule $\bigcap_{i \in I} A_i$ e $\bigcup_{i \in I} A_i$.
+	\end{enumerate}
+	\item Mostre, utilizando equival\^encias alg\'ebricas da l\'ogica, que $x\in\mathcal{P}(A\cap B)$ \'e equivalente a
+              $x\in\mathcal{P}(A)\cap\mathcal{P}(B)$, para qualquer $x$.
+        \item Apresente exemplos de conjuntos $A$ e $B$ tais que $\mathcal{P}(A\cup B)\neq \mathcal{P}(A) \cup \mathcal{P}(B)$.
+	\item Mostre que se $\mathcal{F} = \emptyset$  ent\~ao a f\'ormula $x\in\bigcup\mathcal{F}$ \'e
+              equivalente a $F$ (contradi\c{c}\~ao).
+	\item Mostre que se $\mathcal{F} = \emptyset$  ent\~ao a f\'ormula $x\in\bigcap\mathcal{F}$ \'e
+              equivalente a $T$ (tautologia).
+\end{enumerate}
+
+
+\section{Álgebra para Conjuntos}
+
+Como operações sobre conjuntos são definidas usando fórmulas da lógica
+(set comprehension), leis algébricas da lógica aplicam-se a expressões
+envolvendo conjuntos.
