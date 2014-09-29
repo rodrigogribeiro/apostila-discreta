@@ -675,4 +675,45 @@ $A_i=\{i,i+1,i+2\}$. Temos:
 
 Como operações sobre conjuntos são definidas usando fórmulas da lógica
 (set comprehension), leis algébricas da lógica aplicam-se a expressões
-envolvendo conjuntos.
+envolvendo conjuntos. A tabela seguinte apresenta as principais
+equivalências algébricas para conjuntos (em que $\circ\in\{\cap,\cup\}$).
+
+\[
+\begin{array}{|l|l|}
+  \hline
+  \begin{array}{lcl}
+    A \circ A & \equiv & A\\
+    A \circ B & \equiv & B \circ A \\
+    (A \circ B) \circ C & \equiv & A \circ (B\circ C) \\
+    A \cup (B\cap C) & \equiv & (A \cup B) \cap (A\cup C)\\
+    A \cap (B\cup C) & \equiv & (A \cap B)\cup (A\cap C) \\
+    A \cup \emptyset & \equiv & A \\
+  \end{array} &
+  \begin{array}{lcl}
+    A \cup \overline{A} & \equiv & \mathcal{U} \\
+    \overline{A\cap B} & \equiv & \overline{A}\cup\overline{B}\\
+    \overline{A\cup B} & \equiv & \overline{A}\cap\overline{B}\\
+    A \cap \emptyset & \equiv & \emptyset\\
+    A \cap \overline{A} & \equiv & \emptyset\\
+  \end{array}
+  \\ \hline
+\end{array}
+\]
+\begin{Example}
+Considere a seguinte demonstração da equivalência
+\[
+[A \cup (B\cap C)]\cap\{[\overline{A}\cup(B\cap C)]\cap \overline{(B\cap C)}\} \equiv \emptyset
+\]
+cuja demonstração apresentamos abaixo:
+\[
+\begin{array}{lc}
+[A\cup (B\cap C)]\cap\{[\overline{A}\cup (B\cap
+C)]\cap\overline{(B\cap C)}\} &\equiv \\
+\lbrack A\cup (B\cap C) \rbrack \cap\{[\overline{A}\cup (B\cap
+C)]\cap\overline{(B\cap C)}\}
+\end{array}
+\]
+
+\end{Example}
+
+\section{Teoremas Envolvendo Conjuntos}
