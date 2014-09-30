@@ -671,7 +671,7 @@ $A_i=\{i,i+1,i+2\}$. Temos:
 \end{enumerate}
 
 
-\section{Álgebra para Conjuntos}
+\section{Leis Algébricas para Conjuntos}
 
 Como operações sobre conjuntos são definidas usando fórmulas da lógica
 (set comprehension), leis algébricas da lógica aplicam-se a expressões
@@ -688,6 +688,7 @@ equivalências algébricas para conjuntos (em que $\circ\in\{\cap,\cup\}$).
     A \cup (B\cap C) & \equiv & (A \cup B) \cap (A\cup C)\\
     A \cap (B\cup C) & \equiv & (A \cap B)\cup (A\cap C) \\
     A \cup \emptyset & \equiv & A \\
+    A - B & \equiv & A \cap \overline{B}\\
   \end{array} &
   \begin{array}{lcl}
     A \cup \overline{A} & \equiv & \mathcal{U} \\
@@ -695,12 +696,17 @@ equivalências algébricas para conjuntos (em que $\circ\in\{\cap,\cup\}$).
     \overline{A\cup B} & \equiv & \overline{A}\cap\overline{B}\\
     A \cap \emptyset & \equiv & \emptyset\\
     A \cap \overline{A} & \equiv & \emptyset\\
+    A \cap \mathcal{U} & \equiv A\\
   \end{array}
   \\ \hline
 \end{array}
 \]
+
+Devido a similaridade das leis algébricas para conjuntos com as da
+lógica, apresentaremos apenas alguns exemplos que ilustram sua utilização.
+
 \begin{Example}
-Considere a seguinte demonstração da equivalência
+Considere a seguinte equivalência
 \[
 [A \cup (B\cap C)]\cap\{[\overline{A}\cup(B\cap C)]\cap \overline{(B\cap C)}\} \equiv \emptyset
 \]
@@ -709,11 +715,73 @@ cuja demonstração apresentamos abaixo:
 \begin{array}{lc}
 [A\cup (B\cap C)]\cap\{[\overline{A}\cup (B\cap
 C)]\cap\overline{(B\cap C)}\} &\equiv \\
-\lbrack A\cup (B\cap C) \rbrack \cap\{[\overline{A}\cup (B\cap
-C)]\cap\overline{(B\cap C)}\}
+\lbrack A\cup (B\cap C) \rbrack \cap\{[\overline{A}\cap \overline{(B\cap
+C)}]\cup\lbrack (B\cap C) \cap \overline{(B\cap C)}\rbrack\} & \equiv \\
+\lbrack A\cup (B\cap C) \rbrack \cap\{[\overline{A}\cap \overline{(B\cap
+C)}]\cup\emptyset\} & \equiv \\
+\lbrack A\cup (B\cap C) \rbrack \cap[\overline{A}\cap \overline{(B\cap
+C)}] & \equiv \\
+\lbrack A\cup (B\cap C) \rbrack \cap \overline{[A\cup (B\cap
+C)]} & \equiv \\
+\emptyset
 \end{array}
 \]
-
+\end{Example}
+\begin{Example}
+Considere a seguinte equivalência
+\[
+\lbrack C \cap (A\cup B) \rbrack \cup [(A\cup B)\cap \overline{C}]
+\equiv A \cup B
+\]
+cuja demonstração apresentamos a seguir:
+\[
+\begin{array}{lc}
+\lbrack C \cap (A\cup B) \rbrack \cup [(A\cup B)\cap \overline{C}] &
+\equiv \\
+\lbrack (A\cup B) \cap C \rbrack \cup [(A\cup B)\cap \overline{C}] &
+\equiv \\
+(A\cup B)\cap (C \cup \overline{C}) & \equiv\\
+(A\cup B)\cap \mathcal{U} & \equiv\\
+A\cup B
+\end{array}
+\]
 \end{Example}
 
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Demonstre as seguintes equivalências algébricas para
+    conjuntos.
+  \begin{enumerate}
+      \item $(A \cup B) \cap (A \cup \overline{B}) \equiv A$
+      \item $A \cap (B \cup \overline{A}) \equiv B\cap A$
+      \item $(A \cup B) - C \equiv (A - C) \cup (B - C)$
+      \item $\overline{\lbrack (\overline{A} \cup \overline{B}) \cap
+          \overline{A}\rbrack}  \equiv A$
+  \end{enumerate}
+\end{enumerate}
+
 \section{Teoremas Envolvendo Conjuntos}
+
+As técnicas de demonstração apresentadas no capítulo \ref{cap4} podem
+ser utilizadas para provar diversos fatos da teoria de conjuntos. Para
+isso, representaremos os fatos expressando fórmulas da teoria de
+conjunto como fórmulas da lógica de predicados, utilizando as definições
+apresentadas neste capítulo.
+
+O restante desta seção apresenta diversos teoremas envolvendo
+conjuntos e suas demonstrações. Inicialmente, consideraremos rascunhos
+com um maior nível de detalhes para um maior entendimento do
+leitor. Gradativamente, menos detalhes serão fornecidos até que
+apresentemos somente o texto final para um dado teorema. Nestes casos,
+recomendamos que o leitor ``preencha'' os detalhes omitidos ou mesmo
+reconstrua todo o rascunho da demonstração em questão.
+
+\begin{Example}
+Como um primeiro exemplo, considere a tarefa de demonstrar o seguinte
+teorema.
+\begin{center}
+Sejam $A$, $B$ e $C$ conjuntos quaisquer. Então se $A\subseteq B$ e
+$B\subseteq C$ então $A\subseteq C$.
+\end{center}
+\end{Example}
