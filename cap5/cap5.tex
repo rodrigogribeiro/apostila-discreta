@@ -780,8 +780,203 @@ reconstrua todo o rascunho da demonstração em questão.
 \begin{Example}
 Como um primeiro exemplo, considere a tarefa de demonstrar o seguinte
 teorema.
-\begin{center}
+\begin{flushleft}
 Sejam $A$, $B$ e $C$ conjuntos quaisquer. Então se $A\subseteq B$ e
 $B\subseteq C$ então $A\subseteq C$.
-\end{center}
+\end{flushleft}
+Primeiramente, temos que o teorema anterior possui como hipóteses que
+$A$, $B$ e $C$ são conjuntos e a conclusão:
+\[
+A\subseteq B \land B \subseteq C \to A \subseteq C
+\]
+A partir disto, podemos montar uma versão inicial do rascunho deste
+teorema:
+\begin{flushleft}
+  \begin{tabular}{ll}
+        Hipóteses & Conclusão \\
+        $A,B,C$ são conjuntos & $A\subseteq B \land B \subseteq C \to
+        A \subseteq C$\\
+  \end{tabular}
+\end{flushleft}
+Evidentemente, esta prova deverá iniciar utilizando a estratégia de
+prova direta para implicação, que produz oa seguinte configuração do
+rascunho:
+\begin{flushleft}
+  \begin{tabular}{ll}
+        Hipóteses & Conclusão \\
+        $A,B,C$ são conjuntos & $A \subseteq C$\\
+        $A\subseteq B$ & \\
+       $B \subseteq C$ & \\
+  \end{tabular}
+\end{flushleft}
+Para demonstrar $A\subseteq C$, devemos expressá-la utilizando sua
+definição usando lógica (o mesmo vale para as hipóteses):
+\begin{flushleft}
+  \begin{tabular}{ll}
+        Hipóteses & Conclusão \\
+        $A,B,C$ são conjuntos & $\forall x. x\in A \to x \in C$\\
+        $\forall y. y\in A \to y \in B$ & \\
+       $\forall z. z \in B \to z \in C$ & \\
+  \end{tabular}
+\end{flushleft}
+Agora, utilizamos a estratégia de prova para o quantificador universal
+e mais uma aplicação de prova direta, o que nos leva a:
+\begin{flushleft}
+  \begin{tabular}{ll}
+        Hipóteses & Conclusão \\
+        $A,B,C$ são conjuntos & $x \in C$\\
+        $\forall y. y\in A \to y \in B$ & \\
+       $\forall z. z \in B \to z \in C$ & \\
+       $x$ arbitrário & \\
+       $x\in A$ & \\
+  \end{tabular}
+\end{flushleft}
+Neste ponto, podemos utilizar a estratégia de uso de hipóteses
+envolvendo o quantificador universal (regra de eliminação deste
+quantificador), obtendo:
+\begin{flushleft}
+  \begin{tabular}{ll}
+        Hipóteses & Conclusão \\
+        $A,B,C$ são conjuntos & $x \in C$\\
+        $\forall y. y\in A \to y \in B$ & \\
+       $\forall z. z \in B \to z \in C$ & \\
+       $x$ arbitrário & \\
+       $x\in A$ & \\
+       $x\in A \to x\in B$ & \\
+  \end{tabular}
+\end{flushleft}
+Usando uma vez a regra de eliminação da implicação, obtemos que $x\in
+B$, conforme apresentado a seguir:
+\begin{flushleft}
+  \begin{tabular}{ll}
+        Hipóteses & Conclusão \\
+        $A,B,C$ são conjuntos & $x \in C$\\
+        $\forall y. y\in A \to y \in B$ & \\
+       $\forall z. z \in B \to z \in C$ & \\
+       $x$ arbitrário & \\
+       $x\in A$ & \\
+       $x\in A \to x\in B$ & \\
+       $x\in B$ & \\
+  \end{tabular}
+\end{flushleft}
+Eliminando novamente o quantificador universal, obtemos:
+\begin{flushleft}
+  \begin{tabular}{ll}
+        Hipóteses & Conclusão \\
+        $A,B,C$ são conjuntos & $x \in C$\\
+        $\forall y. y\in A \to y \in B$ & \\
+       $\forall z. z \in B \to z \in C$ & \\
+       $x$ arbitrário & \\
+       $x\in A$ & \\
+       $x\in A \to x\in B$ & \\
+       $x\in B$ & \\
+       $x\in B \to x \in C$ & \\
+  \end{tabular}
+\end{flushleft}
+A demonstração é concluída por uma eliminação da implicação que
+permite-nos deduzir que $x\in C$.
+
+O texto para esta dedução é apresentado a seguir.
+\begin{flushleft}
+Suponha que $A,B,C$ são conjuntos quaisquer.\\
+\verb|   |Suponha que $A\subseteq B$ e $B\subseteq C$.\\
+\verb|      |Suponha $x$ arbitrário.\\
+\verb|         |Suponha $x\in A$.\\
+\verb|            |Como $x\in A$ e $A\subseteq B$, temos que $x\in B$.\\
+\verb|            |Como $x\in B$ e $B\subseteq C$, temos que $x\in C$.\\
+\verb|         |Logo, se $x\in A$ então $x\in C$.\\
+\verb|      |Como $x$ é arbitrário, temos que $A\subseteq C$.\\
+\verb|   |Portanto, se $A\subseteq B$ e $B\subseteq C$ então
+$A\subseteq C$.\\
+Logo, se $A,B,C$ são conjuntos e se $A\subseteq B$ e $B\subseteq C$
+então $A\subseteq C$.
+\end{flushleft}
+\end{Example}
+\begin{Example}
+Considere o seguinte teorema:
+\begin{flushleft}
+Suponha $A,B$ e $C$ conjuntos tais que $A - B \subseteq C$. Se $x\in A
+- C$ então $x \in B$.
+\end{flushleft}
+Neste teorema, temos como hipóteses que $A,B,C$ são conjuntos e $A - B
+\subseteq C$. A conclusão deste é expressa pela seguinte fórmula:
+\[
+x\in A - C \to x\in B
+\]
+Inicialmente, o rascunho possui a seguinte forma:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Provar \\
+$A,B,C$ são conjuntos & $x\in A - C \to x\in B$\\
+ $A - B \subseteq C$
+\end{tabular}
+\end{flushleft}
+Usando a estratégia de prova direta, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Provar \\
+$A,B,C$ são conjuntos & $x\in B$\\
+ $A - B \subseteq C$ & \\
+$x\in A - C$ & \\
+\end{tabular}
+\end{flushleft}
+Note que se $x\in A- C$, temos que $x \in A$ e $x\not\in C$\footnote{O
+leitor atento deve ter notado que isto é uma consequência da
+representação de pertinência a conjuntos definidos por set
+comprehension. Isto é, representamos $y\in\{x\in A\,|\, P(x)\}$ como
+$y \in A \land P(y)$.}:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Provar \\
+$A,B,C$ são conjuntos & $x\in B$\\
+ $A - B \subseteq C$ & \\
+$x\in A - C$ & \\
+$x\in A$ & \\
+$x\not\in C$ & \\
+\end{tabular}
+\end{flushleft}
+Aparentemente não há como deduzir que $x\in B$ a partir das
+hipóteses. Neste caso, podemos tentar uma prova por contradição.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Provar \\
+$A,B,C$ são conjuntos & $\bot$\\
+ $A - B \subseteq C$ & \\
+$x\in A - C$ & \\
+$x\in A$ & \\
+$x\not\in C$ & \\
+$x\not\in B$ & \\
+\end{tabular}
+\end{flushleft}
+Uma vez que $x\in A$ e $x\not\in B$, temos que $x\in A - B$.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Provar \\
+$A,B,C$ são conjuntos & $\bot$\\
+ $A - B \subseteq C$ & \\
+$x\in A - C$ & \\
+$x\in A$ & \\
+$x\not\in C$ & \\
+$x\not\in B$ & \\
+$x\in A - B$ & \\
+\end{tabular}
+\end{flushleft}
+Como $x\in A - B$ e $A - B \subseteq C$, temos que $x\in C$, o que
+contradiz a suposição de que $x\not\in C$, concluindo a demonstração.
+Apresentamos o texto desta demonstração a seguir.
+
+\begin{flushleft}
+Suponha $A,B$ e $C$ são conjuntos e que $A - B \subseteq C$.\\
+\verb|  |Suponha que $x\in A - C$.\\
+\verb|    |Suponha que $x\not\in B$.\\
+\verb|       |Como $x\in A - C$, temos que $x\in A$ e $x\not\in C$.\\
+\verb|       |Como $x\in A$ e $x\not\in B$, temos que $x \in A - B$.\\
+\verb|       |Como $x\in A - B$ e $A- B \subseteq C$, temos que $x\in
+C$.\\
+\verb|       |Como $x\in C$ e $x\not\in C$, temos uma contradição.\\
+\verb|    |Assim, temos que $x\in B$.\\
+\verb|  |Logo, se $x\in A - C$ então $x\in B$.\\
+Portanto, $A,B$ e $C$ são conjuntos e que $A - B \subseteq C$ então se
+$x \in A - C$, temos que  $x \in B$
+\end{flushleft}
 \end{Example}

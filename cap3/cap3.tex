@@ -894,7 +894,7 @@ fórmulas, em que a variável ligada a este quantificador é substituída
 por cada um dos elementos do universo de discurso em questão. Mais
 formalmente:
 
-\[\forall x. P(x) \equiv \bigwedge\limits_{u\in U}[x\mapsto u]P(x)\]
+\[\forall x. P(x) \equiv \bigwedge\limits_{u\in C}[x\mapsto u]P(x)\]
 
 Nas subseções seguintes, utilizaremos esta analogia para
 apresentarmos, informalmente, as regras de introdução e eliminação
@@ -909,11 +909,11 @@ quantificador deve ser similar a
 
 \[
 \infer[\forall_{I1}] {\forall x.P(x)}
-                           {\bigwedge\limits_{u\in U}[x\mapsto u] P(x)}
+                           {\bigwedge\limits_{u\in C}[x\mapsto u] P(x)}
 \]
 Isto é, para concluirmos que $\forall x.P(x)$ é provável basta
-demonstrar $[x\mapsto u]P(x)$, em que $u$ representa cada um dos
-elementos pertencentes ao universo de discurso sobre o qual esta
+demonstrar $[x\mapsto u]P(x)$, em que $u$ representa cada uma das
+constantes do universo de discurso sobre o qual esta
 fórmula deve ser interpretada. Esta analogia é válida (e útil) se o
 universo de discurso é finito e possui poucos elementos. Caso
 contrário, essa abordagem para provar $\forall x. P(x)$ é
@@ -986,7 +986,7 @@ constante ou uma variável livre na conclusão da regra $\forallE$.
 A regra $\forallE$ é uma generalização das regras para eliminação da
 conjunção, uma vez que, ao utilizarmos esta regra estamos concluindo
 um dos possivelmente infinitos componentes da conjunção
-$\bigwedge_{u\in U}[x\mapsto u]\,P(x)$.
+$\bigwedge_{u\in C}[x\mapsto u]\,P(x)$.
 \begin{Example}
 Considere a tarefa de demonstrar o seguinte sequente $\{F(a),\forall
 x. F(x) \to G(x)\} \vdash G(a)$. Para demonstrar esse sequente,
@@ -1069,10 +1069,10 @@ fórmula em questão.
 Conforme apresentado na definição \ref{predlogicformulasem}, o
 quantificador existencial pode ser entendido como uma disjunção de
 fórmulas, em que a variável ligada a este quantificador é substituída
-por cada um dos elementos do universo de discurso em questão. Mais
+por cada uma das constantes do universo de discurso em questão. Mais
 formalmente:
 
-\[\exists x. P(x) \equiv \bigvee\limits_{u\in U}[x\mapsto u]P(x)\]
+\[\exists x. P(x) \equiv \bigvee\limits_{u\in C}[x\mapsto u]P(x)\]
 
 Nas subseções seguintes, utilizaremos esta analogia para
 apresentarmos, informalmente, as regras de introdução e eliminação
@@ -1093,7 +1093,7 @@ Note que, para demonstrar que $\exists x. P(x)$ basta mostrar que
 \emph{existe} um valor $a$ que torna a propriedade $P$
 verdadeira. Desta forma, podemos entender a regra $\existsI$ como uma
 generalização das regras de introdução da disjunção, já que para
-provar $\bigvee_{u\in U}  [x\mapsto u]P(x)$
+provar $\bigvee_{u\in C}  [x\mapsto u]P(x)$
 
 Caso o valor $a$ seja uma variável, esta deve ocorrer livre em
 $[x\mapsto a]P(x)$. A seguir apresentamos um exemplo que ilustra a
