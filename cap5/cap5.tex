@@ -980,3 +980,262 @@ Portanto, $A,B$ e $C$ são conjuntos e que $A - B \subseteq C$ então se
 $x \in A - C$, temos que  $x \in B$
 \end{flushleft}
 \end{Example}
+
+\begin{Example}
+Considere o seguinte teorema:
+\begin{flushleft}
+Suponha que $A\cap C\subseteq B$ e $a \in C$. Então $a\not\in A - B$.
+\end{flushleft}
+Este teorema possui como hipóteses os fatos que $A\cap C\subseteq B$ e
+que $a\in C$. A  conclusão deste teorema pode ser expressa pela
+seguinte fórmula da teoria de conjuntos: $a\not\in A - B$. Temos a
+seguinte versão inicial do rascunho:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$A\cap C \subseteq B$ & $a\not\in A - B$.\\
+$a\in C$ &
+\end{tabular}
+\end{flushleft}
+Expressando a conclusão como uma fórmula da lógica, obtemos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$A\cap C \subseteq B$ & $\neg (a\in A \land a \not\in B)$.\\
+$a\in C$ &
+\end{tabular}
+\end{flushleft}
+Utilizando equivalências algébricas podemos mostrar que $\neg (a\in A
+\land a \not\in B) \equiv a\in A \to a \in B$, conforme deduzido a
+seguir:
+\[
+\begin{array}{lc}
+\neg (a\in A \land a \not\in B) & \equiv \\
+a \not\in A \lor \neg a \not\in B & \equiv \\
+a \not\in A \lor a \in B & \equiv \\
+a \in A \to a \in B
+\end{array}
+\]
+Utilizando esta equivalência, obtemos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$A\cap C \subseteq B$ & $a\in A \to a\in B$.\\
+$a\in C$ &
+\end{tabular}
+\end{flushleft}
+Agora, utilizaremos a estratégia de prova direta para implicação,
+obtendo:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$A\cap C \subseteq B$ & $a\in B$.\\
+$a\in C$ & \\
+$a\in A$
+\end{tabular}
+\end{flushleft}
+Uma vez que $a \in A$ e $a\in C$, temos que $a\in A \cap C$ e como $A
+\cap C \subseteq B$, podemos concluir que $a\in B$.
+
+A seguir, apresentamos o texto desta demonstração.
+\begin{flushleft}
+Suponha que $A\cap C\subseteq B$ e $a \in C$.\\
+\verb|   |Suponha que $a\in A$.\\
+\verb|      |Como $a\in A$ e $a\in C$, temos que $a\in A \cap C$.\\
+\verb|      |Como $a\in A\cap C$ e $A\cap C\subseteq B$ então $a\in B$.\\
+\verb|   |Logo, se $a \in A$ então $a\not\in A - B$.\\
+Portanto, se $A\cap C\subseteq B$ e $a \in C$ então $a\not\in A - B$.
+\end{flushleft}
+Vale lembrar que manipulações usando álgebra booleana não devem fazer
+parte da demonstração final. Note que no texto deste exemplo,
+consideramos que a conclusão a ser provada era $a\in A \to a \in B$ ao
+invés da equivalente $a\not\in A - B$.
+\end{Example}
+\begin{Example}
+Considere o seguinte teorema:
+\begin{flushleft}
+Suponha que $A$ e $B$ são conjuntos. Se $A\cap B = A$ então
+$A\subseteq B$.
+\end{flushleft}
+Este teorema possui como hipóteses os fatos de que $A$ e $B$ são
+conjuntos e conclusão a fórmula:
+\[
+A \cap B = A \to A\subseteq B
+\]
+Logo, temos o seguinte rascunho inicial:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$A$ e $B$ são conjuntos & $A \cap B = A \to A\subseteq B$\\
+\end{tabular}
+\end{flushleft}
+Usando prova direta, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$A$ e $B$ são conjuntos & $A\subseteq B$\\
+$A\cap B = A$ & \\
+\end{tabular}
+\end{flushleft}
+Para continuar a demonstração, temos que representar a expressão
+$A\subseteq B$ como uma fórmula da lógica de predicados.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$A$ e $B$ são conjuntos & $\forall x. x\in A \to x \in B$\\
+$A\cap B = A$ & \\
+\end{tabular}
+\end{flushleft}
+Como a conclusão possui um quantificador universal, utilizaremos a
+estratégia de prova para este.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$A$ e $B$ são conjuntos & $x \in B$\\
+$A\cap B = A$ & \\
+$x$ arbitrário & \\
+$x\in A$ &\\
+\end{tabular}
+\end{flushleft}
+Agora, como $A \cap B = A$ e $x\in A$, temos que $x \in A \cap B$ e,
+portanto, $x\in B$, conforme requerido.
+
+O texto para esta demonstração é apresentado a seguir.
+
+\begin{flushleft}
+Suponha que $A\cap B = A$.\\
+\verb|   |Suponha $x$ arbitrário.\\
+\verb|     |Suponha que $x\in A$.\\
+\verb|        |Como $x\in A$ e $A\cap B = A$, temos que $x\in A\cap
+B$.\\
+\verb|        |Como $x\in A\cap B$ temos que $x\in B$.\\
+\verb|     |Logo, se $x\in A$ então $x\in B$.\\
+\verb|   |Como $x$ é arbitrário, temos que $A\subseteq B$.\\
+Portanto, se $A\cap B = A$ então $A\subseteq B$.
+\end{flushleft}
+\end{Example}
+
+\begin{Example}
+Considere o seguinte teorema:
+\begin{flushleft}
+Suponha que $B$ é um conjunto e $\mathcal{F}$ é uma família. Se
+$\bigcup \mathcal{F}\subseteq B$ então $\mathcal{F}\subseteq \mathcal{P}(B)$.
+\end{flushleft}
+Este é o primeiro exemplo que utiliza operações sobre famílias de
+conjuntos e por isso iremos apresentá-lo em maiores
+detalhes. Iniciaremos, como de costume, com o rascunho.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $\bigcup \mathcal{F} \subseteq B \to
+\mathcal{F}\subseteq \mathcal{P}(B)$. \\
+$\mathcal{F}$ é uma família.
+\end{tabular}
+\end{flushleft}
+Usando a técnica de prova direta, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $\mathcal{F}\subseteq \mathcal{P}(B)$. \\
+$\mathcal{F}$ é uma família. & \\
+$\bigcup \mathcal{F} \subseteq B$ & \\
+\end{tabular}
+\end{flushleft}
+Representando a conclusão usando uma fórmula da lógica de predicados,
+temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $\forall x. x\in \mathcal{F} \to x\in\mathcal{P}(B)$. \\
+$\mathcal{F}$ é uma família. & \\
+$\bigcup \mathcal{F} \subseteq B$ & \\
+\end{tabular}
+\end{flushleft}
+Agora, usando a estratégia para o quantificador universal, e prova direta temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $ x\in\mathcal{P}(B)$. \\
+$\mathcal{F}$ é uma família. & \\
+$\bigcup \mathcal{F} \subseteq B$ & \\
+$x$ arbitrário & \\
+$x\in\mathcal{F}$ & \\
+\end{tabular}
+\end{flushleft}
+O próximo passo da demonstração é representar $x\in\mathcal{P}(B)$
+como uma fórmula da lógica, isso será feito em dois passos. Primeiro,
+representamos esta fórmula usando uma equivalente da teoria de
+conjuntos.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $ x\subseteq B$. \\
+$\mathcal{F}$ é uma família. & \\
+$\bigcup \mathcal{F} \subseteq B$ & \\
+$x$ arbitrário & \\
+$x\in\mathcal{F}$ & \\
+\end{tabular}
+\end{flushleft}
+Agora, representando como uma fórmula da lógica obtemos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $ \forall y. y\in x \to y \in B$ \\
+$\mathcal{F}$ é uma família. & \\
+$\bigcup \mathcal{F} \subseteq B$ & \\
+$x$ arbitrário & \\
+$x\in\mathcal{F}$ & \\
+\end{tabular}
+\end{flushleft}
+Usando novamente as estratégias de prova para implicação e
+quantificador universal, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $ y \in B$ \\
+$\mathcal{F}$ é uma família. & \\
+$\bigcup \mathcal{F} \subseteq B$ & \\
+$x$ arbitrário & \\
+$x\in\mathcal{F}$ & \\
+$y$ arbitrário & \\
+$y\in x$ & \\
+\end{tabular}
+\end{flushleft}
+Nosso próximo passo nesta demonstração é utilizar a hipótese $\bigcup
+\mathcal{F} \subseteq B$.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $ y \in B$ \\
+$\mathcal{F}$ é uma família. & \\
+$\forall z. z\in \bigcup \mathcal{F} \to z\in B$ & \\
+$x$ arbitrário & \\
+$x\in\mathcal{F}$ & \\
+$y$ arbitrário & \\
+$y\in x$ & \\
+\end{tabular}
+\end{flushleft}
+A expressão $z\in \bigcup \mathcal{F}$ é representada como $\exists
+A. A\in\mathcal{F}\land z \in A$. Isso nos leva a:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $ y \in B$ \\
+$\mathcal{F}$ é uma família. & \\
+$\forall z.(\exists A. A\in\mathcal{F}\land z \in A) \to z\in B$ & \\
+$x$ arbitrário & \\
+$x\in\mathcal{F}$ & \\
+$y$ arbitrário & \\
+$y\in x$ & \\
+\end{tabular}
+\end{flushleft}
+
+\end{Example}
+\section{Notas Bibliográficas}
+
+Grande parte deste capítulo consiste de definições da teoria de
+conjuntos que podem ser encontradas em qualquer livro de matemática
+discreta, como por exemplo \cite{Velleman06}.
+
+Todos os exemplos de teoremas envolvendo conjuntos podem ser
+encontrados em \cite{Velleman06}.
