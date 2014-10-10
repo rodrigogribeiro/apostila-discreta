@@ -1215,22 +1215,101 @@ $y$ arbitrário & \\
 $y\in x$ & \\
 \end{tabular}
 \end{flushleft}
-A expressão $z\in \bigcup \mathcal{F}$ é representada como $\exists
-A. A\in\mathcal{F}\land z \in A$. Isso nos leva a:
+Como $y\in x$ e $x\in\mathcal{F}$, temos que $y \in \bigcup
+\mathcal{F}$\footnote{Este passo de demonstração é equivalente a
+  utilizar a regra $\existsI$ da dedução natural.}. Usando esta
+dedução, obtemos:
 \begin{flushleft}
 \begin{tabular}{ll}
 Hipóteses & Conclusão \\
 $B$ é um conjunto & $ y \in B$ \\
 $\mathcal{F}$ é uma família. & \\
-$\forall z.(\exists A. A\in\mathcal{F}\land z \in A) \to z\in B$ & \\
+$\forall z. z\in \bigcup \mathcal{F} \to z\in B$ & \\
 $x$ arbitrário & \\
 $x\in\mathcal{F}$ & \\
 $y$ arbitrário & \\
 $y\in x$ & \\
+$y\in\bigcup\mathcal{F}$ &\\
 \end{tabular}
 \end{flushleft}
-
+Agora, basta utilizar uma eliminação do quantificador universal sobre
+a hipótese $\forall z. z\in \bigcup \mathcal{F} \to z\in B$
+substituindo $z$ por $y$. Com isso, obtemos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$B$ é um conjunto & $ y \in B$ \\
+$\mathcal{F}$ é uma família. & \\
+$\forall z. z\in \bigcup \mathcal{F} \to z\in B$ & \\
+$x$ arbitrário & \\
+$x\in\mathcal{F}$ & \\
+$y$ arbitrário & \\
+$y\in x$ & \\
+$y\in\bigcup\mathcal{F}$ &\\
+$y\in \bigcup \mathcal{F} \to y\in B$ & \\
+\end{tabular}
+\end{flushleft}
+Finalmente, concluímos esta demonstração utilizando a regra de
+eliminação da implicação. A seguir, apresentamos o texto
+correspondente a esta demonstração.
+\begin{flushleft}
+Suponha que $\bigcup\mathcal{F}\subseteq B$.\\
+\verb|  |Suponha $x$ arbitrário.\\
+\verb|     |Suponha $x\in\mathcal{F}$.\\
+\verb|        |Suponha $y$ arbitrário.\\
+\verb|           |Suponha $y\in x$.\\
+\verb|              |Como $y\in x$ e $x\in\mathcal{F}$, temos que
+$y\in\bigcup\mathcal{F}$.\\
+\verb|              |Como $y\in\bigcup\mathcal{F}$ e
+$\bigcup\mathcal{F}\subseteq B$, temos que $y\in B$.
+\verb|           |Logo, se $y\in x$ então $y\in B$.\\
+\verb|        |Como $y$ é arbitrário, temos que $x\subseteq B$.\\
+\verb|     |Logo, se $x\in\mathcal{F}$, então $x\in\mathcal{P}(B)$.\\
+\verb|  |Como $x$ é arbitrário, temos que $\mathcal{F}\subseteq\mathcal{P}(B)$.\\
+Portanto, se $\bigcup\mathcal{F}\subseteq B$ então
+$\mathcal{F}\subseteq\mathcal{P}(B)$.
+\end{flushleft}
 \end{Example}
+
+O leitor deve ter  notado que todos os exemplos apresentados utilizam
+a definição de notações da teoria de conjuntos usando set
+comprehension e usam a seguinte regra para representação, em lógica,
+de pertinência:
+
+\[ y \in\{x\in A \,|\, P(x) \} \equiv y \in A \land P(y) \]
+
+Sabendo-se como representar notações da teoria de conjuntos como
+expressões da lógica, a tarefa de demonstrar teoremas sobre conjuntos
+é basicamente utilizar as estratégias de prova de maneira quase
+mecânica.
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+	\item Prove que, se $A\subseteq B$ e $B\subseteq C$, ent\~ao $A\subseteq C$.
+	\item Prove que, se $\overline{A}\subseteq\overline{B}$ ent\~ao $B\subseteq{A}$.
+	\item Prove que, se $A\subseteq B$ ent\~ao $\mathcal{P}(A)\subseteq\mathcal{P}(B)$.
+	\item Prove que, $\mathcal{P}(A)\cap\mathcal{P}(B)=\mathcal{P}(A\cap B)$
+	\item Prove que, $\mathcal{P}(A)\cup\mathcal{P}(B)\subseteq\mathcal{P}(A\cup B)$
+	\item Prove que, se $(A - B)\cup (B - A) = A\cup B$ ent\~ao $A\cap B =\emptyset$ (isto \'e $A$ e $B$ s\~ao disjuntos).
+	\item Prove que, se $A \cup B = A - B$ ent\~ao $B=\emptyset$.
+	\item Prove que, se $A\cap B = A$ ent\~ao $A\subseteq B$.
+	\item Suponha que $A - B \subseteq C\cap D$ e que $x\in A$. Prove que se $x\not\in D$ ent\~ao $x\in B$.
+	\item Suponha que $A\subseteq C$ e que $B$ e $C$ s\~ao disjuntos. Prove que se $x\in A$ ent\~ao $x\not\in B$.
+	\item Prove que se $A$ e $B - C$ s\~ao disjuntos, ent\~ao $A\cap B\subseteq C$.
+	\item Prove que se $\mathcal{F}$ \'e uma fam\'ilia de conjuntos e $A\in\mathcal{F}$, ent\~ao
+	      $A\subseteq\bigcup\mathcal{F}$.
+	\item Prove que $A=\bigcup\mathcal{P}(A)$, para qualquer conjunto
+          $A$.
+       \item Prove que se $\emptyset\in\mathcal{F}$ ent\~ao
+         $\bigcap\mathcal{F} = \emptyset$.
+       \item    Seja $\mathcal{F}$ uma fam\'ilia de conjuntos. Define-se o conjunto $\bigcup
+  ! \mathcal{F}$ por: \[\bigcup ! \mathcal{F} = \{x\,|\,\exists ! A. A\in
+    \mathcal{F}\land x\in A\}\]
+ Prove que para qualquer fam\'ilia $\mathcal{F}$, $\bigcup
+         !\mathcal{F}\subseteq \bigcup\mathcal{F}$.
+\end{enumerate}
+
 \section{Notas Bibliográficas}
 
 Grande parte deste capítulo consiste de definições da teoria de
