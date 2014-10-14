@@ -120,14 +120,155 @@ conjuntos relativos a estas tarefas são disjuntos.
 
 \begin{Definition}[Princípio Aditivo]
 Se uma tarefa puder ser realizada em uma das $n_1$ formas ou em uma
-das $n_2$ formas, em que nenhum dos elementos do conjunto $n_1$ formas
-pertence ao conjunto $n_2$
+das $n_2$ formas, em que nenhum dos elementos do conjunto das $n_1$ formas
+pertence ao conjunto das $n_2$ formas (isto é, estes conjuntos são
+disjuntos), então há $n_1 + n_2$ formas de se realizar a tarefa.
 \end{Definition}
 
-A seguir apresentamos exemplos que ilustram a utilização deste princípio.
+A seguir apresentamos exemplos que ilustram a utilização deste
+princípio.
+
+\begin{Example}
+Suponha que um aluno de mestrado ou um calouro deve ser escolhido para
+participar de uma comissão em uma certa universidade. Sabendo-se que
+há 48 alunos de mestrado e 60 calouros, de quantas maneiras podemos
+escolher o representante desta comissão\footnote{supondo que, evidentemente,
+alunos de mestrado não são considerados calouros.}?
+
+\textit{Solução}: Como há 48 estudantes de mestrado e 60 calouros e
+estes conjuntos de alunos são disjuntos, pelo princípio aditivo
+podemos concluir que o número de maneira de escolher um representante
+é de $60 + 48$.
+\end{Example}
+
+\begin{Example}
+Diógenes, um estudante de Computação, tem interesse em participar de
+um projeto de iniciação científica. Sabendo-se que há 17 projetos de
+computação, 5 de engenharia, 2 de ciências básicas e 3 de
+administração, quantas possibilidades de escolha de projetos Diógenes
+possui? Considere que nenhum projeto pode ser classificado em duas
+áreas distintas.
+
+\textit{Solução}: Como nenhum dos grupos de projetos possui
+interseção, podemos utilizar o princípio aditivo para concluir que o
+número total de possibilidades é de $17 + 5 + 2 + 3$.
+\end{Example}
+
+\begin{Example}
+Qual o valor da variável teste após a execução do seguinte trecho de
+código?
+\begin{algorithm}
+  \begin{algorithmic}[0]
+      \State{$\text{teste}\leftarrow 0$}
+      \For{$i_1 \leftarrow 1$ to $n_1$}
+      \State{$\text{teste}\leftarrow \text{teste} + 1$}
+      \EndFor
+      \For{$i_2 \leftarrow 1$ to $n_2$}
+      \State{$\text{teste}\leftarrow \text{teste} + 1$}
+      \EndFor
+      \State{$\vdots$}
+      \For{$i_m \leftarrow 1$ to $n_m$}
+      \State{$\text{teste}\leftarrow \text{teste} + 1$}
+      \EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\textit{Solução}: O valor inicial da variável teste é zero. Note que a
+variável teste é incrementada a cada iteração de cada um destes
+laços. Como o $i$-ésimo laço executa $n_i$ vezes, temos que a variável
+teste possuíra o valor final igual a:
+\[
+\sum_{i=1}^mn_i = n_1 + n_2 + ... +n_m
+\]
+\end{Example}
+
+\subsection{Utilizando ambos os princípios}
+
+Diversos problemas de combinatória utilizam não apenas um dos dois
+princípios apresentados nesta seção. Muitos problemas podem ser
+resolvidos utilizando-se ambos os princípios. Nesta seção
+apresentaremos alguns exemplos que usam o princípio multiplicativo e
+aditivo simultaneamente.
+
+\begin{Example}
+Crébison deseja desenvolver um compilador para uma linguagem
+experimental em que todos os nomes de variáveis devem possuir três
+caracteres, sendo o primeiro uma letra e outros dois quaisquer
+caracteres alfanuméricos. Quantos nomes diferentes de variáveis são
+possíveis nesta linguagem projetada por Crébison?
+
+\textit{Solução}: Note que para o primeiro caractere, temos um total
+de 26 possibilidades (número de letras do alfabeto). Porém, para cada
+uma das outras posições temos 36 possibilidades, pois temos 26 letras do alfabeto
+e 10 dígitos, usando o princípio aditivo. Mas, a tarefa de se escolher
+um nome de variável pode ser dividida nas seguintes tarefas (em
+sequência): escolher uma letra, escolher um símbolo alfanumérico e
+escolher um símbolo alfanumérico. Logo, pelo princípio multiplicativo,
+temos que o número total de possíveis nomes de variáveis nesta
+linguagem é $26 \times 36 \times 36$.
+\end{Example}
+
+\begin{Example}
+Diosbaldo usa o sistema operacional X, que exige que todas as senhas
+definidas tenham tamanho 6, 7 ou 8 e que estas possuam pelo menos um
+dígito (demais símbolos podem ser letras ou números). Quantas senhas
+diferentes podem ser construídas para este sistema operacional?
+
+\textit{Solução}: Evidentemente, o número total de senhas, $S$, pode
+ser expresso como $S = S_6 + S_7 + S_8$, em que $S_i$ é o conjunto de
+senhas contendo $i$ caracteres. Mas, isso nos deixa com a seguinte
+questão: como descobrir o valor de cada um dos $S_i$? Note que $S_6$
+pode ser obtido a partir de todas as sequências de letras e números de
+tamanho 6 removendo aquelas que não possuem dígitos. Isto é:
+\[S_6 = 36^6 - 26^6\]
+pois, temos $36^6$ possibilidades de sequências de letras e dígitos de
+tamanho 6 (note que utilizamos os princípios aditivo e multiplicativo
+para isto) e $26^6$ são as sequências formadas apenas por
+letras. Logo,  o número de sequências com pelo menos um dígito é
+$S_6 = 36^6 - 26^6$. Utilizando um raciocínio similar para $S_7$ e
+$S_8$, podemos concluir que $S$ é igual a:
+\[
+\begin{array}{lc}
+S_6 + S_7 + S_8 & =\\
+(36^6 - 26^6) + (36^7 - 26^7) + (36^8 - 26^8)
+\end{array}
+\]
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+   \item Em uma universidade há 30 graduandos em Sistemas de
+     Informação e 20 de Engenharia de Computação.
+   \begin{enumerate}
+       \item De quantas maneiras podemos escolher dois representantes
+         de maneira que um seja de Sistemas de Informação e outro de
+         Engenharia de Computação?
+      \item De quantas maneiras podemos escolher um representante que
+        seja de Sistemas de Informação ou de Engenharia de Computação?
+   \end{enumerate}
+   \item Uma avaliação de múltipla escolha contém 10 questões. Há
+     quatro possíveis respostas para cada questão.
+     \begin{enumerate}
+         \item De quantas maneiras um estudante pode responder às
+           questões do exame se este responder a todas elas?
+        \item De quantas maneiras o estudante pode responder às
+          questões se ele pode deixar questões em branco?
+     \end{enumerate}
+     \item Quantas sequências de 8 bits são possíveis?
+     \item Para os itens a seguir, considere os números inteiros
+       positivos entre 100 e 999.
+       \begin{enumerate}
+         \item Quantos são pares?
+         \item Quantos são ímpares?
+         \item Quantos são divisíveis por 5?
+       \end{enumerate}
+\end{enumerate}
 
 \section{Princípio da Inclusão e Exclusão}
 
 \section{Princípio da Casa dos Pombos}
 
-\section{Permutações e Combinações}
+\section{Permutações, Combinações e Arranjos}
+
+\section{Notas Bibliográficas}
