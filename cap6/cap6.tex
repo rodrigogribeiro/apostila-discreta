@@ -1,1 +1,133 @@
 \chapter{Combinatória Elementar}\label{cap6}
+
+\epigraph{Counting pairs is the oldest trick in combinatorics... Every
+  time we count pairs, we learn something from it.}{Gil Kalai,
+  Matemático Israelense.}
+
+\section{Motivação}
+
+A combinatória é o ramo da matemática que estabelece métodos para
+determinar o número de elementos de conjuntos finitos. Mas, qual o
+interesse de estudantes de computação em se determinar o número de
+elementos de um certo conjunto?
+
+Uma das várias aplicações da combinatória em computação é o projeto e análise
+de algoritmos. Diversos problemas podem ser caracterizados por
+possuírem um conjunto de soluções e, em tais problemas,
+estamos interessados na ``melhor'' solução deste conjunto. Algoritmos que resolvem este tipo de problemas
+possuem um custo computacional proporcional ao tamanho do conjunto de
+soluções para o problema em questão. Logo, para sermos capazes de
+entender o comportamento de algoritmos para certos problemas, devemos
+ser capazes de determinar, de maneira precisa, o número de elementos
+de conjuntos finitos.
+
+Desta forma, o objetivo deste capítulo é o estudo de técnicas para
+determinar o número de elementos de conjuntos finitos.
+
+\section{Noções Básicas de Combinatória}
+
+\subsection{Princípio Multiplicativo}
+
+O princípio multiplicativo permite-nos determinar o número de
+elementos de um conjunto construído por tarefas\footnote{Alguns
+  autores chamam tarefas de ``eventos''.} separadas.
+
+\begin{Definition}[Princípio Multiplicativo]
+Suponha que um procedimento possa ser dividido em uma sequência de
+duas tarefas. Se houver $n_1$ formas de se fazer a primeira tarefa e
+para cada uma destas houver $n_2$ formas de se fazer a segunda tarefa,
+então há $n_1\times n_2$ formas de se concluir este procedimento.
+\end{Definition}
+
+A seguir apresentamos alguns exemplos que ilustram o uso do princípio
+multiplicativo.
+
+\begin{Example}
+Uma empresa que possui apenas dois empregados, Asdrúbal e Credirceu,
+alugou um andar de um prédio com 12 salas. De quantas maneiras podemos
+distribuir as salas deste andar para estes dois funcionários?
+
+\textit{Solução:} O procedimento para atribuir salas deve funcionar da
+seguinte maneira: Primeiramente, devemos selecionar uma das 12 salas para
+Asdrúbal e, na sequência, escolher uma das 11 salas restantes para
+Credirceu. Logo, temos um total de $12 \times 11$ possibilidades para
+distribuição de salas entre estes funcionários.
+\end{Example}
+
+\begin{Example}
+As cadeiras de um auditório devem ser etiquetadas com uma letra e um
+números inteiro positivo que não exceda a 100. Qual é o maior número
+de cadeiras que podem ser etiquetadas de maneira diferente?
+
+\textit{Solução:} Para etiquetarmos uma cadeira devemos selecionar uma
+das 26 letras do alfabeto e, para cada uma destas, devemos selecionar
+um número inteiro entre $1$ e $100$. Logo, temos um total de $26
+\times 100$ possibilidades.
+\end{Example}
+
+\begin{Example}
+Há 32 computadores em uma sala de aula. Cada computador tem 24
+portas para conexões de dispositivos. Quantas possibilidades existem
+nesta sala para a conexão de um certo dispositivo?
+
+\textit{Solução}: Note que o procedimento para conectar o dispositivo
+envolve escolher um dos 32 computadores e uma das 24 portas possíveis
+do computador escolhido. Logo, temos um total de $32 \times 24$
+possibilidades de conexão.
+\end{Example}
+
+\begin{Example}
+Qual o valor da variável teste após a execução do seguinte trecho de
+código?
+\begin{algorithm}
+  \begin{algorithmic}[0]
+      \State{$\text{teste}\leftarrow 0$}
+      \For{$i_1 \leftarrow 1$ to $n_1$}
+           \For{$i_2 \leftarrow 1$ to $n_2$}
+                \State{$\vdots$}
+                \For{$i_m \leftarrow 1$ to $n_m$}
+                    \State{$\text{teste}\leftarrow \text{teste} + 1$}
+               \EndFor
+           \EndFor
+      \EndFor
+  \end{algorithmic}
+\end{algorithm}
+
+\textit{Solução}: O valor inicial da variável teste é zero. Cada vez
+que uma repetição é feita, o valor de teste é acrescido de uma
+unidade. Denomine por $T_i$ a tarefa de executar o $i$-ésimo laço.
+Logo, a tarefa de determinar o número de vezes que a variável teste é
+incrementada é equivalente a tarefa de contar $T_i$, $1\leq i \leq
+m$. Como cada laço é executado $n_i$ ($1\leq i \leq
+m$) vezes, temos que o número de repetições deste algoritmo é
+\[
+\begin{array}{lc}
+T_1\times T_2 \times ... \times T_m &  = \\
+n_1 \times n_2 \times ... n_m
+\end{array}
+\]
+Portanto, temos que o valor final da variável teste é $n_1\times n_2
+\times ... \times n_m$.
+\end{Example}
+
+\subsection{Princípio Aditivo}
+
+O princípio aditivo permite-nos determinar o número de
+elementos de um conjunto construído por tarefas independentes. Dizemos
+que duas tarefas $t_1$ e $t_2$ são independentes se a execução de
+$t_1$ não interfere no número de possibilidades de $t_2$, isto é, os
+conjuntos relativos a estas tarefas são disjuntos.
+
+\begin{Definition}[Princípio Aditivo]
+Se uma tarefa puder ser realizada em uma das $n_1$ formas ou em uma
+das $n_2$ formas, em que nenhum dos elementos do conjunto $n_1$ formas
+pertence ao conjunto $n_2$
+\end{Definition}
+
+A seguir apresentamos exemplos que ilustram a utilização deste princípio.
+
+\section{Princípio da Inclusão e Exclusão}
+
+\section{Princípio da Casa dos Pombos}
+
+\section{Permutações e Combinações}
