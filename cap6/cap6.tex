@@ -263,12 +263,589 @@ S_6 + S_7 + S_8 & =\\
          \item Quantos são ímpares?
          \item Quantos são divisíveis por 5?
        \end{enumerate}
+     \item Quantas sequências de oito letras do alfabeto da língua
+       portuguesa são possíveis
+     \begin{enumerate}
+         \item se as letras puderem ser repetidas?
+         \item se as letras não puderem ser repetidas?
+         \item que comecem e terminem com a letra X?
+     \end{enumerate}
+     \item Um palíndromo é uma sequência que pode ser lida da esquerda
+       para direita da mesma forma que da direita para esquerda.
+     \begin{enumerate}
+       \item Quantos palíndromos existem para sequências de 8 bits?
+       \item Quantos palíndromos de tamanho 4 ou 5 podem ser formados
+         utilizando-se as 26 letras do alfabeto?
+     \end{enumerate}
+     \item Utilize o princípio multiplicativo para demonstrar que toda
+       fórmula da lógica proposicional que possui $n$ variáveis terá
+       uma tabela verdade com $2^n$ linhas.
+     \item Utilize o princípio multiplicativo para demonstrar que
+       existem $2^{2^n}$ tabelas verdades distintas para proposições
+       envolvendo $n$ variáveis.
 \end{enumerate}
 
-\section{Princípio da Inclusão e Exclusão}
+\section{Princípio da Inclusão-Exclusão}
+
+Um problema muito comum em combinatória é o de determinar o número de
+elementos de um conjunto que pode ser expresso como a união de outros.
+
+Suponha que desejamos determinar o número de elementos de um conjunto
+$A$ em que $A = B \cup C$. Podemos dizer que o número de elementos de
+$A$ é simplesmente a soma dos números de elementos de  $B$
+ e $C$, isto é, $|A| = |B| + |C|$?
+
+De modo geral, esta idéia não é válida, conforme apresentado no
+exemplo seguinte:
+
+\begin{Example}
+Considere os seguintes conjuntos: $B = \{1,2,3\}$, $C=\{3,4,5\}$ e $A
+= B\cup C$. Note que $|A| = 5$ e não simplesmente a soma da
+cardinalidade de $B$ e $C$, que resultaria em $6$.
+\end{Example}
+
+Se $A = B \cup C$, não podemos dizer que $|A| = |B| + |C|$, uma vez
+que estaremos ``contando'' duas vezes os elementos de $B\cap C$, já
+que estes aparecem tanto em $B$ quanto em $C$. Desta forma, para obter
+a cardinalidade correta de $A$, temos que ``somar apenas uma vez'' os
+elementos de $B\cap$. Isso nos leva a seguinte equação:
+
+\[|A| = |B\cup C| = |B| + |C| - |B\cap C|\]
+
+Esta equação é apenas um caso específico do chamado princípio da
+inclusão exclusão, que é apresentado na próxima definição.
+
+\begin{Definition}[Princípio da Inclusão-Exclusão]
+Sejam $A_1,A_2,...,A_n$ $n$ conjuntos finitos. O número de elementos
+de $\bigcup_{i=1}^{n}A_i$ é dado pela seguinte equação:
+\[
+\begin{array}{lclc}
+|\bigcup_{i=1}^nA_i| & = & \sum_{1\leq i \leq ni}|A_i| & - \\
+                                &    & \sum_{1\leq i < j \leq
+                                  n}|A_i\cap A_j| & + \\
+                                &   & \sum_{1\leq i < j < k \leq n}|A_i
+                                \cap A_j \cap A_k| & - \\
+                                &   & \sum_{1\leq i < j < k < p \leq
+                                  n}|A_i \cap A_j \cap A_k \cap A_p| &
+                                + \\
+                                &   & ... \\
+                                &   & + (-1)^{n - 1}|\bigcap_{1\leq
+                                  i\leq n} A_i|
+\end{array}
+\]
+\end{Definition}
+\begin{Example}
+Utilizando o princípio da inclusão-exclusão podemos definir uma
+fórmula para o número de elementos da união de 3 conjuntos:
+\[
+|A\cup B \cup C| = |A| + |B| + |C| - |A\cap B| - |B \cap C| - |A \cap
+C| + |A \cap B \cap C|
+\]
+De maneira similar, podemos definir uma equação para a união de 4
+conjuntos:
+\[
+\begin{array}{lcl}
+|A\cup B\cup C \cup D| & = & |A| + |B| + |C| + |D|\\
+                                       &    & - |A \cap B| - |A \cap
+                                       C| - |A \cap D| - |B \cap C| -
+                                       |B \cap D| - |C \cap D| \\
+                                       &    & + |A \cap B \cap C| +
+                                                    |B \cap C \cap D|
+                                                    +
+                                                    |A \cap C \cap
+                                                    D|\\
+                                       &    & - |A\cap B \cap C \cap D|
+
+\end{array}
+\]
+\end{Example}
+A seguir apresentamos exemplos que utilizam o princípio da
+inclusão-exclusão na prática.
+\begin{Example}
+Em uma classe de matemática discreta, todo estudante é graduando em
+engenharia de computação ou em sistemas de informação ou em ambos. O
+número de estudantes matriculados em engenharia de computação é 25, em
+sistemas, 13 e em ambos os cursos estão matriculados 8 alunos. Quantos
+estudantes há nesta classe?
+
+\textit{Solução}: Considere como $A$ o conjunto de estudantes de
+engenharia de computação e $B$ o conjunto de alunos de sistemas de
+informação. Logo, pelo princípio de inclusão-exclusão temos:
+\[
+\begin{array}{lcl}
+|A\cup B| & = & |A| + |B| - |A\cap B| \\
+|A\cup B| & = & 25 + 13 - 8 \\
+|A\cup B| & = & 30\\
+\end{array}
+\]
+\end{Example}
+\begin{Example}
+Um conjunto de 1232 alunos cursam espanhol, 879 francês e 114
+russo. Além disso, 103 cursam espanhol e francês, 23 cursam espanhol e
+russo e 14 cursam francês e russo. Se 2092 estudantes cursam pelo
+menos uma das três línguas, quantos estudantes cursam as três?
+
+\textit{Solução:}Chame de $S$ o conjunto de estudantes que cursam
+espanhol, $F$ os que estudam francês e $R$ os que estudam
+russo. Evidentemente, o conjunto de estudantes que cursa as 3 línguas
+é $S \cap R \cap F$. Logo, pelo princípio de inclusão-exclusão, temos:
+\[
+\begin{array}{lcl}
+|S\cup R \cup F| & = & |S| + |R| + |F| - |S \cap R| - |R \cap F| - |S
+\cap F| +|S\cap R \cap F| \\
+       2092            & = & 1232 + 114 + 879 - 23 - 103 - 14 + |S\cap
+       R \cap F|\\
+|S\cap R\cap F| & = & 7
+\end{array}
+\]
+Assim, temos que o número total de estudantes que cursam as três
+línguas é de 7 alunos.
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Quantos números entre 1 e 3.600 são divisíveis por 3, 5 ou 7?
+  \item Quantos números entre 1 e 42.000 não são divisíveis por 2, por
+    3 e nem por 7?
+  \item Quantos elementos há na união de cinco conjuntos se os
+    conjuntos contêm 10.000 elementos cada, cada par de conjuntos tem
+    1.000 elementos, cada trio possui 100 elementos, cada quatro
+    conjuntos possui 10 elementos em comum e todos os 5 conjuntos possui 1
+    elemento em comum?
+\end{enumerate}
 
 \section{Princípio da Casa dos Pombos}
 
+Nesta seção apresentaremos um princípio que, apesar de bastante
+simples, permite a solução elegante de diversos problemas de
+contagem. De maneira simples, este princípio especifica que se mais
+de $k$ objetos forem colocados em $k$ caixas, então pelo menos uma
+caixa possuirá mais de um objeto. A definição formal deste princípio é
+apresentada a seguir.
+
+\begin{Definition}[O Princípio da Casa dos Pombos]
+Se $n$ objetos são colocados em $k$ caixas, então há pelo menos uma
+caixa com $\lceil \frac{n}{k} \rceil$\footnote{A função teto de $a$,
+  $\lceil a \rceil$, retorna o menor inteiro maior que $a$.}.
+\end{Definition}
+
+A seguir apresentamos exemplos que aplicam o princípio da casa dos
+pombos para a solução de alguns problemas.
+
+\begin{Example}
+Considere as seguintes afirmativas:
+\begin{enumerate}
+  \item Em um grupo de 367 pessoas haverá pelo menos 2 que fazem
+    aniversário no mesmo dia do ano.
+  \item Em um grupo de 27 palavras haverá pelo menos 2 que iniciam com
+    a mesma letra.
+\end{enumerate}
+
+\textit{Solução}: Note que como um ano pode possuir 366 dias, temos
+que em um conjunto com 367 pessoas, pelo menos duas fazem aniversário
+no mesmo dia. Neste caso, consideramos como ``caixas'' o número de
+dias do ano e como ``objetos'' cada uma das 367 pessoas, colocando
+cada pessoa na caixa correspondente ao dia de seu aniversário. Para a
+segunda sentença, temos que o número de caixas é exatamente o número
+de letras do alfabeto, 26. Logo, se colocarmos cada palavra na caixa
+correspondente à sua letra inicial, temos que pelo princípio da casa
+dos pombos, pelo menos duas palavras do conjunto de 27 iniciam com a
+mesma letra.
+\end{Example}
+
+\begin{Example}
+Qual o número mínimo de estudantes em uma classe para
+que tenhamos certeza de que pelo menos 6 receberão a mesma nota,
+sabendo que apenas 5 notas diferentes são possíveis?
+
+\textit{Solução}: De acordo com o princípio da casa dos pombos, o
+número mínimo de estudantes pode ser obtido da seguinte maneira:
+Primeiro, consideramos que o número de caixas é o número de notas,
+5. Logo, o número de estudantes é o menor valor $n$ que satisfaz a
+equação $\lceil \frac{n}{5} \rceil = 6$. Para determinar $n$, podemos
+usar o seguinte raciocínio: Se temos 5 caixas, 25 alunos são
+suficientes para que todas as caixas possuam 5 alunos. Se somarmos 1,
+temos que uma caixa com certeza terá 6 elementos. Logo, o número
+mínimo de alunos para garantir que pelo menos 6 tirem a mesma nota
+será de 26 alunos.
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Em um baralho padrão existem 52 cartas distribuídas entre 4
+    naipes. Cada naipe possui 13 cartas distintas.
+  \begin{enumerate}
+    \item Quantas cartas devem ser removidas do baralho para garantir
+      que pelo menos 3 cartas do mesmo naipe sejam retiradas?
+    \item Quantas cartas devem ser removidas para se garantir que 2
+      cartas de mesmo tipo sejam retiradas?
+    \item Mostre que em um grupo de 5 números inteiros não
+      necessariamente consecutivos, há pelo menos dois com o mesmo
+      resto quando divididos por 4.
+  \end{enumerate}
+  \item Há 38 horários diferentes de aulas em uma universidade. Se há
+    677 classes diferentes, quantas salas de aula diferentes são
+    necessárias para acomodar esta demanda de ocupação?
+  \item Qual o menor número de cabos necessários para conectar oito
+    computadores a quatro impressoras de maneira que quatro
+    computadores diferentes estejam conectados a quatro impressoras diferentes.
+\end{enumerate}
+
 \section{Permutações, Combinações e Arranjos}
 
+Muitos problemas combinatórios podem ser resolvidos encontrando-se o
+número de maneiras de se organizar um número específico de elementos
+distintos de um conjunto em que a ordem destes elementos pode ser ou
+não relevante.
+
+\subsection{Arranjos e Permutações}
+
+Iniciamos esta seção apresentando os conceitos de arranjo e permutação.
+
+\begin{Definition}[Arranjo e Permutação]
+Um arranjo de $r$ objetos de um conjunto de $n$ objetos distintos,
+$A(n,r)$, é uma coleção ordenada de objetos. Se $n = r$ denominamos o
+esta coleção de permutação e representamos este conjunto por $P(n)$.
+\end{Definition}
+
+Pela definição anterior, podemos concluir que utilizamos arranjos e
+permutações sempre que estamos interessados em determinar o número de
+maneiras de se organizar objetos de maneira em que a ordem destes é
+relevante. O teorema seguinte deduz uma fórmula para $A(n,r)$
+utilizando o princípio multiplicativo.
+
+\begin{Theorem}\label{thmperm}
+Seja $n$ um inteiro positivo qualquer e $r$ um inteiro tal que $1 \leq
+r \leq n$, então há $A(n,r) = \Pi_{1 \leq i \leq (r - 1)}(n - i)$
+permutações de $r$ objetos obtidas a partir de um conjunto contendo
+$n$ destes objetos.
+\end{Theorem}
+\begin{proof}
+Suponha $n$ e $r$ arbitrários. Suponha que $1 \leq r \leq r$. Como
+desejamos formar coleções de $r$ objetos em que a ordem interessa,
+devemos, inicialmente, escolher o primeiro elemento, possuindo $n$
+opções. Para o segundo elemento, teremos $n -1$ opções e para o
+terceiro $n- 2$. De maneira similar, para o $r$-ésimo objeto teremos
+$n - (r - 1) = n -r + 1$ possibilidades de escolha. Logo, pelo
+princípio multiplicativo, temos que
+\[
+    A(n,r) = \displaystyle{\Pi_{1 \leq i \leq (r - 1)}(n - i)}
+\]
+\end{proof}
+
+Um corolário útil deste teorema é apresentado a seguir:
+
+\begin{Corollary}\label{corperm}
+Sejam $n,r$ inteiros arbitrários tais que $1 \leq r \leq n$. Então,
+$A(n,r) = \frac{n!}{(n - r)!}$.
+\end{Corollary}
+\begin{proof}
+Suponha $n,r$ inteiros arbitrários e que $1 \leq r \leq n$. Logo, pelo
+teorema \ref{thmperm}, temos que $A(n,r) = \Pi_{1 \leq i \leq (r -
+  1)}(n - i)$. Mas:
+\[
+\begin{array}{lc}
+\dfrac{n!}{(n - r)!} & = \\
+\dfrac{n(n-1)(n-2) ... (n- r + 1) (n - r)!}{(n - r)!} & = \\
+n(n - 1)(n-2) ... (n - r + 1) & = \\
+\Pi_{1 \leq i \leq (r - 1)}(n - i) & = \\
+A(n,r)
+\end{array}
+\]
+conforme requerido.
+\end{proof}
+Evidentemente, pelo corolário \ref{corperm}, temos que o número de
+permutações de $n$ objetos é igual a:
+\[
+\begin{array}{lcl}
+P(n) & = &\\
+A(n,n) & = &\{\text{pela def. de }P(n)\}\\
+\dfrac{n!}{(n - n)!} & = & \{\text{pelo corolário \ref{corperm}.}\}\\
+n!
+\end{array}
+\]
+
+\begin{Example}
+De quantas maneiras podemos selecionar o primeiro, o segundo e o
+terceiro colocados em um concurso com 100 inscritos?
+
+\textit{Solução}: Note que neste caso, estamos interessados em
+construir coleções de 3 pessoas a partir de um conjunto de 100
+inscritos em que a ordem destas 3 pessoas é importante (uma será o
+primeiro, outra o segundo, etc). Logo, desejamos determinar o número
+de arranjos de 100 elementos escolhidos 3 a 3, que de acordo com o
+teorema \ref{thmperm} é:
+\[
+A(100,3) = \dfrac{100!}{97!}
+\]
+\end{Example}
+
+\begin{Example}
+Quantas permutações das letras ABCDEFGH contêm a sequência ABC?
+
+\textit{Solução}: Visto que as letras ABC devem aparecer na mesma
+ordem, estas devem ser consideradas como um ``único bloco'' nas
+permutações. Logo, devemos considerar permutações das 5 letras (D, E
+,F ,G e H) e o bloco ABC. Logo, o número total de permutações de 6
+elementos é $P(6) = 6!$.
+\end{Example}
+
+\subsection{Combinações}
+
+Nesta seção abordaremos a noção de combinação, que consiste de uma
+coleção não ordenada de objetos. A seguir apresentamos uma definição
+precisa deste conceito.
+
+\begin{Definition}[Combinação]
+Uma combinação de $r$ objetos obtidos a partir de um conjunto de $n$
+elementos distintos é uma coleção não ordenada de $r$
+objetos. Combinações de $n$ objetos escolhidos $r$ a $r$ são
+usualmente representadas por $C(n,r)$ ou $\binom{n}{r}$.
+\end{Definition}
+
+O seguinte teorema demonstra a fórmula para determinar o número de
+combinações.
+
+\begin{Theorem}\label{thmcomb}
+Suponha $n$ e $r$ inteiros arbitrários tais que $0 \leq r \leq
+n$. Então, o número de combinações de $n$ elementos escolhidos $r$ a
+$r$ é $C(n,r) = \binom{n}{r} = \dfrac{n!}{r!(n- r)!}$.
+\end{Theorem}
+\begin{proof}
+Note que o número de arranjos de $n$ objetos escolhidos $r$ a $r$ pode
+ser obtido a partir da formação das combinações $C(n,r)$ e, então,
+pela ordenação de cada uma destas, o que pode ser feito de $P(r)$
+maneiras. Logo, temos que:
+\[
+A(n,r) = C(n,r).P(r)
+\]
+que implica que
+\[
+C(n,r) = \dfrac{A(n,r)}{P(r)} = \dfrac{\dfrac{n!}{(n-r)!}}{r!} =
+\dfrac{n!}{r!(n - r)!}
+\]
+\end{proof}
+
+\begin{Example}
+Quantas mãos de poker podem ser retiradas de um baralho de 5 cartas a
+partir de um baralho com 52 cartas?
+
+\textit{Solução}: Neste caso estamos interessados em conjuntos de 5
+cartas, obtidos a partir de um conjunto contendo 52 cartas, em que a
+ordem das cartas não é importante. Logo, o total de mãos é dado por $C(52,5)$.
+\end{Example}
+
+\begin{Example}
+Quantas maneiras há para selecionar cinco jogadores de um time de
+basquete com 10 membros para disputar uma partida em outra escola?
+
+\textit{Solução}: A resposta é dada por $C(10,5)$.
+\end{Example}
+
+\begin{Example}
+  Quantos são os anagramas formados por duas vogais e cinco consoantes
+  escolhidas a partir de um conjunto de 18 consoantes e 5 vogais?
+
+\textit{Solução}: A escolha das vogais se dá por $C(5,2)$ e das
+consoantes em $C(18,3)$. Porém, como estas podem ocorrer em qualquer
+posição, devemos permutar as 5 posições da coleção gerada. Logo, temos
+que o número total de anagramas será de: $C(5,2)C(18,3)P(5)$.
+\end{Example}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Demonstre a seguinte equivalência: $C(n,r) = C(n,n - r)$.
+   \item Quantos anagramas da palavra UNIFORMES iniciam com consoante
+     e terminam em vogal?
+  \item Considere a palavra NÚMERO:
+  \begin{enumerate}
+    \item Quantos são seus anagramas?
+    \item Quantos anagramas começam com uma vogal?
+    \item Quantos começam com uma vogal e terminam com uma consoante?
+  \end{enumerate}
+\end{enumerate}
+
+\section{Arranjos e Combinações com Repetições}
+
+Em muitos problemas de combinatória devemos formar coleções em que a
+repetição de elementos é permitida. Nesta seção analisaremos
+estratégias para lidar com tais problemas combinatórios.
+
+\subsection{Arranjos com Repetições}
+
+Arranjos com repetições são caracterizados por coleções ordenadas em
+que repetições de elementos são permitidas. O número de arranjos de
+$r$ elementos escolhidos a partir de um conjunto de $n$, em que
+repetições são repetidas pode ser obtido facilmente usando a regra do
+produto, conforme o teorema seguinte.
+
+\begin{Theorem}
+O número de arranjos de $r$ elementos escolhidos a partir
+de um conjunto de $n$ elementos distintos é $n^r$.
+\end{Theorem}
+\begin{proof}
+Para cada uma das $r$ posições do arranjo temos um total de $n$
+possibilidades de escolha. Logo, pelo princípio multiplicativo, temos
+um total de $n^r$ possíveis arranjos.
+\end{proof}
+
+\begin{Example}
+Qual o total de placas de carros que podem ser construídas utilizando
+7 símbolos, sendo os 3 primeiros letras e os 4 últimos dígitos?
+
+\textit{Solução}: Neste caso, temos que o total de placas é dado por
+$26^3 \times 10^4$.
+\end{Example}
+
+\subsection{Permutações com Repetições}
+
+Para o caso de permutações em que elementos podem ser repetidos,
+devemos ter cuidado para evitar a contagem de uma mesma coleção mais
+de uma vez.
+
+Por exemplo, se considerarmos quantas permutações possui a palavra ELE
+como sendo $3!$ estaremos contando coleções mais de uma vez, pois, não
+é possível diferenciar entre as diferentes ocorrências da letra E. O
+próximo exemplo ilustra a intuição a ser utilizada para demonstrar a
+fórmula para o cálculo do número de permutações com repetições.
+
+\begin{Example}
+Quantas permutações diferentes podem ser obtidas para a palavra
+SUCCESS?
+
+\textit{Solução}:Como a palavra em questão possui símbolos repetidos,
+não podemos simplesmente calcular o número de permutações desta. Para
+obtermos o número de sequências diferentes que podem ser construídas
+utilizando-se estas letras, primeiro, devemos colocar os S's em 3 das
+7 posições disponíveis, o que resulta em $C(7,3)$, o que deixa apenas
+4 posições livres. Os dois C's podem ser distribuídos nas 4 posições
+restantes de $C(4,2)$, deixando 2 posições disponíveis. Finalmente,
+podemos distribuir o U de $C(2,1)$ e a letra $E$ de $C(1,1)$ maneiras.
+Consequentemente, temos que pelo princípio multiplicativo temos que o
+total de sequências é igual a $C(7,3)C(4,2)C(2,1)C(1,1)$.
+\end{Example}
+O padrão de raciocínio utilizado no exemplo anterior pode ser
+abstraído, conforme apresentado no teorema a seguir.
+\begin{Theorem}
+O número de permutações diferentes de $n$ objetos, em que há $n_1$
+objetos de tipo 1, $n_2$ objetos de tipo, ... e $n_k$ objetos de tipo
+$k$, é:
+\[
+\dfrac{n!}{n_1!n_2!...n_k!}
+\]
+\end{Theorem}
+\begin{proof}
+Para determinar o número de permutações, primeiro devemos colocar
+$n_1$ objetos de tipo 1 de $C(n,n_1)$ maneiras, deixando $n - n_1$
+posições livres. Então os objetos de tipo 2 podem ser colocados de
+$C(n - n_1,n_2)$ maneiras, deixando $n - n_1 - n_2$ posições
+disponíveis. Continuamos este processo até posicionarmos os objetos de
+tipo $n_k$. Após esta etapa, pelo princípio multiplicativo, temos que
+o total de permutações diferentes é:
+\[
+\begin{array}{lc}
+C(n,n_1) C(n - n_1, n_2) ... C(n - n_1 - ... - n_{k - 1},n_k) & = \\
+\dfrac{n!}{n_1!(n - n_1)!}\dfrac{(n- n_1)!}{n_2!(n - n_1 - n_2)!}
+... \dfrac{(n - n_1 - ... -n_k)!}{n_k! 0!} & = \\
+\dfrac{n!}{n_1!n_2!...n_k!}
+\end{array}
+\]
+\end{proof}
+
+\subsection{Combinações com Repetições}
+
+Para determinar o número de combinações possíveis com repetições, como
+a ordem de elementos é irrelevante em combinações, devemos ser capazes
+de ``separar'' grupos de elementos diferentes em uma mesma combinação.
+Assim como fizemos para arranjos, primeiramente resolveremos um
+exemplo e na sequência, vamos abstrair o padrão de raciocínio
+utilizado para determinar uma fórmula para este tipo de combinações.
+
+\begin{Example}
+Há quantas maneiras de escolher cinco cédulas em uma caixa que contém
+cédulas de $1,2,5,10,20,50,100$ reais? Considere que a ordem de
+escolha é irrelevante, que cada nota de um mesmo valor é
+indistinguível de outras de mesmo valor e que há pelo menos cinco
+cédulas de cada valor.
+
+\textit{Solução}:
+Como temos 7 tipos de cédulas e desejamos selecionar 5 cédulas com
+repetições permitidas, temos que, de alguma maneira, agrupar os
+elementos indistinguíveis que farão parte da combinação gerada. Para
+isso, utilizaremos a seguinte analogia: considere a existência de uma
+caixa com separações, onde cada compartimento desta caixa seja
+destinado a um tipo de cédula. Abaixo, ilustramos esta caixa, como uma
+tabela:
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+1 & 2 & 5 &10 & 20 & 100 \\ \hline
+\end{tabular}
+\centering
+\end{table}
+
+Note que a caixa apresentada possui 6 separações. Como cada
+compartimento é destinado a um tipo de cédula, iremos colocar as
+cédulas de um mesmo valor em compartimento correspondente a este tipo
+de cédula. Abaixo, apresentamos a configuração da caixa ao
+selecionarmos 2 cédulas de 2 reais e 3 de 100 reais.
+
+\begin{table}[h]
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+0 & 2 & 0 & 0 & 0 & 3 \\ \hline
+\end{tabular}
+\centering
+\end{table}
+
+Veja que anotamos em cada compartimento a quantidade de cédulas que
+este possui. Perceba que esta caixa pode ser representada de maneira
+abstrata como sequências de ``*'' (para representar cédulas) e ``|''
+para representar divisões da caixa. A configuração anterior pode ser
+representada pela seguinte sequência de carateres:
+``||**|||***|''. Note que usando este truque da caixa, determinamos
+uma configuração de escolha das cédulas determinando as sequências não
+ordenadas formadas por 5 objetos a partir de um conjunto de 11 objetos
+(5 asteriscos e 6 barras). Isso é exatamente $C(11,5)$.
+\end{Example}
+O teorema seguinte generaliza as discussões anteriores.
+\begin{Theorem}
+O número de combinações de $r$ elementos, permitindo repetições, a
+partir de um conjunto de $n$ elementos é de $C(n + r - 1, r)$.
+\end{Theorem}
+\begin{proof}
+Cada uma das combinações de um conjunto com $n$ elementos, quando a
+repetição é permitida, pode ser representada por uma lista de $n -1$
+separadores (``| '') e $r$ asteriscos. Então, os $n - 1$ separadores
+são utilizados para representar os $n$ elementos diferentes, em que a
+$i$-ésima posição é igual a um asterisco toda vez que o $i$-ésimo
+elemento do conjunto aparecer na combinação. Logo, o número de
+combinações é dado por $C(n - 1 + r,r)$, pois cada lista corresponde a
+uma escolha de $r$ posições para colocar os $r$ asteriscos a partir de
+$n - 1 + r$ posições que contém $r$ asteriscos e $n - 1$ separadores.
+\end{proof}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Quantas sequências de 6 letras existem?
+  \item Há quantas maneiras de se selecionar três elementos não
+    ordenados a partir de um conjunto com cinco elementos, em que
+    repetições são permitidas?
+  \item Quantas permutações podem ser feitas com a palavra MISSISSIPI?
+  \item Quantas permutações podem ser feitas com a palavra
+    ABRACADABRA?
+  \item Há quantas soluções possíveis para a equação
+   \[x_1 + x_2 + x_3 + x_4 = 17\]
+   em que $x_1,x_2,x_3$ e $x_4$ são inteiros não negativos?
+\end{enumerate}
+
 \section{Notas Bibliográficas}
+
+Noções de combinatória estão presentes em quase todos os livros de
+matemática discreta, variando um pouco a terminologia utilizada. Neste
+capítulo utilizamos exemplos de \cite{Rosen02}.
