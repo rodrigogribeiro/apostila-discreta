@@ -1,15 +1,15 @@
 \chapter{Relações}\label{cap7}
 
 \epigraph{O cliente pode ter um carro pintado com a cor que desejar,
-  contanto que seja preto.}{Henry Ford}
+  contanto que esta seja preto.}{Henry Ford, Pioneiro da indústria automobilística.}
 
 
 \section{Motivação}
 
 Existem diversos tipos de relações em nosso cotidiano. Algumas destas
 descrevem como membros de uma família estão relacionados entre si:
-pais, filhos, irmãos, irmãs, sobrinhos, etc. Uma outra possível
-relação especifica que certas cidades pertecem a um determinado país:
+pais, filhos, irmãos, irmãs, sobrinhos, etc. Outras especificam, por
+exemplo, que certas cidades pertecem a um determinado país:
 por exemplo, Londres está na Inglaterra, e Paris na França. Ou podemos
 ter uma relação que descreve quais automóveis são montados por um
 certo fabricante. Relações são utilizadas na matemática para descrever
@@ -36,3 +36,205 @@ demonstrações o rascunho será completamente omitido. Porém,
 recomenda-se que este seja ``reconstruído'' pelo leitor para um maior
 entendimento do conteúdo.
 \end{Remark}
+
+\section{Pares Ordenados e Produto Cartesiano}
+
+Em capítulos anteriores, lidamos com conjuntos em que cada elemento é
+um ``componente'' deste. Porém, como você aprendeu em outros cursos,
+existem conjuntos formados por pares de números que representam pontos
+em um plano. Nesta seção, vamos introduzir formalmente o conceito de
+par ordenado e como podemos construir conjuntos de pares utilizando
+uma operação conhecida como produto cartesiano. As definições
+seguintes apresentam estes conceitos.
+
+\begin{Definition}[Par ordenado]
+Sejam $A$ e $B$ conjuntos quaisquer em que $a \in A$ e $b \in
+B$. Dizemos que $(a,b)$ é um par ordenado em que o primeiro elemento é
+$a \in A$ e o segundo $b\in B$.
+\end{Definition}
+
+A operação sobre conjuntos que permite a criação de pares ordenados é
+o chamado produto cartesiano, que é definido a seguir.
+
+\begin{Definition}[Produto Cartesiano]
+Sejam  $A$ e $B$ dois conjuntos quaisquer. O produto cartesiano de $A$
+por $B$, $A\times B$, é definido como:
+\[
+A\times B = \{(a,b)\,|\,a \in A \land b\in B\}
+\]
+\end{Definition}
+
+\begin{Example}
+Sejam $A =\{1,2,3\}$ e $B = \{4,5,6\}$. Temos:
+\[
+A \times B = \{(1,4),(2,5),(3,6)\}
+\]
+Evidentemente, temos que $(1,4) \in A \times B$. Além disso, para o
+par ordenado $(1,4)$ temos que $1$ é o primeiro elemento (um elemento
+do conjunto $A$) e $4$ é o segundo (um elemento de $B$).
+\end{Example}
+Uma boa maneira de atestarmos a compreensão de um novo conceito
+matemático é demonstrando teoremas sobre este.
+\begin{Theorem}
+Sejam $A, B$ e $C$ conjuntos arbitrários. Então $A \times (B\cap C) =
+(A \times B) \cap (A \times C)$.
+\end{Theorem}
+\begin{proof}
+Suponha que $A,B$ e $C$ são conjuntos arbitrários. Suponha $p$
+arbitrário.
+\begin{itemize}
+   \item[$(\to)$] Suponha $p \in A \times (B \cap C)$. Pela definição
+     de produto cartesiano, temos que $p = (a,b)$ em que $a \in A$ e
+     $b \in B \cap C$. Já que $b\in B\cap C$, temos que $b \in B$ e $b
+     \in C$. Como $a \in A$ e $b \in B$, temos que $(a,b)\in A \times
+     B$. De maneira similar, já que $a \in A$ e $b \in C$, temos que
+     $(a,b) \in A \times C$. Logo, $(a,b) \in (A\times B) \cap
+     (B\times C)$. Portanto, se $p \in A\times (B\cap C)$ então
+     $(A\times B)\cap (A \times C)$.
+   \item[$(\leftarrow)$] Suponha $p\in (A\times B) \cap (A \times
+     C)$. Assim, temos que $p \in A \times B$ e $p \in A \times C$.
+     Pela definição de produto cartesiano, temos que $p = (a,b)$ em
+     que $a \in A$, $b \in B$ e $b\in C$. Já que $b\in B$ e $b\in C$,
+     temos que $b\in B\cap C$. Mas, como $a \in A$ e $b\in B\cap C$,
+     temos que $(a,b)\in A\times (B\cap C)$. Logo, se $p \in (A\times
+     B) \cap (A \times C)$ então $p \in A \times (B\cap C)$.
+\end{itemize}
+Como $p$ é arbitrário, temos que $A \times (B\cap C) = (A \times B)
+\cap (A \times C)$. Portanto, para todos conjuntos $A,B$ e $C$ temos
+que $A \times (B\cap C) = (A \times B)
+\cap (A \times C)$.
+\end{proof}
+
+\begin{Commentary}
+Um ponto crucial desta demonstração é a utilização das hipóteses que
+um elemento $p$ que pertence ao produto cartesiano de dois conjuntos
+deve ser um par em que o primeiro elemento pertence ao primeiro
+conjunto e o segundo elemento, ao segundo conjunto.
+
+No caso do teorema anterior, em um momento temos que $p \in A \times
+(B\cap C)$, então $p = (a,b)$ em que $a \in A$ e $b \in B\cap C$.
+
+Além deste
+detalhe, toda a demonstração consiste apenas de uso de técnicas de
+provas que já vimos no capítulos \ref{cap4} e \ref{cap5}.
+
+Evidentemente, como o produto cartesiano de conjuntos é apenas um
+conjunto de pares ordenados, notações da teoria de conjuntos
+(apresentadas no capítulo \ref{cap5}).
+\end{Commentary}
+
+\section{Exercícios}
+
+\begin{enumerate}
+  \item Prove os seguintes teoremas:
+  \begin{enumerate}
+    \item Seja $A$ um conjunto qualquer. Então $A \times \emptyset =
+      \emptyset$.
+    \item Sejam $A$ e $B$ conjuntos quaisquer. Se $A \times B =
+      B\times A$ se e somente se $A = \emptyset$ ou $B = \emptyset$ ou
+      $A = B$.
+  \end{enumerate}
+\end{enumerate}
+
+\section{Introdução às Relações}
+
+Matematicamente, especificamos que dois objetos $a$ e $b$ estão
+relacionados dizendo que o par $(a,b)$ pertence ao conjunto de pares
+que descreve uma propriedade de interesse sobre estes objetos. Usamos
+relações (conceito matemático) para expressar relacionamentos entre
+objetos modelados matematicamente como conjuntos.
+
+\begin{Definition}[Relação]
+Suponha que $A$ e $B$ são conjuntos quaisquer. Denominamos o conjunto
+$R \subseteq A \times B$ uma relação de $A$ em $B$.
+\end{Definition}
+
+A seguir apresentamos alguns exemplos de relações.
+
+\begin{Example}
+Considere os seguintes conjuntos $A = \{1,2,3\}$ e $B =
+\{4,5,6\}$. Temos que $R = \{(1,5),(3,4)\}$ é uma relação de $A$ em
+$B$, já que $R\subseteq A \times B$.
+
+Outro exemplo de relação, agora envolvendo um conjunto infinito de
+pares, é:
+\[ G = \{(x,y)\in\mathbb{R}\times\mathbb{R}\,|\,x < y\}\]
+esta relação representa, utilizando pares, o conceito de ``menor''
+sobre números reais.
+\end{Example}
+
+Relações não necessariamente são formadas apenas por conjuntos
+numéricos. O próximo exemplo mostra relações sobre conjuntos não
+numéricos.
+
+\begin{Example}
+Considere os seguintes conjuntos que poderiam ser utilizados para
+modelar um sistema de informação em uma universidade:
+\begin{itemize}
+  \item $S$ : conjunto de todos os estudantes da universidade.
+  \item $C$: conjunto de todos os cursos de graduação da universidade.
+  \item $D$: conjunto de todas as disciplinas oferecidas em cursos da
+    universidade.
+  \item $P$: conjunto de todos os professores que lecionam na universidade.
+\end{itemize}
+Utilizando estes conjuntos, temos as seguintes relações:
+\begin{itemize}
+  \item $R = \{(e,c)\in S \times C\,|\,\text{O estudante } e\text{
+      está matriculado no curso }c\}$.
+  \item $R_1 =\{(p,d)\in P \times D\,|\,\text{O professor }p\text{
+      leciona a disciplina }d\}$.
+\end{itemize}
+Evidentemente, estas relações estariam representadas por mecanismos
+apropriados de bancos de dados relacionais em um sistema de informação
+de uma universidade. A primeira relação modela as informações sobre
+qual é o curso em que um aluno está matriculado e a segunda, qual
+disciplina um professor leciona.
+\end{Example}
+
+A seguir, apresentamos alguns conceitos provavelmente já conhecidos
+pelo leitor, mas em um contexto de funções e não de
+relações\footnote{Veremos, posteriormente, que funções são apenas um
+  tipo especial de relações.}
+
+\begin{Definition}[Domínio, Imagem, Inversa]
+Suponha que $R$ é uma relação de $A$ em $B$. Então o domínio de $R$ é
+o conjunto:
+\[
+dom(R) = \{a \in A \,|\, \exists b. b\in B \land (a,b) \in R\}
+\]
+A imagem\footnote{Normalmente, livros denotam o conjunto imagem usando
+a abreviação $ran$ de \textit{range} de imagem em inglês.} de $R$ é definida pelo seguinte conjunto:
+\[
+ran(R) = \{b\in B \,|\, \exists a. a\in A \land (a,b) \in R\}
+\]
+Finalmente, a relação inversa de $R$, $R^{-1} \subseteq B\times A$, é:
+\[
+R^{-1} =\{(b,a)\,|\,\exists a. \exists b. a \in A \land b\in B \land
+(a,b) \in R\}
+\]
+\end{Definition}
+
+\begin{Example}
+Considere:
+\begin{itemize}
+   \item $A = \{1,2,3,4\}$ e $B = \{6,7,8,9,0\}$.
+   \item $R = \{(1,6),(3,0),(2,9)\}$.
+\end{itemize}
+Temos:
+\begin{itemize}
+   \item $dom(R) =\{1,2,3\}$
+   \item $ran(R) =\{0,6,9\}$
+   \item $R^{-1} = \{(6,1),(0,3),(9,2)\}$
+\end{itemize}
+\end{Example}
+
+\begin{Definition}[Composição de Relações]
+Sejam $R \subseteq A \times B$ e $S \subseteq B \times C$ duas
+relações sobre conjuntos $A,B,C$ e $D$. A relação composta
+de $S$ e $R$, $S \circ R$, como uma relação de $A$ em $C$ definida
+como:
+\[
+S \circ R =\{(a,c)\,|\,\exists b. b \in B \land (a,b) \in R \land
+(b,c) \in S\}
+\]
+\end{Definition}
