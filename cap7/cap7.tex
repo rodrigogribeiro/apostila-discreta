@@ -123,6 +123,30 @@ conjunto de pares ordenados, notações da teoria de conjuntos
 (apresentadas no capítulo \ref{cap5}).
 \end{Commentary}
 
+Abaixo apresentamos outra demonstração similar.
+
+\begin{Theorem}
+Seja $A$ um conjunto qualquer. Então, $A \times \emptyset =
+\emptyset$.
+\end{Theorem}
+\begin{proof}
+Suponha $p$ arbitrário.
+\begin{itemize}
+    \item[$(\to)$] Suponha que $p \in A \times \emptyset$. Como $p \in
+      A \times \emptyset$, existem $a \in A$ e $b\in \emptyset$ tais
+      que $p = (a,b)$. Mas, não existe $b\in\emptyset$. Logo, o
+      resultado desejado é provado por contradição.
+    \item[$(\leftarrow)$] Suponha que $p \in \emptyset$. Como não
+      existe $p\in\emptyset$, por contradição, o resultado é provado.
+\end{itemize}
+Como $p$ é arbitrário, temos que $A \times \emptyset = \emptyset$
+\end{proof}
+
+\begin{Commentary}
+A chave da demonstração anterior é o uso do fato de que não existe
+elemento $x \in \emptyset$, o que nos permite concluir a demonstração
+usando contradição.
+\end{Commentary}
 \section{Exercícios}
 
 \begin{enumerate}
@@ -142,7 +166,7 @@ Matematicamente, especificamos que dois objetos $a$ e $b$ estão
 relacionados dizendo que o par $(a,b)$ pertence ao conjunto de pares
 que descreve uma propriedade de interesse sobre estes objetos. Usamos
 relações (conceito matemático) para expressar relacionamentos entre
-objetos modelados matematicamente como conjuntos.
+objetos modelados matematicamente como elementos de conjuntos.
 
 \begin{Definition}[Relação]
 Suponha que $A$ e $B$ são conjuntos quaisquer. Denominamos o conjunto
@@ -194,7 +218,7 @@ disciplina um professor leciona.
 A seguir, apresentamos alguns conceitos provavelmente já conhecidos
 pelo leitor, mas em um contexto de funções e não de
 relações\footnote{Veremos, posteriormente, que funções são apenas um
-  tipo especial de relações.}
+  tipo especial de relações.}.
 
 \begin{Definition}[Domínio, Imagem, Inversa]
 Suponha que $R$ é uma relação de $A$ em $B$. Então o domínio de $R$ é
@@ -228,13 +252,77 @@ Temos:
 \end{itemize}
 \end{Example}
 
+Encerraremos esta seção com um conceito importante: o de composição de
+relações. Este conceito permite a construção de uma nova relação a
+partir de duas relações existentes. A seguir definimos formalmente
+este conceito e apresentamos alguns exemplos na sequência.
+
 \begin{Definition}[Composição de Relações]
 Sejam $R \subseteq A \times B$ e $S \subseteq B \times C$ duas
 relações sobre conjuntos $A,B,C$ e $D$. A relação composta
-de $S$ e $R$, $S \circ R$, como uma relação de $A$ em $C$ definida
+de $S$ e $R$, $S \circ R$, é uma relação de $A$ em $C$ definida
 como:
 \[
 S \circ R =\{(a,c)\,|\,\exists b. b \in B \land (a,b) \in R \land
 (b,c) \in S\}
 \]
 \end{Definition}
+
+\begin{Example}
+Considere os seguintes conjuntos que poderiam ser utilizados para
+modelar um sistema de informação em uma universidade:
+\begin{itemize}
+  \item $S$ : conjunto de todos os estudantes da universidade.
+  \item $C$: conjunto de todos os cursos de graduação da universidade.
+  \item $D$: conjunto de todas as disciplinas oferecidas em cursos da
+    universidade.
+  \item $P$: conjunto de todos os professores que lecionam na universidade.
+\end{itemize}
+e as seguintes relações
+\begin{itemize}
+	\item $R_1 = \{(p,d)\in P \times D \,\mid\,\text{$p$ leciona a disc. } d\}$.
+	\item $R_2 = \{(d,c)\in D \times C\,\mid\,\text{$d$ est\'a no curso $c$}\}$.
+	\item $R_3 = \{(e,d)\in E\times D\,\mid\,\text{$e$ est\'a matr. em $d$}\}$.
+\end{itemize}
+Temos que a relação $R_1 \circ R_2 \subseteq P \times C$ é definida
+como:
+\[
+R_1 \circ R_2 =\{(p,c) \in P \times C \,|\,\text{o professor $p$
+  leciona alguma disciplina do curso $c$}\}
+\]
+De maneira similar, podemos definir uma relação que especifica que um
+certo aluno está matriculado em um curso, usando composição e as
+relações $R_2$ e $R_3$:
+\[
+R_3 \circ R_2 =\{(e,c)\,|\,\text{o aluno $e$ está matriculado em
+  alguma disciplina do curso $c$}\}
+\]
+\end{Example}
+
+Finalizaremos esta seção com alguns teoremas envolvendo as definições
+apresentadas. Novamente vale ressaltar que cabe ao leitor a tarefa de
+reconstruir o rascunho para um melhor entendimento do conteúdo
+apresentado.
+
+\begin{Theorem}
+Suponha que $R \subseteq A \times B$. Então, $(R^{-1})^{-1} = R$.
+\end{Theorem}
+\begin{proof}
+Suponha $p$ arbitrário.
+\begin{itemize}
+  \item[$(\to)$]: Suponha que $p\in (R^{-1})^{-1}$. Se $R\subseteq A
+    \times B$, então $R^{-1}\subseteq B\times A$. Já que
+    $R^{-1}\subseteq B\times A$ então $(R^{-1})^{-1}\subseteq A\times
+    B$.Como $p\in (R^{-1})^{-1}$, temos que existem $a\in A$ e $b\in
+    B$ e $p = (a,b)$. Se $(a,b) \in (R^{-1})^{-1}$, então $(b,a)\in
+    R^{-1}$ e, portanto, pela definição de relação inversa, temos que
+    $(a,b)\in R$. Logo, se $(a,b)\in
+    (R^{-1})^{1}$ então $(a,b)\in R$.
+  \item[$(\leftarrow)$]: Suponha que $p \in R$. Como $R\subseteq A$,
+    temos que existem $a\in A$ e $b\in B$ tais que $p = (a,b)$. Pela
+    definição de inversa, temos que se $(a,b)\in R$ temos que $(b,a)
+    \in R^{-1}$ e $(a,b) \in (R^{-1})^{-1}$. Logo, se $(a,b) \in R$
+    temos que $(a,b) \in (R^{-1})^{-1}$.
+\end{itemize}
+   Como $p$ é arbitrário, temos que $(R^{-1})^{-1} = R$.
+\end{proof}
