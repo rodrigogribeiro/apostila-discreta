@@ -119,8 +119,8 @@ detalhe, toda a demonstração consiste apenas de uso de técnicas de
 provas que já vimos no capítulos \ref{cap4} e \ref{cap5}.
 
 Evidentemente, como o produto cartesiano de conjuntos é apenas um
-conjunto de pares ordenados, notações da teoria de conjuntos
-(apresentadas no capítulo \ref{cap5}).
+conjunto de pares ordenados, todas as notações da teoria de conjuntos
+(apresentadas no capítulo \ref{cap5}) são aplicáveis.
 \end{Commentary}
 
 Abaixo apresentamos outra demonstração similar.
@@ -326,3 +326,148 @@ Suponha $p$ arbitrário.
 \end{itemize}
    Como $p$ é arbitrário, temos que $(R^{-1})^{-1} = R$.
 \end{proof}
+
+\begin{Commentary}
+A demonstração do teorema anterior utiliza a representação lógica da
+igualdade de dois conjuntos de pares ordenados
+(relações). Formalmente, definimos a igualdade de dois conjuntos $A$ e
+$B$ da seguinte maneira:
+\[ A = B \equiv \forall x. x \in A \leftrightarrow x \in B \]
+Além disso, utilizamos a definição de inversa de uma relação, que
+consiste em ``trocar'' a ordem dos elementos de um par ordenado. Se
+par $(x,y)\in R$ então temos que $(y,x)\in R^{-1}$. O restante da
+demonstração consiste em uso das estratégias de prova para o
+quantificador universal e o conectivo bicondicional.
+\end{Commentary}
+
+\begin{Theorem}
+Suponha que $R\subseteq A \times B$, $S \subseteq B \times C$ e $T
+\subseteq C \times D$. Então, $T \circ (S \circ R) = (T \circ S) \circ
+R$.
+\end{Theorem}
+\begin{proof}
+Suponha que $R\subseteq A \times B$, $S \subseteq B \times C$ e $T
+\subseteq C \times D$.
+ Suponha $p$ arbitrário.
+\begin{itemize}
+  \item[$(\to)$]: Suponha que $p \in T \circ (S \circ R)$. Como
+    $R\subseteq A \times B$, $S \subseteq B \times C$ e $T
+\subseteq C \times D$, temos que $S \circ R \subseteq A \times C$ e
+   $T \circ (S \circ R)\subseteq A \times D$. Assim, como  $T \circ (S
+   \circ R)\subseteq A \times D$, temos que existem $a \in A$ e $d\in
+   D$ tais que $p = (a,d)$. Pela definição de composição, temos que
+   para $(a,d) \in T \circ (S \circ R)$, deve existir $c \in C$ tal
+   que $(a,c) \in S \circ R$ e $(c,d) \in T$. Mas, para $(a,c) \in S
+   \circ R$ deve existir $b\in B$ tal que $(a,b) \in R$ e $(b,c) \in
+   S$. Logo, pela definição de composição, temos que $(b,d) \in T
+   \circ S$. Novamente, por composição, podemos concluir que
+   $(a,d) \in (T \circ S) \circ R$. Logo, se $p \in T \circ (S \circ
+   R)$ então $p \in (T \circ S) \circ R$.
+  \item[$(\leftarrow)$]: Suponha que $p \in (T \circ S) \circ R$. Como
+    $R\subseteq A \times B$, $S \subseteq B \times C$ e $T
+\subseteq C \times D$, temos que $T \circ S\subseteq B \times D$ e
+ $(T\circ S) \circ R \subseteq A \times D$. Assim, como $(T\circ S)
+ \circ R \subseteq A \times D$, temos que existem $a \in A$ e $d\in D$
+ tais que $p = (a,d)$. Pela definição de composição, temos que para
+ $(a,d) \in (T\circ S) \circ R$ deve existir  $b\in B$ tal que $(b,d)
+ \in T \circ S$ e $(a,b) \in R$. Por sua vez, para $(b,d)
+ \in T \circ S$, deve existir $c\in C$ tal que $(b,c) \in S$ e $(c,d)
+ \in T$. Novamente, por composição, temos que $(a,c)\in S\circ R$ e
+ que $(a,d) \in T\circ (S \circ R)$. Logo, se $p \in (T\circ S) \circ
+ R$ então $p \in T \circ (S \circ R)$.
+\end{itemize}
+Como $p$ é arbitrário, temos que $T \circ (S \circ R) = (T \circ S)
+\circ R$.
+\end{proof}
+
+\begin{Commentary}
+Neste teorema utilizou-se extensivamente a definição de composição de
+relações. Se $R \subseteq A \times  B$ e $S \subseteq B \times C$,
+então $S\circ R \subseteq A \times C$ é definido como:
+\[
+S \circ R = \{(a,c) \,|\, \exists b. b\in B \land (a,b) \in R \land
+(b,c) \in S\}
+\]
+A partir desta definição, utilizamos a hipótese envolvendo o
+quantificador existencial para deduzir cada um dos pares que pertencem
+as relações $R,S$ e $T$ que foram utilizados para construir o par $p =
+(a,d)$ utilizado na demonstração.
+\end{Commentary}
+
+\section{Exercícios}
+
+\begin{enumerate}
+	\item Sejam $A=\{1,2,3\}$, $B=\{4,5,6\}$, $R=\{(1,4), (1,5), (2,5), (3,6)\}$ e $S=\{(4,5), (4,6), (5,4), (6,6)\}$.
+	      Note que $R\subseteq A\times B$ e $S\subseteq B\times B$. Encontre as seguintes rela\c{c}\~oes:
+	\begin{enumerate}
+		\item $S\circ R$
+		\item $S\circ S$
+		\item $S^{-1}\circ R$
+		\item $R^{-1}\circ S$
+	\end{enumerate}
+	\item Seja $R$ uma rela\c{c}\~ao sobre um conjunto $A$. Prove que
+          $R\circ R^{-1}\subseteq i_{A}$, em que $i_{A}=\{(x,x)\,|\,x\in A\}$.
+	\item Sejam $A$ e $B$ dois conjuntos quaisquer.
+	\begin{enumerate}
+		\item Prove que para toda rela\c{c}\~ao $R\subseteq A\times B$, $R\circ i_{A} = R$, em que $i_{A}=\{(x,x)\,|\,x\in A\}$.
+		\item Prove que para toda rela\c{c}\~ao $R\subseteq A\times B$, $i_{B}\circ R = R$, em que $i_{B}=\{(x,x)\,|\,x\in B\}$.
+	\end{enumerate}
+\end{enumerate}
+
+\section{Relações Binárias}
+
+Nesta seção apresentaremos propriedades de um tipo especial de
+relação: as relações binárias, cuja definição apresentamos a seguir.
+
+\begin{Definition}[Relação Binária]
+Seja $A$ um conjunto qualquer. Dizemos que $R$ é uma relação binária
+sobre $A$ se $R \subseteq A\times A$.
+\end{Definition}
+
+\begin{Example}
+As seguintes relações são relações binárias sobre os seguintes
+conjuntos $A = \{1,2\}$, $\mathbb{N}$, $P$ (conjunto de todas as
+pessoas) e subconjuntos de um conjunto $B$ ($\mathcal{P}(B)$).
+\begin{itemize}
+  \item $R = \{(1,2),(1,1)\}$.
+  \item $G = \{(x,y)\in \mathbb{N}\times\mathbb{N}\,|\,x > y\}$.
+  \item $I =\{(x,y)\in P \times P\,|\,x\text{ é irmão de }y\}$.
+  \item $S = \{(x,y)\in \mathcal{P}(B)\times\mathcal{P}(B)\,|\,x
+    \subseteq y\}$.
+\end{itemize}
+\end{Example}
+
+Relações binárias são interessantes por possuírem diversas
+propriedades que permitem que possamos classificá-las e usar diversos
+resultados sobre estas. Antes de apresentarmos essas propriedades,
+vamos introduzir uma notação para representar o fato que um certo par
+pertence a uma relação $R$.
+\begin{Notation}
+Seja $R\subseteq A \times A$ uma relação binária qualquer sobre um
+conjunto $A$. Representaremos o fato de que $(x,y) \in R$ como $xRy$.
+\end{Notation}
+A seguir definimos estas diversas
+propriedades.
+
+\begin{Definition}[Relação Reflexiva]
+Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
+$R$ é uma relação reflexiva se
+\[
+\forall x. x\in A \to (x,x) \in R.
+\]
+\end{Definition}
+
+\begin{Example}
+Abaixo apresentamos diversos exemplos de relações reflexivas.
+\begin{itemize}
+  \item $R = \{(x,y) \in \mathbb{N} \times \mathbb{N}\,|\, x \leq
+    y\}$ é uma relação reflexiva pois todo número $n\in\mathbb{N}$ é
+    menor ou igual a si próprio.
+  \item $R_1 = \{(p,q)\,|\,\text{as palavras $p$ e $q$ iniciam com a
+      mesma letra do alfabeto.}\}$ é uma relação reflexiva pois toda
+    palavra $p$ inicia com a mesma letra que ela própria.
+  \item $R_2=\{(x,y)\in\mathcal{P}(A)\times\mathcal{P}(A)\,|\,x
+    \subseteq y\}$ é uma relação reflexiva pois todo conjunto $x$ é
+    subconjunto de si próprio.
+\end{itemize}
+\end{Example}
