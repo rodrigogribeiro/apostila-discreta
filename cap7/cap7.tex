@@ -439,15 +439,14 @@ pessoas) e subconjuntos de um conjunto $B$ ($\mathcal{P}(B)$).
 
 Relações binárias são interessantes por possuírem diversas
 propriedades que permitem que possamos classificá-las e usar diversos
-resultados sobre estas. Antes de apresentarmos essas propriedades,
+resultados sobre estas propriedades. Antes de apresentarmos estas propriedades,
 vamos introduzir uma notação para representar o fato que um certo par
 pertence a uma relação $R$.
 \begin{Notation}
 Seja $R\subseteq A \times A$ uma relação binária qualquer sobre um
 conjunto $A$. Representaremos o fato de que $(x,y) \in R$ como $xRy$.
 \end{Notation}
-A seguir definimos estas diversas
-propriedades.
+A seguir definimos estas propriedades.
 
 \begin{Definition}[Relação Reflexiva]
 Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
@@ -477,6 +476,22 @@ Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
 $R$ é uma relação simétrica se
 \[\forall x.\forall y. x \in A \land y\in A \land x R y \to y R x. \]
 \end{Definition}
+\begin{Example}
+São exemplos de relações simétricas.
+\begin{itemize}
+   \item $R = \{(p,q)\,|\,\text{a pessoa $p$ é irmã(o) da pessoa
+     }q.\}$ é uma relação simétrica já que, para quaisquer $p$ e $q$,
+    se $p$ é irmão de $q$ então $q$ também é irmão de $p$.
+  \item $R_1 = \{(p,q)\,|\,\text{as palavras $p$ e $q$ iniciam com a
+      mesma letra do alfabeto.}\}$ é uma relação simétrica já que,
+    para quaisquer palavras $p$ e $q$, se $p$ inicia com a mesma letra
+    que $q$, então $q$ inicia com a mesma letra que $p$.
+  \item $R_2=\{(x,y)\in\mathcal{P}(A)\times\mathcal{P}(A)\,|\,\exists
+    z. z \in x \land z \in y\}$ é uma relação simétrica, pois se um
+    elemento $z$ pertence a um conjunto $x$ e a um conjunto $y$ então
+    este mesmo elemento pertence ao conjunto $y$ e $x$.
+\end{itemize}
+\end{Example}
 
 \begin{Definition}[Relação Transitiva]
 Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
@@ -487,6 +502,26 @@ $R$ é uma relação transitiva se
 \]
 \end{Definition}
 
+
+\begin{Example}
+São exemplos de relações transitivas.
+\begin{itemize}
+  \item $R = \{(x,y) \in \mathbb{N} \times \mathbb{N}\,|\, x \leq
+    y\}$ é uma relação transitiva, pois se $x \leq y$ e $y \leq z$
+    então $x\leq z$.
+  \item $R_1 = \{(p,q)\,|\,\text{as palavras $p$ e $q$ iniciam com a
+      mesma letra do alfabeto.}\}$ é uma relação transitiva já que,
+    para quaisquer palavras $p$, $q$ e $r$, se $p$ inicia com a mesma letra
+    que $q$ e $q$ inicia com a mesma letra que $r$ então $p$ inicia
+    com a mesma letra que $r$.
+  \item
+    $R_2=\{(x,y)\in\mathcal{P}(A)\times\mathcal{P}(A)\,|\,x\subseteq y\}$ é uma relação transitiva, pois se um
+    conjunto $x$ está contido em um conjunto $y$ e $y$ está contido em
+    um conjunto $z$, então $x$ está contido em $z$.
+\end{itemize}
+\end{Example}
+
+
 \begin{Definition}[Relação Anti-simétrica]
 Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
 $R$ é uma relação anti-simétrica se
@@ -495,3 +530,167 @@ $R$ é uma relação anti-simétrica se
 \land xRy \land yRx \to x = y
 \]
 \end{Definition}
+
+\begin{Example}
+São exemplos de relações anti-simétricas.
+\begin{itemize}
+  \item $R = \{(x,y) \in \mathbb{N} \times \mathbb{N}\,|\, x \leq
+    y\}$ é uma relação anti-simétrica, pois se $x \leq y$ e $y \leq x$
+    então $x = y$.
+  \item
+    $R_2=\{(x,y)\in\mathcal{P}(A)\times\mathcal{P}(A)\,|\,x\subseteq
+    y\}$ é uma relação anti-simétrica, pois se um
+    conjunto $x$ está contido em um conjunto $y$ e $y$ está contido em
+    $x$, então os conjuntos $x$ e $y$ são iguais (pela definição de
+    igualdade de conjuntos).
+\end{itemize}
+\end{Example}
+Agora que estas definições foram apresentadas juntamente com alguns
+exemplos, as utilizaremos para demonstrar alguns teoremas. Vamos
+demonstrar um dos teoremas em detalhes (apresentando o rascunho e a
+construção passa-a-passo do texto) e os outros dois mostraremos apenas
+o texto final.
+\begin{Theorem}
+Suponha que $R$ é uma relação binária sobre um conjunto $A$. Então:
+\begin{enumerate}
+     \item Se $R$ é reflexiva então $i_A \subseteq R$, em que
+       $i_A=\{(x,x)\,|\,x \in A\}$.
+     \item Se $R$ é simétrica então $R = R^{-1}$.
+     \item Se $R$ é transitiva então $R \circ R \subseteq R$.
+\end{enumerate}
+\end{Theorem}
+\begin{Example}
+Demonstraremos o primeiro item em detalhes.
+A partir do enunciado do primeiro item, temos a seguinte configuração
+inicial do rascunho.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$R\subseteq A \times A$ &  $R$ é reflexiva $\to i_{A}\subseteq R$
+\end{tabular}
+\end{flushleft}
+Utilizando a estratégia de prova direta, temos a seguinte configuração
+do rascunho.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$R\subseteq A \times A$ &  $i_{A}\subseteq R$\\
+$R$ é reflexiva & \\
+\end{tabular}
+\end{flushleft}
+Utilizando a definição de subconjunto, temos
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$R\subseteq A \times A$ &  $\forall p. p \in i_{A} \to p \in  R$\\
+$R$ é reflexiva & \\
+\end{tabular}
+\end{flushleft}
+Agora, aplicando as estratégias de prova para o quantificador
+universal e implicação (nesta ordem) temos
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$R\subseteq A \times A$ &  $p \in  R$\\
+$R$ é reflexiva & \\
+$p$ arbitrário & \\
+$p \in i_{A}$ & \\
+\end{tabular}
+\end{flushleft}
+Se $p \in i_{A}$ então existe $y$ tal que $p = (y,y)$.
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$R\subseteq A \times A$ &  $p \in  R$\\
+$R$ é reflexiva & \\
+$p$ arbitrário & \\
+$p \in i_{A}$ & \\
+$\exists y. y\in A \land p = (y,y)$ & \\
+\end{tabular}
+\end{flushleft}
+Usando a estratégia de hipóteses para o quantificador existencial,
+temos
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$R\subseteq A \times A$ &  $p \in  R$\\
+$R$ é reflexiva & \\
+$p$ arbitrário & \\
+$p \in i_{A}$ & \\
+$\exists y. y\in A \land p = (y,y)$ & \\
+$y\in A$ & \\
+$p = (y,y)$ & \\
+\end{tabular}
+\end{flushleft}
+Utilizando a definição de relação reflexiva, temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$R\subseteq A \times A$ &  $p \in  R$\\
+$R$ é reflexiva & \\
+$p$ arbitrário & \\
+$p \in i_{A}$ & \\
+$\exists y. y\in A \land p = (y,y)$ & \\
+$y\in A$ & \\
+$p = (y,y)$ & \\
+$\forall x. x \in A \to xRx$ & \\
+\end{tabular}
+\end{flushleft}
+Agora, basta usar a eliminação do quantificador universal
+(substituindo $x$ por $y$), temos:
+\begin{flushleft}
+\begin{tabular}{ll}
+Hipóteses & Conclusão \\
+$R\subseteq A \times A$ &  $p \in  R$\\
+$R$ é reflexiva & \\
+$p$ arbitrário & \\
+$p \in i_{A}$ & \\
+$\exists y. y\in A \land p = (y,y)$ & \\
+$y\in A$ & \\
+$p = (y,y)$ & \\
+$\forall x. x \in A \to xRx$ & \\
+$y \in A \to y R y$ & \\
+\end{tabular}
+\end{flushleft}
+Usando as hipóteses $y \in A$ e $y\in A \to y R y$, concluímos a
+demonstração do teorema.
+
+Agora, vamos construir o texto deste teorema
+passo-a-passo. Primeiramente, mostramos a parte do texto
+correspondente a primeira implicação deste teorema.
+\begin{flushleft}
+Suponha que $R$ seja uma relação reflexiva.\\
+\verb|   |[Prova de $i_{A}\subseteq R$].\\
+Portanto, se $R$ é uma relação reflexiva então $i_{A} \subseteq R$.
+\end{flushleft}
+Agora, utilizando a definição de $\subseteq$ em termos do
+quantificador universal, temos:
+\begin{flushleft}
+Suponha que $R$ seja uma relação reflexiva.\\
+\verb|   |Suponha $p$ arbitrário.\\
+\verb|      |[Prova de $p \in i_{A} \to p \in R$].\\
+\verb|   |Como $p$ é arbitrário, temos que $i_{A} \subseteq R$.\\
+Portanto, se $R$ é uma relação reflexiva então $i_{A} \subseteq R$.
+\end{flushleft}
+Usando prova direta, temos
+\begin{flushleft}
+Suponha que $R$ seja uma relação reflexiva.\\
+\verb|   |Suponha $p$ arbitrário.\\
+\verb|      |Suponha que $p \in i_A$.\\
+\verb|         |[Prova de $p \in R$].\\
+\verb|      |Logo, se $p\in i_A$ então $p \in R$.\\
+\verb|   |Como $p$ é arbitrário, temos que $i_{A} \subseteq R$.\\
+Portanto, se $R$ é uma relação reflexiva então $i_{A} \subseteq R$.
+\end{flushleft}
+Agora, concluímos o texto utilizando as hipóteses.
+\begin{flushleft}
+Suponha que $R$ seja uma relação reflexiva.\\
+\verb|   |Suponha $p$ arbitrário.\\
+\verb|      |Suponha que $p \in i_A$.\\
+\verb|         |Como $p\in i_A$, existe $y \in A$ tal que $p = (y,y)$.\\
+\verb|         |Como $R$ é reflexiva e $y \in A$, temos que $yRy$.\\
+\verb|      |Logo, se $p\in i_A$ então $p \in R$.\\
+\verb|   |Como $p$ é arbitrário, temos que $i_{A} \subseteq R$.\\
+Portanto, se $R$ é uma relação reflexiva então $i_{A} \subseteq R$.
+\end{flushleft}
+\end{Example}
