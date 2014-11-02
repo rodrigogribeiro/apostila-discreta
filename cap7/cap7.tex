@@ -453,7 +453,7 @@ propriedades.
 Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
 $R$ é uma relação reflexiva se
 \[
-\forall x. x\in A \to (x,x) \in R.
+\forall x. x\in A \to  xRx.
 \]
 \end{Definition}
 
@@ -471,3 +471,27 @@ Abaixo apresentamos diversos exemplos de relações reflexivas.
     subconjunto de si próprio.
 \end{itemize}
 \end{Example}
+
+\begin{Definition}[Relação Simétrica]
+Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
+$R$ é uma relação simétrica se
+\[\forall x.\forall y. x \in A \land y\in A \land x R y \to y R x. \]
+\end{Definition}
+
+\begin{Definition}[Relação Transitiva]
+Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
+$R$ é uma relação transitiva se
+\[
+\forall x.\forall y. \forall z. x \in A \land y \in A \land z \in A
+\land xRy \land yRz \to xRz
+\]
+\end{Definition}
+
+\begin{Definition}[Relação Anti-simétrica]
+Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
+$R$ é uma relação anti-simétrica se
+\[
+\forall x.\forall y.  x \in A \land y \in A
+\land xRy \land yRx \to x = y
+\]
+\end{Definition}
