@@ -147,7 +147,7 @@ A chave da demonstração anterior é o uso do fato de que não existe
 elemento $x \in \emptyset$, o que nos permite concluir a demonstração
 usando contradição.
 \end{Commentary}
-\section{Exercícios}
+\subsection{Exercícios}
 
 \begin{enumerate}
   \item Prove os seguintes teoremas:
@@ -394,7 +394,7 @@ as relações $R,S$ e $T$ que foram utilizados para construir o par $p =
 (a,d)$ utilizado na demonstração.
 \end{Commentary}
 
-\section{Exercícios}
+\subsection{Exercícios}
 
 \begin{enumerate}
 	\item Sejam $A=\{1,2,3\}$, $B=\{4,5,6\}$, $R=\{(1,4), (1,5), (2,5), (3,6)\}$ e $S=\{(4,5), (4,6), (5,4), (6,6)\}$.
@@ -468,6 +468,26 @@ Abaixo apresentamos diversos exemplos de relações reflexivas.
   \item $R_2=\{(x,y)\in\mathcal{P}(A)\times\mathcal{P}(A)\,|\,x
     \subseteq y\}$ é uma relação reflexiva pois todo conjunto $x$ é
     subconjunto de si próprio.
+\end{itemize}
+\end{Example}
+
+\begin{Definition}[Relação Irreflexiva]
+Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
+$R$ é uma relação irreflexiva se
+\[
+\forall x. x\in A \to  \neg xRx.
+\]
+\end{Definition}
+
+\begin{Example}
+São exemplos de relações irreflexivas.
+\begin{itemize}
+  \item $R = \{(x,y)\in\mathbb{R}\times \mathbb{R}\,|\, x < y\}$, é
+    uma relação irreflexiva pois, para qualquer número $x \in
+    \mathbb{R}$, temos que não é verdade que $x < x$.
+  \item $R_1 =\{(a,b) \,|\, \text{A pessoa $a$ é pai da pessoa
+      $b$}\}$, é uma relação irreflexiva pois, não é possível uma
+    pessoa ser pai dela própria.
 \end{itemize}
 \end{Example}
 
@@ -551,13 +571,8 @@ demonstrar um dos teoremas em detalhes (apresentando o rascunho e a
 construção passa-a-passo do texto) e os outros dois mostraremos apenas
 o texto final.
 \begin{Theorem}
-Suponha que $R$ é uma relação binária sobre um conjunto $A$. Então:
-\begin{enumerate}
-     \item Se $R$ é reflexiva então $i_A \subseteq R$, em que
-       $i_A=\{(x,x)\,|\,x \in A\}$.
-     \item Se $R$ é simétrica então $R = R^{-1}$.
-     \item Se $R$ é transitiva então $R \circ R \subseteq R$.
-\end{enumerate}
+Suponha que $R$ é uma relação binária sobre um conjunto $A$. Então,
+Se $R$ é reflexiva então $i_A \subseteq R$, em que  $i_A=\{(x,x)\,|\,x \in A\}$.
 \end{Theorem}
 \begin{Example}
 Demonstraremos o primeiro item em detalhes.
@@ -694,3 +709,578 @@ Suponha que $R$ seja uma relação reflexiva.\\
 Portanto, se $R$ é uma relação reflexiva então $i_{A} \subseteq R$.
 \end{flushleft}
 \end{Example}
+Agora, mais dois teoremas sobre relações. Estes serão apresentados sem
+detalhes\footnote{\textit{Dica do professor amigo: \textbf{Entenda} todas essas demonstrações!}}.
+\begin{Theorem}
+Seja $R$ uma relação binária sobre um conjunto $A$. Então,
+Se $R$ é simétrica então $R = R^{-1}$.
+\end{Theorem}
+\begin{proof}
+Suponha que $R$ seja uma relação simétrica. Suponha $p$ arbitrário.
+\begin{itemize}
+  \item[$(\to)$]: Suponha que $p \in R$. Como $R\subseteq A \times A$,
+    então existem $x,y \in A$ tais que $p = (x,y)$. Uma vez que $
+    xRy$ e $R$ é simétrica, temos que $yRx$. Já que $yRx$, pela
+    definição de inversa, temos que $xR^{-1}y$. Logo, se $p \in R$
+    então $p\in R^{-1}$.
+  \item[$(\leftarrow)$]: Suponha que $p \in R^{-1}$. Como $R\subseteq
+    A \times A$, então existem $x,y \in A$ tais que $p = (x,y)$. Uma
+    vez que $xR^{-1}y$, pela definição de inversa, temos que
+    $yRx$. Como $yRx$ e $R$ é simétrica, temos que $xRy$. Logo, se $p
+    \in R^{-1}$ então $p \in R$.
+\end{itemize}
+Como $p$ é arbitrário, temos que $R = R^{-1}$. Portanto, se $R$ é uma
+relação simétrica, temos que $R = R^{-1}$.
+\end{proof}
+\begin{Theorem}
+Seja $R$ uma relação binária sobre um conjunto $A$. Então,
+Se $R$ é transitiva então $R \circ R \subseteq R$.
+\end{Theorem}
+\begin{proof}
+Suponha que $R$ é uma relação transitiva. Suponha $p$ arbitrário.
+Suponha que $p \in R \circ R$. Como $R\subseteq A
+    \times A$, temos que existem $a,c \in A$ tais que $p =
+    (a,c)$. Como $(a,c) \in R\circ R$, pela definição de composição de
+    relações, temos que existe $b\in A$ tal que $aRb$ e $bRc$. Como
+    $R$ é transitiva, $aRb$ e $bRc$, temos que $aRc$. Logo, se $p \in
+    R \circ R$ então $p\in R$. Como $p$ é arbitrário, temos que $R\circ R
+    \subseteq R$. Portanto, se $R$ é uma relação transitiva então $R
+    \circ R \subseteq R$.
+\end{proof}
+
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Seja $A = \{\text{banana, abacate, melancia, ovo, ócio}\}$ e $R =
+    \{(x,y)\in A \times A\,|\, \text{a palavra $x$ tem alguma letra em
+    comum com a palavra $y$}\}$.
+  \begin{enumerate}
+    \item Liste os pares que formam a relação $R$.
+    \item Quais propriedades (reflexiva, irreflexiva, simétrica,
+      transitiva, anti-simétrica) possui a relação $R$?
+  \end{enumerate}
+  \item Demonstre os seguintes teoremas.
+  \begin{enumerate}
+      \item Suponha que $R$ é uma relação binária sobre um conjunto
+        $A$. Se $R$ é reflexiva então $R \subseteq R \circ R$.
+      \item Suponha que $R$ é uma relação binária sobre um conjunto
+        $A$. Se $R$ é reflexiva então $R^{-1}$ também é reflexiva.
+      \item Sejam $R_1$ e $R_2$ duas relações binárias sobre um
+        conjunto $A$. Então se $R_1$ e $R_2$ são relações simétricas,
+        então $R_1\cup R_2$ e $R_1\cap R_2$ também são simétricas.
+  \end{enumerate}
+\end{enumerate}
+
+\section{Relações de Ordem}
+
+\subsection{Introdução}
+
+Usando as definições de propriedades de relações, apresentadas na seção
+anterior, podemos notar que diversas relações possuem características
+similares. Note as relações seguintes:
+
+\begin{enumerate}
+  \item $R =\{(x,y)\in\mathbb{R}\times\mathbb{R}\,|\,x \leq y\}$
+  \item $S = \{(x,y)\in\mathcal{P}(A)\times\mathcal{P}(A)\,|\,x
+    \subseteq y\}$
+\end{enumerate}
+são ambas relações reflexivas, transitivas e anti-simétricas. Relações
+com estas propriedades são denominadas ordens parciais e possuem
+características que permitem entendê-las como um critério de ordenação
+entre elementos de um conjunto. A próxima definição apresenta estes
+conceitos.
+
+\begin{Definition}[Pré-Ordem e Ordens Parciais]
+Seja $R \subseteq A \times A$ uma relação. Dizemos que $R$ é uma
+pré-ordem se $R$ for reflexiva e transitiva. Uma ordem parcial é uma
+relação reflexiva, transitiva (pré-ordem) e anti-simétrica.
+\end{Definition}
+
+\begin{Example}
+São exemplos de ordens parciais (e, evidentemente, de pré-ordens) as
+seguintes relações.
+\begin{enumerate}
+  \item $R =\{(x,y)\in\mathbb{R}\times\mathbb{R}\,|\,x \leq y\}$.
+  \item $S = \{(x,y)\in\mathcal{P}(A)\times\mathcal{P}(A)\,|\,x
+    \subseteq y\}$.
+  \item $T = \{(x,y)\in\{1,2\}\times\{1,2\}\,|\,|x| \leq |y|\}$.
+\end{enumerate}
+\end{Example}
+
+Relações de ordem especificam uma maneira de compararmos elementos de
+um conjunto. A próxima definição torna este conceito preciso.
+\begin{Definition}[Elementos Comparáveis]
+Seja $R \subseteq A \times A$ uma relação de ordem qualquer
+(pré-ordem, ordem parcial, ordem total, lexicográfica) e $a,b \in
+A$. Dizemos que $a$ e $b$ são comparáveis em $R$ se $aRb$ ou $bRa$.
+\end{Definition}
+
+O nome ordem ``parcial'' deve-se ao fato de que nem sempre todos
+elementos de um conjunto $A$ são comparáveis de acordo com uma ordem
+parcial $R$. Como exemplo, o par $(\{1,2\},\emptyset) \not\in S$, pois
+$\{1,2\}\not\subseteq \emptyset$. Por sua vez, para quaisquer números
+reais $x,y$ temos que $x \leq y$ e $x \not\leq y$. Quando uma ordem
+parcial permite a comparação entre quaisquer elementos de um conjunto,
+dizemos que esta é uma ordem total.
+\begin{Definition}[Ordem Total]
+Seja $R \subseteq A \times A$ uma relação. Dizemos que $R$ é uma ordem
+total se $R$ for uma ordem parcial e adicionalmente a seguinte
+condição é verdadeira:
+\[
+\forall x. \forall y. x\in A \land y \in A \land (xRy \lor yRx)
+\]
+\end{Definition}
+
+Evidentemente, relações como $\leq$ e $\geq$ definidas sobre conjuntos
+numéricos são ordens totais pois, sempre é possível comparar dois
+números para determinarmos qual destes é o maior (ou menor).
+
+\begin{Example}
+Para ilustrar estes conceitos, vamos considerar as seguintes relações
+definidas sobre $A = \{1,2\}$:
+\begin{itemize}
+  \item $S = \{(x,y)\in\mathcal{P}(A)\times\mathcal{P}(A)\,|\,x
+    \subseteq y\}$.
+  \item $T = \{(x,y)\in A \times A\,|\,|x| \leq |y|\}$.
+\end{itemize}
+É fácil constatar que ambas estas relações são ordens parciais. Porém,
+note que apenas $T$ é total, pois todo par de conjuntos pode ser
+comparado com respeito ao tamanho destes, mas o mesmo não acontece com
+a noção de subconjunto, pois temos que o seguinte par não pertence a
+relação $S$: $(\{1,2\},\{1\})$. Logo, temos que $S$ não é uma ordem
+total, pois não atende a condição
+\[
+\forall x. \forall y. x\in A \land y \in A \land (xSy \lor ySx)
+\]
+\end{Example}
+
+Outros tipos importantes de relações são as chamadas ordens estritas
+e ordens lexicográficas. A primeira é um tipo de relação de ordem em
+que possui características similares a relação de $<$ e $>$ para
+números e ordens lexicográficas constituem ordens parciais para
+$n$-uplas de valores.
+
+\begin{Definition}[Ordem Estrita]
+Seja $R \subseteq A \times A$ uma relação. Dizemos que $R$ é uma ordem
+estrita se $R$ é irreflexiva, transitiva e anti-simétrica.
+\end{Definition}
+
+Note que toda ordem parcial $R$ pode ser ``transformada'' em uma ordem
+estrita eliminando os pares $i_{A}=\{(x,x)\,|\,x\in A\}$, isto é, se
+$R$ é uma ordem parcial, então $R - i_A$ é uma ordem estrita.
+
+\begin{Definition}[Ordem Lexicográfica]\label{lexorder}
+Seja $\sqsubset \subseteq A \times A$ uma relação de ordem parcial
+sobre $A$. Definimos a ordem lexicográfica induzida por $\sqsubset$,
+$R \subseteq (A \times A) \times (A \times A)$, entre pares de
+elementos de $A$, como:
+\[
+R = \{((x,y),(x',y')\,|\,x\sqsubset x' \land [x = x' \lor y \sqsubset y']\}
+\]
+\end{Definition}
+\subsubsection{Exercícios}
+\begin{enumerate}
+  \item Considere as relações apresentadas no exemplo
+    125.
+  \begin{enumerate}
+    \item Liste os pares que formam as relações $S$ e $T$.
+    \item Denomine por $X$ um conjunto de pares que se presentes na
+      relação $T$ a tornariam uma ordem total. Determine o menor
+      conjunto $X$ tal que $X \cup T$ é uma ordem total.
+  \end{enumerate}
+  \item Seja $R$ uma ordem parcial sobre um conjunto $A$
+    qualquer. Prove que $R^{-1}$ também é uma ordem parcial.
+  \item Seja $R$ uma ordem parcial sobre um conjunto $A$ qualquer.
+   Prove que $R - i_A$ é uma ordem estrita.
+  \item A definição \ref{lexorder} apresentou como definir uma ordem
+   lexicográfica para pares de valores de um certo conjunto
+   $A$. Apresente uma definição similar de uma ordem para triplas de
+   valores de um conjunto $A$.
+\end{enumerate}
+
+\subsection{Elementos Máximos e Mínimos}
+
+Considere o seguinte conjunto $A =\{\text{me, tame, men, mental,
+  mentalist}\}$ e a seguinte relação sobre este:
+\[
+R = \{(x,y)\in A \times A\,|\,x \text{ é uma subpalavra de }y\}
+\]
+É fácil mostrar que a relação $R$ é uma ordem parcial sobre este
+conjunto $A$ (prove isto!). Conforme já mencionado em diversos
+momentos, relações de ordem especificam critérios de comparação
+(ordem) entre os elementos do conjunto sobre o qual a relação está definida.
+
+Desta forma, temos que, como a palavra me é subpalavra de tame, men,
+mental e mentalist. Se considerarmos que um par $xRy$ denota que $x$ é
+``menor'' que $y$ de acordo com a ordem parcial $R$, temos que o
+elemento me é o menor de todos os elementos do conjunto $A$. Elementos
+com esta propriedade são ditos elementos mínimos de um conjunto. A
+próxima definição formaliza este conceito.
+
+\begin{Definition}[Elemento Mínimo e Máximo]
+Seja $R$ uma relação de ordem parcial sobre um conjunto $A$,
+$B\subseteq A$ e $b \in B$. Dizemos que $b$ é um elemento mínimo de
+$B$, com respeito a relação $R$, se
+\[
+\forall x. x\in B \to b R x
+\]
+De maneira similar, dizemos que $b$ é um elemento máximo de $B$ se
+\[
+\forall x. x \in B \to x R b
+\]
+\end{Definition}
+
+\begin{Definition}[Elementos Minimal e Maximal]
+Seja $R$ uma relação de ordem parcial sobre um conjunto $A$,
+$B\subseteq A$ e $b \in B$. Dizemos que $b$ é um elemento minimal de
+$B$, com respeito a relação $R$, se
+\[
+\neg \exists x. x\in B \land x R b \land x \neq b
+\]
+De maneira similar, dizemos que $b$ é um elemento maximal de $B$ se
+\[
+\neg \exists x. x\in B \land b R x \land x \neq b
+\]
+\end{Definition}
+A seguir apresentamos alguns exemplos que ilustram estas definições.
+\begin{Example}
+Considere os seguintes problemas.
+\begin{itemize}
+  \item Seja $L =\{(x,y)\in\mathbb{R}\times\mathbb{R}\,|\, x \leq
+    y\}$, que evidentemente é uma ordem parcial.  Seja $B = \{x \in
+    \mathbb{R}\,|\,x \geq 7\}$. O conjunto $B$ possui elementos
+    mínimos / minimais? E o conjunto $C =\{x\in\mathbb{R}\,|\,x >
+    7\}$?
+    \item Seja $S
+      =\{(X,Y)\in\mathcal{P}(\mathbb{N})\times\mathcal{P}(\mathbb{N})\,|\,X
+      \subseteq Y\}$, que evidentemente é uma ordem parcial. Seja
+      $\mathcal{F}=\{X\in\mathcal{P}(\mathbb{N})\,|\,2\in X \land 3
+      \in X\}$. O conjunto $\mathcal{F}$ possui elementos mínimos e minimais?
+\end{itemize}
+\textbf{Solução}: É evidente que $7 \leq x$, para todo $x \in
+B$. Logo, $7$ é um elemento mínimo de $B$. Como não existe $x \in B$,
+$x\neq 7$ e $x R 7$, temos que $7$ também é um elemento minimal de
+$B$.
+
+Note que para o segundo item, temos que o conjunto $\{2,3\}$ é
+subconjunto de todo $X\in\mathcal{F}$. Como $\{2,3\}\in\mathcal{F}$,
+temos que este é o elemento mínimo e minimal deste conjunto (porquê?).
+\end{Example}
+
+Vale a pena ressaltar que todo elemento mínimo (máximo) é minimal
+(maximal), mas a recíproca não é verdadeira, além disso, se um
+conjunto possui um elemento mínimo (máximo), este é o único minimal
+(maximal) do conjunto em questão. Estes fatos serão demonstrados
+formalmente pelos teoremas a seguir \footnote{\textbf{Entenda} esses
+  teoremas e suas demonstrações. --- Dica do seu professor camarada.}.
+
+
+\begin{Theorem}
+	Suponha $R$ uma ordem parcial sobre $A$ e $B\subseteq A$. Se $B$ possui um elemento m\'inimo, ent\~ao este \'e \'unico.
+\end{Theorem}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ 		     & & $B$ possui m\'inimo $\rightarrow$ este m\'inimo \'e \'unico\\
+ $B$ possui m\'inimo & & este m\'inimo \'e \'unico\\
+\end{tabular}
+\vspace{1cm}
+
+Evidentemente, a senten\c{c}a ``$B$ possui m\'inimo'', pode ser representada por um quantificador existencial:
+
+\vspace{1cm}
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ 		     & & $B$ possui m\'inimo $\rightarrow$ este m\'inimo \'e \'unico\\
+ $B$ possui m\'inimo & & este m\'inimo \'e \'unico\\
+ $\exists b. b \in B \land b$ \'e o m\'inimo de $B$ & & este m\'inimo \'e \'unico\\
+\end{tabular}
+\vspace{1cm}
+
+Como temos uma hip\'otese envolvendo um quantificador existencial, podemos introduzir uma nova vari\'avel para representar
+o elemento m\'inimo do conjunto $B$:
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ 		     & & $B$ possui m\'inimo $\rightarrow$ este m\'inimo \'e \'unico\\
+ $B$ possui m\'inimo & & este m\'inimo \'e \'unico\\
+ $\exists b. b \in B \land b$ \'e o m\'inimo de $B$ & &\\
+ $b\in B$    & & $b$ \'e o \'unico m\'inimo de $B$\\
+ $b$ \'e m\'inimo de $B$ & & \\
+\end{tabular}
+
+\vspace{1cm}
+
+A senten\c{c}a ``$b$ \'e o \'unico m\'inimo de $B$'' pode ser representada como ``todo m\'inimo de $B$ \'e igual a $b$''. Com isso temos:
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ 		     & & $B$ possui m\'inimo $\rightarrow$ este m\'inimo \'e \'unico\\
+ $B$ possui m\'inimo & & este m\'inimo \'e \'unico\\
+ $\exists b. b \in B \land b$ \'e o m\'inimo de $B$ & &\\
+ $b\in B$    & & $b$ \'e o \'unico m\'inimo de $B$\\
+ $b$ \'e m\'inimo de $B$ & & \\
+  & & $\forall c. c$ \'e m\'inimo de $B\rightarrow b = c$
+\end{tabular}
+
+\vspace{1cm}
+
+Utilizando as t\'ecnicas de prova para quantificadores universais e implica\c{c}\~oes:
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ 		     & & $B$ possui m\'inimo $\rightarrow$ este m\'inimo \'e \'unico\\
+ $B$ possui m\'inimo & & este m\'inimo \'e \'unico\\
+ $\exists b. b \in B \land b$ \'e o m\'inimo de $B$ & &\\
+ $b\in B$    & & $b$ \'e o \'unico m\'inimo de $B$\\
+ $b$ \'e m\'inimo de $B$ & & \\
+  & & $\forall c. c$ \'e m\'inimo de $B\rightarrow b = c$ \\
+ $c$ arbitr\'ario & & $b = c$\\
+ $c$ \'e m\'inimo de $B$ & & \\
+\end{tabular}
+
+\vspace{1cm}
+
+Expandindo as defini\c{c}\~oes de m\'inimo:
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ 		     & & $B$ possui m\'inimo $\rightarrow$ este m\'inimo \'e \'unico\\
+ $B$ possui m\'inimo & & este m\'inimo \'e \'unico\\
+ $\exists b. b \in B \land b$ \'e o m\'inimo de $B$ & &\\
+ $b\in B$    & & $b$ \'e o \'unico m\'inimo de $B$\\
+ $\forall x. x\in B \rightarrow b R x$ & & \\
+  & & $\forall c. c$ \'e m\'inimo de $B\rightarrow b = c$ \\
+ $c$ arbitr\'ario & & $b = c$\\
+ $\forall y. y\in B \rightarrow c R y$ & & \\
+\end{tabular}
+
+\vspace{1cm}
+
+Como $c \in B$ e $\forall x. x\in B \rightarrow b R x$, podemos concluir que $b R c$. De maneira similar, como $b \in B$ e
+$\forall y. y\in B \rightarrow c R y$, temos que $c R b$. Uma vez que $R$ \'e uma ordem parcial, temos que $R$ \'e anti-sim\'etrica,
+sendo assim, como $bRc$ e $cRb$, temos que $b = c$, como requerido. O texto desta demonstra\c{c}\~ao \'e apresentado a seguir.
+
+\begin{proof}
+	Suponha que $b$ \'e o elemento m\'inimo de $B$ e que $c\in B$ arbitr\'ario tamb\'em  \'e m\'inimo de $B$. Como $b$ \'e m\'inimo e
+	$c \in B$, temos que $bRc$. Da mesma forma, como $c$ \'e m\'inimo de $B$ e $b\in B$, temos que $cRb$. Como $R$ \'e uma ordem parcial,
+	temos que $b = c$. J\'a que $c$ \'e arbitr\'ario, podemos concluir que $b\in B$ \'e o \'unico elemento m\'inimo de $B$. Portanto,
+	se $B$ possui um elemento m\'inimo, este \'e \'unico.
+\end{proof}
+
+\begin{Theorem}
+Suponha $R$ uma ordem parcial sobre $A$, $B\subseteq A$ e que $b \in B$ \'e o m\'inimo de $B$. Ent\~ao $b$ \'e minimal e \'e o \'unico
+minimal de $B$.
+\end{Theorem}
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ $b$ \'e m\'inimo de $B$ & & $b$ \'e minimal de $B \land $ $b$ \'e o \'unico minimal de $B$
+\end{tabular}
+
+Primeiro, vamos provar que $b$ \'e minimal de $B$. Usando as defini\c{c}\~oes de m\'inimo e minimal:
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ $\forall x. x \in B \rightarrow bRx$ & & $\neg \exists y. y \in B \land y R b \land y \neq b$.
+\end{tabular}
+\vspace{1cm}
+
+Utilizando \'algebra booleana, temos que $\neg \exists y. y \in B \land y R b \land y \neq b = \forall y. y R b \rightarrow y = b$.
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ $\forall x. x \in B \rightarrow bRx$ & & $\forall y. y R b \rightarrow y = b$.
+\end{tabular}
+\vspace{1cm}
+
+Utilizando as t\'ecnicas de prova para quantificadores universais e implica\c{c}\~oes:
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ $\forall x. x \in B \rightarrow bRx$ & & $\forall y. y R b \rightarrow y = b$\\
+ $y$ arbit\'ario & & $y = b$\\
+ $yRb$ & & \\
+\end{tabular}
+\vspace{1cm}
+
+Mas, como $\forall x. x \in B \rightarrow bRx$ e $y \in B$ temos que $bRy$. Uma vez que $R$ \'e anti-sim\'etrica, $yRb$ e $bRy$, temos
+que $b = y$, conforme requerido. Com isso, provamos a primeira parte, que $b \in B$ \'e minimal. Agora resta provar que $b$ \'e o \'unico
+minimal de $B$.
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ $\forall x. x \in B \rightarrow bRx$ & & $\forall c. c$ \'e minimal de $B \rightarrow b = c$\\
+ \end{tabular}
+\vspace{1cm}
+
+Utilizando as t\'ecnicas de prova para quantificadores universais, implica\c{c}\~oes e a defini\c{c}\~ao de minimal, temos:
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ $\forall x. x \in B \rightarrow bRx$ & & $b = c$\\
+ $c$ arbit\'ario & & \\
+ $\neg \exists y. yRc \land y \neq c$ & &
+ \end{tabular}
+\vspace{1cm}
+
+Por \'algebra booleana, temos que:
+
+\vspace{1cm}
+
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+ $\forall x. x \in B \rightarrow bRx$ & & $b = c$\\
+ $c$ arbit\'ario & & \\
+ $\forall y. yRc \rightarrow y = c$ & &
+ \end{tabular}
+\vspace{1cm}
+
+Como $c \in B$ e $\forall x. x \in B \rightarrow bRx$, temos que $bRc$. Finalmente, como $bRc$ e  $\forall y. yRc \rightarrow y = c$,
+podemos concluir que $b = c$, conforme requerido. O texto desta demonstra\c{c}\~ao \'e apresentado a seguir.
+
+\begin{proof}
+	Suponha que $b \in B$ \'e m\'inimo e $y\in B$ arbitr\'ario tal que $yRb$. Como $b$ \'e m\'inimo, temos que $bRy$. Uma vez que
+	$yRb$, $bRy$ e $R$ \'e anti-sim\'etrica, temos que $y = b$. Portanto, $b$ \'e um elemento minimal de $B$.
+	Suponha $c$ arbitr\'ario tal que $c$ \'e minimal de $B$. Como $b$ \'e m\'inimo, temos que $bRc$. Uma vez que $c$ \'e minimal, temos
+	que $cRb$ e j\'a que $R$ \'e uma ordem parcial, temos que $c = b$. Como $c$  \'e arbit\'ario, temos que $b$ \'e o \'unico minimal de $B$.
+\end{proof}
+
+\begin{Theorem}
+Seja $R$ uma ordem total sobre $A$, $B\subseteq A$, $b\in B$. Se $b$ é
+um elemento minimal de $B$, então $b$ é o mínimo de $B$.
+\end{Theorem}
+Para este teorema, temos a seguinte configuração inicial do rascunho.
+\begin{flushleft}
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+$R$ é uma ordem total & & $b$ é o mínimo de $B$\\
+$B \subseteq A$ & & \\
+$b$ é minimal de $B$ \\
+ \end{tabular}
+\end{flushleft}
+Expandindo as definições de mínimo e minimal, temos:
+\begin{flushleft}
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+$R$ é uma ordem total & & $\forall x. x \in B \to b R x$\\
+$B \subseteq A$ & & \\
+$\neg \exists y. y\in B \land yRb \land y \neq b$\\
+ \end{tabular}
+\end{flushleft}
+Utilizando as estratégias de prova para o quantificador universal e
+implicação (nesta ordem) temos:
+\begin{flushleft}
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+$R$ é uma ordem total & & $b R x$\\
+$B \subseteq A$ & & \\
+$\neg \exists y. y\in B \land yRb \land y \neq b$\\
+$x$ arbitrário & &\\
+$x \in B$ & & \\
+ \end{tabular}
+\end{flushleft}
+É óbvio que  $x = b \lor x \neq b$. Usando este fato, temos:
+\begin{flushleft}
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+$R$ é uma ordem total & & $b R x$\\
+$B \subseteq A$ & & \\
+$\neg \exists y. y\in B \land yRb \land y \neq b$\\
+$x$ arbitrário & &\\
+$x \in B$ & & \\
+$x = b \lor x \neq b$ & & \\
+ \end{tabular}
+\end{flushleft}
+Como $R$ é reflexiva, para $x = b$, o resultado é imediato. Logo,
+vamos considerar que $x \neq b$.
+\begin{flushleft}
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+$R$ é uma ordem total & & $b R x$\\
+$B \subseteq A$ & & \\
+$\neg \exists y. y\in B \land yRb \land y \neq b$\\
+$x$ arbitrário & &\\
+$x \in B$ & & \\
+$x \neq b$ & & \\
+ \end{tabular}
+\end{flushleft}
+Como $R$ é uma ordem total temos que $xRb \lor bRx$.
+\begin{flushleft}
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+$R$ é uma ordem total & & $b R x$\\
+$B \subseteq A$ & & \\
+$\neg \exists y. y\in B \land yRb \land y \neq b$\\
+$x$ arbitrário & &\\
+$x \in B$ & & \\
+$x \neq b$ & & \\
+$xRb \lor bRx$ & &\\
+ \end{tabular}
+\end{flushleft}
+Agora, dividindo esta prova em casos, temos:
+\begin{flushleft}
+\begin{tabular}{lcl}
+ Hip\'oteses & \hspace{3cm} & Conclusão\\
+$R$ é uma ordem total & & $b R x$\\
+$B \subseteq A$ & & \\
+$\neg \exists y. y\in B \land yRb \land y \neq b$\\
+$x$ arbitrário & &\\
+$x \in B$ & & \\
+$x \neq b$ & & \\
+$xRb \lor bRx$ & &\\
+Caso $xRb$:   & & $bRx$ \\
+Caso $bRx$:  & & $bRx$
+ \end{tabular}
+\end{flushleft}
+O segundo caso é trivial. Para o primeiro, como $xRb$ e $x \neq b$,
+temos que $\exists y. y\in B \land y R b \land y \neq b$, o que
+contradiz a hipótese $\neg \exists y. y\in B \land yRb \land y \neq
+b$, concluindo a demonstração deste teorema.
+
+A seguir apresentamos o texto deste teorema.
+
+\begin{proof}
+Suponha que $R$ é uma ordem total sobre $A$, $B\subseteq A$, $b \in
+B$. Suponha que $b$ é um minimal de $B$. Suponha $x$
+arbitrário. Suponha que $x\in B$. Se $x = b$, como $R$ é reflexiva,
+temos que $bRx$. Suponha que $x\neq b$. Uma vez que $R$ é uma ordem
+total, temos que $bRx$ ou $xRb$. Considere os casos:
+\begin{itemize}
+  \item Caso $bRx$: imediato.
+  \item Caso $xRb$: Como $xRb$ e $x\neq B$, existe um valor $y \in B$
+    tal que $yRb$ e $y\neq B$, o que contradiz a suposição de que $b$
+    é minimal de $B$. Logo, $bRx$.
+\end{itemize}
+Como $x$ é arbitrário, podemos concluir que $b$ é o mínimo de $B$.
+\end{proof}
+
+\subsection{Limites Inferiores e Superiores}
+
+Nesta seção estenderemos os conceitos de elementos mínimos e máximos
+para o que chamamos de limites inferiores e superiores, conceitos
+amplamente utilizados em diversos ramos da computação.
+
+\begin{Definition}[Limite Inferior e Limite Superior]
+\end{Definition}
