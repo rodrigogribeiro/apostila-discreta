@@ -1458,7 +1458,7 @@ elementos distintos ($\{1\}$ e $\{2\}$) é o mesmo conjunto,
 $\{\{1\},\{2\}\}$. Este fato é válido para qualquer relação de
 equivalência e é demonstrado pelos teoremas seguintes\footnote{É
   altamente recomendável que você faça os rascunhos destas demonstrações!}.
-\begin{Theorem}
+\begin{Theorem}\label{eqrel1}
 Seja $R$ uma relação de equivalência sobre um conjunto $A$ e $x \in
 A$. Então $x \in [x]$.
 \end{Theorem}
@@ -1469,7 +1469,7 @@ $xRx$. Já que $xRx$, pela definição de $[x]$, temos que $x\in
 [x]$. Portanto, se $R$ é uma relação de equivalência sobre um conjunto $A$ e
 que $x \in A$ então $x \in [x]$.
 \end{proof}
-\begin{Theorem}
+\begin{Theorem}\label{eqrel2}
 Seja $R$ uma relação de equivalência sobre um conjunto $A$. Então,
 para todo $x,y \in A$ temos que $y \in [x]$ se e somente se $[x] = [y]$.
 \end{Theorem}
@@ -1501,7 +1501,7 @@ equivalência.
 Partições são um tipo especial de famílias de conjuntos que possuem
 certas propriedades definidas a seguir.
 
-\begin{Definition}[Partição]
+\begin{Definition}[Partição]\label{partdef}
 Seja $A$ um conjunto qualquer e $\mathcal{F}\subseteq \mathcal{P}(A)$
 uma família de conjuntos. Dizemos que $\mathcal{F}$ é uma partição de
 $A$ se as seguintes condições são verdadeiras.
@@ -1538,9 +1538,280 @@ seguintes.
 Seja $R$ uma relação de equivalência sobre $A$. Então, $A / R$ é uma
 partição de $A$.
 \end{Theorem}
+\begin{proof}
+\begin{enumerate}
+  Para demonstrar que $A / R$ devemos provar as 3 partes da definição
+  de partição (definição \ref{partdef}).
+  \item Suponha $x$ arbitrário.
+    \begin{enumerate}
+         \item[$(\to)$] : Suponha que $x \in \bigcup A /
+    R$. Como $x\in \bigcup A / R$, temos que existe $y$ tal que $x \in
+    [y]$ e $[y] \in A /R$. Se $x \in [y]$, temos que $xRy$ e, logo, $x
+    \in A$. Logo, se $x\in \bigcup A / R$ então $x \in A$.
+         \item[$(\leftarrow)$]: Suponha que $x \in A$. Como $x \in A$,
+           pelo teorema \ref{eqrel1}, temos que $x \in [x]$ e,
+           portanto, $x \in \bigcup A / R$. Logo, se $x \in A$ então
+           $x \in \bigcup A / R$.
+    \end{enumerate}
+    Portanto, como $x$ é arbitrário temos que $\bigcup A / R = A$.
+  \item Suponha $X$ e $Y$ arbitrários. Suponha que $X,Y \in A / R$. Suponha que $X \cap Y \neq
+    \emptyset$. Como $X \cap Y \neq \emptyset$, existe $z$ tal que $z
+    \in X$ e $z \in Y$. Como $X \in A / R$, existe $x \in A$ tal que
+    $X = [x]$. Como $Y \in A / R$, existe $y \in A$ tal que $Y =
+    [y]$. Como $z \in [x]$ e $z \in [y]$, pelo teorema \ref{eqrel2},
+    temos que $[x] = [y]$. Logo, se $X \neq Y$ então $X \cap Y =
+    \emptyset$. Assim, se $X ,Y\in A / R$ temos que se $X \neq Y$ então $X \cap Y =
+    \emptyset$. Como $X,Y$ são arbitrários, temos que $A / R$ é
+    disjunta par a par.
+  \item Suponha $X$ arbitrário. Suponha que $X \in A /R$. Se $X \in A
+    / R$, existe $x \in A$ tal que $X = [x]$. Pelo teorema
+    \ref{eqrel1}, temos que se $x \in A$ então $x \in [x]$. Logo, $X
+    \neq \emptyset$. Assim, se $X \in A / R$ então $X \neq \emptyset$.
+    Como $X$ é arbitrário, temos que o conjunto $A / R$ não possui
+    como elemento o conjunto vazio.
+\end{enumerate}
+Portanto, temos que $A / R$ é uma partição do conjunto $A$.
+\end{proof}
+
+\begin{Commentary}
+Ao invés de apresentar um rascunho da demonstração anterior, iremos
+comentar alguns pontos chaves desta que permitirão o leitor
+interessado a construir o rascunho.
+
+Para mostrar que o conjunto \[A / R = \{ [x] \,|\, x\in A\} \] é uma
+partição de um conjunto $A$, devemos provar as 3 partes da definição
+de partição. Isto é, devemos demonstrar que:
+\begin{enumerate}
+  \item $\bigcup A / R = A$
+  \item $A / R$ é uma família disjunta par a par.
+  \item $\forall X. X \in A / R \to X \neq \emptyset$
+\end{enumerate}
+Para o primeiro item, utilizamos a definição da igualdade de
+conjuntos. Logo, devemos provar que
+\[
+\forall x. x \in \bigcup A / R \leftrightarrow x \in A.
+\]
+Para mostrar que $x \in \bigcup A / R \to x \in A$, usamos a definição de $x
+\in \bigcup A / R$: deve existir um conjunto $X \in A / R$ tal que $x
+\in X$. Porém, como $A / R$ é o conjunto de classes de equivalências
+de $A$, temos que existe $y \in A$ tal que $X = [y]$ e, assim, temos
+que $x \in [y]$ e, portanto, temos que $xRy$ o que nos permite
+concluir que $x \in A$, conforme requerido.
+
+A implicação
+\[
+x\in A \to x \in \bigcup A / R
+\]
+é uma consequência do teorema \ref{eqrel1}.
+
+No segundo item, devemos demonstrar que $A / R$ é uma família disjunta
+par a par, isto é:
+\[\forall X . \forall Y. X \in A /R \land Y \in A / R \to X \neq Y
+\to X \cap Y = \emptyset \]
+Para demonstrar esta fórmula procedemos como usual: supomos $X$ e $Y$
+arbitrários e que $X,Y \in A /R$, nos deixando com a seguinte
+implicação:
+\[
+X \neq Y \to X \cap Y \neq \emptyset
+\]
+Note que a implicação anterior é equivalente a
+\[
+\neg (X  = Y) \to \neg \exists x. x \in X \cap Y
+\]
+e, portanto, como ambos os lados desta são negações, isto sugere que
+usemos uma prova pela contrapositiva.
+Logo, supomos que $X \cap Y \neq \emptyset$ e mostramos que $X =
+Y$. O restante da dedução envolve o uso do teorema \ref{eqrel2} e das
+definições de classes de equivalência e $A / R$.
+
+Finalmente, a terceira parte da demonstração é uma consequência
+imediata do teorema \ref{eqrel1}, que pode ser usado para concluir que
+nenhum conjunto de $A / R$ é vazio.
+\end{Commentary}
+Para demonstrar que toda partição produz uma relação de equivalência,
+primeiro
+devemos provar alguns
+resultados ``auxiliares''. Estes serão enunciados sem demonstração
+(prová-los fica como exercício) e os utilizaremos na prova deste
+teorema.
+
+\begin{Theorem}\label{eqrel3}
+Suponha que $A$ é um conjunto e $\mathcal{F}$ é uma partição de
+$A$. Então $R = \bigcup_{X \in \mathcal{F}}(X \times X)$ é uma relação
+de equivalência sobre $A$.
+\end{Theorem}
+
+\begin{Theorem}\label{eqrel4}
+Suponha que $A$ é um conjunto, $\mathcal{F}$ é uma partição de
+$A$ e $R = \bigcup_{X \in \mathcal{F}}(X \times X)$. Se $X
+\in\mathcal{F}$ e $x \in X$ então $X = [x]$.
+\end{Theorem}
+
+Finalmente, mostramos como uma partição produz uma relação de equivalência.
 
 \begin{Theorem}
 Suponha que $A$ é um conjunto e que $\mathcal{F}$ é uma partição de
 $A$. Então, existe uma relação de equivalência sobre $A$ tal que $A /
 R = \mathcal{F}$.
 \end{Theorem}
+\begin{proof}
+Seja $R = \bigcup_{X \in \mathcal{F}}(X \times X)$. Pelo teorema
+\ref{eqrel3}, temos que $R$ é uma relação de equivalência.
+Para mostrar que $A / R = \mathcal{F}$, suponha $X$ arbitrário.
+\begin{enumerate}
+  \item[$(\to)$]: Suponha que  $X \in A / R$. Como $X \in A /R$, temos que existe $x \in A$ tal que
+$X = [x]$. Como $x \in A$ e $\bigcup \mathcal{F} = A$ (pois
+$\mathcal{F}$ é uma partição de $A$), temos que $x \in A$. Logo, $x
+\in \bigcup\mathcal{F}$ e, portanto, deve existir $Y \in \mathcal{F}$
+tal que $x \in Y$. Mas, pelo teorema \ref{eqrel4}, temos que $[x] =
+Y$. Assim, $X \in \mathcal{F}$. Como $X$ é arbitrário, temos que $A /
+R \subseteq \mathcal{F}$.
+   \item[$(\leftarrow)$]: Suponha $X \in \mathcal{F}$. Como $F$ é uma
+     partição, temos que $X \neq \emptyset$ e, portanto, existe $x \in
+     X$. Pelo teorema \ref{eqrel4}, temos que $X = [x] \in A /
+     R$. Logo, $\mathcal{F}\subseteq A / R$.
+\end{enumerate}
+Assim $\mathcal{F} = A / R$, conforme requerido.
+\end{proof}
+
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Seja $A = \{1,2,3,4\}$.
+  \begin{enumerate}
+    \item Apresente duas partições de $A$.
+    \item Para cada uma as partições apresentadas por você, apresente
+      a relação de equivalência por elas  gerada.
+   \end{enumerate}
+  \item Suponha que $R$ é uma relação reflexiva e transitiva sobre um
+    conjunto $A$. Prove que $R \cap R^{-1}$ é uma relação de equivalência.
+  \item Prove os teoremas \ref{eqrel3} e \ref{eqrel4}.
+\end{enumerate}
+
+
+\section{Fechos de Relações}
+
+Um problema comum em se manipular relações é o de que nem sempre as
+relações modeladas possuem certas propriedades de interesse
+(reflexivas, simétricas e transitivas). Nestes contextos é útil
+considerar o que chamamos de fechos de uma relação, que consiste na
+menor relação (com respeito a $\subseteq$) de forma a possuir certa
+propriedade. A próxima definição apresenta o conceito de fecho de uma
+relação
+
+\begin{Definition}[Fecho de uma relação]
+Seja $R$ uma relação binária sobre um conjunto $A$. A relação $S$ é o
+fecho de $R$ com respeito a propriedade $\rho$ se:
+\begin{enumerate}
+  \item $S$ possui a propriedade $\rho$.
+  \item $R \subseteq S$.
+  \item $\forall T. R \subseteq T \land  T$ possui a propriedade $\rho
+    \to S \subseteq T$, isto é $S$ é a ``menor'' relação que contém
+    $S$ e possui a propriedade $\rho$.
+\end{enumerate}
+\end{Definition}
+As próximas seções apresentam os fechos para três propriedades de relações.
+
+\subsection{Fecho Reflexivo}
+
+Seja $R$ uma relação sobre um conjunto $A$. Se $R$ não é reflexiva é
+porque existe $a \in A$ tal que $\neg aRa$. Neste caso, para garantir
+que $R$ é reflexiva basta fazer a união desta relação com
+\[
+i_A =\{(x,x)\,|\,x\in A\}
+\]
+O fato de que o conjunto $R \cup i_A$ é o fecho reflexivo de uma
+relação $R$ é expresso pelo teorema seguinte.
+
+\begin{Theorem}\label{fecho1}
+Seja $R$ uma relação sobre um conjunto $A$. Então $R \cup i_{A}$, em
+que $i_A=\{(x,x)\,|\,x\in A\}$, é o fecho reflexivo de $R$.
+\end{Theorem}
+
+\subsection{Fecho Simétrico}
+
+Seja $R$ uma relação sobre um conjunto $A$. Se $R$ não é simétrica é
+porque existem $a,b\in A$ tais que $aRb$ e $\neg bRa$. Para tornar
+$R$ uma relação simétrica, basta garantir que todo par presente em $R$
+possua o seu respectivo inverso. Isto é, dada uma relação $R$, o seu
+fecho simétrico é dado por $R \cup R^{-1}$.
+
+\begin{Theorem}\label{fecho2}
+Seja $R$ uma relação sobre um conjunto $A$. Então $R \cup R^{-1}$
+é o fecho simétrico de $R$.
+\end{Theorem}
+
+\subsection{Fecho Transitivo}
+
+Seja $R$ uma relação sobre um conjunto $A$. Note que para $R$ não ser
+uma relação transitiva, temos que devem existir $a,b,c\in A$ tais que
+$aRb$, $bRc$ e $\neg aRc$. Para entender melhor o fecho transitivo de
+uma relação, é conveniente considerarmos um exemplo simples.
+
+\begin{Example}
+Seja $A = \{1,2,3,4\}$ e $R =\{(1,2),(2,3),(3,4)\}$. Temos que $R$ não
+é uma relação transitiva, pois:
+\begin{itemize}
+  \item $1R2$ e $2R3$ mas $\neg 1R3$;
+  \item $2R3$ e $3R4$ mas $\neg 2R4$.
+\end{itemize}
+Assim, podemos tentar tornar $R$ transitiva incluindo os pares $(1,3)$
+e $(2,4)$, obtendo a relação $R'$ abaixo:
+\[
+R' = \{(1,2),(2,3),(3,4),(1,3),(2,4)\}
+\]
+que ainda não é transitiva, já que $1R3$ e $3R4$ e $\neg
+1R4$. Incluindo o par $1R4$, temos
+\[
+R'' = \{(1,2),(2,3),(3,4),(1,3),(2,4),(1,4)\}
+\]
+que é transitiva.
+Note
+que a necessidade do par $1R4$ surgiu quando da inclusão do par
+$1R3$. Os pares que faltam a relação $R$ para que esta seja transitiva
+são os pares  da forma $aRc$ em que $aRb$ e $bRc$, isto é, pares
+$(a,c)\in R \circ R = R^2$. Assim, ao acrescentarmos estes pares,
+estamos construindo a relação $R'= R \cup R^2$. De maneira similar, os
+pares que faltam a $R'$ devem estar na relação $R' \circ R'$ que é
+igual a:
+\[
+(R\cup R^2)^2 = R^2 \cup R^3 \cup R^3
+\]
+\end{Example}
+Simplificando, temos que os pares que faltam para uma certa relação
+$R$ se tornar transitiva são formados pela composição desta
+relação. O fecho transitivo de uma relação $R$, $R^*$, é definido
+como:
+\[
+R^* = \bigcup_{i = 1^\infty}R^i
+\]
+Este resultado é formalizado pelo seguinte teorema.
+\begin{Theorem}
+Seja $R$ uma relação sobre um conjunto $A$. O fecho transitivo de $R$
+é dado por:
+\[
+R^* = \bigcup_{i = 1^\infty}R^i
+\]
+\end{Theorem}
+
+Não discutiremos este teorema por este ser demonstrável utilizando uma
+técnica que veremos posteriormente: indução matemática.
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Prove os teoremas \ref{fecho1} e \ref{fecho2}.
+\end{enumerate}
+
+
+\section{Notas Bibliográficas}
+
+Relações são a base de diversos conceitos e áreas da ciência da
+computação. A fundamentação matemática de bancos de dados relacionais
+é feita sobre diversas operações sobre relações. Além disso,
+algoritmos para a solução de diversos problemas de inteligência
+artificial podem ser modelados como algoritmos sobre grafos, que
+essencialmente são relações.
+
+Grande parte deste capítulo é baseado em \cite{Velleman06}.
