@@ -37,21 +37,402 @@ B$. Dizemos que $f$ é uma função se:
 \]
 \end{Definition}
 
+\begin{Notation}
+Utilizaremos a seguinte notação para representar que a relação $f
+\subseteq A \times B$ é uma função:
+\[
+f : A \to B
+\]
+e a notação $f(x) = y$ se $(x,y) \in f$ e $f$ é uma função.
+\end{Notation}
+Como uma função é um caso especial de relação, temos que todas as
+definições de relações (domínio, imagem, contra-domínio) são aplicáveis.
+\begin{Example}
+Apresentaremos alguns exemplos de funções.
+\begin{itemize}
+  \item Sejam $A = \{1,2,3\}$ e $B =\{4,5,6\}$ e $f =
+    \{(1,3),(2,6),(3,5)\}$. Temos que a relação $f$ é uma função de
+    $A$ em $B$.
+  \item Sejam $A = \{1,2,3\}$ e $B =\{4,5,6\}$ e $g =
+    \{(1,4),(2,6),(1,5),(3,6)\}$. Temos que $g$ não é uma função, pois
+     $(1,4) \in g$ e $(1,5) \in g$.
+  \item Sejam $C$ o conjunto de todas as cidades e $P$ o conjunto de
+    todos os países. A relação $d =\{(c,p)\in C \times P\,|\,\text{a
+      cidade $p$ está no país $p$.}\}$ é uma função, pois toda cidade
+    pertence a um único país.
+  \item Seja $P$ o conjunto de todas as pessoas. A relação $h =
+    \{(p,m)\in P \times \mathcal{P}(P)\,|\,\text{A pessoa $p$  é pai
+      (ou mãe) das pessoas no conjunto $m$}\}$ é uma função, já que
+    toda pessoa possui um único conjunto de filhos.
+\end{itemize}
+\end{Example}
+Dizemos que duas funções $f : A \to B$ e $g : A \to B$ são iguais se
+estas denotam o mesmo conjunto de pares. Este fato é expresso pelo
+teorema seguinte.
+\begin{Theorem}[Extensionalidade]
+Suponha que $f : A \to B$, $g : A \to B$ e que $\forall x. x\in A \to
+f(x) = g(x)$. Então, $f = g$.
+\end{Theorem}
+\begin{proof}
+Suponha $(a,b)$ arbitrário.
+\begin{enumerate}
+  \item[$(\to)$]: Suponha $(a,b) \in f$ arbitrário.
+                     Como $\forall x. x\in A \to f(x) = g(x)$ e $f(a)
+                     = b$, temos que $g(a) = b$. Logo, se $f(a) = b$
+                     então $g(a) = b$.
+   \item[$(\leftarrow)$]: Suponha $(a,b) \in g$ arbitrário.
+                     Como $\forall x. x\in A \to f(x) = g(x)$ e $g(a)
+                     = b$, temos que $f(a) = b$. Logo, se $g(a) = b$
+                     então $f(a) = b$.
+\end{enumerate}
+Como $(a,b)$ é arbitrário, temos que $f = g$.
+\end{proof}
+
 \section{Funções, algoritmicamente}
 
-\section{Funções totais e parciais}
+Matematicamente, funções são apenas um conjunto de pares
+ordenados. Porém, de um ponto de vista computacional, o conceito de
+função é distinto, pois este corresponde a noção de algoritmo. O
+problema com a versão ``matemática'' do conceito de função é que este
+não envolve variáveis cruciais em computação como consumo de memória e
+tempo de execução.
+
+O objetivo desta seção é apresentar classes de funções que
+correspondem a algoritmos e mostrar que nem toda função pode ser
+programada em uma linguagem de programação.
+
+\subsection{Funções definidas recursivamente}
+
+No decorrer deste texto, apresentamos algumas funções recursivas:
+funções para determinar o conjunto de sub-fórmulas, variáveis livres
+de fórmulas da lógica. Podemos classificar uma função como sendo
+recursiva se esta está de acordo com a próxima definição.
+
+\begin{Definition}[Funções de Recursivas Primitivas]\label{recprim}
+Seja $A$ um conjunto qualquer. Dizemos que uma função $f : \mathbb{N}
+\to A \to A$ é definida  recursivamente se a definição de
+$f$ possui a seguinte estrutura, em que $g,h$ são funções
+recursivas primitivas:
+\[
+\begin{array}{lcl}
+f(0,x) & = & g\:x\\
+f(n,x) & = & h(f (n - 1, x), n - 1, x)
+\end{array}
+\]
+\end{Definition}
+Funções definidas por recursão primitiva são garantidas de sempre
+terminar, isto é, atendem o critério de terminação\footnote{Se você
+  não se lembra deste critério, recomendo que releia o capítulo \ref{cap1}.}.
+Não demonstraremos este fato por este envolver conceitos que estão
+além dos propósitos desta disciplina. A seguir, apresentamos alguns
+exemplos de funções recursivas primitivas.
+\begin{Example}
+A função que a partir de um número natural retorna o seu quadrado é
+uma função recursiva primitiva, conforme apresentado a seguir.
+\[
+\begin{array}{lcl}
+g(x) & = & x \times x
+\end{array}
+\]
+\end{Example}
+O leitor deve estar se perguntando: ``como esta função pode ser
+considerada primitiva recursiva se esta não usa recursão?''. O fato é
+que toda função não recursiva atende o critério de função recursiva
+primitiva\footnote{Isto é fácil de se entender, informalmente. A idéia
+é que toda função recursiva primitiva possui \textbf{todas} as
+chamadas recursivas no formato da definição \ref{recprim}. Como
+definições não recursivas não possuem chamadas recursivas, estas
+atendem este critério por vacuidade.}. O próximo exemplo apresenta uma função recursiva primitiva
+que usa recursividade.
+\begin{Example}
+A função que calcula o fatorial de um número natural pode ser escrita
+da seguinte maneira, em que $\bot$ representa um valor semanticamente
+inválido (uma exceção).
+\[
+\begin{array}{lcl}
+fact(n) &= & f(n,\bot) \\
+ & & \\
+f(0,x) & = & 1 \\
+f(n,x) & = & n \times f (n - 1,x)\\
+\end{array}
+\]
+Esta função está de acordo com a definição \ref{recprim} pois:
+
+\begin{itemize}
+    \item A função $h$ da definição pode ser representada pela função
+      de multiplicação, que é primitiva recursiva.
+    \item A função $g$ da definição pode ser representada pela função
+      constante que sempre retorna $1$.
+\end{itemize}
+
+Como exemplo, vamos considerar o cálculo de $fact(4)$, apresentado
+abaixo.
+\[
+\begin{array}{lc}
+fact(4) & = \\
+f(4,\bot) & = \\
+4 \times f(3,\bot) & = \\
+4 \times 3 \times f(2,\bot) & = \\
+4 \times 3 \times 2 \times f(1,\bot) & =\\
+4 \times 3 \times 2 \times 1 \times f(0,\bot) & = \\
+4 \times 3 \times 2 \times 1 \times 1 & =\\
+24
+\end{array}
+\]
+\end{Example}
+\begin{Example}
+A seguinte função não pode ser considerada como recursiva primitiva.
+\[
+\begin{array}{lcl}
+f(x) & = & \left\{
+                    \begin{array}{ll}
+                      0 & \text{Se $x = 0$}\\
+                      1 & \text{Se $x = 1$}\\
+                      1 + f(x \div 2) & \text{Se $x$ é par}\\
+                      f(x) & \text{Caso contrário}
+                    \end{array}
+                \right.
+\end{array}
+\]
+A definição apresentada não pode ser considerada uma função, já que
+esta não termina para números ímpares maiores que $1$.
+\end{Example}
+
+\subsection{Funções totais e parciais}
+
+Normalmente, em matemática considera-se apenas funções totais, isto é
+funções que são definidas para todos os valores de um domínio. Porém,
+em computação, este conceito é não é adequado. Neste sentido,
+considera-se também a noção de função parcial, que definimos a seguir.
+
+\begin{Definition}[Funções totais e parciais]
+Seja $f : A \to B$ uma função. Dizemos que $f$ é uma função total se
+$dom(f) = A$. Por sua vez, dizemos que $f$ é parcial se $dom(f)
+\subset A$.
+\end{Definition}
+
+Se $f$ é uma função parcial e $x\in dom(f)$ então dizemos que $f(x)$ é
+definida. Caso $x\not\in dom(f)$, dizemos que $f(x)$ é
+indefinida. Em algumas situações, ao invés de simplesmente dizermos
+que $f(x)$ é indefinida, associamos a $x$ um valor não pertencente ao
+contradomínio da função $f$, que normalmente é representado como
+$\bot$. Neste caso, dizemos que $f(x)$ é indefinida se $f(x) = \bot$.
+
+\begin{Example}
+Considere a seguinte função, $f : \mathbb{N} \to \mathcal{C}$, em que
+$\mathcal{C}$ representa o conjunto de símbolos (letras) do alfabeto latino.
+\[
+\begin{array}{lcl}
+f(i) & = & c \text{, em que $c$ é a $i$-ésima letra do alfabeto}
+\end{array}
+\]
+Evidentemente, temos que esta função é parcial, visto que não é
+definida para todo $n \in \mathbb{N}$. O domínio de $f$ é:
+\[
+dom(f) =\{x \in\mathbb{N}\,|\,1 \leq x \leq 26\}
+\]
+já que o alfabeto latino possui 26 letras. Com isso, temos que $f$ é
+indefinida para todo elemento de $\{x\in\mathbb{N}\,|\,x \geq 27\}$.
+\end{Example}
+Em matemática, é simples descobrir para quais elementos uma função é
+ou não definida. Porém, em computação, este nem sempre é o
+caso. Como funções são modelos abstratos de programas, determinar o
+domínio de uma função (isto é, determinar se esta vai ser aplicada
+somente a valores considerados válidos) é tarefa de um compilador.
+Uma forma limitada deste tipo de análise é feita considerando tipos de valores e
+parâmetros de uma função. Em linguagens de programação modernas,
+compiladores são capazes de validar que somente valores de tipos
+adequados sejam argumentos para chamadas de funções. Normalmente,
+erros devido a passagem inválida de parâmetros podem ocasionar erros
+em tempo de execução\footnote{Programadores C/C++ estão habituados a
+  este tipo de erro caracterizado pela mensagem:
+  ``\texttt{segmentation fault.}''}. Porém, mesmo valores de tipo
+adequados podem ocasionar erros em tempo de execução. Para isso, basta
+que o valor, apesar de possuir o tipo correto especificado para o
+parâmetro da função, não pertença ao domínio desta. Em computação,
+valores indefinidos para um determinado valor do domínio, são
+usualmente representados utilizando exceções que, se não tratadas,
+causam a interrupção do código.
 
 \section{Composição de funções}
 
+Nesta seção, vamos reapresentar o conceito de composição (agora de
+funções) e provar que esta operação é associativa.
+
+\begin{Definition}[Composição de Funções]
+Sejam $f : A \to B$ e $g : B \to C$. Definimos $g \circ f : A \to C$
+como:
+\[
+g \circ f (x) = g (f(x))
+\]
+\end{Definition}
+
+\begin{Theorem}[Associatividade da composição de funções]
+Sejam $f : A \to B$, $g : B \to C$ e $h : C \to D$. Temos que $h \circ
+(g \circ f) = (h \circ g) \circ f$.
+\end{Theorem}
+\begin{proof}
+Suponha $x$ arbitrário. Suponha que $x \in A$. Temos:
+\[
+\begin{array}{lcl}
+((h \circ g) \circ f)(x) & = \\
+(h \circ g) (f(x)) & = & \{\text{pela def. de $\circ$}\}\\
+h (g (f (x))) & = & \{\text{pela def. de $\circ$}\}\\
+h ((g \circ f) (x)) & = & \{\text{pela def. de $\circ$}\}\\
+(h \circ (g \circ f)) (x)
+\end{array}
+\]
+\end{proof}
+
 \section{Propriedades de funções}
 
-\subsection{Funções Injetoras}
+Nesta seção descrevemos algumas propriedades de funções que
+provavelmente já são conhecidas pelo leitor.
 
-\subsection{Funções Sobrejetoras}
+\subsection{Funções injetoras}
 
-\subsection{Funções Bijetoras}
+O requisito para uma relação ser considerada uma função é que esta
+associe cada elemento do domínio a um único elemento do
+contradomínio. Por sua vez, dizemos que uma função é injetiva se cada
+elemento da imagem desta função é o resultado de aplicá-la a somente
+um elemento do domínio. A definição seguinte formaliza este conceito.
+
+\begin{Definition}[Função injetora]
+Dizemos que $f : A \to B$ é uma função injetora se a seguinte fórmula
+é verdadeira:
+\[
+\forall x. \forall y. x\in A \land y \in A \to x \neq y \to f (x) \neq f(y)
+\]
+\end{Definition}
+
+\begin{Example}
+Sejam $A = \{1,2\}$, $B =\{3,4,5\}$ e $f : A \to B$ definida como $f =
+\{(1,3),(2,5)\}$. Como cada imagem possui um único valor associado no
+domínio, temos que $f$ é uma função injetora.
+\end{Example}
+\begin{Example}
+Seja $f : \mathbb{N} \to \mathbb{N}$ definida como $f(x) = x^2$. Temos
+que esta função é injetora, já que esta associa a cada quadrado
+perfeito de $\mathbb{N}$ a sua raiz.
+\end{Example}
+
+O leitor atento deve notar que esta função é injetora quando definida
+sobre $\mathbb{N}$. Para os conjuntos $\mathbb{Z},\mathbb{R}$ esta não
+o é, uma vez que, para quaisquer números $x$ e $-x$, o quadrado destes
+sempre será $|x|^2$. De maneira mais precisa, temos que se $f :
+\mathbb{Z} \to \mathbb{Z}$ ou $f : \mathbb{R}\to\mathbb{R}$, $f$ não é
+uma função injetora.
+
+A classe das funções injetoras são fechadas sobre a operação de
+composição, isto é, a composição de duas funções injetoras é também
+uma função injetora. Este resultado é formalizado no teorema seguinte.
+
+\begin{Theorem}
+Sejam $f : A \to B$ e $g : B \to C$ duas funções injetoras. Então $g
+\circ f : A \to C$ também é uma função injetora.
+\end{Theorem}
+\begin{proof}
+Suponha que $f : A \to B$ e $g : B \to C$ são funções
+injetoras. Suponha $x,y$ arbitrários. Suponha $x,y \in A$. Suponha que
+$x \neq y$. Suponha, por contradição, que $(g \circ f)(x) = (g\circ
+f)(y)$. Pela definição de composição de funções, temos que $g(f(x)) =
+g (f(y))$, mas como $g$ é injetora, temos que $f(x) = f(y)$. Mas, como
+$f$ também é injetora, temos que $x = y$,  o que contradiz a suposição
+de que $x \neq y$. Logo, $(g \circ f)(x) \neq (g \circ f)(y)$. Assim,
+se $x\neq y$ então $(g \circ f)(x) \neq (g \circ f)(y)$. Logo, se $x,y
+\in A$ e $x\neq y$ então $(g \circ f)(x) \neq (g \circ f)(y)$. Como
+$x,y$ são arbitrários, temos que $g \circ f : A \to C$ é uma função
+injetora. Portanto, se $f : A \to B$ e $g : B \to C$ são funções
+injetoras, então temos que $g \circ f : A \to C$ é uma função injetora.
+\end{proof}
+
+Utilizando o conceito de funções injetoras, podemos expressar de
+maneira mais elegante o chamado princípio da casa dos pombos.
+
+\begin{Theorem}[Princípio da casa dos pombos]
+Sejam $A$ e $B$ dois conjuntos finitos tais que $|A| > |B|$ e $|A| >
+1$. Seja $f : A \to B$. Então:
+\[
+\exists a_1. \exists a_2. a_1 \in A \land a_2 \in A \land a_1 \neq a_2
+\land f(a_1) = f(a_2)
+\]
+\end{Theorem}
+% \begin{proof}
+% Suponha que $A,B$ são conjuntos finitos tais que $|A| > |B|$,
+% $|A| > 1$ e $f : A  \to B$. Como $|A| > 1$, o conjunto $A$ deve
+% possuir pelo menos dois elementos distintos. Sejam $x,y\in A$ dois
+% elementos tais que $x \neq y$.
+% \end{proof}
+
+
+\subsection{Funções sobrejetoras}
+
+Dizemos que uma função é sobrejetora se sua imagem é todo o seu
+contradomínio. Formalizamos esse conceito na próxima definição.
+
+\begin{Definition}[Função sobrejetora]
+Dizemos que uma função $f : A \to B$ é uma função sobrejetora se a
+seguinte fórmula é verdadeira:
+\[
+\forall b. b\in B \to \exists a. a \in A \land f(a) = b
+\]
+\end{Definition}
+
+\begin{Example}
+Seja $A =\{1,2,3\}$, $B =\{4,5\}$ e  $f : A \to B$ definida como $f
+=\{(1,4),(2,5),(3,5)\}$. Temos que $f$ é uma função sobrejetora, uma
+vez que sua imagem é igual ao conjunto $B$ (contradomínio de
+$f$). Note que apesar de ser sobrejetora, a função $f$ não é
+injetora uma vez que $f(2) = 5 = f(3)$.
+\end{Example}
+
+\begin{Example}
+A função $f : \mathbb{N} \to \mathbb{N}$ definida como $f(x) = x^2$
+não é sobrejetora, uma vez que não existe $x \in \mathbb{N}$ tal que
+$x^2 = 3$. Na verdade, esta função possui como imagem o conjunto de
+quadrados perfeitos de $\mathbb{N}$.
+\end{Example}
+
+Assim como as funções injetoras, a classe das funções sobrejetoras
+também é fechada sobre a operação de composição. Esse fato é expresso
+pelo teorema seguinte.
+
+\begin{Theorem}\label{sobre-compose}
+Sejam $f : A \to B$ e $g : B \to C$ duas funções sobrejetoras. Então,
+$g \circ f : A \to C$ é uma função sobrejetora.
+\end{Theorem}
+
+\subsection{Funções bijetoras}
+
+Nesta seção apresentaremos uma classe importante de funções: as
+funções bijetoras.
+
+\begin{Definition}[Função bijetora]
+Dizemos que $f : A \to B$ é uma função bijetora se $f$ é uma função
+injetora e sobrejetora.
+\end{Definition}
+
+Caso uma função é bijetora, dizemos que está é uma correspondência de
+um para um, conforme definido pelo teorema a seguir.
+
+\begin{Theorem}
+Seja $f : A \to B$ uma função bijetora. Então, $|dom(f)| = |ran(f)|$.
+\end{Theorem}
+\begin{proof}
+Suponha que $|dom(f)| > |ran(f)|$. Como $|dom(f)| > |ran(f)|$, temos
+que $f$ não pode ser injetora (pelo princípio da casa dos pombos).
+Suponha que $|dom(f)| < |ran(f)|$. Desta forma, temos que
+$f$ não pode ser sobrejetora. Assim, temos que se $f$ é bijetora então
+$|dom(f) = |ran(f)|$.
+\end{proof}
 
 \subsection{Função inversa}
 
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Prove o teorema \ref{sobre-compose}.
+\end{enumerate}
 
 \section{Notas Bibliográficas}
