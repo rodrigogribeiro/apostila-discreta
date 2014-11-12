@@ -1,0 +1,290 @@
+\chapter{Indução Matemática}\label{cap9}
+
+\epigraph{Induction makes you fell guilty for getting something out of
+nothing, and it is artificial, but it is one of the greatest ideas of
+civilization.}{Helbert S. Wilf}
+
+\section{Motivação}
+
+Na ciência e filosofia usamos, essencialmente, dois tipos de
+raciocínio distintos: o dedutivo e indutivo. O raciocínio dedutivo é
+governado por leis da lógica e foi tema de grande parte do curso de
+matemática discreta. Se certo fato é deduzido usando lógica, este é
+irrefutável, visto que, sistemas dedutivos para lógica são corretos e
+completos. O raciocínio indutivo, por sua vez, é o que usamos quando
+inferimos um padrão de comportamento futuro a partir de experiências
+realizadas no passado.
+
+Outro tipo de raciocínio indutivo é a chamada indução matemática, que
+é usado para provar propriedades sobre números naturais. O objetivo
+deste capítulo é apresentar esta técnica de prova e como esta é usada
+para demonstração de diversos fatos em matemática e em ciência da
+computação.
+
+
+\section{Introdução à indução matemática}
+
+A técnica de indução matemática pode ser utilizada para demonstrar
+conclusões que possuam a seguinte estrutura:
+\[
+\forall n. n\in \mathbb{N}\to P(n)
+\]
+Evidentemente, para demonstrar a fórmula anterior devemos provar que
+a propriedade $P$ é verdadeira para cada um dos valores do conjunto
+\[\mathbb{N} = \{0,1,2,3...\}\]
+Como existem infinitos valores em $\mathbb{N}$, não podemos
+simplesmente verificar se a propriedade em questão é verdadeira para
+cada um destes valores. Então, como demonstrar tais propriedades? A
+chave da indução matemática está na própria estrutura do conjunto de
+números naturais. Note que para listar todos os valores de
+$\mathbb{N}$, tudo o que temos que fazer é iniciar com $0 \in
+\mathbb{N}$ e repetidamente somar $1$, produzindo assim, um novo
+número natural. Assim, para mostrar que todos os números naturais
+possuem uma certa propriedade $P$, basta:
+\begin{itemize}
+    \item Mostrar que $0$ possui a propriedade $P$, isto é, $P(0)$ é
+      verdadeiro.
+    \item Mostrar que sempre que um número natural $n$ possuir a
+      propriedade $P$ então o sucessor de $n$, $n + 1$, também
+      possuirá essa propriedade. Isto é, devemos provar que $\forall
+      n. n\in\mathbb{N} \land P(n) \to P(n+1)$.
+\end{itemize}
+Exatamente esta observação motiva a seguinte estratégia de prova.
+\begin{ProofStrategy}[Para provar uma conclusão da forma $\forall
+  n. n\in\mathbb{N} \to P(n)$.]\label{simpleinduction}
+Prove que a seguinte fórmula é verdadeira.
+\[
+P(0)\land\forall n.n\in\mathbb{N}\land P(n)\to P(n+1)
+\]
+\begin{flushleft}
+\textbf{Texto}:
+Caso Base: [Prova de $P(0)$].\\
+Passo Indutivo:[Prova de $\forall n. n\in\mathbb{N}\land P(n)\to P(n+1)$].
+\end{flushleft}
+\end{ProofStrategy}
+Porém, como somente a demonstração destes dois passos pode comprovar
+que $\forall n. n\in\mathbb{N} \to P(n)$? A idéia é bastante
+simples. Note que ao usarmos indução matemática, provamos as seguintes
+fórmulas:
+\begin{itemize}
+    \item $P(0)$
+    \item $\forall n. n\in \mathbb{N} \land P(n) \to P(n+1)$
+\end{itemize}
+Observe que temos que para qualquer número natural n, $P(n) \to
+P(n+1)$. Como esta fórmula é verdadeira para todo $n\in\mathbb{N}$,
+temos que esta é verdadeira também para $n = 0$. Eliminando o
+quantificador universal substituindo $n$ por $0$, obtemos
+\[
+0 \in \mathbb{N} \land P(0) \to P(1)
+\]
+Porém, é óbvio que $0 \in \mathbb{N}$ e como provamos que $P(0)$, por
+eliminação da implicação podemos concluir que $P(1)$ também é
+verdadeiro. Repetindo este processo para $n = 1$, temos que a seguinte
+implicação é obtida a partir da eliminação do quantificador universal:
+\[
+1 \in\mathbb{N}\land P(1) \to P(2)
+\]
+o que nos permite deduzir que $P(2)$ é verdadeiro. Note que podemos
+repetir esse processo para concluir que $P$ é verdadeira para qualquer
+$n \in\mathbb{N}$. A seguir, apresentaremos um exemplo simples de uma
+propriedade provável por indução matemática.
+
+\begin{Theorem}
+Para todo $n \in \mathbb{N}$, temos que $\sum_{k = 0}^n2^k =
+2^{n + 1} - 1$
+\end{Theorem}
+\begin{Commentary}
+Note que este teorema pode ser expresso pela seguinte fórmula:
+\[
+\forall n. n\in\mathbb{N} \land \sum_{k = 0}^n2^k = 2^{n+1} - 1
+\]
+em que a propriedade $P(n)$ é
+\[
+\sum_{k = 0}^n2^k = 2^{n+1} - 1
+\]
+logo, de acordo com a estratégia de prova \ref{simpleinduction},
+devemos provar as seguintes fórmulas:
+\begin{itemize}
+    \item $P(0)$
+    \item $\forall n. n\in\mathbb{N}\land P(n) \to P(n+1)$
+\end{itemize}
+em que $P(0)$ é dada por
+\[
+\sum_{k = 0}^02^k = 2^{0+1} - 1
+\]
+que é facilmente demonstrada como verdadeira pela seguinte equação:
+\[
+\begin{array}{lcl}
+\sum_{k = 0}^02^k & = \\
+2^0                       & = & \{\text{pela def. da noção }\Sigma\}\\
+1                          & = &\\
+2 - 1                    & = & \\
+2^{0 + 1} - 1
+\end{array}
+\]
+Logo, $P(0) = \sum_{k = 0}^02^k = 2^{0+1} - 1$ é verdadeiro.
+
+No próximo passo, temos que demonstrar o passo indutivo, que é dado
+pela seguinte fórmula:
+\[
+\forall n. n\in\mathbb{N}\land \left(\sum_{k = 0}^n 2^k = 2^{n + 1} -
+  1\right) \to \left(\sum_{k = 0}^{n + 1} 2^k = 2^{n + 2} -
+  1\right)
+\]
+Para demonstrar o passo indutivo, supomos $n\in\mathbb{N}$ arbitrário
+e que $\sum_{k = 0}^n 2^k = 2^{n + 1}  - 1$. Usualmente, damos o nome
+de hipótese de indução a suposição de que a propriedade que desejamos
+provar é verdadeira para um número $n$ qualquer, isto é que $P(n)$ é
+verdadeira.
+
+Para concluir a prova, resta mostrar que a seguinte igualdade é
+verdadeira:
+\[
+\sum_{k = 0}^{n+1} 2^k = 2^{n + 2} - 1
+\]
+que é facilmente demonstrável usando a hipótese de indução e
+álgebra. A demonstração desta equação é apresentada a seguir.
+\[
+\begin{array}{lcl}
+\sum_{k = 0}^{n + 1}2^k & = & \\
+\sum_{k = 0}^{n}2^k + 2^{n + 1} & = &\{\text{pela definição de
+}\Sigma\}\\
+2^{n + 1} - 1 + 2^{n+1} & = &\{\text{pela hipótese de indução}\}\\
+2^{n+2} -1
+\end{array}
+\]
+A seguir, apresentamos a versão final do texto desta demonstração.
+\end{Commentary}
+\begin{proof}
+\verb| |\\
+\begin{enumerate}
+  \item[\ ]Caso Base: Para $n = 0$, temos:
+\[
+\begin{array}{lcl}
+\sum_{k = 0}^02^k & = \\
+2^0                       & = & \{\text{pela def. da notação }\Sigma\}\\
+1                          & = &\\
+2 - 1                    & = & \\
+2^{0 + 1} - 1
+\end{array}
+\]
+  \item[\ ]Passo indutivo: Suponha $n$ arbitrário. Suponha $n
+    \in\mathbb{N}$ e que $\sum_{k = 0}^n 2^k = 2^{n + 1} - 1$. Temos:
+\[
+\begin{array}{lcl}
+\sum_{k = 0}^{n + 1}2^k & = & \\
+\sum_{k = 0}^{n}2^k + 2^{n + 1} & = &\{\text{pela definição de
+}\Sigma\}\\
+2^{n + 1} - 1 + 2^{n+1} & = &\{\text{pela hipótese de indução}\}\\
+2^{n+2} -1
+\end{array}
+\]
+\end{enumerate}
+\end{proof}
+Apresentaremos mais alguns exemplos de demonstração por indução.
+\begin{Theorem}
+Para todo $n\in\mathbb{N}$, $3\,|\,(n^3 - n)$.
+\end{Theorem}
+\begin{Commentary}
+Novamente, utilizaremos indução matemática. Note que o enunciado do
+teorema é dado por:
+\[
+\forall n. n\in\mathbb{N} \to 3\,|\,(n^3 - n)
+\]
+em que a propriedade a ser demonstrada é
+\[
+3\,|\,(n^3 - n)
+\]
+Note que $3\,|\,(n^3 - n)$ é na verdade uma fórmula envolvendo um
+quantificador existencial.
+\[
+3\,|\,(n^3 - n) \equiv \exists k. k\in\mathbb{N}\land n^3 - n = 3k
+\]
+Logo, temos que mostrar a veracidade das seguintes fórmulas, para
+demonstrar o teorema usando indução:
+\begin{itemize}
+  \item $3\,|\,(0^3 - 0)$
+  \item $\forall n. n\in\mathbb{N}\land 3\,|\,(n^3 - n)\to
+    3\,|\,((n+1)^3 - (n + 1))$
+\end{itemize}
+A demonstração de $3\,|\,(0^3 - 0)$ envolve provar a seguinte fórmula
+\[
+\exists k. k\in\mathbb{N}\land 3k = 0
+\]
+que é evidentemente verdadeira, basta fazer que $k = 0$.
+
+Para o passo indutivo, devemos demonstrar que
+\[\forall n. n\in\mathbb{N}\land 3\,|\,(n^3 - n)\to
+    3\,|\,((n+1)^3 - (n + 1))\]
+Iniciamos a demonstração supondo $n\in\mathbb{N}$ arbitrário e que
+$3\,|\,(n^3 - n)$ e devemos provar que
+\[
+\exists k. k\in\mathbb{N}\land (n + 1)^3 - (n+1) = 3k
+\]
+Logo, devemos encontrar um valor de $k\in\mathbb{N}$ que torne a
+fórmula anterior verdadeira. Como $3\,|\,(n^3 - n)$, existe $a \in
+\mathbb{N}$ tal que $n^3 - n = 3a$. Para encontrar uma ``dica'' de
+qual seria este valor de $k$, vamos desenvolver o polinômio $(n+1)^3 -
+(n + 1)$:
+\[
+\begin{array}{lc}
+(n+1)^3 - (n + 1) & =\\
+n^3 + 3n^2 + 3n + 1 - (n + 1) & = \\
+n^3 + 3n^2 + 3n + 1 - n - 1 & = \\
+n^3 -n + 3n^2 + 3n
+\end{array}
+\]
+Porém, pela hipótese de indução, temos que $n^3 - n = 3a$. Com isso,
+temos:
+\[
+\begin{array}{lc}
+n^3 -n + 3n^2 + 3n & =\\
+3a + 3n^3 + 3n & = \\
+3 (a + n^2 + n)
+\end{array}
+\]
+que obviamente é divisível por $3$. Logo, para concluir a
+demonstração, basta escolher $k = a + n^2 + n$. O texto final da prova
+é apresentado a seguir.
+\end{Commentary}
+\begin{proof}
+\verb| |\\
+\begin{enumerate}
+  \item[\ ]Caso base: Seja $k = 0$. Temos que $0^3 - 0 = 3.0$, conforme requerido.
+  \item[\ ]Passo indutivo: Suponha $n\in\mathbb{N}$ arbitrário e que
+    $3\,|\,n^3 - n$. Como $3\,|\,n^3 - n$, existe $a\in\mathbb{N}$ tal
+    que $n^3 - n = 3a$. Seja $k = a + n^2 + n$. Temos:
+    \[
+ \begin{array}{lcl}
+   3k & = & \\
+   3 (a + n^2 + n) & = & \{\text{por }k = a + n^2 + n\}\\
+   3a + 3n^2 + 3n & = & \\
+   (n^3 - n) + 3n^2 + 3n & = &\text{pela hipótese de indução}\\
+   n^3 -n + 3n^2 + 3n + 1 - 1 & = & \\
+   (n^3 + 3n^2 + 3n + 1) - n -1 & = & \\
+   (n + 1)^3 - (n +1)
+ \end{array}
+    \]
+    Logo, $3\,|\,(n+1)^3-(n+1)$, conforme requerido.
+\end{enumerate}
+\end{proof}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+	\item Prove os seguintes teoremas.
+	\begin{enumerate}
+		\item Para todo $n\in\mathbb{N}$, $\sum_{i=0}^{n}3^i = \frac{3^{n + 1} - 1}{2}$
+		\item Para todo $n\in\mathbb{N}$, $\sum_{i=0}^{n}i^{2} =
+                  \frac{n(n+1)(2n + 1)}{6}$
+                \item Para todo $n\in\mathbb{N}$, $\sum_{i=0}^{n}(8i - 5) =
+                  4n^2 - n$
+                \item Para todo $n\geq 1$, $5\,|\,(n^5-n)$
+                \item Para todo $n\geq 1$, $6\,|\,(7^n-1)$
+                \item Para todo $n\geq 1$, $6\,|\,(n^3+5n)$
+                \item Seja $H_n = \sum_{i = 1}^n\frac{1}{i}$. Prove que
+                  $\sum_{i=1}^nH_i = (n+1)H_n + n$.
+		\item Para todo $n\in\mathbb{N}$, $2\,\mid\,(n^{2} + n)$
+		\item Seja $A$ um conjunto qualquer tal que $|A| = n$, para algum $n\in\mathbb{N}$. Ent\~ao $|\mathcal{P}(A)| = 2^{n}$.
+	\end{enumerate}
+\end{enumerate}
