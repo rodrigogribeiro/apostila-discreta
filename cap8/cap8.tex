@@ -327,7 +327,7 @@ A classe das funções injetoras são fechadas sobre a operação de
 composição, isto é, a composição de duas funções injetoras é também
 uma função injetora. Este resultado é formalizado no teorema seguinte.
 
-\begin{Theorem}
+\begin{Theorem}\label{inj-compose}
 Sejam $f : A \to B$ e $g : B \to C$ duas funções injetoras. Então $g
 \circ f : A \to C$ também é uma função injetora.
 \end{Theorem}
@@ -350,13 +350,19 @@ Utilizando o conceito de funções injetoras, podemos expressar de
 maneira mais elegante o chamado princípio da casa dos pombos.
 
 \begin{Theorem}[Princípio da casa dos pombos]
-Sejam $A$ e $B$ dois conjuntos finitos tais que $|A| > |B|$ e $|A| >
-1$. Seja $f : A \to B$. Então:
+Sejam $A$ e $B$ dois conjuntos finitos tais que $|A| > |B|$, $|A| >
+1$ e $f : A \to B$ uma função total. Então:
 \[
 \exists a_1. \exists a_2. a_1 \in A \land a_2 \in A \land a_1 \neq a_2
 \land f(a_1) = f(a_2)
 \]
 \end{Theorem}
+\begin{proof}
+Como $f$ é total, temos que todo $x\in A$ é tal que existe $y \in B$
+de forma que $f(x) = y$. Porém, como $|A| > |B|$, temos que existirão
+$a_1, a_2 \in A$, $a_1 \neq a_2$ tais que $f(a_1) = f(a_2)$.
+\end{proof}
+
 % \begin{proof}
 % Suponha que $A,B$ são conjuntos finitos tais que $|A| > |B|$,
 % $|A| > 1$ e $f : A  \to B$. Como $|A| > 1$, o conjunto $A$ deve
@@ -426,13 +432,131 @@ $f$ não pode ser sobrejetora. Assim, temos que se $f$ é bijetora então
 $|dom(f) = |ran(f)|$.
 \end{proof}
 
+Evidentemente, temos que a classe de funções bijetoras é fechada sobre
+a operação de composição de funções. Este fato é expresso pelo teorema
+seguinte.
+
+\begin{Theorem}
+Sejam $f : A \to B$ e $g : B \to C$ funções bijetoras. Então, $g \circ
+f : A \to C$ é uma função bijetora.
+\end{Theorem}
+\begin{proof}
+Consequência imediata dos teoremas \ref{inj-compose} e \ref{sobre-compose}.
+\end{proof}
+
 \subsection{Função inversa}
 
+Como funções são apenas um caso especial de relações, podemos utilizar
+a noção de inversa de uma relação à funções. Porém, nem sempre a
+inversa de uma função será uma função. Os próximos exemplos ilustram
+estes problemas.
 
+\begin{Example}
+Sejam $A =\{1,2,3\}$, $B=\{3,4,5\}$ e $f
+=\{(1,3),(2,3),(3,5)\}$. Temos que a inversa da função $f$ é
+\[
+f^{-1} = \{(3,1),(3,2),(5,3)\}
+\]
+não pode ser considerada uma função já que não existe uma única imagem
+para o valor $3 \in B$.
+\end{Example}
+Note que este problema é devido ao fato de que a função $f : A \to B$
+não era injetora. Será que isto é suficiente para garantir que a
+inversa de uma função seja também uma função?  Veremos que somente o
+fato de uma função ser injetora não é suficiente para que sua inversa
+também seja uma função. O próximo exemplo ilustra este caso.
+\begin{Example}
+Sejam $A =\{1,2,3\}$, $B=\{4,5,6,7\}$ e
+$f=\{(1,4),(2,5),(3,6)\}$. Desta forma temos que a inversa de  $f$ é
+dada pelo seguinte conjunto:
+\[
+f^{-1}=\{(4,1),(5,2),(6,3)\}
+\]
+que não pode ser considerada uma função de $B \to A$ pois, $7 \in B$,
+mas $7 \not\in dom(f^{-1})$ e, portanto, $f^{-1}$ não pode ser
+considerada uma função de $B \to A$.
+\end{Example}
+Note que o motivo que evitou que a inversa da função $f$ do exemplo
+anterior fosse considerada uma função é que a imagem desta não era
+igual ao seu contradomínio, isto é, $f : A \to B$ não era uma função
+sobrejetora.
+
+Desta forma, podemos concluir que a condição necessária e suficiente
+para que uma função $f : A \to B$ possua uma função inversa é que $f$
+seja uma função bijetora. Este fato é expresso pelo teorema seguinte:
+\begin{Theorem}
+Seja $f : A \to B$ uma função bijetora. Então $f^{-1} : B \to A$.
+\end{Theorem}
+\begin{proof}
+  Suponha que $f : A \to B$ seja uma função bijetora. Suponha $b$
+  arbitrário. Suponha $b \in B$. Para mostrar que $f^{-1}$ é uma
+  função devemos mostrar que existe um único valor $a \in A$ tal que
+  $f(b) =a$.
+  \begin{enumerate}
+    \item Existência: Como $f$ é sobrejetora, temos que existe $a \in
+      A$ tal que $f(a) = b$ e, portanto, $f^{-1}(b) = a$.
+    \item Unicidade: Suponha que $f(a_1) = b$ e $f(a_2) = b$. Como $f$
+      é injetora, temos que se $f(a_1) = f(a_2)$ então $a_1 = a_2$.
+  \end{enumerate}
+\end{proof}
+
+Outra propriedade importante de funções bijetoras e suas inversas é
+que a composição destas produz como resultado a função identidade. O
+seguinte teorema expressa esse fato.
+
+\begin{Theorem}\label{thm-inversa}
+Seja $f : A \to B$ uma função bijetora e $f^{-1} : B \to A$ sua
+inversa. Então, temos que $f^{-1} \circ f = i_{A}$ e $f \circ f^{-1}  = i_{B}$.
+\end{Theorem}
 \subsection{Exercícios}
-
 \begin{enumerate}
-  \item Prove o teorema \ref{sobre-compose}.
+  \item Responda o que se pede
+  \begin{enumerate}
+    \item Seja $A=\{1,2,3\}$, $B = \{4\}$ e $f =
+      \{(1,4),(2,4),(3,4)\}$. Neste caso, $f : A \to B$? Justifique.
+    \item Seja $A=\{1\}$, $B = \{2,3,4\}$ e $f =
+      \{(1,2),(1,3),(1,4)\}$. Neste caso, $f : A \to B$? Justifique.
+    \item Seja $C$ o conjunto de todos autom\'oveis registrados no Brasil e
+      $S$ o conjunto de todas as strings de tamanho finito formadas por letras
+      e n\'umeros. Ent\~ao $L = \{(c,s)\,|\,s\text{ \'e a placa do autom\'ovel
+      }c\}$ \'e uma fun\c{c}\~ao?
+  \end{enumerate}
+  \item Sejam $f, g : \mathbb{R}\to \mathbb{R}$ fun\c{c}\~oes definidas como:
+  \[
+  \begin{array}{cc}
+    \begin{array}{rcl}
+      f(x) & = & \frac{1}{x^2 +2}
+    \end{array} &
+    \begin{array}{rcl}
+      g(x) & = & 2x - 1
+    \end{array}
+  \end{array}
+  \]
+  Encontre f\'ormulas para $(f\circ g)(x)$ e $(g \circ f)(x)$.
+  \item Suponha $f : A \to B$ e $C \subseteq A$. O conjunto $f\cap (C \times
+    B)$ \'e uma rela\c{c}\~ao de $C$ em $B$, chamada de restri\c{c}\~ao de $f$
+    com respeito a $C$, e \'e representado como $f\,\uparrow\,C$. Isto \'e:
+    $f\,\uparrow\,C = f\cap (B\times C)$.
+  \begin{itemize}
+    \item Prove que $f\,\uparrow\,C : C \to B$ e que para todo $c \in C$,
+      $f(c) = (f\,\uparrow\,C)(c)$.
+    \item Prove que se $f$ \'e injetora, ent\~ao $f\,\uparrow\,C$ tamb\'em
+      \'e.
+    \item Prove que se $f$ \'e sobretora, ent\~ao $f\,\uparrow\,C$ tamb\'em
+      \'e.
+   \end{itemize}
+  \item Suponha $f : A \to B$ e $S$ uma rela\c{c}\~ao bin\'aria sobre
+    $B$. Defina $R$ como sendo:
+    \[
+    R = \{(x,y)\in A \times A\,|\, (f(x),f(y)) \in S\}
+    \]
+    \begin{enumerate}
+      \item Prove que se $S$ \'e reflexiva, ent\~ao $R$ tamb\'em \'e.
+      \item Prove que se $S$ \'e transitiva, ent\~ao $R$ tamb\'em \'e.
+      \item Prove que se $S$ \'e sim\'etrica, ent\~ao $R$ tamb\'em \'e.
+    \end{enumerate}
+
+  \item Prove os teoremas \ref{sobre-compose} e \ref{thm-inversa}.
 \end{enumerate}
 
 \section{Notas Bibliográficas}
