@@ -2,7 +2,7 @@
 
 \epigraph{Induction makes you fell guilty for getting something out of
 nothing, and it is artificial, but it is one of the greatest ideas of
-civilization.}{Helbert S. Wilf}
+civilization.}{Helbert S. Wilf, Matemático Norte-americano.}
 
 \section{Motivação}
 
@@ -13,10 +13,12 @@ matemática discreta. Se certo fato é deduzido usando lógica, este é
 irrefutável, visto que, sistemas dedutivos para lógica são corretos e
 completos. O raciocínio indutivo, por sua vez, é o que usamos quando
 inferimos um padrão de comportamento futuro a partir de experiências
-realizadas no passado.
-
-Outro tipo de raciocínio indutivo é a chamada indução matemática, que
-é usado para provar propriedades sobre números naturais. O objetivo
+realizadas no passado. Este tipo de raciocínio, apesar de útil em
+ciências experimentais, não é de interesse para os objetivos deste
+texto. Em especial, estamos interessados na chamada indução
+matemática, uma técnica de demonstração muito utilizada em diversas
+áreas da computação.
+O objetivo
 deste capítulo é apresentar esta técnica de prova e como esta é usada
 para demonstração de diversos fatos em matemática e em ciência da
 computação.
@@ -259,7 +261,7 @@ demonstração, basta escolher $k = a + n^2 + n$. O texto final da prova
    3k & = & \\
    3 (a + n^2 + n) & = & \{\text{por }k = a + n^2 + n\}\\
    3a + 3n^2 + 3n & = & \\
-   (n^3 - n) + 3n^2 + 3n & = &\text{pela hipótese de indução}\\
+   (n^3 - n) + 3n^2 + 3n & = &\{\text{pela hipótese de indução}\}\\
    n^3 -n + 3n^2 + 3n + 1 - 1 & = & \\
    (n^3 + 3n^2 + 3n + 1) - n -1 & = & \\
    (n + 1)^3 - (n +1)
@@ -268,6 +270,42 @@ demonstração, basta escolher $k = a + n^2 + n$. O texto final da prova
     Logo, $3\,|\,(n+1)^3-(n+1)$, conforme requerido.
 \end{enumerate}
 \end{proof}
+Terminamos essa seção com um exemplo de demonstração por indução que
+não envolve equações, mas sim inequações.
+\begin{Theorem}
+Para todo $n\in\mathbb{N},\:n\geq 5$ temos que $2^n > n^2$.
+\end{Theorem}
+\begin{proof}
+\verb| |\\
+\begin{enumerate}
+  \item[\ ]Caso base: Para $n = 5$, temos que $2^5 > 25$, conforme
+    requerido.
+  \item[\ ]Passo indutivo: Suponha $n\in\mathbb{N}$ arbitrário e que
+    $2^n > n^2$. Temos:
+   \[
+\begin{array}{lcl}
+    2^{n+1} & = &\\
+    2^n + 2^n & = &\\
+   n^2 + n^2  & > &\{\text{pela hipótese de indução.}\}\\
+   n^2 + 2n + 1 & = &\\
+   (n+ 1)^2
+\end{array}
+  \]
+  Logo, $2^{n+1} > (n + 1)^2$, conforme requerido.
+\end{enumerate}
+\end{proof}
+\begin{Commentary}
+A demonstração anterior utiliza praticamente a mesma estrutura das
+anteriores, com duas diferenças:
+\begin{enumerate}
+  \item O caso base deve ser para $n = 5$, uma vez que o teorema é
+    válido para valores $n \geq 5$.
+  \item No passo indutivo, provamos a desigualdade desejada como uma
+    sequência de igualdades / desigualdades. Este tipo de
+    demonstração, comum em matemática, é válido para qualquer relação
+    binária transitiva (note que tanto $>$, quanto $=$ são transitivas).
+\end{enumerate}
+\end{Commentary}
 
 \subsection{Exercícios}
 
@@ -288,3 +326,10 @@ demonstração, basta escolher $k = a + n^2 + n$. O texto final da prova
 		\item Seja $A$ um conjunto qualquer tal que $|A| = n$, para algum $n\in\mathbb{N}$. Ent\~ao $|\mathcal{P}(A)| = 2^{n}$.
 	\end{enumerate}
 \end{enumerate}
+
+\section{Mais Exemplos de Indução}
+
+
+Na última seção, apresentamos alguns exemplos de como a técnica de
+indução matemática pode ser utilizada para provar propriedades sobre
+números naturais.
