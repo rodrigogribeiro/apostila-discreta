@@ -320,16 +320,366 @@ anteriores, com duas diferenças:
                 \item Para todo $n\geq 1$, $5\,|\,(n^5-n)$
                 \item Para todo $n\geq 1$, $6\,|\,(7^n-1)$
                 \item Para todo $n\geq 1$, $6\,|\,(n^3+5n)$
-                \item Seja $H_n = \sum_{i = 1}^n\frac{1}{i}$. Prove que
-                  $\sum_{i=1}^nH_i = (n+1)H_n + n$.
 		\item Para todo $n\in\mathbb{N}$, $2\,\mid\,(n^{2} + n)$
-		\item Seja $A$ um conjunto qualquer tal que $|A| = n$, para algum $n\in\mathbb{N}$. Ent\~ao $|\mathcal{P}(A)| = 2^{n}$.
 	\end{enumerate}
 \end{enumerate}
 
-\section{Mais Exemplos de Indução}
+\section{Indução Forte}
 
+Em algumas situações, a suposição de que a propriedade a ser provada é
+válida para um número $n \in \mathbb{N}$ não é forte o suficiente para
+concluirmos a demonstração.  Para ilustrar esse problema, vamos
+apresentar um teorema e tentar prová-lo usando a técnica de indução
+vista na seção anterior. Na sequência, apresentaremos a técnica de indução forte
+e a justificaremos de maneira informal, como feito para a indução
+simples. Finalmente, concluiremos esta seção demonstrando o teorema
+utilizado como motivador para a indução forte e mais alguns exemplos
+desta técnica de prova.
 
-Na última seção, apresentamos alguns exemplos de como a técnica de
-indução matemática pode ser utilizada para provar propriedades sobre
-números naturais.
+Utilizaremos o chamado teorema fundamental da aritmética que afirma
+que todo número inteiro $n > 1$ é primo ou produto de primos. O
+enunciado formal deste teorema é apresentado a seguir:
+
+\begin{Theorem}\label{strong-ind1}
+Para todo $n\in\mathbb{N}$, se $n > 1$ então $n$ é primo ou é um
+produto de números primos.
+\end{Theorem}
+
+Note que o enunciado deste teorema é dado pela seguinte fórmula:
+\[
+\forall n. n\in\mathbb{N} \to n > 1 \to n\text{ é primo} \lor n\text{
+  é produto de primos}
+\]
+Como esta fórmula possui o formato exigido para demonstrações
+usando indução, podemos tentar provar o caso base ($n = 1$) e o passo
+indutivo. Porém, no passo indutivo chegamos em um possível ``beco-sem-saída'':
+\begin{enumerate}
+  \item[\ ]Caso base: Para $n = 2$, temos que $2$ é primo e portanto,
+    $2$ é primo ou produto de primos.
+  \item[\ ]Passo indutivo. Suponha $n\in\mathbb{N}$, $n > 1$
+    arbitrário e que $n$ é primo ou produto de primos. Considere os
+    seguintes casos:
+    \begin{enumerate}
+      \item[\ ] $n$ é primo: [Prova de $n + 1$ é primo ou produto de primos]
+      \item[\ ] $n$ é produto de primos: [Prova de $n + 1$ é primo ou produto de primos]
+    \end{enumerate}
+\end{enumerate}
+Note que no caso de $n$ ser primo, não podemos garantir que $n + 1$
+será sempre primo ou produto de primos, visto que para $n = 2$, temos
+que $n + 1 = 3$ é primo. Por sua vez, se supormos que $n$ é um produto
+de primos, temos que $n + 1$ pode ser ou não primo. Então como
+concluir esta demonstração?
+
+Note que se um número $n$ não é primo, necessariamente existem $a$ e
+$b$ tais que $1 < a,b < n$ e $n = a.b$, em que $a$ e $b$ podem ser ou
+não números primos. Se ambos forem primos, temos que $n$ será um
+produto de primos. Por sua vez, se  $a$ ou $b$ for um produto de
+primos, temos que $n$ também o será. Apesar de correto, não podemos
+utilizar este raciocínio em uma prova por indução, pois a hipótese de
+indução supõe que a propriedade que desejamos provar é verdadeira para
+um valor fixo $n$ qualquer e não para qualquer valor.
+
+Nestas situações em que precisamos de uma hipótese de indução que seja
+válida não apenas para um valor, devemos usar a indução forte que nos
+permite supor que a propriedade a ser demonstrada é válida para todos
+os números naturais menores que um número $n$. O princípio de indução
+forte é apresentado na estratégia de prova seguinte.
+
+\begin{ProofStrategy}[Para provar $\forall n. n\in\mathbb{N} \to
+  P(n)$]
+Prove que a seguinte fórmula é verdadeira:
+\[
+\forall n. n\in\mathbb{N} \to (\forall k. k\in\mathbb{N} \land k < n
+\to P(k)) \to P(n)
+\]
+\end{ProofStrategy}
+
+O ponto chave de uma demonstração usando indução está em sua hipótese
+de indução:
+
+\[\forall k. k\in\mathbb{N} \land k < n \to P(k)\]
+
+que especifica que a propriedade $P$ é verdadeira não para apenas um
+número qualquer, mas sim para todos valores $k < n$. Ao observarmos a
+fórmula da estratégia de indução forte, notamos que esta não possui
+``casos base''. Então, como esta pode ser equivalente a
+$\forall n. n\in\mathbb{N} \to  P(n)$? Para a indução convencional,
+mostramos que esta é equivalente a $\forall n. n\in\mathbb{N} \to
+P(n)$ usando o caso base e uma sequência de eliminações do
+quantificador universal e implicações\footnote{Se você não lembra
+deste argumento, sugiro ler a seção anterior.}. Para mostrar que
+indução forte é uma técnica de prova válida, utilizaremos uma
+estratégia similar a usada para indução convencional. Para a fórmula
+\[
+\forall n. n\in\mathbb{N} \to (\forall k. k\in\mathbb{N} \land k < n
+\to P(k)) \to P(n)
+\]
+ser verdadeira, esta deverá o ser para todos os valores de $n
+\in\mathbb{N}$. Logo, para $n = 0$, esta também será
+verdadeira. Substituindo $n$ por $0$ obtemos:
+\[
+0\in\mathbb{N}\to (\forall k. k\in \mathbb{N} \land l < 0 \to P(k))
+\to P(0)
+\]
+Porém, como não existe $k \in \mathbb{N}$ tal que $k < 0$, temos que
+$k< 0$ é equivalente a $\bot$. Logo, usando álgebra, temos:
+\[
+\begin{array}{lc}
+0\in\mathbb{N}\to (\forall k. k\in \mathbb{N} \land k < 0 \to P(k))
+\to P(0) & \equiv \\
+0 \in \mathbb{N} \to (\forall k. k\in\mathbb{N} \land \bot \to
+P(k))\to P(0) & \equiv \\
+0 \in\mathbb{N} \to (\forall k. \bot \to P(k))\to P(0) & \equiv \\
+0 \in\mathbb{N} \to (\top \to P(0)) & \equiv \\
+0 \in \mathbb{N} \to (\neg \top \lor P(0)) & \equiv \\
+0 \in \mathbb{N} \to (\bot \lor P(0)) & \equiv \\
+0 \in \mathbb{N} \to P(0) &  \\
+\end{array}
+\]
+que é equivalente a $P(0)$, por eliminação da implicação usando o fato
+de que $0\in\mathbb{N}$. Logo, para $n = 0$, a fórmula da indução
+forte é equivalente a $P(0)$. Seguindo o mesmo raciocínio, para $n =
+1$ temos:
+\[
+1\in\mathbb{N}\to (\forall k. k\in \mathbb{N} \land l < 1 \to P(k))
+\to P(1)
+\]
+mas, como o único valor de $k\in\mathbb{N}$ tal que $k < 1$ é $k = 0$,
+temos que a fórmula anterior é equivalente a:
+\[
+\begin{array}{lc}
+1\in\mathbb{N}\to (\forall k. k\in \mathbb{N} \land l < 1 \to P(k))
+\to P(1) & \equiv \\
+1\in\mathbb{N}\to (0 < 1 \to P(0))
+\to P(1) & \equiv \\
+1\in\mathbb{N}\to (\top \to P(0))
+\to P(1) & \equiv \\
+1\in\mathbb{N}\to (\neg \top \lor P(0))
+\to P(1) & \equiv \\
+1\in\mathbb{N}\to (\bot \lor P(0))
+\to P(1) & \equiv \\
+1\in\mathbb{N} \to P(0) \to P(1)
+\end{array}
+\]
+que é equivalente a $P(0) \to P(1)$. Como temos que $P(0)$ (fórmula
+equivalente para $n = 0$), podemos concluir $P(1)$, usando eliminação
+da implicação. Repetindo esse mesmo raciocínio para $n = 2$, obtemos a
+fórmula
+\[
+P(0) \land P(1) \to P(2)
+\]
+que pode ser usada para concluir $P(2)$. Repetindo esse processo,
+temos que a propriedade $P$ será verdadeira para qualquer $n
+\in\mathbb{N}$. Assim, temos que
+\[
+\forall n. n\in\mathbb{N} \to (\forall k. k\in\mathbb{N} \land k < n
+\to P(k)) \to P(n)
+\]
+realmente é equivalente a $\forall n.n\in\mathbb{N}\to P(n)$.
+Agora que justificamos a técnica de indução forte, a utilizaremos para
+demonstrar o teorema \ref{strong-ind1}.
+
+\begin{proof}
+Suponha $n\in\mathbb{N}$ arbitrário e que para todo $k \in
+\mathbb{N},\,k < n$, $k$ é primo ou produto de primos. Evidentemente,
+se $n$ é primo o resultado é imediato. Portanto, suponha que $n$ não é
+primo. Logo, existem $a,b\in\mathbb{N}$ tais que $1 < a,b < n$ e $n =
+ab$. Como $a < n$ e $b < n$, pela hipótese de indução, temos que estes
+são primos ou produto de primos. Considere os seguintes casos:
+\begin{enumerate}
+  \item $a$ e $b$ são primos. Logo, $n = a.b$ é um produto de primos.
+  \item $a$ e $b$ não são primos\footnote{Isto é, pela hipótese de
+      indução algum dos dois (ou ambos) são um produto de
+      primos}. Logo, n = $a.b$ é um produto de primos.
+\end{enumerate}
+Como os casos cobrem todas as possibilidades, temos que $n$ é um
+produto de primos.
+\end{proof}
+Como um segundo exemplo da técnica de indução forte, apresentaremos
+outro resultado da teoria de números envolvendo o algoritmo de
+divisão de dois números inteiros.
+\begin{Theorem}
+Para todos $n,m\in\mathbb{N}$, se $m > 0$ então existem $q$ e
+$r$ tais que $n = mq + r$ e $r < m$.
+\end{Theorem}
+Note que $q$ e $r$ denotam o quociente e o resto da divisão,
+respectivamente. O teorema pode ser expresso pela seguinte fórmula:
+\[
+\forall m. m\in\mathbb{N} \land \to m > 0\to \forall n. n \in\mathbb{N} \to m > 0
+\to \exists q. \exists r. q \in\mathbb{N}\land r \in \mathbb{N} \land
+n = m q + r \land r < m
+\]
+Iniciamos esta demonstração supondo $m \in \mathbb{N}$ arbitrário, $m
+> 0$ e, na sequência, usamos indução forte para demonstrar
+\[
+\forall n. n \in\mathbb{N}
+\to \exists q. \exists r. q \in\mathbb{N}\land r \in \mathbb{N} \land
+n = m q + r \land r < m
+\]
+Em seguida, supomos $n \in\mathbb{N}$ arbitrário e que para todo $k < n$,
+$\exists q. \exists r. q \in\mathbb{N}\land r \in \mathbb{N} \land
+k = m q + r \land r < m$, o que, usando eliminação nos permite deduzir
+as hipóteses de que $k = m q + r$ e $r < m$. Para finalizar a
+demonstração, resta provar que
+\[
+\exists q. \exists r. q \in\mathbb{N}\land r \in \mathbb{N} \land
+n = m q + r \land r < m
+\]
+Se $n < m$, então basta fazer $q = 0$ e $r = n$ e o resultado é
+imediato. Para $n \geq m$, temos que encontrar valores de $q$ e $r$
+tais que $r < m$. Note que como $n \geq m$, não podemos fazer que $r =
+n$. É óbvio que neste caso deveremos usar a hipótese de indução, mas
+para isso, devemos encontrar um valor de $k< n$ e  a partir deste
+encontrar $q$ e $r$. Qual será esse valor de $k$? Se nos atentarmos ao
+fato de que a divisão, $n \div m$, consiste em subtrair $m$ de $n$
+sucessivamente, um possível valor para $k$ é $n - m$, que será menor
+que $n$, visto que $m > 0$. Usando este valor o resultado desejado é
+quase imediato, como pode ser visto na demonstração a seguir.
+
+\begin{proof}
+  Suponha $m \in \mathbb{N}$ arbitrário tal que $m > 0$. Suponha $n
+  \in \mathbb{N}$ arbitrário e que para todo $k < n$ temos que existem
+  $q'$ e $r'$ tais que $k = q'm + r'$ e $r' < m$. Considere os casos:
+  \begin{enumerate}
+    \item $n < m$. Seja $q = 0$ e $r = n$. Com isso, temos que $n
+      = q.m + r$ e $r < m$, conforme requerido.
+    \item $n \geq m$. Seja $k = n - m < n$. Como $n \geq m$, temos que
+      $k$ é um número natural. Pela hipótese de indução, existem $q'$
+      e $r'$ tais que $k = mq' + r'$ e $r' < m$. Então, $n - m = mq' +
+      r'$ e, portanto, $n = mq' + r' + m = m (q'  +1) + r'$. Assim,
+      sejam $q = q' + 1$ e $r = r'$. Então, temos que $n = mq + r$ e
+      $r < m$, conforme requerido.
+  \end{enumerate}
+\end{proof}
+
+Como um próximo exemplo, provaremos uma propriedade possuída por todo
+subconjunto não vazio de números naturais.
+
+\begin{Theorem}[Princípio da boa ordenação]\label{wellord}
+Todo conjunto não vazio de números naturais possui um elemento mínimo.
+\end{Theorem}
+Representamos este teorema é representado pela seguinte fórmula
+\[
+\forall S. S\subseteq \mathbb{N} \to S \neq \emptyset \to S\text{
+  possui um elemento mínimo}
+\]
+Aparentemente, este teorema não pode ser demonstrado por indução
+forte, uma vez que este não possui a estrutura
+\[
+\forall n. n\in\mathbb{N} \to P(n)
+\]
+Porém, se supormos $S\subseteq \mathbb{N}$ arbitrário, e
+representarmos
+\[S \neq \emptyset \to S\text{ possui um elemento mínimo}\]
+pela contrapositiva, temos a seguinte implicação:
+\[S\text{ não possui um elemento mínimo} \to S = \emptyset\]
+Supondo que $S$ não possui mínimo, temos que provar que $S =
+\emptyset$, que é equivalente a dizer que $\forall n. n\in\mathbb{N}
+\to n \not\in S$, o que é uma fórmula que pode ser demonstrada por
+indução, conforme apresentado na demonstração abaixo.
+\begin{proof}
+Suponha $S\subseteq\mathbb{N}$ arbitrário. Suponha que $S$ não possui
+um elemento mínimo. Suponha $n\in\mathbb{N}$ arbitrário e que para
+todo $k < n$, $k \not\in S$. Se $n \in S$, temos que $S$ possui um
+elemento mínimo, o que contraria a suposição de que $S$ não possui
+mínimo. Logo, se $S \neq \emptyset$, $S$ possui um elemento mínimo.
+\end{proof}
+Agora, utilizaremos o princípio da boa ordenação para demonstrar mais
+um fato sobre números.
+\begin{Theorem}
+$\sqrt{2}$ é um número irracional.
+\end{Theorem}
+Lembre-se que dizemos que um número $n$ é racional se existem $p$ e
+$q$ tais que $n = \frac{p}{q}$. Para mostrar que $\sqrt{2}$ é
+irracional, devemos supor que existem $p,q$ tais que $\sqrt{2} =
+\frac{p}{q}$ e obter uma contradição a partir deste fato. É fácil ver
+que a partir de $\sqrt{2} =\frac{p}{q}$ podemos deduzir que $p^2 =
+2q^2$ e, portanto, $p^2$ é par. Porém, se $n^2$ é par, temos que $n$ é
+par, logo temos que a fração $\frac{p}{q}$ poderia ser
+simplificada. Aparentemente, este raciocínio não levaria a lugar
+algum. Porém, ao usarmos esta idéia em conjunto com o princípio da boa
+ordenação, obtemos a contradição desejada.
+\begin{proof}
+Suponha que $\sqrt{2}$ é número racional. Logo, existem $p,q$ tais que
+$\sqrt{2}=\frac{p}{q}$.
+Seja $Q$ o seguinte conjunto:
+\[
+Q =\{q\in\mathbb{N}^+\,|\,\exists p. p \in \mathbb{N}^+ \land
+\frac{p}{q} = \sqrt{2}\}
+\]
+Porém se $\sqrt{2}$ é racional, $Q$ não é vazio e, portanto, pelo
+princípio da boa ordenação (teorema \ref{wellord}), $Q$ possuirá um
+elemento mínimo. Seja $q$ o mínimo de $Q$. Então, podemos escolher $p
+\in\mathbb{N}^+$ tal que $\frac{p}{q} = \sqrt{2}$. Assim, temos que
+$p^2$ e $p$ são pares. Logo, existe $x$ tal que $p = 2x$. Substituindo
+$p = 2x$ em $p^2 = 2q^2$, temos que $4x^2 = 2q^2$ e, portanto, $q^2 =
+2x^2$ e, portanto $q^2$ e $q$ são pares, contradizendo a suposição de
+que $q$ é um número par. Logo, $\sqrt{2}$ é irracional.
+\end{proof}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Prove que $\sqrt{3}$ é irracional.
+\end{enumerate}
+
+\section{Paradoxos e Indução Matemática}
+
+A técnica de indução matemática é muito útil para demonstrar
+propriedades sobre números naturais. Porém, esta pode também ser usada
+para ``provar'' paradoxos, como o seguinte teorema:
+\begin{Theorem}
+Todos os cavalos possuem a mesma cor.
+\end{Theorem}
+\begin{proof}
+A prova será por indução sobre o número de cavalos.
+\begin{enumerate}
+  \item[\ ]Caso base: Para $n = 1$, temos que todos os cavalos do
+    conjunto contendo $ n = 1$ cavalos possuem a mesma cor.
+  \item[\ ]Passo indutivo: Suponha $n$ arbitrário e que todos os $n$
+    cavalos, $C_1,...,C_n$ possuem a mesma cor. Para mostrar que todos
+    os cavalos $C_1,...,C_{n+1}$ possuem a mesma cor, considere os
+    seguintes conjuntos $A$ e $B$ ambos contendo $n$ cavalos:
+    \[
+    \begin{array}{l}
+      A = \{C_1,...,C_n\} \\
+      B = \{C_2,...,C_n\}\\
+    \end{array}
+    \]
+    Como  $|A| = |B| = n$, temos que todos os cavalos de $A$ possuem a
+    mesma cor $x$ e todos os cavalos de $B$ possuem a mesma cor
+    $y$. Porém, como $C_2 \in A$ e $C_2 \in B$, temos que as cores $x$
+    e $y$ são iguais. Portanto, todos os cavalos possuem a mesma cor.
+\end{enumerate}
+\end{proof}
+Evidentemente, o teorema anterior possui uma falha, pois existem
+cavalos das mais variadas cores. A falha deste teorema é que este não
+é válido para conjuntos contendo $2$ cavalos. Note que se
+considerarmos um conjunto possuindo apenas os cavalos $a$ e $b$,
+quando dividirmos este em dois conjuntos $A$ e $B$, teremos $A =\{a\}$
+e $B =\{b\}$, não possuindo, portanto, uma interseção.
+
+Outro exemplo de uma falsa prova por indução é a seguinte:
+
+\begin{Theorem}
+Todo número natural é igual a $0$.
+\end{Theorem}
+\begin{proof}
+Suponha $n\in\mathbb{N}$ arbitrário e que para todo $k < n$, $k =
+0$. Considere os casos:
+\begin{enumerate}
+  \item[\ ] Caso $n = 0$. Neste caso, o resultado é imediato.
+  \item[\ ] Caso $n \neq 0$. Logo, existe $m$ tal que $n = m +
+    1$. Pela hipótese de indução, todo $k < n$ é igual a $0$, logo, $m
+    = 0$ e $1 = 0$. Assim, temos que $n = m + 1 = 0 + 0 = 0$, conforme requerido.
+\end{enumerate}
+\end{proof}
+Assim, como o exemplo anterior, este teorema é evidentemente
+falso. Note que este falha para $n = 1$, pois o único valor de $k < 1$
+é zero e, portanto, não podemos concluir que $1 = 0$ como usado na
+``prova'' anterior.
+
+\section{Notas Bibliográficas}
+
+Indução matemática é tema de todo livro de matemática discreta. Os
+exemplos e definições deste capítulo foram obtidos de \cite{Vellemann06}.
