@@ -2,3 +2,123 @@
 
 \epigraph{Recursive. adj. See RECURSIVE.}{Stan Kelly-Bootie --- The
   Devil's DP Dictionary}
+
+\section{Motivação}
+
+Tanto em matemática, quanto na ciência da computação, diversas
+operações são definidas recursivamente, isto é, alguns valores
+iniciais para esta operação são dados e os demais são obtidos
+aplicando-se uma ou mais regras sucessivamente. Um exemplo de função
+recursiva é a definição do fatorial, apresentada abaixo:
+
+\[
+\begin{array}{lcl}
+0! & = & 1\\
+n! & = & n \times (n - 1)!
+\end{array}
+\]
+
+Como valor inicial, temos que o fatorial de $0$ é $1$ e, demais
+valores são obtidos pela segunda equação da definição.
+
+De certa forma, provas por indução possuem uma estrutura similar a
+definições recursivas: apresenta-se provas de fatos elementares (casos
+base) e usa-se uma regra (passo indutivo) para mostrar que o fato em
+questão é válido para elementos diferentes dos considerados nos casos
+base. Neste capítulo, veremos como a indução é utilizada para
+demonstrar propriedades sobre definições recursivas.
+
+\section{Funções Recursivas}
+
+Existem diversas maneiras de se definir funções. Podemos definir uma
+função usando uma expressão que caracteriza a relação entre o domíno e
+sua imagem (método usualmente utilizado na matemática). Outra maneira
+de se definir uma função é através do uso de composição, que permite a
+definição de funções utilizando definições prévias. Esta forma de
+definir funções é o mais próximo do que idealmente deve ser feito em
+computação. Existe, ainda uma terceira forma de se definir uma função:
+utilizando recursão. Como exemplo,
+considere a seguinte função $f : \mathbb{N} \to \mathbb{N}$ definida
+como
+\[
+\left\{
+\begin{array}{lcl}
+  f(0) & = & 1 \\
+  f(n) & = & 2n + f(n - 1)\\
+\end{array}
+\right .
+\]
+Note que esta definição especifica um valor inicial para $f$, $f(0) =
+1$ e os demais valores são obtidos a partir de valores ``anteriores''
+desta função. Como exemplo, considere o cálculo de $f(5)$, apresentado
+abaixo:
+\[
+\begin{array}{lc}
+f(5) & = \\
+2.5 + f(4) & = \\
+10 + (2.4 + f(3)) & = \\
+10 + (8 + (2.3 + f(2))) & = \\
+10 + (8 + (6 + 2.2 + f(1))) & = \\
+10 + (8 + (6 + (4 + (2.1 + f(0))))) & = \\
+10 + (8 + (6 + (4 + (2 + 1)))) & = \\
+31
+\end{array}
+\]
+Apesar de simples compreensão, a função $f$ poderia ser expressa pela
+seguinte fórmula:
+\[
+f(n) = n(n + 1) + 1
+\]
+Ao montarmos uma pequena tabela de valores para $f$, podemos constatar
+que esta função realmente é $n(n + 1) + 1$:
+\[
+\begin{array}{|c|c|}
+  \hline
+  n & f(n) \\ \hline
+  0 &  1 \\
+  1 &  3 \\
+  2 &  7 \\
+  3 & 13 \\
+  4 & 21 \\
+  5 & 31 \\
+  6 & 43 \\ \hline
+\end{array}
+\]
+Porém, somente construir e verificar esta tabela para alguns valores
+não é suficiente para mostrar que $f(n) = n(n+1) + 1$. Para isso,
+devemos provar que:
+\[
+\forall n. n\in\mathbb{N} \to f(n) = n(n+1) + 1
+\]
+que pode ser provado por indução matemática.
+
+\begin{Theorem}
+Seja $f(n)$ uma função definida como:
+\[
+\left\{
+\begin{array}{lcl}
+  f(0) & = & 1 \\
+  f(n) & = & 2n + f(n - 1)\\
+\end{array}
+\right .
+\]
+então $f(n) = n(n+1) + 1$.
+\end{Theorem}
+\begin{proof}
+\verb| |\\
+\begin{enumerate}
+  \item[\ ]Caso base ($n = 0$): Temos que $f(0) = 1 = 0(0 +1) + 1$,
+    conforme requerido.
+  \item[\ ]Passo indutivo: Suponha $n\in\mathbb{N}$ arbitrário e que
+    $f(n) = n(n+1) + 1$. Temos:
+   \[
+      \begin{array}{lcl}
+      f(n+1) & = \\
+      2 (n+1) + f(n) & = & \text{pela definição de }f(n)\\
+      2(n+1) + n(n+1) + 1 & = & \text{pela hipótese de indução}\\
+      (n+1)[(n+1) + 1] +1
+      \end{array}
+   \]
+   Logo, $f(n+1) = (n+1)[(n+1) + 1] + 1$ conforme requerido.
+\end{enumerate}
+\end{proof}
