@@ -58,19 +58,20 @@ f(5) & = \\
 2.5 + f(4) & = \\
 10 + (2.4 + f(3)) & = \\
 10 + (8 + (2.3 + f(2))) & = \\
-10 + (8 + (6 + 2.2 + f(1))) & = \\
+ 10 + (8 + (6 + 2.2 + f(1))) & = \\
 10 + (8 + (6 + (4 + (2.1 + f(0))))) & = \\
 10 + (8 + (6 + (4 + (2 + 1)))) & = \\
 31
 \end{array}
 \]
-Apesar de simples compreensão, a função $f$ poderia ser expressa pela
-seguinte fórmula:
-\[
-f(n) = n(n + 1) + 1
-\]
-Ao montarmos uma pequena tabela de valores para $f$, podemos constatar
-que esta função realmente é $n(n + 1) + 1$:
+Apesar de simples compreensão, o uso de funções recursivas possui o
+inconveniente de que o cálculo desta para valores elevados do domínio
+pode consumir muito tempo. Considere calcular $f(2000)$. Este cálculo
+ocasionaria $2000$ chamadas recursivas. Porém, muitas vezes, podemos
+encontrar uma função $g$, equivalente a $f$, sem
+recursividade. Existem diversas técnicas para solucionar este tipo de
+problema e apresentaremos a mais simples destas baseada em indução matemática.
+Inicialmente, montamos uma pequena tabela de valores para $f$:
 \[
 \begin{array}{|c|c|}
   \hline
@@ -84,13 +85,33 @@ que esta função realmente é $n(n + 1) + 1$:
   6 & 43 \\ \hline
 \end{array}
 \]
+Após pensar um pouco, podemos conjecturar que a função
+\[
+g(n) = n (n+1) + 1
+\]
+é equivalente a $f$, uma vez que esta possui os mesmos valores que
+$f$, conforme tabela abaixo:
+\[
+\begin{array}{|c|c|c|}
+  \hline
+  n & f(n) & g(n)\\ \hline
+  0 &  1  & 1 \\
+  1 &  3  & 3 \\
+  2 &  7  & 7 \\
+  3 & 13 & 13 \\
+  4 & 21 & 21 \\
+  5 & 31 & 31 \\
+  6 & 43 & 43\\ \hline
+\end{array}
+\]
 Porém, somente construir e verificar esta tabela para alguns valores
 não é suficiente para mostrar que $f(n) = n(n+1) + 1$. Para isso,
 devemos provar que:
 \[
 \forall n. n\in\mathbb{N} \to f(n) = n(n+1) + 1
 \]
-que pode ser provado por indução matemática.
+que pode ser provado por indução matemática, conforme apresentado no
+teorema seguinte.
 
 \begin{Theorem}
 Seja $f(n)$ uma função definida como:
@@ -122,3 +143,291 @@ então $f(n) = n(n+1) + 1$.
    Logo, $f(n+1) = (n+1)[(n+1) + 1] + 1$ conforme requerido.
 \end{enumerate}
 \end{proof}
+
+De maneira geral, podemos obter uma fórmula fechada (isto é, sem
+recursividade) para uma função recursiva $f(n)$ usando os seguintes
+passos:
+\begin{enumerate}
+  \item Construir uma tabela contendo alguns valores da função $f(n)$.
+  \item ``Adivinhar'', a partir da tabela construída no passo
+    anterior, qual função não recursiva produz os mesmos resultados
+    para os valores da tabela.
+  \item Provar, usando indução matemática, que a fórmula fechada
+    encontrada é realmente equivalente a função em questão.
+\end{enumerate}
+A seguir, mostraremos mais exemplo desta técnica encontrando uma
+fórmula fechada para a seguinte função recursiva.
+
+\[
+\left\{
+\begin{array}{lcl}
+    f(0) & = & 0\\
+    f(n) & = & 2f(n - 1) + 1
+\end{array}
+\right.
+\]
+Inicialmente, construiremos uma tabela contendo alguns valores de
+$f(n)$:
+\[
+\begin{array}{|c|c|}
+  \hline
+  n & f(n) \\ \hline
+  0 &  0 \\
+  1 &  1 \\
+  2 &  3 \\
+  3 &  7 \\
+  4 & 15 \\
+  5 & 31\\
+  6 & 63 \\ \hline
+\end{array}
+\]
+Se observarmos os valores da tabela, podemos perceber que estes são
+próximos de potências perfeitas de $2$, logo, podemos conjecturar que
+a fórmula fechada para $f(n)$ é $2^n - 1$. Constataremos este fato
+provando por indução.
+\begin{Theorem}\label{thmhanoi}
+Seja $f(n)$ a função definida como
+\[
+\left\{
+\begin{array}{lcl}
+    f(0) & = & 0\\
+    f(n) & = & 2f(n - 1) + 1
+\end{array}
+\right.
+\]
+então $f(n) = 2^n - 1$.
+\end{Theorem}
+\begin{proof}
+\verb| |\\
+\begin{enumerate}
+  \item[\ ]Caso base: Para $n = 0$, temos $f(0) = 0 = 1 - 1 = 2^0 - 1$.
+  \item[\ ]Passo indutivo: Suponha $n\in\mathbb{N}$ arbitrário e que
+    $f(n) = 2^n - 1$. Temos que:
+\[
+\begin{array}{lcl}
+    f(n + 1) & = & \\
+    2f(n) + 1 & = & \\
+    2(2^n - 1) + 1 & = & \{\text{pela hipótese de indução}\}\\
+    2^{n+1} - 2 + 1 & = &\\
+    2^{n+1} - 1
+\end{array}
+\]
+Logo, $f(n + 1) = 2^{n + 1} - 1$.
+\end{enumerate}
+\end{proof}
+A seguir apresentamos alguns problemas clássicos e como estes podem
+ser modelados utilizando funções recursivas.
+
+
+\subsection{As Torres de Hanói}
+
+As torres de Hanói é um quebra-cabeça inventado por um matemático
+francês, Édouard Lucas em 1833.  Este quebra-cabeça consiste de uma
+torre contendo uma quantidade $n\in\mathbb{N}$ de discos, inicialmente
+empilhados em ordem decrescente de tamanho. A figura abaixo, apresenta
+a configuração inicial deste quebra-cabeças:
+
+\begin{figure}[h!]
+  \centering
+      \includegraphics[width=0.5\textwidth]{imagens/torredehanoi.jpg}
+ \end{figure}
+O objetivo deste jogo é transferir todos os discos de um pino para
+outro movendo apenas um disco de cada vez e nunca colocando um disco
+maior em cima de um menor.
+
+Apesar de simples, não é óbvio que este quebra-cabeças possui
+solução. Após pensar um pouco, podemos perceber que este de fato,
+sempre possui solução. Porém, qual será a melhor? Isto é, é possível
+solucionar este problema fazendo o menor número de movimentos?
+
+Para chegar a resposta para esta pergunta, devemos primeiro introduzir
+algumas notações. Chamaremos de $T(n)$ o número de movimentos
+necessários para solucionar o quebra cabeças contendo $n$ discos.
+
+É bastante fácil ver que $T(0) = 0$ e que $T(1) = 1$. A figura
+seguinte, mostra passo a passo, a solução para $n = 2$.\\
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=0.5\textwidth]{imagens/hanoi2.jpg}
+ \end{figure}
+
+Para $n = 3$, temos: \\
+
+\begin{figure}[h!]
+  \centering
+      \includegraphics[width=0.5\textwidth]{imagens/hanoi3.jpg}
+ \end{figure}
+
+Com isso, temos a seguinte tabela de valores iniciais de $T(n)$:
+
+\[
+\begin{array}{|c|c|}
+  \hline
+  n & T(n)\\ \hline
+  0  & 0 \\
+  1  & 1 \\
+  2 & 3 \\
+  3 & 7\\
+  \hline
+\end{array}
+\]
+
+Agora, que fizemos alguns experimentos com este problema, vamos mudar
+nossa perspectiva: ao invés de tentar pensar em como resolver este
+problema para casos específicos, vamos tentar
+generalizá-lo. Observando a figura para a solução com 3 discos,
+podemos perceber que o problema para $n = 3$ é resolvido da seguinte
+maneira:
+\begin{itemize}
+  \item Mova $n - 1$ discos do pino $A$ para o pino $B$.
+  \item Mova o disco $n$ do pino $A$ para o pino $C$.
+  \item Mova $n - 1$ discos do pino $C$ para o pino $C$.
+\end{itemize}
+Como, para mover $n - 1$ discos de um pino para outro, precisamos de $T(n
+-1)$ movimentos, no total precisamos de
+\[
+T(n - 1) + T(n - 1) + 1 = 2T(n - 1) + 1
+\]
+para solucionar um quebra-cabeças de tamanho $n$. Assim, temos que o
+número mínimo de movimentos para a solução deste problema é dado pela
+seguinte função recursiva:
+\[
+\left\{
+\begin{array}{lcl}
+T(0) & = & 0 \\
+T(n) & = & 2 T(n - 1) + 1
+\end{array}
+\right.
+\]
+Mas será que esta função reflete os resultados que obtivemos
+solucionando o problema? Vamos fazer os cálculos para $n = 3$:
+\[
+\begin{array}{lc}
+T(3) & = \\
+2 T(2) + 1 & = \\
+2(2T(1) + 1) + 1 & =\\
+2(2(2T(0) + 1) + 1) + 1 & = \\
+2(2(2.0 + 1) + 1) + 1 & = \\
+7
+\end{array}
+\]
+conforme requerido. Como vimos anteriormente, funções recursivas são
+usualmente ineficientes para o cálculo manual. Logo, é uma boa prática
+encontrarmos uma fórmula fechada para a função em questão. Porém, já
+encontramos esta fórmula no teorema \ref{thmhanoi}.
+
+
+\subsection{O Problema da Pizzaria}
+
+Suponha que em um fim de semana você tenha ido a uma pizzaria que
+possuía a seguinte promoção:
+
+\begin{quote}
+``O cliente que conseguir descobrir o número máximo de pedaços que pode
+ser obtido ao se fazer $n \in \mathbb{N}$ cortes em uma pizza, não a pagará.''
+\end{quote}
+
+Então, como pode-se comer uma pizza de graça? Novamente, vamos seguir
+a estratégia utilizada no exemplo anterior. Primeiro, vamos chamar de
+$T(n)$ o número de fatias obtidas após fazermos o $n$-ésimo corte. É
+bem fácil perceber que $T(0) = 1$, visto que se não fizermos nenhum
+corte, temos uma fatia (a pizza inteira). Usando um raciocínio
+parecido, temos que $T(1) = 2$, visto que ao fazermos um corte, iremos
+dividir a pizza em dois pedaços. Porém, quantos pedaços obtemos ao
+fazer o $3^o$ corte? A intuição nos diz que devemos obter $T(3) = 6$,
+porém, conforme mostrado na próxima figura, isso não é bem verdade...
+
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=0.5\textwidth]{imagens/plane.jpg}
+ \end{figure}
+
+Note que obtemos um número maior de pedaços fazendo com que o
+$n$-ésimo corte intercepte todos os cortes anteriores. Com isso,
+aumentamos o número total de fatias em $n$ pedaços, isto é, $T(3) = 4
++ 3 = 7$, em que $4 = T(2)$. Desta forma, podemos conjecturar que
+$T(n)$ é a seguinte função recursiva:
+
+\[
+\left\{
+\begin{array}{lcl}
+  T(0) & = & 1 \\
+  T(n) & = & T(n - 1) + n
+\end{array}
+\right.
+\]
+
+Note que ao calcularmos alguns valores de $T(n)$, podemos notar que
+este nada mais é que a soma dos $n$ primeiros números naturais somados
+com 1, conforme expandido abaixo:
+
+\[
+\begin{array}{lcl}
+T(n) & = & T(n - 1) + n \\
+       & = & (T(n - 2) + (n - 1)) + n\\
+       & = & ( (T(n - 3) + (n - 2)) + (n - 1)) + n\\
+       &  & \vdots\\
+       & = & T(0) + 1 + 2 + ... + (n -2) + (n - 1) + n\\
+       & = & 1 + 1 + 2 + ... + (n -2) + (n - 1) + n\\
+       & = & 1 + \sum_{k = 1}^nk
+\end{array}
+\]
+Pode-se mostrar por indução que $\sum_{k = 1}^n =
+\frac{n(n+1)}{2}$. Logo, temos que $T(n)$ é dado por:
+\[
+T(n) = \frac{n(n+1)}{2} + 1
+\]
+Realmente esta fórmula corresponde a função $T(n)$, conforme provamos
+no teorema a seguir.
+
+\begin{Theorem}
+Seja $T(n)$ a função definida como:
+\[
+\left\{
+\begin{array}{lcl}
+  T(0) & = & 1 \\
+  T(n) & = & T(n - 1) + n
+\end{array}
+\right.
+\]
+então, $T(n) = \frac{n(n+1)}{2} + 1$.
+\end{Theorem}
+\begin{proof}
+\begin{enumerate}
+  \item[\ ]Caso base ($n = 0$): Temos que $T(0) = \frac{0(0 + 1)}{2} +
+    1$, conforme requerido.
+  \item[\ ]Passo indutivo: Suponha $n\in\mathbb{N}$ arbitrário e que
+    $T(n) = \frac{n(n+1)}{2} + 1$. Temos que:
+   \[
+\begin{array}{lcl}
+T(n + 1) & = \\
+T(n) + (n + 1) & = & \{\text{pela def. de }T(n)\}\\
+\frac{n(n+1)}{2} + 1 + (n + 1) & = & \{\text{pela hipótese de
+  indução}\}\\
+\frac{n(n + 1) + 2(n+1)}{2} & = & \\
+\frac{(n + 1)(n + 2)}{2}
+\end{array}
+   \]
+conforme requerido.
+\end{enumerate}
+\end{proof}
+
+\subsection{Conjunto Potência, Recursivamente}
+
+No capítulo \ref{cap5}, apresentamos a definição do conjunto potência
+(ou conjunto das partes) de um conjunto $A$:
+\[\mathcal{P}(A) =\{X\,|\,X\subseteq A\}\]
+É fácil mostrar que $|\mathcal{P}(A)| = 2^n$ se $|A| = n$, usando o
+princípio multiplicativo (veja no capítulo \ref{6}). Porém, como
+provar este resultado usando indução? Pode-se argumentar que basta
+utilizar indução sobre o tamanho do conjunto. Logo, no caso base, para
+$n = 0$, consideramos o conjunto vazio. No caso indutivo, devemos
+mostrar o conjunto potência para um conjunto $A$ tal que
+\[
+A = B \cup \{a\}\,\,\,a\not\in B
+\]
+
+
+
+\subsection{A Sequência de Fibonnaci}

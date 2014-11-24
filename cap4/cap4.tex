@@ -98,7 +98,7 @@ etc.), visando facilitar a construção e o entendimento de provas.
 
 Nesta seção apresentaremos as técnicas para demonstração de teoremas,
 que essencialmente, são as regras já vistas em nosso estudo de dedução natural.
-Visando facilitar a tarefa de construir demonstração corretas e similares
+Visando facilitar a tarefa de construir demonstrações corretas e similares
 às encontradas em textos de matemática, dividiremos a tarefa de
 provar um teorema em duas partes relacionadas: 1) construção de um
 rascunho e 2) elaboração de um texto, a partir deste rascunho\footnote{A
@@ -320,7 +320,7 @@ Suponha que $a,b$ e $c$ são números reais tais que $a > b$. Se $ac
 \end{flushleft}
 Para demonstrar este teorema, primeiramente, devemos representar suas
 hipóteses e conclusão como fórmulas da lógica. Evidentemente, as
-hipóteses deste teorema são que $a,b,c\in\mathbb{R}$ e a sua conclusão
+hipóteses deste teorema são que $a,b,c\in\mathbb{R}$, $a > b$ e a sua conclusão
 é representada pela seguinte fórmula:
 \[
 ac\leq bc \to c \leq 0
@@ -353,7 +353,7 @@ $\neg (c\leq 0)$ &
 Hipóteses & Conclusão \\
 $a,b,c\in\mathbb{R}$ & $ac > bc$\\
 $a > b$ & \\
-$c < 0$ &
+$c > 0$ &
 \end{tabular}
 \end{flushleft}
 Mas como $c > 0$, podemos multiplicar ambos os lados de $a > b$
@@ -493,7 +493,7 @@ Suponha que $x^2 + y = 13$ e que $y \neq 4$.\\
 Portanto, se $x^2 + y = 13$ e $y \neq 4$ então $x \neq 3$.
 \end{flushleft}
 \end{Example}
-Sentenças negativas são, usualmente, de mais difícil que
+Sentenças negativas são, usualmente, mais difíceis de provar que
 positivas. Isto motiva uma técnica para demonstração que é bem útil e
 vale-se de equivalências algébricas da lógica.
 \begin{ProofStrategy}[Para provar uma conclusão da forma $\neg
@@ -779,7 +779,7 @@ atenção a equação $y(y+1) = x$, podemos perceber que esta é uma
 equação de $2^o$ grau sobre a variável $y$. Resolvendo-a obtemos:
 \[
 \begin{array}{lcl}
-\Delta & = & 1 -4.1.x \\
+\Delta & = & 1 -4.1.(-x) \\
 y' & = & \frac{-1 + \sqrt{1 + 4x}}{2}\\
 y'' & = & \frac{-1 - \sqrt{1 + 4x}}{2}
 \end{array}
@@ -828,9 +828,9 @@ Agora, resta demonstrar o quantificador existencial da conclusão:
 \begin{flushleft}
 Suponha $x$ arbitrário.\\
 \verb|  |Suponha que $x \in \mathbb{R}$ e $x> 0$.\\
-\verb|     |Seja $y = \frac{-1 + \sqrt{1 + 4x}}{2}$
-\verb|        |[Prova de que $y(y+1) = x$]
-\verb|     |Logo, existe $y$ tal que $y(y+1) = x$.
+\verb|     |Seja $y = \frac{-1 + \sqrt{1 + 4x}}{2}$\\
+\verb|        |[Prova de que $y(y+1) = x$]\\
+\verb|     |Logo, existe $y$ tal que $y(y+1) = x$.\\
 \verb|  |Logo, se $x \in \mathbb{R}$ e $x> 0$ então existe y tal que
 $y(y+1) = x$\\
 Como $x$ é arbitrário temos que se $x > 0$ então existe y tal que
