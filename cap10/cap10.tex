@@ -1,4 +1,4 @@
-\chapter{Recursão}\label{cap10}
+\chapter{Recursividade}\label{cap10}
 
 \epigraph{Recursive. adj. See RECURSIVE.}{Stan Kelly-Bootie --- The
   Devil's DP Dictionary}
@@ -419,15 +419,138 @@ No capítulo \ref{cap5}, apresentamos a definição do conjunto potência
 (ou conjunto das partes) de um conjunto $A$:
 \[\mathcal{P}(A) =\{X\,|\,X\subseteq A\}\]
 É fácil mostrar que $|\mathcal{P}(A)| = 2^n$ se $|A| = n$, usando o
-princípio multiplicativo (veja no capítulo \ref{6}). Porém, como
-provar este resultado usando indução? Pode-se argumentar que basta
+princípio multiplicativo (veja no capítulo \ref{cap6}).
+
+Porém, como provar este resultado usando indução? Pode-se argumentar que basta
 utilizar indução sobre o tamanho do conjunto. Logo, no caso base, para
-$n = 0$, consideramos o conjunto vazio. No caso indutivo, devemos
-mostrar o conjunto potência para um conjunto $A$ tal que
+$n = 0$, consideramos o conjunto vazio e obtemos $\mathcal{P}(\emptyset)=\{\emptyset\}$.
+
+No caso indutivo, devemos considerar o cálculo do conjunto potência de
+um conjunto $A$ com pelo menos um elemento. Isto é:
 \[
 A = B \cup \{a\}\,\,\,a\not\in B
 \]
 
+Essas observações levam a seguinte função recursiva que, a partir de
+um conjunto qualquer, produz o conjunto potência deste.
+
+\[
+\left\{
+\begin{array}{lcl}
+\mathcal{P}(\emptyset) & = & \{\emptyset\}\\
+\mathcal{P}(B \cup \{a\}) & = & \mathcal{P}(B)\cup \{X \cup
+\{a\}\,|\,X \in \mathcal{P}(B)\}\,\,\,\,\text{em que }a\not\in B
+\end{array}
+\right.
+\]
+Observe que o cálculo do conjunto potência inclui o elemento $a$ em
+cada um dos subconjuntos de $B$. Evidentemente, como $\mathcal{P}(B)$
+e $\{X \cup\{a\}\,|\,X \in \mathcal{P}(B)\}$ são disjuntos e cada um
+destes possui $2^n$ elementos (pela hipótese de indução), temos que
+$|\mathcal{P}(A)| = 2^{n + 1}$. A demonstração deste fato é
+apresentada a seguir.
+
+\begin{Theorem}
+Para todo $A$, se $|A| = n$ então $|\mathcal{P}(A)|=2^{n}$.
+\end{Theorem}
+\begin{proof}
+\verb| |\\
+\begin{enumerate}
+  \item[\ ]Caso base ($n = 0$): Neste caso, temos que $A =
+    \emptyset$. Logo, $|P(\emptyset)| = |\{\emptyset\}| = 1 = 2^0$,
+    conforme requerido.
+  \item[\ ]Passo indutivo: Suponha $n \in\mathbb{N}$ arbitrário e que
+    $|B| = n$ e $|\mathcal{P}(B)| = 2^n$. Suponha $a$ arbitrário tal
+    que $a\not\in B$ e que $A = B \cup {a}$. Seja $X = \{Y \cup
+    \{a\}\,|\,Y \in \mathcal{P}(B)\}$. É óbvio que $|X| = 2^n$. Como
+    $\mathcal{P}(A) = \mathcal{P}(B) \cup X$, temos que
+    $|\mathcal{P}(A)| = |\mathcal{P}(B)| + |X| = 2^n + 2^n = 2^{n + 1}$.
+\end{enumerate}
+\end{proof}
 
 
 \subsection{A Sequência de Fibonnaci}
+
+\[
+\left\{
+\begin{array}{lcl}
+F(0) & = & 0 \\
+F(1) & = & 1 \\
+F(n) & = & F(n - 1) + F(n - 2)
+\end{array}
+\right.
+\]
+
+\section{Exercícios}
+\begin{enumerate}
+	\item Encontre uma f\'ormula fechada (sem recursividade) equivalente a cada uma das fun\c{c}\~oes recursivas a seguir
+		  e prove que a f\'ormula encontrada \'e equivalente a fun\c{c}\~ao em quest\~ao.
+	\begin{enumerate}
+		\item
+				$\left\{
+					\begin{array}{l}
+						T(0) = 0 \\
+						T(n) = 2T(n - 1) + n
+					\end{array}
+			    \right .$
+
+		\item
+				$\left\{
+					\begin{array}{l}
+						T(0) = 2 \\
+						T(n) = (T(n - 1))^{2}
+					\end{array}
+			    \right .$
+
+		\item
+				$\left\{
+					\begin{array}{l}
+						T(0) = 2 \\
+						T(n) = 2T(n - 1) + n
+					\end{array}
+			    \right .$
+
+		\item
+				$\left\{
+					\begin{array}{l}
+						T(1) = 1 \\
+						T(n) = \frac{T(n-1)}{1 + T(n - 1)}
+					\end{array}
+			    \right .$
+               \item
+                            $\left\{
+					\begin{array}{l}
+						T(1) = \frac{1}{4} \\
+						T(2) = \frac{1}{8}\\
+                                                T(n) =
+                                                \frac{T(n-1)T(n-2)}{2T(n-2)
+                                                - T(n-1)}
+					\end{array}
+			    \right .$
+	\end{enumerate}
+	\item Seja $F(n)$ o $n$-\'esimo termo da sequ\^encia de Fibonacci, definida como:
+	\[
+		\left\{
+			\begin{array}{lcl}
+				F(0) & = & 0\\
+				F(1) & = & 1 \\
+				F(n) & = & F(n - 1) + F(n - 2)
+			\end{array}
+		\right.
+	\]
+	Prove os seguintes fatos sobre a sequ\^encia de Fibonacci.
+	\begin{enumerate}
+		\item $\sum_{i=0}^{n}F(i) = F(n + 2) - 1$
+		\item $\sum_{i=0}^{n}F(2i + 1) = F(2n + 2)$
+		\item $\sum_{i=0}^{n}(F(i))^{2} = F(n)F(n+1)$
+		\item Prove que para todo $n\in\mathbb{N}$, $F(n) < 2^n$.
+	\end{enumerate}
+\end{enumerate}
+
+\section{Notas Bibliográficas}
+
+Recursividade e sua relação com a indução matemática é um tema
+presente em todo texto de matemática discreta. O foco do capítulo
+atual foi o uso de indução matemática para demonstrar fórmulas
+fechadas equivalentes a funções recursivas. Alguns dos exemplos deste
+capítulo foram retirados de \cite{Graham94}.
