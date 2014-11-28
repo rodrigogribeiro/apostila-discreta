@@ -12,7 +12,7 @@ Como vimos nos dois capítulos anteriores (capítulos \ref{cap9} e
 \ref{cap10}), a indução matemática é uma técnica de demonstração
 aplicável em diversas situações. Nestes capítulos, apresentamos um
 enfoque sobre a indução matemática que essencialmente abordou
-problemas matemáticos, porém, esta técnica é aplicável a números mas
+problemas matemáticos, porém, esta técnica é aplicável
 também a provas de propriedades sobre estruturas de dados recursivas e
 algoritmos sobre estas. A este tipo de demonstração de indução, damos
 o nome de indução estrutural.
@@ -31,7 +31,7 @@ algoritmos como funções, de maneira similar ao que fizemos no capítulo
 Conforme apresentado no capítulo \ref{cap1}, definições sintáticas de
 conjuntos de termos devem possuir elementos iniciais (casos base) e,
 opcionalmente, formas de se construir termos mais complexos a
-partir de termos existentes (passo(s) indutivos).
+partir de termos existentes (passo(s) indutivo(s)).
 De maneira simples, a técnica de indução estrutural pode ser resumida
 da seguinte maneira: Seja $P$ a propriedade a ser demonstrada para
 todo termo $t$ pertencente a um conjunto $\mathcal{T}$. Para constatar
@@ -40,8 +40,7 @@ para cada um dos casos base e passos indutivos da definição do
 conjunto $\mathcal{T}$.
 
 As próximas seções apresentarão a indução estrutural em exemplos
-concretos: números naturais na notação de Peano ($\Nat$), listas e
-árvores binárias.
+concretos: números naturais na notação de Peano ($\Nat$) e listas.
 
 \subsection{Números Naturais na Notação de Peano}
 
@@ -105,7 +104,7 @@ diretamente pela definição de $plus$, executando-a. Note que apesar de
 evidentemente verdadeira, a igualdade $plus(n,\zero)$ não pode ser
 considerada igual por definição a $n$, visto que não existe uma única
 possibilidade de execução para esta expressão pois, $n$ pode ser ou
-não igual $\zero$. Neste caso, se desejamos demonstrar tal igualdade,
+não igual a $\zero$. Neste caso, se desejamos demonstrar tal igualdade,
 devemos prová-la usando indução. Antes disso, vamos apresentar a
 definição do princípio de indução estrutural para o conjunto
 $\mathcal{N}$.
@@ -281,7 +280,7 @@ conjunto de listas finitas de elementos do conjunto $\TType$,
 $\TList\,\,\TType$. Então, podemos provar que $\forall
 t. t\in\TList\,\,\TType\to P(t)$ usando a seguinte fórmula:
 \[
-P([\,])\land\forall x. x\in \TType \to xs \in \TList\,\,\TType \land
+P([\,])\land\forall x. x\in \TType \to \forall xs. xs \in \TList\,\,\TType \land
 P(xs) \to P(x :: xs)
 \]
 \end{Definition}
@@ -401,8 +400,8 @@ A prova será por indução sobre $xs$. Suponha $ys \in \TList\TType$ arbitrári
 \[
 \begin{array}{lcl}
 reverse([\,] \texttt{++} ys) & \equiv & \\
-reverse \: ys  & \equiv & \{pela equação 1 de \texttt{++}\} \\
-reverse\: ys ++ [\,] &  & \{pela equação 1 de \texttt{++}\} \\
+reverse \: ys  & \equiv & \{\text{pela equação 1 de \texttt{++}}\} \\
+reverse\: ys ++ [\,] &  & \{\text{pela equação 1 de \texttt{++}}\} \\
 \end{array}
 \]
 conforme requerido.
@@ -417,7 +416,7 @@ reverse(x :: (xs \texttt{++} ys)) & \equiv & \{\text{pela equação 2 de
 reverse(xs \texttt{++} ys) \texttt{++} (x :: [\,]) & \equiv &
 \{\text{pela equação 2 de }reverse\}\\
 (reverse\: ys \texttt{++} reverse\: xs) \texttt{++} (x :: [\,]) &
-\equiv & \{pela hipótese de indução\} \\
+\equiv & \{\text{pela hipótese de indução}\} \\
 reverse\: ys \texttt{++} (reverse\: xs \texttt{++} (x :: [\,])) &
 \equiv & \{\texttt{++} \text{ é associativo}\} \\
 reverse\: ys \texttt{++} reverse(x ::xs)  &
