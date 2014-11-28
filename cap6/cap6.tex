@@ -56,7 +56,7 @@ distribuição de salas entre estes funcionários.
 
 \begin{Example}
 As cadeiras de um auditório devem ser etiquetadas com uma letra e um
-números inteiro positivo que não exceda a 100. Qual é o maior número
+número inteiro positivo que não exceda a 100. Qual é o maior número
 de cadeiras que podem ser etiquetadas de maneira diferente?
 
 \textit{Solução:} Para etiquetarmos uma cadeira devemos selecionar uma
@@ -137,7 +137,7 @@ alunos de mestrado não são considerados calouros.}?
 
 \textit{Solução}: Como há 48 estudantes de mestrado e 60 calouros e
 estes conjuntos de alunos são disjuntos, pelo princípio aditivo
-podemos concluir que o número de maneira de escolher um representante
+podemos concluir que o número de maneiras de escolher um representante
 é de $60 + 48$.
 \end{Example}
 
@@ -211,7 +211,7 @@ linguagem é $26 \times 36 \times 36$.
 \begin{Example}
 Diosbaldo usa o sistema operacional X, que exige que todas as senhas
 definidas tenham tamanho 6, 7 ou 8 e que estas possuam pelo menos um
-dígito (demais símbolos podem ser letras ou números). Quantas senhas
+dígito. Os demais caracteres podem ser qualquer símbolo alfa numérico. Quantas senhas
 diferentes podem ser construídas para este sistema operacional?
 
 \textit{Solução}: Evidentemente, o número total de senhas, $S$, pode
@@ -308,7 +308,7 @@ Se $A = B \cup C$, não podemos dizer que $|A| = |B| + |C|$, uma vez
 que estaremos ``contando'' duas vezes os elementos de $B\cap C$, já
 que estes aparecem tanto em $B$ quanto em $C$. Desta forma, para obter
 a cardinalidade correta de $A$, temos que ``somar apenas uma vez'' os
-elementos de $B\cap$. Isso nos leva a seguinte equação:
+elementos de $B\cap C$. Isso nos leva a seguinte equação:
 
 \[|A| = |B\cup C| = |B| + |C| - |B\cap C|\]
 
@@ -353,7 +353,8 @@ conjuntos:
                                                     |B \cap C \cap D|
                                                     +
                                                     |A \cap C \cap
-                                                    D|\\
+                                                    D| + |A \cap B
+                                                    \cap D|\\
                                        &    & - |A\cap B \cap C \cap D|
 
 \end{array}
@@ -679,7 +680,7 @@ estratégias para lidar com tais problemas combinatórios.
 Arranjos com repetições são caracterizados por coleções ordenadas em
 que repetições de elementos são permitidas. O número de arranjos de
 $r$ elementos escolhidos a partir de um conjunto de $n$, em que
-repetições são repetidas pode ser obtido facilmente usando a regra do
+repetições são permitidas pode ser obtido facilmente usando a regra do
 produto, conforme o teorema seguinte.
 
 \begin{Theorem}
@@ -731,7 +732,7 @@ O padrão de raciocínio utilizado no exemplo anterior pode ser
 abstraído, conforme apresentado no teorema a seguir.
 \begin{Theorem}
 O número de permutações diferentes de $n$ objetos, em que há $n_1$
-objetos de tipo 1, $n_2$ objetos de tipo, ... e $n_k$ objetos de tipo
+objetos de tipo 1, $n_2$ objetos de tipo $2$, ... e $n_k$ objetos de tipo
 $k$, é:
 \[
 \dfrac{n!}{n_1!n_2!...n_k!}
@@ -781,9 +782,9 @@ destinado a um tipo de cédula. Abaixo, ilustramos esta caixa, como uma
 tabela:
 
 \begin{table}[h]
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
-1 & 2 & 5 &10 & 20 & 100 \\ \hline
+1 & 2 & 5 &10 & 20 & 50 & 100 \\ \hline
 \end{tabular}
 \centering
 \end{table}
@@ -795,9 +796,9 @@ de cédula. Abaixo, apresentamos a configuração da caixa ao
 selecionarmos 2 cédulas de 2 reais e 3 de 100 reais.
 
 \begin{table}[h]
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
-0 & 2 & 0 & 0 & 0 & 3 \\ \hline
+0 & 2 & 0 & 0 & 0 & 0 & 3 \\ \hline
 \end{tabular}
 \centering
 \end{table}
@@ -807,7 +808,7 @@ este possui. Perceba que esta caixa pode ser representada de maneira
 abstrata como sequências de ``*'' (para representar cédulas) e ``|''
 para representar divisões da caixa. A configuração anterior pode ser
 representada pela seguinte sequência de carateres:
-``||**|||***|''. Note que usando este truque da caixa, determinamos
+``||**||||***''. Note que usando este truque da caixa, determinamos
 uma configuração de escolha das cédulas determinando as sequências não
 ordenadas formadas por 5 objetos a partir de um conjunto de 11 objetos
 (5 asteriscos e 6 barras). Isso é exatamente $C(11,5)$.
@@ -832,7 +833,7 @@ $n - 1 + r$ posições que contém $r$ asteriscos e $n - 1$ separadores.
 \subsection{Exercícios}
 
 \begin{enumerate}
-  \item Quantas sequências de 6 letras existem?
+  \item Quantas sequências de 6 letras existem (com repetições permitidas)?
   \item Há quantas maneiras de se selecionar três elementos não
     ordenados a partir de um conjunto com cinco elementos, em que
     repetições são permitidas?

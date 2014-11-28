@@ -1,0 +1,481 @@
+\chapter{Indução Estrutural}\label{cap11}
+
+
+\epigraph{Correctness is clearly the prime quality. If a system does
+  not do what it is supposed to do, then everything else about it
+  matters little.}{Berthrand Meyer, Criador da linguagem Eiffel, a
+  primeira linguagem orientada a objetos.}
+
+\section{Motivação}
+
+Como vimos nos dois capítulos anteriores (capítulos \ref{cap9} e
+\ref{cap10}), a indução matemática é uma técnica de demonstração
+aplicável em diversas situações. Nestes capítulos, apresentamos um
+enfoque sobre a indução matemática que essencialmente abordou
+problemas matemáticos, porém, esta técnica é aplicável a números mas
+também a provas de propriedades sobre estruturas de dados recursivas e
+algoritmos sobre estas. A este tipo de demonstração de indução, damos
+o nome de indução estrutural.
+
+O objetivo deste capítulo é o estudo da indução estrutural para
+demonstração de correção sobre alguns algoritmos sobre
+estruturas de dados simples como listas. Para
+evitar problemas relativos à utilização de atribuição de variáveis, e
+aspectos específicos de linguagens de programação,
+representaremos estruturas de dados, como definições sintáticas e
+algoritmos como funções, de maneira similar ao que fizemos no capítulo
+\ref{cap1}.
+
+\section{Indução Estrutural}
+
+Conforme apresentado no capítulo \ref{cap1}, definições sintáticas de
+conjuntos de termos devem possuir elementos iniciais (casos base) e,
+opcionalmente, formas de se construir termos mais complexos a
+partir de termos existentes (passo(s) indutivos).
+De maneira simples, a técnica de indução estrutural pode ser resumida
+da seguinte maneira: Seja $P$ a propriedade a ser demonstrada para
+todo termo $t$ pertencente a um conjunto $\mathcal{T}$. Para constatar
+que $P(t)$ é verdade basta mostrar que esta propriedade é verdadeira
+para cada um dos casos base e passos indutivos da definição do
+conjunto $\mathcal{T}$.
+
+As próximas seções apresentarão a indução estrutural em exemplos
+concretos: números naturais na notação de Peano ($\Nat$), listas e
+árvores binárias.
+
+\subsection{Números Naturais na Notação de Peano}
+
+
+Conforme apresentado no capítulo \ref{cap1}, o conjunto $\Nat$, dos
+termos que representam números naturais na notação de Peano, pode ser definido pelas seguintes regras:
+\[
+   \begin{array}{l}
+     \zero \in \Nat\\
+     \text{se $n \in \Nat$ ent\~ao $\suc\, n\in\Nat$}
+   \end{array}
+\]
+Nesta notação, o número natural $3$ é representado pelo termo
+$\suc\,(\suc\,(\suc\,\zero))$, isto é todo número natural ou é
+representado pelo termo $\zero$ ou por uma sequência de $n$ $\suc$'s
+que terminam com a constante $\zero$.
+
+Usando esta notação, podemos definir como funções recursivas operações
+sobre números naturais, como por exemplo, a adição:
+\[
+\begin{array}{lclc}
+plus(\zero,m) & = & m & (1)\\
+plus(\suc\,n,m) & = & \suc (plus(n,m)) & (2)
+\end{array}
+\]
+Numeramos as equações da definição de $plus$ para referenciar uma
+equação específica quando necessário.
+Como um exemplo da utilização da função $plus$, considere a soma: $2 + 3$, que é
+representada como $plus(\suc(\suc\,\zero),\suc(\suc(\suc\,\zero)))$:
+\[
+\begin{array}{lcl}
+plus(\suc(\suc\,\zero),\suc(\suc(\suc\,\zero))) & \equiv \\
+\suc(plus(\suc\,\zero,\suc(\suc(\suc\,\zero)))) & \equiv &
+\{\text{pela equação $2$ de $plus$}\}\\
+\suc(\suc(plus(\zero,\suc(\suc(\suc\,\zero))))) & \equiv &
+\{\text{pela equação $2$ de $plus$}\}\\
+\suc(\suc(\suc(\suc(\suc\,\zero)))) & & \{\text{pela equação $1$ de $plus$}\}
+\end{array}
+\]
+Note que o processo de execução da função $plus$ é completamente
+determinado por sua definição: se o primeiro parâmetro desta função é
+igual a $\zero$, o seu resultado será o segundo parâmetro ($m$, na
+definição de $plus$). Porém, se o primeiro parâmetro não for igual a
+$\zero$, necessariamente este deverá ser $\suc\,n$, para algum
+$n\in\mathcal{N}$, e o resultado será o sucessor da chamada recursiva
+$plus(n,m)$. É útil que você faça mais algumas execuções da função
+$plus$ até que você tenha compreendido completamente seu
+funcionamento.
+
+De acordo com a definição da função $plus$, note que $\forall m. plus(\zero,m)
+\equiv m$ (pela equação $1$ de $plus$), porém não é imediato que
+$\forall n. plus(n,\zero)$. Isto se deve que o termo $plus(\zero,m)$ pode ser
+reduzido imediatamente a $m$, de acordo com a equação $1$ de $plus$,
+enquanto $plus(n,\zero)$ não, uma vez que não é possível determinar se $n$
+é ou não igual a $\zero$.
+
+Em lógica, dizemos que a expressão $plus(\zero,m)$ é \textit{igual por
+  definição}\footnote{Tradução livre do termo: ``definitionally equal
+  to''.} a $m$, uma vez que esta igualdade pode ser deduzida
+diretamente pela definição de $plus$, executando-a. Note que apesar de
+evidentemente verdadeira, a igualdade $plus(n,\zero)$ não pode ser
+considerada igual por definição a $n$, visto que não existe uma única
+possibilidade de execução para esta expressão pois, $n$ pode ser ou
+não igual $\zero$. Neste caso, se desejamos demonstrar tal igualdade,
+devemos prová-la usando indução. Antes disso, vamos apresentar a
+definição do princípio de indução estrutural para o conjunto
+$\mathcal{N}$.
+
+\begin{Definition}[Indução sobre $\Nat$]
+Seja $P$ uma propriedade qualquer sobre elementos de
+$\mathcal{N}$. Podemos demonstrar que $\forall n. n\in\mathcal{N}\to
+P(n)$ usando a seguinte fórmula:
+\[
+P(\zero)\land\forall n.n\in\mathcal{N}\land P(n) \to P(suc\,n)
+\]
+\end{Definition}
+Note que esta definição é exatamente igual ao princípio de indução
+matemática que vimos no capítulo \ref{cap9}, a menos do uso do
+conjunto  $\Nat$ ao invés de $\mathbb{N}$ e das constantes $\zero$ e
+$\suc$.
+
+A seguir, apresentamos a prova da propriedade $\forall n. n\in\Nat\to
+plus(n,\zero) \equiv n$, usando indução estrutural.
+
+\begin{Theorem}
+Para todo $n\in\Nat$, $plus(n,\zero) \equiv n$.
+\end{Theorem}
+\begin{proof}
+Esta demonstração será por indução sobre $n$.
+\begin{enumerate}
+  \item Caso base ($n = \zero)$. Neste caso, temos que
+  \[
+\begin{array}{lcl}
+plus(\zero,\zero) & \equiv \\
+\zero                   & & \{\text{pela equação 1 de }plus\}
+\end{array}
+  \]
+  conforme requerido.
+  \item Passo indutivo $(n = \suc\, n')$. Suponha $n'\in\Nat$ arbitrário e que
+    $plus(n',\zero) \equiv n'$. Temos que:
+    \[
+    \begin{array}{lcl}
+plus(\suc\,n',\zero) & \equiv \\
+\suc(plus(n',\zero))  & \equiv & \{\text{pela equação 2 de }plus\}\\
+\suc\, n'                   & & \{\text{pela hipótese de indução}\}
+    \end{array}
+    \]
+    conforme requerido.
+\end{enumerate}
+\end{proof}
+Observe que no passo indutivo desta demonstração, consideramos que o
+primeiro parâmetro $n$ é tal que $n = \suc\,n'$. A hipótese de indução
+é obviamente definida para $n'$, o antecessor de $n$.
+
+Usualmente, provas por indução estrutural sobre funções devem realizar
+a indução sobre o parâmetro recursivo da definição da função. Como a
+função $plus$ é definida recursivamente sobre seu $1^o$ parâmetro,
+provas sobre esta devem ser feitas utilizando indução sobre este.
+Como um segundo exemplo de demonstração por indução estrutural,
+considere demonstrar que a adição é uma operação associativa, isto é:
+\[
+plus(n, plus(m,p)) \equiv plus (plus(n,m),p)
+\]
+Essa propriedade é demonstrada no teorema seguinte.
+\begin{Theorem}[$plus$ é uma operação associativa]
+Para todo $n,m,p\in\Nat$, temos que $plus(n, plus(m,p)) \equiv plus
+(plus(n,m),p)$.
+\end{Theorem}
+\begin{proof}
+Esta prova será por indução sobre $n$. Suponha $m,p\in\Nat$ arbitrários.
+\begin{enumerate}
+  \item Caso base ($n = \zero$). Temos que:
+  \[
+\begin{array}{lcl}
+plus(\zero,plus(m,p)) & \equiv & \\
+plus(m,p) & & \{\text{pela equação 1 de }plus\}
+\end{array}
+\]
+conforme requerido.
+\item Passo indutivo ($n = \suc\, n')$: Suponha $n'\in\Nat$ arbitrário
+  e que $plus(n', plus(m,p)) \equiv plus (plus(n',m),p)$. Temos que:
+\[
+\begin{array}{lcl}
+plus(\suc\,n', plus(m,p)) & \equiv & \\
+\suc(plus(n',plus(m,p))) & \equiv & \{\text{pela equação 2 de }plus\}\\
+\suc(plus(plus(n',m),p)) & \equiv & \{\text{pela hipótese de
+  indução}\}\\
+plus(\suc(plus(n',m)),p) & \equiv & \{\text{pela equação 2 de
+}plus\}\\
+plus(plus(\suc\,n',m),p) & &\{\text{pela equação 2 de }plus\}\\
+\end{array}
+\]
+conforme requerido.
+\end{enumerate}
+\end{proof}
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Prove que a soma de números na notação de Peano é uma operação
+    comutativa, isto é, prove que:
+   \[
+   \forall n. n\in\Nat\to \forall m. m\in\Nat\to plus(n,m) \equiv plus(m,n)
+   \]
+  \item Considere a seguinte definição alternativa da soma na notação
+    de Peano.
+\[
+\begin{array}{lccc}
+plus_{alt}(n,\zero) & = & n & (1)\\
+plus_{alt}(n,\suc\,m) & = & \suc(plus_{alt}(n,m)) & (2)
+\end{array}
+\]
+Prove que para quaisquer valores $n,m\in\Nat$, $plus_{alt}(n,m) \equiv
+plus(n,m)$.
+  \item Defina a função $mult(n,m)$ que realiza a multiplicação de
+    números naturais na notação de Peano.
+  \item Prove que a função de multiplicação definida por você é uma
+    operação comutativa.
+\end{enumerate}
+
+
+\subsection{Listas}
+
+Nesta seção, consideraremos algumas funções sobre listas e provas de
+propriedades sobre estas utilizando indução estrutural. No capítulo
+\ref{cap1}, apresentamos o conjunto de listas cujos elementos são de $\TType$,
+ $\TList\, \TType$, como sendo os termos definidos recursivamente como:
+  \[
+  \begin{array}{l}
+    [\,] \in \TList\,\TType \\
+    \text{se $t \in \TType$ e $ts \in \TList\,\TType$ ent\~ao  $t :: ts \in \TList\,\TType$}
+  \end{array}
+  \]
+Por questão de simplicidade, vamos considerar que os elementos de
+listas são valores booleanos, cuja definição apresentamos a seguir:
+  \[
+      \begin{array}{l}
+        T \in\Bool\\
+        F \in\Bool
+      \end{array}
+  \]
+É importante notar que esta simplificação será feita apenas para fins
+de facilitar o entendimento e a escrita de exemplos. Todas as funções
+e suas respectivas propriedades são válidas para listas cujos
+elementos pertencem a um conjunto $\TType$ qualquer. Desta forma,
+representaremos a lista que contém os elementos $T$ e $F$, nesta
+ordem, como: $T :: F :: [\,]$. Note que o valor que representa uma
+lista vazia ($[\,]$) possui funcionalidade similar ao um ponteiro
+``nulo'' em implementações de listas encadeadas em linguagens de
+programação como C/C++, a de indicar o final da lista em questão.
+
+Como exemplos de funções sobre listas, considere, as funções para
+determinar o número de elementos ($length$) e concatenação de duas
+listas (\texttt{++}) apresentadas a seguir:
+
+\[
+\begin{array}{lclr}
+  \length\,\,[\,] & = & 0 & (1)\\
+  \length\,\,(t :: ts) & = & 1 + \length\,\, ts & (2)\\
+\end{array}
+\]
+
+ \[
+  \begin{array}{lclr}
+    [\,] \text { ++ } ys & = & ys & (1)\\
+    (x :: xs) \text{ ++ }  ys & = & x :: (xs\text{ ++ } ys) & (2)
+  \end{array}
+  \]
+
+Novamente, numeramos as equações para futura referência. Antes de
+apresentarmos um primeiro exemplo de propriedade a ser demonstrada
+para listas, vamos definir o princípio de indução para listas.
+
+\begin{Definition}[Indução Estrutural para $\TList\,\,\TType$]
+Seja $\TType$ um conjunto qualquer. Seja $P$ uma propriedade sobre o
+conjunto de listas finitas de elementos do conjunto $\TType$,
+$\TList\,\,\TType$. Então, podemos provar que $\forall
+t. t\in\TList\,\,\TType\to P(t)$ usando a seguinte fórmula:
+\[
+P([\,])\land\forall x. x\in \TType \to xs \in \TList\,\,\TType \land
+P(xs) \to P(x :: xs)
+\]
+\end{Definition}
+Intuitivamente, podemos provar que uma propriedade é verdadeira para
+todas as listas finitas se formos capazes de provar que esta vale para
+a lista vazia e, além disso,  provarmos que a propriedade continua
+sendo verdadeira se inserirmos um novo elemento em uma lista qualquer
+para a qual a propriedade em questão era válida.
+
+Como um exemplo de demonstração por indução sobre listas,
+considere a seguinte propriedade que pode ser usada para caracterizar
+a correção de um algoritmo de concatenação de duas listas: o tamanho
+da concatenação de duas listas $xs$ e $ys$ é igual a soma dos tamanhos
+de cada uma destas listas. Mais formalmente, a propriedade em questão é:
+
+\[
+\forall xs. xs \in \TList\,\TType\to \forall
+ys. ys\in\TList\,\TType\to \length (xs \texttt{ ++ }ys) = \length\: xs +
+length\: ys
+\]
+Essa propriedade é facilmente demonstrada por indução sobre a primeira
+lista ($xs$). A indução será feita sobre a primeira lista devido ao
+fato de que a concatenação é definida recursivamente sobre a primeira
+lista fornecida como parâmetro.
+\begin{Theorem}
+Seja $\TType$ um conjunto qualquer de termos. Então para todo
+$xs,ys\in\TList\,\TType$, temos que $\length (xs \texttt{ ++ }ys) = \length\: xs +
+length \:ys$.
+\end{Theorem}
+\begin{proof}
+A prova será por indução sobre $xs$. Suponha $ys\in\TList\,\TType$
+    arbitrário.
+\begin{enumerate}
+  \item Caso base ($xs = [\,]$). Temos que:
+\[
+\begin{array}{lcl}
+\length([\,]\texttt{ ++ }ys) & \equiv &\\
+\length\:ys  & \equiv & \{\text{pela equação 1 de \texttt{++}}\}\\
+0 + length\: ys & \equiv & \\
+length\:[\,] + length\: ys & & \{\text{pela equação 1 de \texttt{++}}\}
+\end{array}
+\]
+conforme requerido.
+\item Passo indutivo. Suponha $x\in\TType$ arbitrário e que $\length (xs \texttt{ ++ }ys) = \length\: xs +
+length \:ys$. Temos que:
+\[
+\begin{array}{lcl}
+\length((x :: xs) \texttt{ ++ } ys) & \equiv & \\
+\length(x :: (xs \texttt{ ++ }ys)) & \equiv & \{\text{pela equação 2
+  de \texttt{++}}\} \\
+1 + \length(xs \texttt{ ++ }ys) & \equiv &\{\text{pela equação 2 de
+  $\length$}\}\\
+1 + \length\:xs + \length\: ys & \equiv &\{\text{pela hipótese de
+  indução}\}\\
+\length(x :: xs) + \length\:ys   & &\{\text{pela equação 2 de $\length$}\}
+\end{array}
+\]
+conforme requerido.
+\end{enumerate}
+\end{proof}
+Para o nosso próximo exemplo de uma propriedade sobre listas,
+considere a função \textit{reverse}, que inverte uma lista fornecida
+como parâmetro.
+\[
+\begin{array}{lclc}
+reverse\,[\,] & = & [\,] & (1)\\
+reverse\,(x :: xs) & = & reverse\: xs \texttt{ ++ } (x :: [\,]) & (2)
+\end{array}
+\]
+De maneira simples, $reverse$ move o primeiro elemento da lista
+fornecida como parâmetro para o final do resultado de se inverter o
+restante desta lista. Note que só é possível inserir um elemento na
+primeira posição de uma lista. Se desejamos inserir um elemento ao
+final de uma lista, devemos concatená-lo ao final e não simplesmente
+inserí-lo. Por isso, definimos a função $reverse$ em termos da
+operação de concatenação de duas listas.
+
+Como exemplo do funcionamento da função $reverse$, considere a
+seguinte execução desta para a lista $T :: F :: T :: [\,]$, apresentada a
+seguir:
+\[
+\begin{array}{lcl}
+reverse(T :: F :: T :: [\,]) & \equiv \\
+reverse(F :: T :: [\,]) \texttt{ ++ } (T :: [\,]) & \equiv &
+\{\text{pela equação 2 de }reverse\} \\
+(reverse(T :: [\,]) \texttt{ ++ } (F :: [\,])) \texttt{ ++ } (T :: [\,]) & \equiv &
+\{\text{pela equação 2 de }reverse\} \\
+((reverse\, [\,] \texttt{ ++ } (T :: [\,])) \texttt{ ++ } (F :: [\,])) \texttt{ ++ } (T :: [\,]) & \equiv &
+\{\text{pela equação 2 de }reverse\} \\
+(([\,] \texttt{ ++ } (T :: [\,])) \texttt{ ++ } (F :: [\,])) \texttt{ ++ } (T :: [\,]) & \equiv &
+\{\text{pela equação 1 de }reverse\} \\
+(((T :: [\,])) \texttt{ ++ } (F :: [\,])) \texttt{ ++ } (T :: [\,]) & \equiv &
+\{\text{pela equação 1 de \texttt{++}}\} \\
+(T :: ([\,] \texttt{ ++ } (F :: [\,]))) \texttt{ ++ } (T :: [\,]) & \equiv &
+\{\text{pela equação 2 de \texttt{++}}\} \\
+(T :: (F :: [\,])) \texttt{ ++ } (T :: [\,]) & \equiv &
+\{\text{pela equação 1 de \texttt{++}}\} \\
+T :: ((F :: [\,]) \texttt{ ++ } (T :: [\, ])) & \equiv & \{\text{pela
+   equação 2 de \texttt{++}}\}\\
+T :: (F :: ([\,] \texttt{ ++ } (T :: [\, ]))) & \equiv & \{\text{pela
+  equação 2 de \texttt{++}}\}\\
+T :: (F :: (T :: [\, ])) &  & \{\text{pela
+  equação 1 de \texttt{++}}\}
+\end{array}
+\]
+Como exemplo de propriedade sobre a função $reverse$, apresentaremos
+como esta se relaciona com a operação de concatenação de listas.
+\begin{Theorem}
+Seja $\TType$ um conjunto qualquer de termos. Então para todo
+$xs,ys\in\TList\,\TType$, temos que $reverse(xs \texttt{ ++ } ys)
+\equiv reverse\: ys \texttt{ ++ } reverse\: xs$.
+\end{Theorem}
+\begin{proof}
+A prova será por indução sobre $xs$. Suponha $ys \in \TList\TType$ arbitrário.
+\begin{enumerate}
+  \item Caso base ($xs = [\,]$). Temos que:
+\[
+\begin{array}{lcl}
+reverse([\,] \texttt{++} ys) & \equiv & \\
+reverse \: ys  & \equiv & \{pela equação 1 de \texttt{++}\} \\
+reverse\: ys ++ [\,] &  & \{pela equação 1 de \texttt{++}\} \\
+\end{array}
+\]
+conforme requerido.
+\item Passo indutivo. Suponha $x\in\TType$ arbitrário e que
+  $reverse(xs \texttt{++} ys) \equiv reverse\: ys \texttt{++}
+  reverse\: xs$. Temos que:
+\[
+\begin{array}{lcl}
+reverse((x :: xs) \texttt{++} ys) & \equiv & \\
+reverse(x :: (xs \texttt{++} ys)) & \equiv & \{\text{pela equação 2 de
+\texttt{++}}\}\\
+reverse(xs \texttt{++} ys) \texttt{++} (x :: [\,]) & \equiv &
+\{\text{pela equação 2 de }reverse\}\\
+(reverse\: ys \texttt{++} reverse\: xs) \texttt{++} (x :: [\,]) &
+\equiv & \{pela hipótese de indução\} \\
+reverse\: ys \texttt{++} (reverse\: xs \texttt{++} (x :: [\,])) &
+\equiv & \{\texttt{++} \text{ é associativo}\} \\
+reverse\: ys \texttt{++} reverse(x ::xs)  &
+ & \{\text{pela equação 2 de }reverse\} \\
+\end{array}
+\]
+\end{enumerate}
+\end{proof}
+Note que nesta demonstração usamos, sem demonstrar, o fato de que a
+operação de concatenação de listas é associativa, isto é:
+\[
+\forall xs.\forall ys. \forall zs. xs \in \TList\,\TType \land ys \in \TList\,\TType \land zs \in
+\TList\,\TType \to xs \texttt{++} (ys \texttt{++} zs) \equiv (xs
+\texttt{++} ys) \texttt{++} zs
+\]
+Esta demonstração simples é deixada como exercício para o leitor.
+
+\subsection{Exercícios}
+
+\begin{enumerate}
+  \item Prove que a concatenação de listas é uma operação associativa.
+  \item Prove o seguinte teorema envolvendo as funções $\length$ e
+    $reverse$: Para toda lista $xs \in \TList\,\TType$, temos que
+    $\length(reverse \:xs)\equiv \length\:xs$.
+ \item Considere a seguinte definição alternativa de uma função que
+   inverte uma dada lista:
+\[
+\begin{array}{lclc}
+  reverse_{alt}\:xs & = & rev\: xs \: [\,] & (1)\\
+   & \\
+  rev \: [\,] \: ys & = & ys & (1) \\
+  rev \: (x :: xs) \: ys & = & rev \: xs \:\:(x :: ys) & (2)\\
+\end{array}
+\]
+ \begin{enumerate}
+   \item Mostre, passo a passo, a execução de $reverse_{alt}(T :: F ::
+     F :: [\,])$.
+   \item Prove que para toda lista $xs \in \TList\,\TType$,
+     $reverse_{alt}xs \equiv reverse\: xs$, em que $reverse$ é a
+     primeira definição apresentada de reverse neste texto.
+  \end{enumerate}
+  \item Prove que para toda lista $xs\in\TList\,\TType$,
+    $reverse(reverse\:xs) \equiv xs$.
+\end{enumerate}
+
+% \subsection{Árvores Binárias}
+
+% Encerraremos este capítulo apresentando demonstrações simples de
+% propriedades sobre árvores binárias, um tipo de estrutura de dados
+% muito importante na ciência da computação.
+
+% De maneira simples, uma árvore binária é vazia ou consiste de um nó
+% que armazena um elemento e possui duas sub árvores (também binárias),
+% denominadas sub árvore esquerda e direita, respectivamente. A seguir,
+% apresentamos a definição formal do conjunto de árvores binárias.
+
+%\begin{Definition}[Árvores binárias]
+%Seja $\TType$ um tipo qualquer. O conjunto $\TTree\,\TType$ de árvores cujo
+%\end{Definition}
+
+\section{Notas Bibliográficas}

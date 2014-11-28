@@ -282,19 +282,19 @@ e as seguintes relações
 \begin{itemize}
 	\item $R_1 = \{(p,d)\in P \times D \,\mid\,\text{$p$ leciona a disc. } d\}$.
 	\item $R_2 = \{(d,c)\in D \times C\,\mid\,\text{$d$ est\'a no curso $c$}\}$.
-	\item $R_3 = \{(e,d)\in E\times D\,\mid\,\text{$e$ est\'a matr. em $d$}\}$.
+	\item $R_3 = \{(e,d)\in S\times D\,\mid\,\text{$e$ est\'a matr. em $d$}\}$.
 \end{itemize}
-Temos que a relação $R_1 \circ R_2 \subseteq P \times C$ é definida
+Temos que a relação $R_3 \circ R_1 \subseteq S \times P$ é definida
 como:
 \[
-R_1 \circ R_2 =\{(p,c) \in P \times C \,|\,\text{o professor $p$
-  leciona alguma disciplina do curso $c$}\}
+R_3 \circ R_1 =\{(e,p) \in S \times P \,|\,\text{o professor $p$
+  leciona alguma disciplina para o aluno $e$}\}
 \]
 De maneira similar, podemos definir uma relação que especifica que um
 certo aluno está matriculado em um curso, usando composição e as
 relações $R_2$ e $R_3$:
 \[
-R_3 \circ R_2 =\{(e,c)\,|\,\text{o aluno $e$ está matriculado em
+R_2 \circ R_3 =\{(e,c)\,|\,\text{o aluno $e$ está matriculado em
   alguma disciplina do curso $c$}\}
 \]
 \end{Example}
@@ -475,7 +475,7 @@ Abaixo apresentamos diversos exemplos de relações reflexivas.
 Seja $R\subseteq A \times A$ uma relação binária qualquer. Dizemos que
 $R$ é uma relação irreflexiva se
 \[
-\forall x. x\in A \to  \neg xRx.
+\forall x. x\in A \to  \neg (xRx).
 \]
 \end{Definition}
 
@@ -568,7 +568,7 @@ São exemplos de relações anti-simétricas.
 Agora que estas definições foram apresentadas juntamente com alguns
 exemplos, as utilizaremos para demonstrar alguns teoremas. Vamos
 demonstrar um dos teoremas em detalhes (apresentando o rascunho e a
-construção passa-a-passo do texto) e os outros dois mostraremos apenas
+construção passo-a-passo do texto) e os outros dois mostraremos apenas
 o texto final.
 \begin{Theorem}
 Suponha que $R$ é uma relação binária sobre um conjunto $A$. Então,
@@ -859,7 +859,9 @@ Outros tipos importantes de relações são as chamadas ordens estritas
 e ordens lexicográficas. A primeira é um tipo de relação de ordem em
 que possui características similares a relação de $<$ e $>$ para
 números e ordens lexicográficas constituem ordens parciais para
-$n$-uplas de valores.
+$n$-uplas de valores. Apresentaremos a definição de ordem
+lexicográfica apenas para pares. Deixamos como exercício para o leitor
+sua extensão para $n$-uplas quaisquer.
 
 \begin{Definition}[Ordem Estrita]
 Seja $R \subseteq A \times A$ uma relação. Dizemos que $R$ é uma ordem
@@ -879,7 +881,8 @@ elementos de $A$, como:
 R = \{((x,y),(x',y')\,|\,x\sqsubset x' \land [x = x' \lor y \sqsubset y']\}
 \]
 \end{Definition}
-\subsubsection{Exercícios}
+
+\subsection{Exercícios}
 \begin{enumerate}
   \item Considere as relações apresentadas no exemplo
     125.
@@ -1539,9 +1542,9 @@ Seja $R$ uma relação de equivalência sobre $A$. Então, $A / R$ é uma
 partição de $A$.
 \end{Theorem}
 \begin{proof}
-\begin{enumerate}
   Para demonstrar que $A / R$ devemos provar as 3 partes da definição
   de partição (definição \ref{partdef}).
+\begin{enumerate}
   \item Suponha $x$ arbitrário.
     \begin{enumerate}
          \item[$(\to)$] : Suponha que $x \in \bigcup A /
@@ -1776,7 +1779,7 @@ estamos construindo a relação $R'= R \cup R^2$. De maneira similar, os
 pares que faltam a $R'$ devem estar na relação $R' \circ R'$ que é
 igual a:
 \[
-(R\cup R^2)^2 = R^2 \cup R^3 \cup R^3
+(R\cup R^2)^2 = R^2 \cup R^3 \cup R^4
 \]
 \end{Example}
 Simplificando, temos que os pares que faltam para uma certa relação

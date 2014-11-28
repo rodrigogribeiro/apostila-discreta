@@ -135,8 +135,9 @@ da lógica de predicados. Esta maneira de descrever conjuntos é útil
 para descrever conjuntos com muitos elementos ou infinitos.
 
 É importante notar que ocorrências da variável $x$ em $p(x)$ no set
-comprehension $\{x\in X\,|\,p(x)\}$ são consideradas ligadas por
-Podemos caracterizar a pertinência a um conjunto definido usando set
+comprehension $\{x\in X\,|\,p(x)\}$ são consideradas ligadas a $x\in
+X$. Assim,
+podemos caracterizar a pertinência a um conjunto definido usando set
 comprehension utilizando a seguinte equivalência:
 
 \[y\in\{x\in X \,|\, p(x)\} \equiv y\in X \land p(y)\]
@@ -160,7 +161,7 @@ por este permitir ambiguidades na interpretação de um conjunto. Sem
 saber que o conjunto $T$ representa os números naturais múltiplos de
 3, como saber se $173$ pertence ou não a este conjunto?
 
-Para evitar este tipo de ambiguidades, podemos utilizar set
+Para evitar este tipo de ambiguidade, podemos utilizar set
 comprehensions para definir conjuntos infinitos de maneira precisa. Os
 conjuntos anteriores podem ser representados da seguinte maneira:
 \[
@@ -181,7 +182,7 @@ b \in \mathbb{N} \land \exists y. y\in\mathbb{N} \land b = 3y\\
 \end{array}
 \]
 
-Note que como utilizarmos uma fórmula da lógica de predicados para
+Note que como utilizamos uma fórmula da lógica de predicados para
 descrever elementos de um conjunto não há margem para interpretações
 ambíguas.
 \end{Example}
@@ -799,7 +800,7 @@ teorema:
   \end{tabular}
 \end{flushleft}
 Evidentemente, esta prova deverá iniciar utilizando a estratégia de
-prova direta para implicação, que produz oa seguinte configuração do
+prova direta para implicação, que produz a seguinte configuração do
 rascunho:
 \begin{flushleft}
   \begin{tabular}{ll}

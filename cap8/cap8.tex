@@ -33,7 +33,7 @@ caso especial de relações.
 Sejam $A$ e $B$ dois conjuntos quaisquer e $f \subseteq A \times
 B$. Dizemos que $f$ é uma função se:
 \[
-\forall x. x\in A \to \exists ! b. b\in b \land (a,b) \in f
+\forall x. x\in A \to \exists ! b. b\in B \land (a,b) \in f
 \]
 \end{Definition}
 
@@ -58,7 +58,7 @@ Apresentaremos alguns exemplos de funções.
      $(1,4) \in g$ e $(1,5) \in g$.
   \item Sejam $C$ o conjunto de todas as cidades e $P$ o conjunto de
     todos os países. A relação $d =\{(c,p)\in C \times P\,|\,\text{a
-      cidade $p$ está no país $p$.}\}$ é uma função, pois toda cidade
+      cidade $c$ está no país $p$.}\}$ é uma função, pois toda cidade
     pertence a um único país.
   \item Seja $P$ o conjunto de todas as pessoas. A relação $h =
     \{(p,m)\in P \times \mathcal{P}(P)\,|\,\text{A pessoa $p$  é pai
@@ -202,7 +202,7 @@ esta não termina para números ímpares maiores que $1$.
 
 Normalmente, em matemática considera-se apenas funções totais, isto é
 funções que são definidas para todos os valores de um domínio. Porém,
-em computação, este conceito é não é adequado. Neste sentido,
+em computação, este conceito não é adequado. Neste sentido,
 considera-se também a noção de função parcial, que definimos a seguir.
 
 \begin{Definition}[Funções totais e parciais]

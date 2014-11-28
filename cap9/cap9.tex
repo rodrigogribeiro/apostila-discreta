@@ -351,7 +351,7 @@ Note que o enunciado deste teorema é dado pela seguinte fórmula:
   é produto de primos}
 \]
 Como esta fórmula possui o formato exigido para demonstrações
-usando indução, podemos tentar provar o caso base ($n = 1$) e o passo
+usando indução, podemos tentar provar o caso base ($n = 2$) e o passo
 indutivo. Porém, no passo indutivo chegamos em um possível ``beco-sem-saída'':
 \begin{enumerate}
   \item[\ ]Caso base: Para $n = 2$, temos que $2$ é primo e portanto,
@@ -505,7 +505,7 @@ $r$ tais que $n = mq + r$ e $r < m$.
 Note que $q$ e $r$ denotam o quociente e o resto da divisão,
 respectivamente. O teorema pode ser expresso pela seguinte fórmula:
 \[
-\forall m. m\in\mathbb{N} \land \to m > 0\to \forall n. n \in\mathbb{N} \to m > 0
+\forall m. m\in\mathbb{N} \land m > 0\to \forall n. n \in\mathbb{N} \to m > 0
 \to \exists q. \exists r. q \in\mathbb{N}\land r \in \mathbb{N} \land
 n = m q + r \land r < m
 \]
@@ -527,7 +527,7 @@ n = m q + r \land r < m
 \]
 Se $n < m$, então basta fazer $q = 0$ e $r = n$ e o resultado é
 imediato. Para $n \geq m$, temos que encontrar valores de $q$ e $r$
-tais que $r < m$. Note que como $n \geq m$, não podemos fazer que $r =
+tais que $n = mq + r$ e $r < m$. Note que como $n \geq m$, não podemos fazer que $r =
 n$. É óbvio que neste caso deveremos usar a hipótese de indução, mas
 para isso, devemos encontrar um valor de $k< n$ e  a partir deste
 encontrar $q$ e $r$. Qual será esse valor de $k$? Se nos atentarmos ao
