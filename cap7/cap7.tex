@@ -67,7 +67,7 @@ A\times B = \{(a,b)\,|\,a \in A \land b\in B\}
 \begin{Example}
 Sejam $A =\{1,2,3\}$ e $B = \{4,5,6\}$. Temos:
 \[
-A \times B = \{(1,4),(2,5),(3,6)\}
+A \times B = \{(1,4),(1,5),(1,6),(2,4),(2,5),(2,6),(3,4),(3,5),(3,6)\}
 \]
 Evidentemente, temos que $(1,4) \in A \times B$. Além disso, para o
 par ordenado $(1,4)$ temos que $1$ é o primeiro elemento (um elemento
@@ -318,7 +318,8 @@ Suponha $p$ arbitrário.
     R^{-1}$ e, portanto, pela definição de relação inversa, temos que
     $(a,b)\in R$. Logo, se $(a,b)\in
     (R^{-1})^{1}$ então $(a,b)\in R$.
-  \item[$(\leftarrow)$]: Suponha que $p \in R$. Como $R\subseteq A$,
+  \item[$(\leftarrow)$]: Suponha que $p \in R$. Como $R\subseteq
+    A\times B$,
     temos que existem $a\in A$ e $b\in B$ tais que $p = (a,b)$. Pela
     definição de inversa, temos que se $(a,b)\in R$ temos que $(b,a)
     \in R^{-1}$ e $(a,b) \in (R^{-1})^{-1}$. Logo, se $(a,b) \in R$
