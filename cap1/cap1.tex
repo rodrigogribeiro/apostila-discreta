@@ -43,7 +43,7 @@ O conjunto $\Nat$, dos termos que representam n\'umeros naturais, pode ser defin
    \end{array}
 \]
 \end{Definition}
-As regras acima constituem uma definição \emph{indutiva}, ou \emph{recursiva\/}, do conjunto $\Nat$, no sentido de que alguns elementos do conjunto $\Nat$ são definidos em termos de elementos do prórpio conjunto $\Nat$. A primeira regra especifica que o termo $\zero$ pertence ao conjunto $\Nat$. A segunda regra especifica como são construídos elementos de $\Nat$, a partir de elementos do próprio conjunto $\Nat$:  se $n$ \'e um termo pertencente ao conjunto $\Nat$, ent\~ao o termo $\suc\,n$ tamb\'em pertence a $N$. Desse modo, os termos do conjunto $\Nat$ são:
+As regras acima constituem uma definição \emph{indutiva}, ou \emph{recursiva\/}, do conjunto $\Nat$, no sentido de que alguns elementos do conjunto $\Nat$ são definidos em termos de elementos do próprio conjunto $\Nat$. A primeira regra especifica que o termo $\zero$ pertence ao conjunto $\Nat$. A segunda regra especifica como são construídos elementos de $\Nat$, a partir de elementos do próprio conjunto $\Nat$:  se $n$ \'e um termo pertencente ao conjunto $\Nat$, ent\~ao o termo $\suc\,n$ tamb\'em pertence a $\Nat$. Desse modo, os termos do conjunto $\Nat$ são:
 \[ \{\zero,\,\suc\,\zero,\,\suc\,(\suc\,\zero),\, \suc\,(\suc\,(\suc\,\zero)),\,...\} \]
 
 \begin{Definition}[\textbf{Listas}]
@@ -63,10 +63,10 @@ Note que listas são definidas de maneira independente do conjunto dos termos qu
   \item $T :: [\,]$, que representa a lista contendo apenas o elemento $T$, isto é, a lista cuja cabe\c{c}a \'e $T$ e cuja cauda é a lista $[\,]$. Esta lista é também representada, abreviadamente, como $[T]$.
   \item $F :: T :: [\,]$, representada abreviadamente como $[F,T]$, é a lista cuja cabe\c{c}a \'e $F$ e cuja cauda é a lista $T :: [\,]$ (ou seja, $[T]$).
 \end{itemize}
-Como exemplo de elemento do conjunto $\TList\,\Nat$ temos, por exemplo, a lista $zero :: (suc\,\,zero) :: [\,]$.
+Como elemento do conjunto $\TList\,\Nat$ temos, por exemplo, a lista $zero :: (suc\,\,zero) :: [\,]$, ou seja, $[zero :: (suc\,\,zero)]$.
 
 \begin{Definition}[\textbf{Express\~oes Aritm\'eticas}]\label{def:arithexp}
- A linguagem $\TExp$ é um conjunto dos termos que representam expressões ariméticas sobre números naturais, envolvendo apenas os operadores de adição e multiplicação, representados, respectivamente, pelos termos $\tplus$ e $\ttimes$. A linguagem $\TExp$ pode ser definida, indutivamente, pelas seguintes regras:
+ A linguagem $\TExp$ é o conjunto dos termos que representam expressões ariméticas sobre números naturais, envolvendo apenas os operadores de adição e multiplicação, representados, respectivamente, pelos termos $\tplus$ e $\ttimes$. A linguagem $\TExp$ pode ser definida, indutivamente, pelas seguintes regras:
   \[
   \begin{tabular}{l}
     se $n\in\Nat$, ent\~ao $\tconst\,n\in\TExp$ \\
@@ -91,7 +91,7 @@ As defini\c{c}\~oes anteriores especificam formalmente a sintaxe de quatro lingu
 A sintaxe de uma linguagem apenas define o conjunto de termos da linguagem, especificando a  estrutura desses termos, mas não atribui a eles qualquer significado. Para isso, é preciso também
 definir a \emph{semântica} da linguagem.
 
-A sem\^antica de uma linguagem $L$ pode ser definida na forma de uma função, cujo domínio é $L$ e cujo contra-domínio é alguma estrutura matemática $S$ apropriada.\footnote{Assumimos que o leitor tem familiaridade com os conceitos de dom\'inio e contra-dom\'inio de uma função, que serão, entretanto, revisados no cap\'itulo~\ref{}}.  Tal função é usualmente representada na forma $\llbracket\,\rrbracket\,:\,L \rightarrow S$. Essa maneira de definir semântica é ilustrada a seguir, por exemplos que provêm definições semânticas para as linguagens $\Bool$, $\Nat$, $\TExp$ e $\TList\,\TType$, cujas sintaxes foram definidas na se\c{c}\~ao~\ref{cap1:syn}.
+A sem\^antica de uma linguagem $L$ pode ser definida na forma de uma função, cujo domínio é $L$ e cujo contra-domínio é alguma estrutura matemática $S$ apropriada.\footnote{Assumimos que o leitor tem familiaridade com os conceitos de dom\'inio e contra-dom\'inio de uma função, que serão, entretanto, revisados no cap\'itulo~\ref{}}.  Tal função é usualmente representada na forma $\llbracket\,\rrbracket\,:\,L \rightarrow S$. Essa maneira de definir semântica é ilustrada a seguir, por meio de exemplos que provêm definições semânticas para as linguagens $\Bool$, $\Nat$, $\TExp$ e $\TList\,\TType$, cujas sintaxes foram definidas na se\c{c}\~ao~\ref{cap1:syn}.
 
 \begin{Definition}[\textbf{Valores Booleanos}]
 Uma poss\'ivel sem\^antica para termos do conjunto $\Bool$ \'e dada pela fun\c{c}\~ao $\llbracket\,\rrbracket : \Bool \rightarrow \{0,1\}$, definida como:
@@ -131,9 +131,9 @@ Para que uma definição recursiva determine uma função $f : D \rightarrow C$,
 \item \emph{Terminação\/}: Para garantir terminação, a definição recursiva deve incluir \emph{casos base\/}, ou seja, casos em que a definição é dada diretamente, e não em termos de si própria. Além disso, em todos os demais casos -- ditos \emph{recursivos\/}, ou \emph{indutivos\/} --  a definição é especificada em termos valores que se aproximam cada vez mais dos casos base. No caso da definição recursiva de uma semântica de uma linguagem $L$, a terminação pode ser garantida se a semântica de qualquer termo de $L$ é definida apenas em função da semântica de seus subtermos.
 \end{enumerate}
 
-A definição \ref{def:sem:Nat} determina, de fato, a função semântica $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$: 1) satisfaz ao critério de totalidade, uma vez que inclui uma equação de definição da semântica para regra da sintaxe de $\Nat$; 2) satisfaz o critétio de terminação, pois inclui um caso base, que corresponde à definição do significado do termo $\zero$, e, no outro caso, define o significado de um termo com $k$ ocorrências da constante $\suc$,  em termos do significado do subtermo com $(k-1)$ ocorrências de $\suc$, ou seja, uma ocorrência a menos de $\suc$ do que no termo original.
+A definição \ref{def:sem:Nat} determina, de fato, a função semântica $\llbracket\,\rrbracket : \Nat \rightarrow \mathbb{N}$: 1) satisfaz ao critério de totalidade, uma vez que inclui uma equação de definição da semântica para cada regra da sintaxe de $\Nat$; 2) satisfaz o critétio de terminação, pois inclui um caso base, que corresponde à definição do significado do termo $\zero$, e, no outro caso, define o significado de um termo com $k$ ocorrências da constante $\suc$,  em termos do significado do subtermo com $(k-1)$ ocorrências de $\suc$, ou seja, uma ocorrência a menos de $\suc$ do que no termo original.
 
-A linguagem $\TList\,\TType$ pode também ser interpretada sobre alguma estrutura matemática apropriada. Uma possível definição da  semântica de $\TList\,\TType$ será  apresentada mais adiante. Por enquanto, vamos tomar como base nossa interpretação informal dos termos dessa linguagem como listas, e vamos mostrar, por meio de alguns exemplos, como podemos definir funções, sobre listas representadas por esses termos. Tal como no caso da função semântica, a definição de cada uma dessas funções é também baseadaa na estrutura sintática dos termos da linguagem.
+A linguagem $\TList\,\TType$ pode também ser interpretada sobre alguma estrutura matemática apropriada. Uma possível definição da  semântica de $\TList\,\TType$ será  apresentada mais adiante. Por enquanto, vamos tomar como base nossa interpretação informal dos termos dessa linguagem como listas. Vamos mostrar, a seguir, por meio de alguns exemplos, como podemos definir funções sobre listas representadas por esses termos. A definição de cada uma dessas funções é baseada na estrutura sintática dos termos de $\TList\,\TType$.
 
 \begin{Definition}[\textbf{Comprimento de uma lista}]
 A função $\length : \TList\,\TType \rightarrow \mathbb{N}$, recebe como argumento uma lista, representada como um termo de $\TList\,\TType$, e retorna o número de elementos, ou seja, o comprimento, da lista dada. Essa função pode ser definida recursivamente, sobre a estrutura sintática dos termos de $\TList\,\TType$, do seguinte modo:
@@ -143,7 +143,7 @@ A função $\length : \TList\,\TType \rightarrow \mathbb{N}$, recebe como argume
   \length\,\,(t :: ts) & = & 1 + \length\,\, ts & (2)
 \end{array}
 \]
-Note que a definição acima determina a função $\length : \TList\,\TType \rightarrow \mathbb{N}$, pois: 1) a definição \'e total, já que existe uma equação para cada regra da definição da sintaxe de $\TList\,\TType$; e 2) termina sempre, pois inclui um caso base (a definição de $\length$ para a lista vazia) e, no caso recursivo, a definição para uma lista da forma $(t :: ts)$ é dada apenas em termos da sublista $ts$, que possui um elemento a menos do que a lista original $(t::ts)$.
+A definição acima determina a função $\length : \TList\,\TType \rightarrow \mathbb{N}$, pois: 1) a definição \'e total, já que existe uma equação para cada regra da definição da sintaxe de $\TList\,\TType$; e 2) termina sempre, pois inclui um caso base (a definição de $\length$ para a lista vazia) e, no caso recursivo, a definição para uma lista da forma $(t :: ts)$ é dada apenas em termos da sublista $ts$, que possui um elemento a menos do que a lista original $(t::ts)$.
 \end{Definition}
 
 \begin{Example}
@@ -170,7 +170,7 @@ que consiste da segunda lista justaposta ao final da primeira. Por exemplo,  $(T
     (x :: xs) \text{ ++ }  ys & = & x :: (xs\text{ ++ } ys) & (2)
   \end{array}
   \]
-Note que a recursão é definida sobre a estrutura sint\'atica da lista dada como primeiro par\^ametro. A equa\c{c}\~ao $(1)$ especifica que, se o primeiro parâmetro é a lista vazia, ent\~ao o resultado da concatena\c{c}\~ao \'e a segunda lista. A equa\c{c}\~ao $(2)$ apenas se aplica se o primeiro parâmetro é uma lista não vazia, isto é, da forma $(x :: xs)$. Neste caso, o resultado \'e obtido inserindo-se o primeiro elemento $x$, da lista $(x :: xs)$, no in\'icio da lista resultante de se concatenar a cauda $xs$, da primeira lista, com a segunda lista $ys$.
+Note que a recursão é definida sobre a estrutura sint\'atica da lista dada como primeiro par\^ametro. A equa\c{c}\~ao $(1)$ especifica que, se o primeiro parâmetro é a lista vazia, ent\~ao o resultado da concatena\c{c}\~ao \'e a segunda lista. A equa\c{c}\~ao $(2)$ apenas se aplica se o primeiro parâmetro é uma lista não vazia, ou seja, é da forma $(x :: xs)$. Neste caso, o resultado \'e obtido inserindo-se o primeiro elemento $x$, da lista $(x :: xs)$, no in\'icio da lista resultante de se concatenar a cauda $xs$, da primeira lista, com a segunda lista $ys$.
 \end{Definition}
 
 \begin{Example}
@@ -223,7 +223,14 @@ Na se\c{c}\~ao \ref{cap1:coq}, a seguir, você vai aprender a descrever, em Coq,
     \item $(\zero :: (\suc\,\, \zero) ::[\,])\text{ ++ }((\suc\,\,\zero) :: \zero :: [\,])$
   \end{enumerate}
   \item A operação de concatenação de duas listas foi definida recursivamente na Definição \ref{def:concat:lists}. Justifique que essa definição é uma fun\c{c}\~ao, mostrando que ela satisfaz  os critérios de totalidade e termina\c{c}\~ao.
-  \item Dê uma defini\c{c}\~ao recursiva para a função $\textit{nsubtermos }: \TExp \rightarrow \mathbb{N}$ que, dada uma express\~ao aritm\'etica, representada como um termos de $\TExp$, retorna o número de subtermos dessa expressão. Justifique que sua definição é uma função, mostrando que ela satisfaz os critérios de totalidade e termina\c{c}\~ao.
+  \item Dê uma defini\c{c}\~ao recursiva para a função $\textit{nsubtermos }: \TExp \rightarrow \mathbb{N}$ que, dada uma express\~ao aritm\'etica, representada como um termo de $\TExp$, retorna o número de subtermos dessa expressão. Por exemplo, 
+ \[ \small{
+\begin{array}{l}
+ \textit{nsubtermos } (\tconst\, \zero) \text{ retorna 1} \\
+ \textit{nsubtermos } (\ttimes\,(\tplus\,(\tconst (\suc\,\zero))\, (\tconst (\zero)))\, (\tconst \zero)) \text{ retorna 5} 
+ \end{array} }
+ \]
+Justifique que sua definição é uma função, mostrando que ela satisfaz os critérios de totalidade e termina\c{c}\~ao.
   \item O objetivo deste exerc\'icio \'e que você compreenda porque defini\c{c}\~oes recursivas que n\~ao atendem os crit\'erios de totalidade e termina\c{c}\~ao n\~ao podem ser consideradas fun\c{c}\~oes.
         Apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Por que essas definições n\~ao podem ser fun\c{c}\~oes?
 \end{enumerate}
