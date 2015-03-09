@@ -1,5 +1,5 @@
 install:
-    - sudo apt-get install texlive-full
+    - sudo apt-get install latexmk texlive texlive-xetex texlive-latex-extra texlive-math-extra texlive-fonts-extra
 
 script:
     - make
