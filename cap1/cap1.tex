@@ -34,7 +34,7 @@ Uma linguagem finita pode ser especificada simplesmente pela enumera\c{c}\~ao de
 
 Como o conjunto dos valores Booleanos \'e finito, sua defini\c{c}\~ao por meio de regras \'e imediata: basta enumerar uma regra que especifique a pertinência de cada um dos seus elementos.
 
-\begin{Definition}[\textbf{N\'umeros Naturais}]
+\begin{Definition}[\textbf{N\'umeros Naturais}]\label{def:syn:nat}
 O conjunto $\Nat$, dos termos que representam n\'umeros naturais, pode ser definido pelas seguintes regras:
 \[
    \begin{array}{l}
@@ -226,6 +226,28 @@ Na se\c{c}\~ao \ref{cap1:coq}, a seguir, você vai aprender a descrever, em Coq,
   \item Dê uma defini\c{c}\~ao recursiva para a função $\textit{nsubtermos }: \TExp \rightarrow \mathbb{N}$ que, dada uma express\~ao aritm\'etica, representada como um termos de $\TExp$, retorna o número de subtermos dessa expressão. Justifique que sua definição é uma função, mostrando que ela satisfaz os critérios de totalidade e termina\c{c}\~ao.
   \item O objetivo deste exerc\'icio \'e que você compreenda porque defini\c{c}\~oes recursivas que n\~ao atendem os crit\'erios de totalidade e termina\c{c}\~ao n\~ao podem ser consideradas fun\c{c}\~oes.
         Apresente exemplos de defini\c{c}\~oes recursivas que: 1) n\~ao atendem o crit\'erio de totalidade e 2) n\~ao atendem o crit\'erio de termina\c{c}\~ao. Por que essas definições n\~ao podem ser fun\c{c}\~oes?
+  \item Considere o conjunto de expressões aritméticas (Definição \ref{def:arithexp}). Apresente uma funções recursivas para desempenhar as seguintes tarefas:
+  \begin{enumerate}
+       \item Calcular o número de constantes presentes em uma expressão.
+       \item Calcular o número de operações de soma em uma expressão.
+  \end{enumerate}
+  \item Considerando o conjunto de números naturais na notação de Peano (Definição \ref{def:syn:nat}), desenvolva as seguintes operações:
+  \begin{enumerate}
+       \item Desenvolva uma função para realizar a subtração de dois números naturais. Considere que se $n \leq m$, $n - m = zero$.
+       \item Desenvolva uma função para realizar a multiplicação de dois números naturais. \textit{Dica}: Use a função de adição.
+       \item Desenvolva uma função para realizar a exponenciação de dois números naturais.
+       \item Desenvolva a função $even : \Nat\to\Bool$, que retorna $T$ caso o número natural na notação de Peano seja par e $F$ caso contrário.
+       \item Desenvolva uma função $eq : \Nat \to \Nat \to \Bool$, que a partir de dois números naturais na notação de Peano, retorne $T$ se estes forem iguais e $F$ caso contrário.
+       \item Desenvolva uma função $leq : \Nat \to \Nat \to \Bool$, que a partir de dois números naturais na notação de Peano, retorne $T$ se o primeiro for menor ou igual ao segundo e $F$, caso contrário.
+  \end{enumerate}
+  \item Anteriormente, apresentamos uma definição recursiva para o conjunto dos números naturais, $\Nat$. Outra maneira de representar o conjunto $\mathbb{N}$
+           é utilizando sequências finitas (listas) de bits. Tal representação consiste na conversão de números de base 10 para base 2 e vice-versa.
+ \begin{enumerate}
+      \item Apresente uma função recursiva que, a partir de um número natural $n \in \mathbb{N}$, retorne uma lista de booleanos correspondente a sequência de bits
+               que representa $n$ em notação binária.
+      \item Apresente uma função recursiva que, a partir de uma lista de valores booleanos $l \in \TList\mathcal{B}$, retorne o número natural $n \in \mathbb{N}$
+               correspondente ao número binário $l$ na base 10.
+ \end{enumerate}
 \end{enumerate}
 
 \ifbool{COQ}{
