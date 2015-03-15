@@ -1709,14 +1709,41 @@ conclui a demonstração.
           natural. Tente demonstrá-los sem utilizar a regra $\raa$.
 	\begin{enumerate}
 		\item $\{(P\land Q)\land R,\, S\land T\}\vdash\,Q\land S$
-		\item $\{(P\land Q)\land R\}\,\vdash\,(P\land R)\lor Z$
+		\item $\{(P\land Q)\land R\}\,\vdash\,(P\land R)\lor
+                  Z$
+                \item $\{P, P\to (P\to Q)\} \vdash Q$
+                \item $\vdash (P \land Q) \to P$
+                \item $\{P\}\vdash Q \to P \land Q$
+                \item $\{P\}\vdash (P \to Q) \to Q$
+                \item $\vdash (P \land Q) \to P \lor Q$
 		\item $\{Q\rightarrow (P\rightarrow R),\, \neg R,\, Q\,\} \vdash\,\neg P$
 		\item $\{P\}\,\vdash\, Q\rightarrow(P\land Q)$
-		\item $\{(P\rightarrow R)\land (Q\rightarrow R),\, P\land Q\}\,\vdash\, Q\land R$
+		\item $\{(P\rightarrow R)\land (Q\rightarrow R),\,
+                  P\land Q\}\,\vdash\, Q\land R$
+                \item $\{P \to Q \to R, P \to Q\}\vdash P \to R$
 		\item $\{P\rightarrow Q, R\rightarrow S\}\vdash (P\lor R)\rightarrow (Q\lor S)$
 		\item $\{Q\rightarrow R\}\vdash (P\rightarrow Q)\rightarrow(P\rightarrow R)$
 		\item $\{(P\land Q)\lor(P\land R)\}\vdash P\land(Q\lor
                   R)$
+                \item $\{P \to Q \land R\}\vdash (P \to Q) \land (P
+                  \to R)$
+                \item $\{(P\to Q) \land (P\to R)\}\vdash P\to (Q\land
+                  R)$
+                \item $\{P \to Q\}\vdash (((P\land Q) \to P)\land (P
+                  \to P\land Q))$
+                \item $\{P\to (Q \lor R), Q \to S, R \to S\}\vdash P
+                  \to S$
+                 \item $\vdash \neg P \to P \to P \to Q$
+                \item $\{P\land Q \to R, R\to S, Q\land \neg S\}\vdash
+                  \neg P$
+                \item $\{(P\to Q)\to R,S \to \neg P, T, \neg S\land
+                  T\to Q\} \vdash R$
+                \item $\{(S \to P)\lor (T\to Q)\}\vdash (S\to q) \lor
+                  (T\to P)$
+                 \item $\{\neg (P \to Q)\}\vdash Q \to P$
+        \end{enumerate}
+       \item Prove os seguintes sequentes
+       \begin{enumerate}
                   \item $\{\neg(A \lor B)\}\vdash \neg A \land \neg B$
                   \item $\{\neg A \land \neg B\}\vdash \neg (A\lor B)$
                   \item $\{\neg(A \land B)\}\vdash \neg A \lor \neg B$
