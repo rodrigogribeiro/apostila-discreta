@@ -1,4 +1,4 @@
-\chapter{L\'ogica de Predicados}\label{cap3}
+\chapter{Lógica de Predicados}\label{cap3}
 
 \epigraph{``Observe a estrada e diga-me quem você vê'', disse o Rei.\\
                  ``Eu vejo ninguém'', disse Alice.\\
@@ -1093,10 +1093,13 @@ Note que, para demonstrar que $\exists x. P(x)$ basta mostrar que
 \emph{existe} um valor $a$ que torna a propriedade $P$
 verdadeira. Desta forma, podemos entender a regra $\existsI$ como uma
 generalização das regras de introdução da disjunção, já que para
-provar $\bigvee_{u\in C}  [x\mapsto u]P(x)$
+provar $\bigvee_{u\in C}  [x\mapsto u]P(x)$, basta encontrar um valor
+$a \in C$ que torne $P(a)$ verdadeiro.
 
 Caso o valor $a$ seja uma variável, esta deve ocorrer livre em
-$[x\mapsto a]P(x)$. A seguir apresentamos um exemplo que ilustra a
+$[x\mapsto a]P(x)$ e não pode ocorrer livre na conclusão de $\existsI$. Isto
+é, devemos associar todas as ocorrências de $a$ a variável $x$
+introduzida pelo quantificador existencial. A seguir apresentamos um exemplo que ilustra a
 utilização desta regra.
 \begin{Example}
 Considere a tarefa de demonstrar o sequente $\{\forall x. P(x)\}
@@ -1160,6 +1163,8 @@ seguir.
         {\exists x. P(x) & \Gamma \cup \{[x\mapsto y] P (x)\}\vdash
           \alpha & y \not\in fv(\Gamma)}
 \]
+É importante notar que $y$ não pode ocorrer livre em $\alpha$, pois
+levaria a contradições.
 A seguir apresentamos um exemplo desta regra.
 \begin{Example}
 Considere a tarefa de demonstrar o sequente
@@ -1194,6 +1199,42 @@ apresentada abaixo:
 Note que a única restrição aplicável à regra $\existsE$ é a mesma que
 se aplica a regra $\forallI$: a variável ``arbitrária'' não deve
 ocorrer livre no conjunto de hipóteses.
+
+\subsubsection{Restrições sobre as regras do quantificador
+  existencial}
+
+Nesta seção discutiremos a restrição sobre a regra $\existsE$ 
+
+\[
+\infer[\existsE]{\Gamma\vdash\alpha}
+        {\exists x. P(x) & \Gamma \cup \{[x\mapsto y] P (x)\}\vdash
+          \alpha & y \not\in fv(\Gamma)}
+\]
+
+que não permite que $y \in fv(\alpha)$. Permitir que este fato ocorre
+leva a resultados obviamente contraditórios. Como exemplo, considere a
+``demonstração'' do sequente $\{\exists x.P(x)\} \vdash \forall
+x. P(x)$.
+
+\[
+    \infer[_{\forallI}]{\forall x. P(x)}
+                          {
+                            \infer[_{\existsE}^1]{P(x)}
+                                                   {
+                                                     \infer[_{(Id)}]{\exists
+                                                     x.P(x)}{} & \infer[_{(Id)}]{P(x)^1}{}
+                                                   }
+                             & x \not\in fv(\{\exists x. P(x)\})
+                          }
+\]
+
+Evidemente não deveriámos ser capazes de deduzir este sequente, visto
+que tal demonstração implicaria que os quantificadores existencial e
+universal são ``idênticos''. Logo, para mantermos a correção da
+dedução natural, devemos garantir que a variável introduzida pela
+regra $\existsE$ não ocorra livre na conclusão desta regra, caso
+contrário, podemos incorrer em erros de dedução como o apresentado no
+exemplo anterior.
 
 \section{Exercícios}
 
