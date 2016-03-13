@@ -393,7 +393,7 @@ A seguir apresentamos alguns problemas clássicos e como estes podem
 ser modelados utilizando funções recursivas. Além dessa modelagem,
 apresentaremos como obter uma fórmula fechada equivalente a função apresentada.
 
-\subsection{As Torres de Hanói}
+\subsection{As Torres de Hanói}\label{hanoi}
 
 As torres de Hanói é um quebra-cabeça inventado por um matemático
 francês, Édouard Lucas em 1833.  Este quebra-cabeça consiste de uma
@@ -580,8 +580,8 @@ T(n + 1) & = \\
 T(n) + (n + 1) & = & \{\text{pela def. de }T(n)\}\\
 \dfrac{n(n+1)}{2} + 1 + (n + 1) & = & \{\text{pela hipótese de
   indução}\}\\
-\dfrac{n(n + 1) + 2(n+1)}{2} & = & \\
-\dfrac{(n + 1)(n + 2)}{2}
+\dfrac{n(n + 1) + 2(n+1)}{2}  + 1& = & \\
+\dfrac{(n + 1)(n + 2)}{2} + 1
 \end{array}
    \]
 conforme requerido.

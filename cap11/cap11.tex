@@ -3,8 +3,7 @@
 
 \epigraph{Correctness is clearly the prime quality. If a system does
   not do what it is supposed to do, then everything else about it
-  matters little.}{Berthrand Meyer, Criador da linguagem Eiffel, a
-  primeira linguagem orientada a objetos.}
+  matters little.}{Berthrand Meyer, Cientista da Computação}
 
 \section{Motivação}
 
@@ -461,6 +460,25 @@ Esta demonstração simples é deixada como exercício para o leitor.
   \item Prove que para toda lista $xs\in\TList\,\TType$,
     $reverse(reverse\:xs) \equiv xs$.
 \end{enumerate}
+
+
+\subsection{Estudo de Caso: Torres de Hanói}
+
+Apresentamos o problema das Torres de Hanói na seção \ref{hanoi} em
+que deduzimos uma função que, a partir do número de discos presentes
+neste quebra-cabeças, calcula o número mínimo de movimentos
+necessários para resolvê-lo. Nesta seção, apresentaremos como uma
+simples função recursiva pode produzir uma lista dos movimentos
+necessários para solucionar o problema.
+
+A função para obter os movimentos seguirá a mesma estrutura que usamos
+na seção \ref{hanoi}:
+\begin{itemize}
+  \item Mova $n - 1$ discos do pino $A$ para o pino $B$.
+  \item Mova o disco $n$ do pino $A$ para o pino $C$.
+  \item Mova $n - 1$ discos do pino $C$ para o pino $C$.
+\end{itemize}
+
 
 % \subsection{Árvores Binárias}
 
