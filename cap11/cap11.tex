@@ -461,38 +461,29 @@ Esta demonstração simples é deixada como exercício para o leitor.
     $reverse(reverse\:xs) \equiv xs$.
 \end{enumerate}
 
+\subsection{Árvores Binárias}
 
-\subsection{Estudo de Caso: Torres de Hanói}
+Encerraremos este capítulo apresentando demonstrações simples de
+propriedades sobre árvores binárias, um tipo de estrutura de dados
+muito importante na ciência da computação.
 
-Apresentamos o problema das Torres de Hanói na seção \ref{hanoi} em
-que deduzimos uma função que, a partir do número de discos presentes
-neste quebra-cabeças, calcula o número mínimo de movimentos
-necessários para resolvê-lo. Nesta seção, apresentaremos como uma
-simples função recursiva pode produzir uma lista dos movimentos
-necessários para solucionar o problema.
+De maneira simples, uma árvore binária é vazia ou consiste de um nó
+que armazena um elemento e possui duas sub árvores (também binárias),
+denominadas sub árvore esquerda e direita, respectivamente. A seguir,
+apresentamos a definição formal do conjunto de árvores binárias.
 
-A função para obter os movimentos seguirá a mesma estrutura que usamos
-na seção \ref{hanoi}:
-\begin{itemize}
-  \item Mova $n - 1$ discos do pino $A$ para o pino $B$.
-  \item Mova o disco $n$ do pino $A$ para o pino $C$.
-  \item Mova $n - 1$ discos do pino $C$ para o pino $C$.
-\end{itemize}
+\begin{Definition}[Árvores binárias]
+Seja $\TType$ um tipo qualquer. O conjunto $\TTree\,\TType$ de árvores
+cujos elementos são do tipo $\TType$ é definida recursivamente
+(indutivamente) como:
+\[
+\begin{array}{l}
+   Leaf \in \TTree\:\TType \\
+   \text{se }l,r \in \TTree\:\TType \text{ e } x\in\TType \text{ então } Node\:x\:l\:r\in\TTree\:\TType
+\end{array}
+\]
+\end{Definition}
 
-
-% \subsection{Árvores Binárias}
-
-% Encerraremos este capítulo apresentando demonstrações simples de
-% propriedades sobre árvores binárias, um tipo de estrutura de dados
-% muito importante na ciência da computação.
-
-% De maneira simples, uma árvore binária é vazia ou consiste de um nó
-% que armazena um elemento e possui duas sub árvores (também binárias),
-% denominadas sub árvore esquerda e direita, respectivamente. A seguir,
-% apresentamos a definição formal do conjunto de árvores binárias.
-
-%\begin{Definition}[Árvores binárias]
-%Seja $\TType$ um tipo qualquer. O conjunto $\TTree\,\TType$ de árvores cujo
-%\end{Definition}
+\section{Predicados Definidos Indutivamente}
 
 \section{Notas Bibliográficas}
